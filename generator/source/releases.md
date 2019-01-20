@@ -2,7 +2,7 @@
 layout: page
 title: Releases
 permalink: /release/
-feature-img: "examples/img/hero-bg.jpg"
+feature-img: "images/hero-bg.jpg"
 feat_img_size: small
 # Copyright (c) 2018 Bitwise IO, Inc.
 # Licensed under Creative Commons Attribution 4.0 International License

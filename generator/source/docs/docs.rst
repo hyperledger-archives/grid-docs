@@ -2,7 +2,7 @@
 layout: page
 title: Docs
 permalink: /docs/
-feature-img: "../docs/imgs/hero-bg.jpg"
+feature-img: "images/hero-bg.jpg"
 feat_img_size: small
 # Copyright (c) 2015–2017 Intel Corporation.
 # Licensed under Creative Commons Attribution 4.0 International License
