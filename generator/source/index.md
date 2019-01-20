@@ -8,17 +8,17 @@ feature-img: "images/hero-bg.jpg"
 # https://creativecommons.org/licenses/by/4.0/
 ---
 
-# Hyperledger Sawtooth
+# Hyperledger Grid
 
-Hyperledger Sawtooth is an enterprise solution for building, deploying, and
-running distributed ledgers (also called blockchains). It provides an extremely
-modular and flexible platform for implementing transaction-based updates to
-shared state between untrusted parties coordinated by consensus algorithms.
+Hyperledger Grid is a project for building supply chain solutions. It includes
+a set of libraries, data models, and SDKs to accelerate development for supply
+chain smart contracts and client interfaces.
 
 # Project Status
 
-This project is an _active_ Hyperledger project. It was proposed to the
-community and documented
-[here](https://docs.google.com/document/d/1j7YcGLJH6LkzvWdOYFIt2kpkVlLEmILErXL6t-Ky2zU).
-Information on what _Active_ entails can be found in the
-[Hyperledger Project Lifecycle document](https://wiki.hyperledger.org/community/project-lifecycle).
+This Hyperledger project is in _incubation_. It was proposed to the community
+and documented in this [Hyperledger Grid
+Proposal](https://docs.google.com/document/d/1b6ES0bKUK30E2iZizy3vjVEhPn7IvsW5buDo7nFXBE0/edit).
+Information on what _incubation_ means can be found in the [Hyperledger
+Project Lifecycle
+document](https://wiki.hyperledger.org/community/project-lifecycle).
