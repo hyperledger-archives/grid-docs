@@ -2,7 +2,8 @@
 layout: page
 title: About
 permalink: /about/
-feature-img: "../examples/img/hero-marketplace-bg.jpg"
+feature-img: "images/hero-bg.jpg"
+feat_img_size: small
 # Copyright (c) 2018 Bitwise IO, Inc.
 # Licensed under Creative Commons Attribution 4.0 International License
 # https://creativecommons.org/licenses/by/4.0/
