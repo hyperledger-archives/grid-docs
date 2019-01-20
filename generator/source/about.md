@@ -9,8 +9,6 @@ feat_img_size: small
 # https://creativecommons.org/licenses/by/4.0/
 ---
 
-![Hyperledger Sawtooth](/examples/img/logo-dark@2x.png)
-
 # Hyperledger Sawtooth
 
 Hyperledger Sawtooth is an enterprise solution for building, deploying, and
@@ -25,9 +23,6 @@ Documentation for how to run and extend Sawtooth is available here:
 
 Hyperledger Sawtooth Core Developers Setup Guide can be found here:
 [BUILD.md](https://github.com/hyperledger/sawtooth-core/blob/master/BUILD.md)
-
-Running examples of Sawtooth blockchains can be found here:
-[https://sawtooth.hyperledger.org/examples/](https://sawtooth.hyperledger.org/examples/)
 
 # Project Status
 
