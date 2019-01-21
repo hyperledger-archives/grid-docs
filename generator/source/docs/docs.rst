@@ -13,13 +13,7 @@ feat_img_size: small
 Hyperledger Grid Documentation
 ==============================
 
-.. class:: mininav
-
-`Grid`_
-
-Documentation for Hyperledger Grid
-
-Grid
-----
+Documentation
+-------------
 
 -  `Nightly master <grid/nightly/master/>`__
