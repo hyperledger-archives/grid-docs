@@ -4,6 +4,7 @@ title: Community
 permalink: /community/
 feature-img: "images/hero-bg.jpg"
 feat_img_size: small
+# Copyright (c) 2018-2019, Bitwise IO, Inc.
 # Copyright (c) 2015-2017, Intel Corporation.
 # Licensed under Creative Commons Attribution 4.0 International License
 # https://creativecommons.org/licenses/by/4.0/
@@ -13,7 +14,7 @@ feat_img_size: small
 Community
 *********
 
-Welcome to the Sawtooth community!
+Welcome to the Grid community!
 
 For help topics, we recommend joining us on Chat (link below).
 
