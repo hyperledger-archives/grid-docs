@@ -16,17 +16,6 @@ info(){
     printf "\e[94m%s\e[93m\n" "$1"
 }
 
-get_archives(){
-    mkdir -p ${wd}archive/
-    cd ${wd}archive/
-    wget -qNrA gz -nH --no-parent --no-check-certificate \
-        http://archive.sawtooth.me/core/
-    cd ${wd}archive/core/
-    wget -qN --no-check-certificate \
-        http://archive.sawtooth.me/core/sl.txt
-    cd $wd
-}
-
 jenkins_build_url(){
     jburl="https://build.sawtooth.me/job/Sawtooth-Hyperledger/job/"
     jburl="${jburl}sawtooth-${1}/job/${2}/lastSuccessfulBuild/"
@@ -42,20 +31,12 @@ nightly_epoch(){
 info "Generating site with Jekyll"
 build_jekyll
 
-info "Retrieving docs"
-get_archives
-
-info "Extracting docs"
-mkdir -p ./archive/docs
-ls ./archive/core/*.gz | xargs -I{} tar --skip-old-files -xzf {} -C ./archive/docs/
-
 # Artifacts are retrieved from build.sawtooth.me for each repo/branch
 # Jenkins creates these with each change to the branch
 # The buildlist is in the format, repo:branch
 # NOTE: update /source/docs/versions.json and /source/docs/docs.rst
 info "Retrieving nightlies"
-buildlist="core:master core:1-1 seth:master raft:master sabre:master \
-    supply-chain:master pbft:master"
+buildlist="supply-chain:master"
 for build in $buildlist; do
     repo=$(echo $build | cut -d: -f1)
     branch=$(echo $build | cut -d: -f2)
@@ -81,15 +62,9 @@ for build in $buildlist; do
     fi
 done
 
-info "Setting symlinks"
-for line in $(cat ${wd}/archive/core/sl.txt); do
-    parent=$(echo $line | cut -d: -f1)
-    link=$(echo $line | cut -d: -f2)
-    target=$(echo $line | cut -d: -f3)
-    mkdir -p ${wd}/archive/docs/${parent}
-    cd ${wd}/archive/docs/${parent}
-    ln -frsT $target $link
-done
+cd ${wd}/archive/docs
+rm -f grid
+ln -s supply-chain grid
 cd ${wd}
 
 touch jekyll.complete
