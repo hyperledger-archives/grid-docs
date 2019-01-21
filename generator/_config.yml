@@ -8,38 +8,23 @@ url: "0.0.0.0" # the base hostname & protocol for your site
 # THEME-SPECIFIC CONFIGURATION
 theme_settings:
   # Meta
-  title: Hyperledger Sawtooth
-  avatar: avatar.png
+  title: Hyperledger Grid
   gravatar: # Email MD5 hash
-  description: "A website with blog posts and pages" # used by search engines
+  description: "A project for building supply chain solutions" # used by search engines
 
   # Header and footer text
   header_text: >
-     <h1>Sawtooth</h1>
+     <h1>Grid</h1>
   header_text_feature_image: ../examples/img/hero-bg.jpg
   footer_text: >
-    <h2>Sawtooth</h2>
-    <p>
-      <a href="https://chat.hyperledger.org/channel/sawtooth" target="_blank" title="Rocket Chat">RocketChat</a>
-    </p>
-    <p>
-      <a href="/docs/" target="_blank" title="Documentation">Documentation</a>
-      &bull;
-      <a href="https://github.com/hyperledger/sawtooth-core/" target="_blank" title="Github">Github</a>
-      &bull;
-      <a href="/examples/seafood.html" title="Seafood Supply Chain Traceability">Seafood Supply Chain Traceability</a>
-      &bull;
-      <a href="/examples/bond.html" title="Bond Asset Settlement">Bond Asset Settlement</a>
-      &bull;
-      <a href="/examples/marketplace.html" title="Marketplace Digital Asset Exchange">Marketplace Digital Asset Exchange</a>
-    </p>
+    <h2>Hyperledger Grid</h2>
     <p>
       <a href="http://www.linuxfoundation.org/privacy" target="_blank" title="Privacy Policy">Privacy Policy</a>
       &bull;
       <a href="http://www.linuxfoundation.org/terms" target="_blank" title="Terms of Service">Terms of Service</a>
     </p>
     <p>
-      <small class="copyright">Copyright &copy; 2015-2018 contributors to Hyperledger Sawtooth</small>
+      <small class="copyright">Copyright &copy; 2015-2019 contributors to Hyperledger Grid</small>
     </p>
   permalink: /:categories/:year/:month/:day/:release/:title/
   # Icons
@@ -50,7 +35,7 @@ theme_settings:
   dribbble:
   facebook:
   flickr:
-  github: hyperledger/sawtooth-core
+  github: hyperledger/grid
   google_plus:
   instagram:
   linkedin:  # Full URL
