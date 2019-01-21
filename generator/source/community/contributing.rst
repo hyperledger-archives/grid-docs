@@ -3,6 +3,9 @@ layout: page
 hide: true
 title: Contributing
 permalink: /community/contributing/
+feature-img: "images/hero-bg.jpg"
+feat_img_size: small
+# Copyright (c) 2018-2019, Bitwise IO, Inc.
 # Copyright (c) 2015-2017, Intel Corporation.
 # Licensed under Creative Commons Attribution 4.0 International License
 # https://creativecommons.org/licenses/by/4.0/
@@ -12,41 +15,40 @@ permalink: /community/contributing/
 Contributing
 ------------
 
-==========================================
-Ways to Contribute to Hyperledger Sawtooth
-==========================================
+======================================
+Ways to Contribute to Hyperledger Grid
+======================================
 
 Contributions from the development community help improve the capabilities of
-Hyperledger Sawtooth. These contributions are the most effective way to
-make a positive impact on the project.
+Hyperledger Grid. These contributions are the most effective way to make
+a positive impact on the project.
 
 Ways you can contribute:
 
-* Bugs or issues: Report problems or defects found when working with Sawtooth
+* Bugs or issues: Report problems or defects found when working with Grid
 * Core features and enhancements: Provide expanded capabilities or optimizations
 * Documentation: Improve existing documentation or create new information
 * Tests for events and results: Add functional, performance, or scalability
   tests
 
-Hyperledger Sawtooth issues can be found in
-`Using JIRA </community/issue_tracking#using-jira>`_.  Any unassigned items
-are probably still open. When in doubt, ask on RocketChat about a specific
-JIRA issue (see `Joining the Discussion </community/join_the_discussion>`_).
+Hyperledger Grid issues can be found in `Using JIRA
+</community/issue_tracking#using-jira>`_.  Any unassigned items are probably
+still open. When in doubt, ask on RocketChat about a specific JIRA issue (see
+`Joining the Discussion </community/join_the_discussion>`_).
 
 ==================
 The Commit Process
 ==================
 
-Hyperledger Sawtooth is Apache 2.0 licensed and accepts contributions
-via `GitHub <https://github.com/hyperledger/sawtooth-core>`_
-pull requests. When contributing code, please follow these guidelines:
+Hyperledger Grid is Apache 2.0 licensed and accepts contributions via `GitHub
+<https://github.com/hyperledger/grid>`_ pull requests. When contributing code,
+please follow these guidelines:
 
 * Fork the repository and make your changes in a feature branch
-* Include unit and integration tests for any new features and updates
-  to existing tests
-* Ensure that the unit and integration tests run successfully. Run both
-  of these tests with ``./bin/run_tests``
-* Check that the lint tests pass by running ``./bin/run_lint -s master``.
+* Include unit and integration tests for any new features and updates to
+  existing tests
+* Ensure that the unit and integration tests run successfully.
+* Check that the lint tests pass.
 
 **Pull Request Guidelines**
 
@@ -77,9 +79,9 @@ These rules are well documented in `Chris Beam's blog post
 
 **Signed-off-by**
 
-Each commit must include a "Signed-off-by" line in the commit message
-(``git commit -s``). This sign-off indicates that you agree the commit satisfies
-the `Developer Certificate of Origin (DCO) <http://developercertificate.org/>`_.
+Each commit must include a "Signed-off-by" line in the commit message (``git
+commit -s``). This sign-off indicates that you agree the commit satisfies the
+`Developer Certificate of Origin (DCO) <http://developercertificate.org/>`_.
 
 **Commit Email Address**
 
@@ -92,15 +94,15 @@ https://help.github.com/articles/setting-your-commit-email-address-in-git/
 A pull request cannot merged until it has passed these status checks:
 
 * The build must pass on Jenkins
-* The PR must be approved by at least two reviewers without any
-  outstanding requests for changes
+* The PR must be approved by at least two reviewers without any outstanding
+  requests for changes
 
 **Integrating GitHub Commits with JIRA**
 
-You can link JIRA issues to your commits, which  will integrate
-developer activity with the associated issue. JIRA uses the issue key to
-associate the commit with the issue, so that the commit can be summarized in the
-development panel for the JIRA issue.
+You can link JIRA issues to your commits, which will integrate developer
+activity with the associated issue. JIRA uses the issue key to associate the
+commit with the issue, so that the commit can be summarized in the development
+panel for the JIRA issue.
 
 When you make a commit, add the JIRA issue key to the end of the commit message
 or to the branch name. Either method should integrate your commit with the JIRA
