@@ -4,47 +4,42 @@ title: About
 permalink: /about/
 feature-img: "images/hero-bg.jpg"
 feat_img_size: small
-# Copyright (c) 2018 Bitwise IO, Inc.
+# Copyright (c) 2018-2019 Bitwise IO, Inc.
 # Licensed under Creative Commons Attribution 4.0 International License
 # https://creativecommons.org/licenses/by/4.0/
 ---
 
-# Hyperledger Sawtooth
+# Hyperledger Grid
 
-Hyperledger Sawtooth is an enterprise solution for building, deploying, and
-running distributed ledgers (also called blockchains). It provides an extremely
-modular and flexible platform for implementing transaction-based updates to
-shared state between untrusted parties coordinated by consensus algorithms.
+Hyperledger Grid is a project for building supply chain solutions. It includes
+a set of libraries, data models, and SDKs to accelerate development for supply
+chain smart contracts and client interfaces.
 
 # Documentation
 
-Documentation for how to run and extend Sawtooth is available here:
-[https://sawtooth.hyperledger.org/docs/](https://sawtooth.hyperledger.org/docs/)
-
-Hyperledger Sawtooth Core Developers Setup Guide can be found here:
-[BUILD.md](https://github.com/hyperledger/sawtooth-core/blob/master/BUILD.md)
+Information on how to run and extend Hyperledger Grid is available at
+[https://grid.hyperledger.org/docs/](https://grid.hyperledger.org/docs/).
 
 # Project Status
 
-This project is an _active_ Hyperledger project. It was proposed to the
-community and documented [here](https://docs.google.com/document/d/1j7YcGLJH6LkzvWdOYFIt2kpkVlLEmILErXL6t-Ky2zU).
-Information on what _active_ entails can be found in the
-[Hyperledger Project Lifecycle document](https://wiki.hyperledger.org/community/project-lifecycle).
+This Hyperledger project is in _incubation_. It was proposed to the community
+and documented in this [Hyperledger Grid
+Proposal](https://docs.google.com/document/d/1b6ES0bKUK30E2iZizy3vjVEhPn7IvsW5buDo7nFXBE0/edit).
+Information on what _incubation_ means can be found in the [Hyperledger Project
+Lifecycle document](https://wiki.hyperledger.org/community/project-lifecycle).
 
 # License
 
-Hyperledger Sawtooth software is licensed under the
-[Apache License Version 2.0](https://github.com/hyperledger/sawtooth-core/blob/master/LICENSE)
+Hyperledger Grid software is licensed under the
+[Apache License Version 2.0](https://github.com/hyperledger/grid/blob/master/LICENSE)
 software license.
 
-Hyperledger Sawtooth documentation in the
-[docs](https://github.com/hyperledger/sawtooth-core/blob/master/docs)
+The Hyperledger Grid documentation in the
+[docs](https://github.com/hyperledger/grid/blob/master/docs)
 subdirectory is licensed under a Creative Commons Attribution 4.0 International
 License.  You may obtain a copy of the license at:
 [http://creativecommons.org/licenses/by/4.0/](http://creativecommons.org/licenses/by/4.0/).
 
 Portions of this site were generated with [Jekyll](http://jekyllrb.com) using the
 [Type Theme](https://github.com/rohanchandra/type-theme). Both are used under the
-[MIT Licence](https://github.com/hyperledger/sawtooth-website/blob/master/generator/source/LICENSE)
-
-![Open Source Award Badge](https://github.com/hyperledger/sawtooth-core/raw/master/images/rookies16-small.png)
+[MIT Licence](https://github.com/hyperledger/grid-website/blob/master/generator/source/LICENSE).
