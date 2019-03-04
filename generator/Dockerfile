@@ -2,7 +2,7 @@
 # Licensed under Creative Commons Attribution 4.0 International License
 # https://creativecommons.org/licenses/by/4.0/
 
-FROM ruby:2.5.3-slim-stretch
+FROM ruby:2.6.1-slim-stretch
 
 ENV PYTHONIOENCODING=utf-8
 
