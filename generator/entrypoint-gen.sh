@@ -17,8 +17,8 @@ info(){
 }
 
 jenkins_build_url(){
-    jburl="https://build.sawtooth.me/job/Sawtooth-Hyperledger/job/"
-    jburl="${jburl}sawtooth-${1}/job/${2}/lastSuccessfulBuild/"
+    jburl="https://build.sawtooth.me/job/Grid-Hyperledger/job/"
+    jburl="${jburl}${1}/job/${2}/lastSuccessfulBuild/"
     echo -n "$jburl"
 }
 
@@ -36,7 +36,7 @@ build_jekyll
 # The buildlist is in the format, repo:branch
 # NOTE: update /source/docs/versions.json and /source/docs/docs.rst
 info "Retrieving nightlies"
-buildlist="supply-chain:master"
+buildlist="grid:master"
 for build in $buildlist; do
     repo=$(echo $build | cut -d: -f1)
     branch=$(echo $build | cut -d: -f2)
