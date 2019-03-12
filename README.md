@@ -1,41 +1,63 @@
 # grid-website
 
-## Preview and Review
+The grid-website repository contains source code and assets for the
+[Hyperledger Grid website](https://grid.hyperledger.org).
 
-You'll need to install
-[Docker and Compose](https://docs.docker.com/compose/install/)
+## Building the Website Locally
 
-From a local clone of
-[the repository](https://github.com/hyperledger/grid-website), run
+This repository includes a docker-compose file that builds and runs the website
+in a Docker container.
 
-```
-docker-compose up
-```
+Prerequisites:
+[Docker Engine and Docker Compose](https://docs.docker.com/compose/install/)
+must be installed and running.
 
-Pay attention to the output for markdown syntax errors. Errors will appear on
-lines beginning with `linter_1`.
+1. Create a local clone of the
+   [grid-website repository](https://github.com/hyperledger/grid-website).
 
-The site will be available at [`http://localhost:8000`](http://localhost:8000)
 
-To stop the site, type `[Ctrl]+C` then run
+2. Change to the root directory of your local clone, then run the following
+   command:
+
+    ```
+    docker-compose up
+    ```
+
+   > Note: If you have made changes, examine the output for Markdown syntax errors. These errors will appear on lines beginning with `linter_1`.
+
+3. When this command finishes, the site will be available at
+   <http://localhost:8000>.
+
+To stop the Docker container, enter `[Ctrl]+C` in the same terminal window
+where you ran `docker-compose up`, then run this command:
 
 ```
 docker-compose down -v
 ```
 
-## Editing Site Content
+## Website Content
 
-Change the content of `/`, `/community/`, `/about/`,
-etc., by editing the files in `/generator/source/`.
+The content for the website's pages (Home, About, Community, etc.) is in
+[Markdown](https://www.markdownguide.org) files in `/generator/source/`.
+For example, the home page is `/generator/source/index.md` and the About page is
+`/generator/source/about.md`.
 
-E.g., `/generator/source/index.md`, `/generator/source/community/community.rst`
-and `/generator/source/about.md`
+## License
 
-## LICENSE
+The Grid website and the content in this repository are covered by the
+[Creative Commons Attribution 4.0 International license](http://creativecommons.org/licenses/by/4.0/)
+(CC BY 4.0) unless otherwise noted.
 
-* This documentation and the content herein is covered by [
-  Creative Commons Attribution 4.0 International License](
-  http://creativecommons.org/licenses/by/4.0/ "license") unless otherwise stated.
-* Jekyll (docker-compose.yaml) is used under LICENSE-MIT
-* The Jekyll Type theme is used under generator/source/LICENSE (MIT)
-* Markdown lint tool (docker-compose.yaml) is used under LICENSE-MIT
+Portions of the Grid website are generated with
+[Jekyll](https://github.com/jekyll/jekyll), which is used under the
+[MIT license](https://github.com/jekyll/jekyll/blob/master/LICENSE).
+
+The generated website uses the
+[Type Theme](https://github.com/rohanchandra/type-theme),
+which is used under the
+[MIT license](https://github.com/rohanchandra/type-theme/blob/master/LICENSE).
+
+Website generation includes the
+[Markdown lint tool](https://github.com/markdownlint/markdownlint),
+which is used under the
+[MIT license](https://github.com/markdownlint/markdownlint/blob/master/LICENSE.txt).
