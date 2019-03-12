@@ -62,10 +62,6 @@ for build in $buildlist; do
     fi
 done
 
-cd ${wd}/archive/docs
-rm -f grid
-ln -s supply-chain grid
 cd ${wd}
-
 touch jekyll.complete
 exit $EXITCODE
