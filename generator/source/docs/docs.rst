@@ -13,7 +13,13 @@ feat_img_size: small
 Hyperledger Grid Documentation
 ==============================
 
-Documentation
--------------
+Welcome to the Hyperledger Grid documentation. Changes are automatically
+published once a day.
 
--  `Nightly master <grid/nightly/master/>`__
+- `Hyperledger Grid draft documentation <grid/nightly/master/>`__ (nightly build
+  from the master branch)
+
+**Note:** This project is in `incubation
+<https://wiki.hyperledger.org/display/HYP/Project+Lifecycle#ProjectLifecycle-incubation>`__
+and has not been released. The draft documentation changes often.
+
