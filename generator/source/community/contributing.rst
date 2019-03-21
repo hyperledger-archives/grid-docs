@@ -1,7 +1,7 @@
 ---
 layout: page
 hide: true
-title: Contributing
+title: Contributing to Hyperledger Grid
 permalink: /community/contributing/
 feature-img: "images/hero-bg.jpg"
 feat_img_size: small
@@ -11,34 +11,36 @@ feat_img_size: small
 # https://creativecommons.org/licenses/by/4.0/
 ---
 
-------------
-Contributing
-------------
+Contributing to Hyperledger Grid
+================================
 
-======================================
-Ways to Contribute to Hyperledger Grid
-======================================
-
-Contributions from the development community help improve the capabilities of
-Hyperledger Grid. These contributions are the most effective way to make
-a positive impact on the project.
+We welcome your help with Hyperledger Grid. Contributions from the development
+community help improve the design and capabilities of Hyperledger Grid. These
+contributions are the best way to make a positive impact on the project.
 
 Ways you can contribute:
 
 * Bugs or issues: Report problems or defects found when working with Grid
-* Core features and enhancements: Provide expanded capabilities or optimizations
+* Core features and enhancements for
+  `hyperledger/grid <https://github.com/hyperledger/grid>`__:
+  Provide expanded capabilities or optimizations
+* Features and enhancements for
+  `hyperledger/grid-contrib <https://github.com/hyperledger/grid-contrib>`__:
+  Contribute new example apps, demos, and smart contracts, or help with
+  existing ones
 * Documentation: Improve existing documentation or create new information
 * Tests for events and results: Add functional, performance, or scalability
   tests
 
-Hyperledger Grid issues can be found in `Using JIRA
-</community/issue_tracking#using-jira>`_.  Any unassigned items are probably
-still open. When in doubt, ask on RocketChat about a specific JIRA issue (see
+Hyperledger Grid issues are tracked in JIRA (see `Using JIRA
+</community/issue_tracking#using-jira>`_). Any unassigned items are probably
+still open. When in doubt, ask on the
+`#grid <https://chat.hyperledger.org/channel/grid>`__ chat channel about a
+specific JIRA issue (see
 `Joining the Discussion </community/join_the_discussion>`_).
 
-==================
 The Commit Process
-==================
+------------------
 
 Hyperledger Grid is Apache 2.0 licensed and accepts contributions via `GitHub
 <https://github.com/hyperledger/grid>`_ pull requests. When contributing code,
@@ -50,7 +52,8 @@ please follow these guidelines:
 * Ensure that the unit and integration tests run successfully.
 * Check that the lint tests pass.
 
-**Pull Request Guidelines**
+Pull Request Guidelines
+^^^^^^^^^^^^^^^^^^^^^^^
 
 A pull request can contain a single commit or multiple commits. The most
 important guideline is that a single commit should map to a single fix or
@@ -70,7 +73,8 @@ enhancement. Here are some example scenarios:
   not merge the current master branch in with your topic branch. Do not use the
   Update Branch button provided by GitHub on the pull request page.
 
-**Commit Messages**
+Commit Messages
+^^^^^^^^^^^^^^^
 
 Commit messages should follow common Git conventions, such as using the
 imperative mood, separate subject lines, and a line length of 72 characters.
@@ -89,7 +93,8 @@ Your commit email address must match your GitHub email address. For more
 information, see
 https://help.github.com/articles/setting-your-commit-email-address-in-git/
 
-**Important GitHub Requirements**
+Important GitHub Requirements
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 A pull request cannot merged until it has passed these status checks:
 
@@ -97,7 +102,8 @@ A pull request cannot merged until it has passed these status checks:
 * The PR must be approved by at least two reviewers without any outstanding
   requests for changes
 
-**Integrating GitHub Commits with JIRA**
+Integrating GitHub Commits with JIRA
+------------------------------------
 
 You can link JIRA issues to your commits, which will integrate developer
 activity with the associated issue. JIRA uses the issue key to associate the
