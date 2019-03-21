@@ -15,22 +15,19 @@ feat_img_size: small
 Joining the Discussion
 **********************
 
-Chat
-====
+Hyperledger hosts a Grid chat channel and mailing list. These tools require a
+free `Linux Foundation ID <https://identity.linuxfoundation.org>`__.
 
-Hyperledger Grid RocketChat is the place to go for real-time chat about
-everything from quick help to involved discussions.
+**Chat**
 
-For general Hyperledger Grid discussions, join the `#grid
-<https://chat.hyperledger.org/channel/grid>`_ channel.
+`The #grid channel <https://chat.hyperledger.org/channel/grid>`_ is the place to
+go for up-to-the-minute Hyperledger Grid discussions, from quick help to
+involved conversations.
 
-Mailing Lists
-=============
+**Mailing list**
 
-The Hyperledger Grid mailing list is hosted by the Hyperledger project:
-
-  `Grid Mailing List <https://lists.hyperledger.org/g/grid>`_
-
+`The Hyperledger Grid mailing list <https://lists.hyperledger.org/g/grid>`__
+provides a forum for both simple questions and more complex discussions.
 
 .. Licensed under Creative Commons Attribution 4.0 International License
 .. https://creativecommons.org/licenses/by/4.0/
