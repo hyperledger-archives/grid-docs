@@ -1,6 +1,7 @@
 ---
 hide: true
 layout: page
+title: Hyperledger Grid
 permalink: /
 feature-img: "images/hero-bg.jpg"
 # Copyright (c) 2018 Bitwise IO, Inc.
@@ -8,17 +9,32 @@ feature-img: "images/hero-bg.jpg"
 # https://creativecommons.org/licenses/by/4.0/
 ---
 
-# Hyperledger Grid
+Hyperledger Grid is a platform for building supply chain solutions that include
+distributed ledger components. This project provides a set of modular components
+for developing smart contracts and client interfaces, including domain-specific
+data models (such as GS1 product definitions), smart-contract business logic,
+libraries, and SDKs.
 
-Hyperledger Grid is a project for building supply chain solutions. It includes
-a set of libraries, data models, and SDKs to accelerate development for supply
-chain smart contracts and client interfaces.
+**Project status:**
+Hyperledger Grid is currently in the
+[incubation](https://wiki.hyperledger.org/display/HYP/Project+Lifecycle#ProjectLifecycle-incubation)
+stage of the Hyperledger product lifecycle. The [Hyperledger Grid
+proposal](https://docs.google.com/document/d/1b6ES0bKUK30E2iZizy3vjVEhPn7IvsW5buDo7nFXBE0/)
+was accepted in December, 2018.
 
-# Project Status
+* [Learn about Hyperledger Grid](/about)
 
-This Hyperledger project is in _incubation_. It was proposed to the community
-and documented in this [Hyperledger Grid
-Proposal](https://docs.google.com/document/d/1b6ES0bKUK30E2iZizy3vjVEhPn7IvsW5buDo7nFXBE0/edit).
-Information on what _incubation_ means can be found in the [Hyperledger
-Project Lifecycle
-document](https://wiki.hyperledger.org/community/project-lifecycle).
+* [Read the documentation](/docs)
+
+* [Get the code](https://github.com/hyperledger/grid)
+
+* [Join the community](/community)
+
+* [See Hyperledger Grid in the
+  news](https://www.hyperledger.org/category/hyperledger-grid)
+
+Hyperledger Grid is an open source project on GitHub. We welcome contributors,
+both organizations and individuals, to help shape project direction, contribute
+ideas, provide use cases, and work on specific tools and examples.
+Please [join the conversation](/community).
+
