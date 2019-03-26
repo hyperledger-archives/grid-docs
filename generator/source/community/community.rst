@@ -14,19 +14,24 @@ feat_img_size: small
 Community
 *********
 
-Welcome to the Grid community!
+Welcome to the Hyperledger Grid community!
 
-For help topics, we recommend joining us on Chat (link below).
+We encourage feedback on all aspects of `Hyperledger Grid </>`__, including
+the high-level design, data models, core components, example SDKs and libraries,
+and the developer experience.
 
-- `Joining the Discussion </community/join_the_discussion>`_
+* `Join the discussion </community/join_the_discussion>`_:
+  Use the Grid chat or mailing list to talk to the maintainers, ask questions,
+  or get help.
 
-- `Tracking Issues </community/issue_tracking>`_
+* `Track issues </community/issue_tracking>`__ :
+  We use JIRA to track issues and report defects.
 
-- `Contributing </community/contributing>`_
+* `Contribute </community/contributing>`__:
+  We welcome contributions to Hyperledger Grid, including bug reports, features
+  and enhancements, new examples, and improvements to the documentation.
 
-- `Code of Conduct </community/code_of_conduct>`_
-
-
+Please see our `code of conduct </community/code_of_conduct>`_.
 
 .. Licensed under Creative Commons Attribution 4.0 International License
 .. https://creativecommons.org/licenses/by/4.0/
