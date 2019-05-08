@@ -18,7 +18,7 @@ General questions
 - `What is Hyperledger Grid? </faq/grid/#what-is-hyperledger-grid>`__
 
 - `What is the status of this project?
-  </faq/grid/what-is-the-status-of-this-project>`__
+  </faq/grid/#what-is-the-status-of-this-project>`__
 
 - `Where is the source code? </faq/grid/#where-is-the-source-code>`__
 
