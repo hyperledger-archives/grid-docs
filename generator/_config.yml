@@ -9,6 +9,7 @@ url: "0.0.0.0" # the base hostname & protocol for your site
 theme_settings:
   # Meta
   title: Hyperledger Grid
+  avatar: avatar.png
   gravatar: # Email MD5 hash
   description: "A project for building supply chain solutions" # used by search engines
 
