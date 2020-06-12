@@ -7,10 +7,6 @@ cd /srv/jekyll/
 
 pip install pygments
 
-until [ -f /srv/jekyll/jekyll.complete ]; do
-    sleep .2
-done
-
 MD_ISSUES="$(mdl -i -r ~MD033 ./source 2>&1)"
 EXITCODE=$?
 

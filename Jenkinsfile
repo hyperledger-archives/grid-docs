@@ -48,8 +48,13 @@ node ('master') {
                 '''
             }
 
+            stage("Lint website") {
+                sh 'docker-compose up --exit-code-from linter linter'
+                sh 'docker-compose down'
+            }
+
             stage("Build website") {
-                sh 'BUILDONLY=true docker-compose up'
+                sh 'BUILDONLY=true docker-compose up jekyll webserver'
                 sh 'BUILDONLY=true docker-compose down'
             }
 
