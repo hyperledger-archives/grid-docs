@@ -64,15 +64,15 @@ project?](/faq/grid/#how-can-i-contribute-to-this-project) for more information.
 
 This project includes several repositories on [GitHub](http://github.com):
 
-- The [hyperledger/grid](https://github.com/hyperledger/grid) repository
+* The [hyperledger/grid](https://github.com/hyperledger/grid) repository
   contains core components such as supply-chain-centric data types and
   reference implementations of smart contracts
 
-- The [hyperledger/grid-contrib](https://github.com/hyperledger/grid-contrib)
+* The [hyperledger/grid-contrib](https://github.com/hyperledger/grid-contrib)
   repository contains example domain models and reference implementations for
   smart contracts (also called "transaction families")
 
-- The [hyperledger/grid-rfcs](https://github.com/hyperledger/grid-rfcs)
+* The [hyperledger/grid-rfcs](https://github.com/hyperledger/grid-rfcs)
   repository contains RFCs (requests for comments) for proposed and approved
   changes to Hyperledger Grid
 
