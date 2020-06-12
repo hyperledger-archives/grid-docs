@@ -42,7 +42,7 @@ Hyperledger Grid components include:
   instance, Grid Track and Trace is a smart contract for tracking goods as they
   move through a supply chain.
 
-## Project status
+# Project status
 
 Hyperledger Grid is currently in the
 [incubation](https://wiki.hyperledger.org/display/HYP/Project+Lifecycle#ProjectLifecycle-incubation)
@@ -52,7 +52,7 @@ proposal](https://docs.google.com/document/d/1b6ES0bKUK30E2iZizy3vjVEhPn7IvsW5bu
 was accepted in December, 2018. Please see the [Hyperledger Grid project
 overview](https://www.hyperledger.org/projects/grid) for more information.
 
-## How to participate
+# How to participate
 
 Hyperledger Grid is an open source project on [GitHub](http://github.com).
 We welcome contributors, both organizations and individuals, to help shape
@@ -60,7 +60,7 @@ project direction, contribute ideas, provide use cases, and work on specific
 tools and examples. Please see the [Grid FAQ: How can I contribute to this
 project?](/faq/grid/#how-can-i-contribute-to-this-project) for more information.
 
-### Source code
+## Source code
 
 This project includes several repositories on [GitHub](http://github.com):
 
@@ -76,7 +76,7 @@ This project includes several repositories on [GitHub](http://github.com):
   repository contains RFCs (requests for comments) for proposed and approved
   changes to Hyperledger Grid
 
-## License
+# License
 
 Hyperledger Grid software is licensed under the [Apache License Version
 2.0](https://github.com/hyperledger/grid/blob/master/LICENSE) software license.
