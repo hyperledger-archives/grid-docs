@@ -4,8 +4,8 @@
 FROM ruby:alpine
 
 RUN apk add --update \
-    python \
-    python-dev \
+    python2 \
+    python2-dev \
     py-pip \
     build-base && \
     pip install --upgrade pip && \
