@@ -23,7 +23,8 @@ must be installed and running.
     docker-compose up
     ```
 
-   > Note: If you have made changes, examine the output for Markdown syntax errors. These errors will appear on lines beginning with `linter_1`.
+   > Note: If you have made changes, examine the output for Markdown syntax
+     errors. These errors will appear on lines beginning with `linter_1`.
 
 3. When this command finishes, the site will be available at
    <http://localhost:8000>.
