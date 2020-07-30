@@ -22,20 +22,3 @@ services:
         rm -rf  _site
         jekyll serve --config ./_config.yml
       "
-
-  webserver:
-    image: grid-website
-    container_name: grid-website
-    build:
-      context: .
-      dockerfile: webserver/Dockerfile
-    working_dir: /srv/jekyll/
-    entrypoint: /srv/jekyll/entrypoint-web.sh
-    expose:
-      - 80
-    ports:
-      - 8000:80
-    volumes:
-      - $PWD/generator:/srv/jekyll
-    environment:
-      - BUILDONLY=${BUILDONLY}

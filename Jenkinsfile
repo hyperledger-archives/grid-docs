@@ -54,12 +54,7 @@ node ('master') {
             }
 
             stage("Build website") {
-                sh 'BUILDONLY=true docker-compose up jekyll webserver'
-                sh 'BUILDONLY=true docker-compose down'
-            }
-
-            stage("Archive Build artifacts") {
-            archiveArtifacts artifacts: 'generator/archive/htdocs/**'
+                sh 'docker build -f ci/website.dockerfile -t grid-website .'
             }
         }
     }
