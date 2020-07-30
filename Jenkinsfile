@@ -49,7 +49,7 @@ node ('master') {
             }
 
             stage("Lint website") {
-                sh 'docker-compose up --exit-code-from linter linter'
+                sh 'docker-compose -f docker/compose/run-lint.yaml up --exit-code-from lint-grid-docs'
                 sh 'docker-compose down'
             }
 

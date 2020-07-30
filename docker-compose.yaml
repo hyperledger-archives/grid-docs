@@ -23,13 +23,6 @@ services:
         jekyll serve --config ./_config.yml
       "
 
-  linter:
-    image: linter
-    build: ./linter
-    volumes:
-      - $PWD/generator:/srv/jekyll
-    working_dir: /srv/jekyll/
-    entrypoint: /srv/jekyll/entrypoint-lint.sh
   webserver:
     image: grid-website
     container_name: grid-website
