@@ -1,0 +1,84 @@
+# Copyright 2020 Cargill Incorporated
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+url: https://grid.hyperledger.org
+
+plugins:
+- jekyll-default-layout
+- jekyll-optional-front-matter
+- jekyll-readme-index
+- jekyll-redirect-from
+- jekyll-seo-tag
+- jekyll-target-blank
+- jekyll-titles-from-headings
+
+optional_front_matter:
+  remove_originals: true
+
+readme_index:
+  enabled:          true
+  remove_originals: true
+  with_frontmatter: false
+
+titles_from_headings:
+  enabled:     true
+  strip_title: false
+  collections: false
+
+exclude:
+  - CODEOWNERS
+  - ci
+  - docker*
+  - Jenkinsfile
+  - justfile
+  - LICENSE
+  - MAINTAINERS.md
+  - README.md
+
+defaults:
+    - scope:
+        path: "releases"
+        type: "pages"
+      values:
+        layout: "sidebars"
+        sidebar: "releases"
+    - scope:
+        path: "examples"
+        type: "pages"
+      values:
+        layout: "sidebars"
+        sidebar: "examples"
+    - scope:
+        path: "docs/0.4"
+        type: "pages"
+      values:
+        layout: "sidebars"
+        sidebar: "0.4"
+    - scope:
+        path: "docs/0.5"
+        type: "pages"
+      values:
+        layout: "sidebars"
+        sidebar: "0.5"
+    - scope:
+        path: "community"
+        type: "pages"
+      values:
+        layout: "sidebars"
+        sidebar: "community"
+    - scope:
+        path: ""
+        type: "pages"
+      values:
+        layout: "default"
