@@ -4,12 +4,12 @@
 version: "2.1"
 
 services:
-  grid-website-jekyll:
+  grid-docs-jekyll:
     build:
       dockerfile: docker/jekyll.dockerfile
       context: .
-    image: grid-website-jekyll
-    container_name: grid-website-jekyll
+    image: grid-docs-jekyll
+    container_name: grid-docs-jekyll
     working_dir: /srv/jekyll/
     ports:
       - 4000:4000
@@ -22,3 +22,30 @@ services:
         rm -rf  _site
         jekyll serve --config ./_config.yml
       "
+
+  grid-docs-redoc-0-1:
+    container_name: grid-docs-redoc-0-1
+    image: grid-docs-redoc
+    build:
+      dockerfile: docker/grid-docs-redoc
+      context: .
+    ports:
+      - 4001:4001
+    volumes:
+      - .:/project
+    entrypoint: |
+      bash -c "
+        cd /project/docs/0.1/references/api
+        redoc-cli serve openapi.yaml -w -p 4001
+      "
+
+  grid-docs-apache:
+    container_name: grid-docs-apache
+    image: grid-docs-apache
+    build:
+      dockerfile: docker/grid-docs-apache
+      context: .
+    ports:
+      - 8080:80
+    volumes:
+      - .:/project
