@@ -4,12 +4,12 @@
 version: "2.1"
 
 services:
-  grid-website-jekyll:
+  grid-docs-jekyll:
     build:
       dockerfile: docker/jekyll.dockerfile
       context: .
-    image: grid-website-jekyll
-    container_name: grid-website-jekyll
+    image: grid-docs-jekyll
+    container_name: grid-docs-jekyll
     working_dir: /srv/jekyll/
     ports:
       - 4000:4000
