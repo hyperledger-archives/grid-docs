@@ -5,6 +5,17 @@
 # Licensed under Creative Commons Attribution 4.0 International License
 # https://creativecommons.org/licenses/by/4.0/
 
+# -------------=== redoc build ===-------------
+
+FROM node as redoc
+
+RUN npm install -g redoc
+RUN npm install -g redoc-cli
+
+COPY . /project
+
+RUN redoc-cli bundle /project/docs/0.1/references/api/openapi.yaml -o index_0.1.html
+
 # -------------=== jekyll build ===-------------
 
 FROM jekyll/jekyll:3.8 as jekyll
@@ -42,6 +53,7 @@ RUN git rev-parse HEAD > /commit-hash
 
 FROM httpd:2.4
 
+COPY --from=redoc /index_0.1.html /usr/local/apache2/htdocs/docs/0.1/api/index.html
 COPY --from=jekyll /tmp/ /usr/local/apache2/htdocs/
 COPY --from=git /commit-hash /commit-hash
 
