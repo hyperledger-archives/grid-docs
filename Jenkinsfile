@@ -49,17 +49,12 @@ node ('master') {
             }
 
             stage("Lint website") {
-                sh 'docker-compose up --exit-code-from linter linter'
+                sh 'docker-compose -f docker/compose/run-lint.yaml up --exit-code-from lint-grid-docs'
                 sh 'docker-compose down'
             }
 
             stage("Build website") {
-                sh 'BUILDONLY=true docker-compose up jekyll webserver'
-                sh 'BUILDONLY=true docker-compose down'
-            }
-
-            stage("Archive Build artifacts") {
-            archiveArtifacts artifacts: 'generator/archive/htdocs/**'
+                sh 'docker build -f ci/website.dockerfile -t grid-website .'
             }
         }
     }

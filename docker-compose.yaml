@@ -4,33 +4,21 @@
 version: "2.1"
 
 services:
-  jekyll:
-    image: generator-jekyll
-    build: ./generator
-    working_dir: /srv/jekyll/
-    entrypoint: /srv/jekyll/entrypoint-gen.sh
-    volumes:
-      - $PWD/generator:/srv/jekyll
-  linter:
-    image: linter
-    build: ./linter
-    volumes:
-      - $PWD/generator:/srv/jekyll
-    working_dir: /srv/jekyll/
-    entrypoint: /srv/jekyll/entrypoint-lint.sh
-  webserver:
-    image: grid-website
-    container_name: grid-website
+  grid-website-jekyll:
     build:
+      dockerfile: docker/jekyll.dockerfile
       context: .
-      dockerfile: webserver/Dockerfile
+    image: grid-website-jekyll
+    container_name: grid-website-jekyll
     working_dir: /srv/jekyll/
-    entrypoint: /srv/jekyll/entrypoint-web.sh
-    expose:
-      - 80
     ports:
-      - 8000:80
+      - 4000:4000
     volumes:
-      - $PWD/generator:/srv/jekyll
+      - $PWD:/srv/jekyll
     environment:
-      - BUILDONLY=${BUILDONLY}
+      - JEKYLL_ENV=${JEKYLL_ENV}
+    entrypoint:  |
+      bash -c "
+        rm -rf  _site
+        jekyll serve --config ./_config.yml
+      "

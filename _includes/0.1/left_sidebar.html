@@ -1,0 +1,24 @@
+<!--
+  Copyright 2018-2020 Cargill Incorporated
+  Licensed under Creative Commons Attribution 4.0 International License
+  https://creativecommons.org/licenses/by/4.0/
+-->
+{% include left_sidebar_toggle.html %}
+<div class="dropdown version-dropdown">
+    <a class="dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        v0.1
+    </a>
+    <div class="dropdown-menu">
+        <div class="dropdown-header">Development</div>
+        <a class="dropdown-item" href="/docs/{{ site.data.general.latest_version }}/">
+            Latest ({{ site.data.general.latest_version }})
+        </a>
+        <div class="dropdown-divider"></div>
+    </div>
+</div>
+<div id="left-sidebar-links" class="collapse">
+    <div class="left-sidebar-group">
+        <div class="left-sidebar-header">Getting Started</div>
+        <a href="{% link docs/0.1/index.md %}">Introduction</a>
+    </div>
+</div>
