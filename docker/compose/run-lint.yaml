@@ -23,4 +23,4 @@ services:
     image: grid-markdownlint
     volumes:
       - ../../:/project/
-    command: mdl -i .
+    command: mdl . -s /root/mdlstyle.rb
