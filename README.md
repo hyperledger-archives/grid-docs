@@ -23,11 +23,8 @@ must be installed and running.
     docker-compose up
     ```
 
-   > Note: If you have made changes, examine the output for Markdown syntax
-     errors. These errors will appear on lines beginning with `linter_1`.
-
 3. When this command finishes, the site will be available at
-   <http://localhost:8000>.
+   <http://localhost:4000>.
 
 To stop the Docker container, enter `[Ctrl]+C` in the same terminal window
 where you ran `docker-compose up`, then run this command:
@@ -38,10 +35,8 @@ docker-compose down -v
 
 ## Website Content
 
-The content for the website's pages (Home, About, Community, etc.) is in
-[Markdown](https://www.markdownguide.org) files in `/generator/source/`.
-For example, the home page is `/generator/source/index.md` and the About page is
-`/generator/source/about.md`.
+The content for the website's pages (Home, About, Community, etc.) is written in
+[Markdown](https://www.markdownguide.org).
 
 ## License
 
@@ -52,11 +47,6 @@ The Grid website and the content in this repository are covered by the
 Portions of the Grid website are generated with
 [Jekyll](https://github.com/jekyll/jekyll), which is used under the
 [MIT license](https://github.com/jekyll/jekyll/blob/master/LICENSE).
-
-The generated website uses the
-[Type Theme](https://github.com/rohanchandra/type-theme),
-which is used under the
-[MIT license](https://github.com/rohanchandra/type-theme/blob/master/LICENSE).
 
 Website generation includes the
 [Markdown lint tool](https://github.com/markdownlint/markdownlint),
