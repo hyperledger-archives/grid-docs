@@ -24,7 +24,7 @@ must be installed and running.
     ```
 
 3. When this command finishes, the site will be available at
-   <http://localhost:4000>.
+   <http://localhost:8080>.
 
 To stop the Docker container, enter `[Ctrl]+C` in the same terminal window
 where you ran `docker-compose up`, then run this command:
