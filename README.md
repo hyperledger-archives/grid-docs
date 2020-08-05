@@ -1,7 +1,7 @@
-# grid-website
+# grid-docs
 
-The grid-website repository contains source code and assets for the
-[Hyperledger Grid website](https://grid.hyperledger.org).
+The grid-docs repository contains source code and assets for the
+[Hyperledger Grid Docs website](https://grid.hyperledger.org).
 
 ## Building the Website Locally
 
@@ -13,7 +13,7 @@ Prerequisites:
 must be installed and running.
 
 1. Create a local clone of the
-   [grid-website repository](https://github.com/hyperledger/grid-website).
+   [grid-docs repository](https://github.com/hyperledger/grid-docs).
 
 
 2. Change to the root directory of your local clone, then run the following
