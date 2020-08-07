@@ -91,7 +91,22 @@ img {
     overflow-y: scroll;
 }
 
-/* Left Sidebar */
+#landing-page-hero-img {
+    background: url('../assets/hero-img.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 150px;
+}
+
+.hero-img h1 {
+    margin: 0;
+    color: #ffffffee;
+    font-size: 2.4rem;
+}
 
 @media screen and (max-width: 767px) {
     #header {
