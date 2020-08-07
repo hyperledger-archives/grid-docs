@@ -300,6 +300,13 @@ h4 {
     color: white;
     padding: 10px;
     text-align: center;
+    align: center;
+}
+
+#hero-banner {
+    color: white;
+    padding: 10px;
+    text-align: center;
 }
 
 #release-info {
@@ -348,8 +355,28 @@ h4 {
 
 #landing-page-top-section p {
     font-size: 1.5rem;
-    max-width: 500px;
+    max-width: 800px;
     margin: auto;
+}
+
+#landing-page-lower-section p {
+    font-size: 1.2rem;
+    max-width: 900px;
+    text-align: left;
+    margin: auto;
+    color: var(--text-color);
+    padding-bottom: 10px;
+    transition: all 0.15s linear;
+}
+
+#landing-page-lower-section li {
+    font-size: 1.2rem;
+    max-width: 900px;
+    text-align: left;
+    margin: auto;
+    color: var(--text-color);
+    padding-bottom: 3px;
+    transition: all 0.15s linear;
 }
 
 /* Overrides for small screens */
