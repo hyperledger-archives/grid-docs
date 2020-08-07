@@ -1,0 +1,27 @@
+# Community
+
+<!-- 
+  Copyright (c) 2018-2019, Bitwise IO, Inc.
+  Copyright (c) 2015-2017, Intel Corporation.
+  Licensed under Creative Commons Attribution 4.0 International License
+  https://creativecommons.org/licenses/by/4.0/
+-->
+
+Welcome to the Hyperledger Grid community!
+
+We encourage feedback on all aspects of Hyperledger Grid, including
+the high-level design, data models, core components, example SDKs and libraries,
+and the developer experience.
+
+* [Join the discussion]({% link community/join_the_discussion.md %}):
+  Use the Grid chat or mailing list to talk to the maintainers, ask questions,
+  or get help.
+
+* [Track issues]({% link community/issue_tracking.md %}):
+  We use JIRA to track issues and report defects.
+
+* [Contribute]({% link community/contributing.md %}):
+  We welcome contributions to Hyperledger Grid, including bug reports, features
+  and enhancements, new examples, and improvements to the documentation.
+
+Please see our [code of conduct]({% link community/code_of_conduct.md %}).
