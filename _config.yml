@@ -36,6 +36,10 @@ titles_from_headings:
   strip_title: false
   collections: false
 
+include:
+  - contributing.md
+  - code_of_conduct.md
+
 exclude:
   - CODEOWNERS
   - ci
