@@ -1,4 +1,4 @@
-# Grid Track and Trace Transaction Family Specification
+# Grid Track and Trace Specification
 
 <!--
   Copyright (c) 2019-2020 Cargill Incorporated
@@ -9,11 +9,18 @@
 
 ## Overview
 
-The Grid Track and Trace transaction family allows users to track
-goods as they move through a supply chain. Records for goods include a
-history of ownership and custodianship, as well as histories for a
-variety of properties such as temperature and location. These properties are
-managed using Grid Schemas.
+Grid Track and Trace for Hyperledger Grid is a smart contract designed to run
+with the [Sawtooth Sabre](https://github.com/hyperledger/sawtooth-sabre/)
+smart contract engine.
+
+Grid Track and Trace allows users to track goods as they move through a supply
+chain. Records for goods include a history of ownership and custodianship, as
+well as histories for a variety of properties such as temperature and location.
+These properties are managed using Grid Schemas.
+
+This specification describes the available data objects, state addressing (how
+transaction information is stored and addressed by *namespace*), and the valid
+transactions: types, headers, payload format, and execution rules.
 
 ## State
 

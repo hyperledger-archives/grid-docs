@@ -1,4 +1,4 @@
-# Pike Transaction Family Specification
+# Pike Specification
 
 <!--
   Copyright (c) 2018-2020 Cargill Incorporated
@@ -8,12 +8,19 @@
 
 ## Overview
 
-The Pike Transaction Family is designed to track the identities of the
-actors involved in the supply chain. These actors are agents and the
-organizations they represent. The roles that the agents play within said
-organizations are also tracked. This information can be used to determine who
-is allowed to interact with a platform, and to what extent they are allowed
-to interact with the platform.
+Pike for Hyperledger Grid is a smart contract designed to run with the
+[Sawtooth Sabre](https://github.com/hyperledger/sawtooth-sabre/)
+smart contract engine.
+
+Pike is designed to track the identities of the actors involved in the supply
+chain. These actors are agents and the organizations they represent. The roles
+that the agents play within said organizations are also tracked. This
+information can be used to determine who is allowed to interact with a platform,
+and to what extent they are allowed to interact with the platform.
+
+This specification describes the available data objects, state addressing (how
+transaction information is stored and addressed by *namespace*), and the valid
+transactions: types, headers, payload format, and execution rules.
 
 ## State
 
