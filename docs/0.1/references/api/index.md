@@ -8,7 +8,7 @@
 
 This API defines the endpoints for the Grid daemon, `griddd`. These
 endpoints allow external applications to access Grid functionality such as
-submitting batches to a Sawtooth Validator, getting a list of Schemas or
+submitting batches to a Sawtooth validator, getting a list of schemas or
 fetching an agent from Pike.
 
 * [Grid REST API Reference](/docs/0.1/api/)
