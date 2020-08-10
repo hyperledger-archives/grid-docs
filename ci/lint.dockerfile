@@ -15,7 +15,7 @@
 FROM alpine:3.11
 
 RUN apk add --update --no-cache ruby \
- && gem install mdl --no-document
+ && gem install mdl -v 0.9.0 --no-document
 
 RUN echo 'rules "MD013"' > ~/.mdlrc
 
