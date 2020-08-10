@@ -1,4 +1,4 @@
-# Grid Schema Transaction Family Specification
+# Grid Schema Specification
 
 <!--
   Copyright (c) 2019-2020 Cargill Incorporated
@@ -8,9 +8,13 @@
 
 ## Overview
 
-Grid Schema for Hyperledger Grid provides a reusable, standard approach to
-defining, storing, and consuming properties within smart contracts, software
-libraries, and network-based APIs.
+Grid Schema for Hyperledger Grid is a smart contract designed to run with the
+[Sawtooth Sabre](https://github.com/hyperledger/sawtooth-sabre/)
+smart contract engine.
+
+Grid Schema provides a reusable, standard approach to defining, storing, and
+consuming properties within smart contracts, software libraries, and
+network-based APIs.
 
 Several components within Grid store and retrieve properties which are
 defined at runtime. To properly store and validate these properties, we need
@@ -18,6 +22,10 @@ property definitions which minimally include the property’s type (integer,
 string, enum, etc.). In addition, the properties (for example, product
 description, GPS location, or product dimensions) should always be stored and
 exchanged using the same format within Grid components.
+
+This specification describes the available data objects, state addressing (how
+transaction information is stored and addressed by *namespace*), and the valid
+transactions: types, headers, payload format, and execution rules.
 
 ## State
 
