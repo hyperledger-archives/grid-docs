@@ -73,7 +73,7 @@ pipeline {
 
         stage("Build website") {
             steps {
-                sh 'docker build -f ci/website.dockerfile -t hyperledger/grid-website .'
+                sh 'docker build --build-arg jekyll_env=production -f ci/website.dockerfile -t hyperledger/grid-website .'
             }
         }
     }
