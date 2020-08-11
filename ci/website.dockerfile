@@ -30,6 +30,9 @@ RUN gem install \
     jekyll-target-blank \
     jekyll-titles-from-headings
 
+ARG jekyll_env=development
+ENV JEKYLL_ENV=$jekyll_env
+
 COPY . /srv/jekyll
 
 WORKDIR /srv/jekyll
