@@ -12,6 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#jekyll stuff
-.jekyll-cache/
-_site/
+version: "3.7"
+
+services:
+
+  lint-grid-docs:
+    build:
+      context: ../../
+      dockerfile: ci/lint.dockerfile
+    image: grid-markdownlint
+    volumes:
+      - ../../:/project/
+    command: mdl . -s /root/mdlstyle.rb

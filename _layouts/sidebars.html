@@ -1,0 +1,41 @@
+<!--
+  Copyright 2018-2020 Cargill Incorporated
+  Licensed under Creative Commons Attribution 4.0 International License
+  https://creativecommons.org/licenses/by/4.0/
+-->
+
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+{% include head.html %}
+    </head>
+    <body>
+{% include header.html %}
+        <div class="container-fluid content-wrapper">
+            <div class="row">
+                <div id="left-sidebar-col" class="col-md-3 col-xl-2 sidebar-col">
+                    <div id="left-sidebar" class="sidebar">
+{% include {{ page.sidebar }}/left_sidebar.html %}
+                    </div>
+                </div>
+                <main id="main" class="col-md-9 col-xl-8 offset-md-3 offset-xl-2" role="main">
+                    <div class="content" id="main-content">
+                        {% assign dir = page.dir | slice: 0, 20 %}
+                        {% if dir == '/community/planning/' %}
+                            <div id="planning-disclaimer">
+                                <b>Disclaimer:</b> These are planning documents. The functionalities described
+                                here may not be implemented, or may be only partially implemented.
+                            </div>
+                        {% endif %}
+                        {{ content }}
+                    </div>
+                </main>
+                <div id="right-sidebar-col" class="d-none d-xl-block col-xl-2 offset-xl-10 sidebar-col">
+                    <div id="right-sidebar" class="sidebar"></div">
+                </div>
+            </div>
+        </div>
+{% include footer.html %}
+    </body>
+{% include scripts.html %}
+</html>

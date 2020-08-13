@@ -1,4 +1,4 @@
-# Copyright 2020 Cargill Incorporated
+# Copyright 2018-2020 Cargill Incorporated
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,6 +12,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#jekyll stuff
-.jekyll-cache/
-_site/
+build: docker-build
+
+docker-build:
+    docker build \
+        -t hyperledger/grid-website \
+        -f ci/website.dockerfile \
+        .
+
+docker-lint:
+    docker-compose \
+        -f docker/compose/run-lint.yaml \
+        up \
+        --abort-on-container-exit \
+        --build \
+        lint-grid-docs
+
+docker-run:
+    docker-compose up --build; docker-compose down
+
+lint: docker-lint
+
+run: docker-run

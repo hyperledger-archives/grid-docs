@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#jekyll stuff
-.jekyll-cache/
-_site/
+FROM node
+
+RUN npm install -g redoc
+RUN npm install -g redoc-cli

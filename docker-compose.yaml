@@ -4,33 +4,48 @@
 version: "2.1"
 
 services:
-  jekyll:
-    image: generator-jekyll
-    build: ./generator
-    working_dir: /srv/jekyll/
-    entrypoint: /srv/jekyll/entrypoint-gen.sh
-    volumes:
-      - $PWD/generator:/srv/jekyll
-  linter:
-    image: linter
-    build: ./linter
-    volumes:
-      - $PWD/generator:/srv/jekyll
-    working_dir: /srv/jekyll/
-    entrypoint: /srv/jekyll/entrypoint-lint.sh
-  webserver:
-    image: grid-website
-    container_name: grid-website
+  grid-docs-jekyll:
     build:
+      dockerfile: docker/jekyll.dockerfile
       context: .
-      dockerfile: webserver/Dockerfile
+    image: grid-docs-jekyll
+    container_name: grid-docs-jekyll
     working_dir: /srv/jekyll/
-    entrypoint: /srv/jekyll/entrypoint-web.sh
-    expose:
-      - 80
     ports:
-      - 8000:80
+      - 4000:4000
     volumes:
-      - $PWD/generator:/srv/jekyll
+      - $PWD:/srv/jekyll
     environment:
-      - BUILDONLY=${BUILDONLY}
+      - JEKYLL_ENV=${JEKYLL_ENV}
+    entrypoint:  |
+      bash -c "
+        rm -rf  _site
+        jekyll serve --config ./_config.yml
+      "
+
+  grid-docs-redoc-0-1:
+    container_name: grid-docs-redoc-0-1
+    image: grid-docs-redoc
+    build:
+      dockerfile: docker/grid-docs-redoc
+      context: .
+    ports:
+      - 4001:4001
+    volumes:
+      - .:/project
+    entrypoint: |
+      bash -c "
+        cd /project/docs/0.1/references/api
+        redoc-cli serve openapi.yaml -w -p 4001
+      "
+
+  grid-docs-apache:
+    container_name: grid-docs-apache
+    image: grid-docs-apache
+    build:
+      dockerfile: docker/grid-docs-apache
+      context: .
+    ports:
+      - 8080:80
+    volumes:
+      - .:/project

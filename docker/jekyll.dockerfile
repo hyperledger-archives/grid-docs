@@ -12,6 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#jekyll stuff
-.jekyll-cache/
-_site/
+FROM jekyll/jekyll:3.8
+
+RUN gem install \
+    bundler \
+    jekyll-default-layout \
+    jekyll-optional-front-matter \
+    jekyll-readme-index \
+    jekyll-redirect-from \
+    jekyll-seo-tag \
+    jekyll-target-blank \
+    jekyll-titles-from-headings

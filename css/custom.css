@@ -1,0 +1,567 @@
+/*
+  Copyright 2020 Cargill Incorporated
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+*/
+
+:root {
+    --light-gray: #eaecef;
+    --text-color: #2c3e50;
+    --grid-orange: #f35f19;
+    --light-grid-orange: #ff732d;
+}
+
+/* General Styles */
+
+body {
+    color: var(--text-color);
+}
+
+a, a:hover {
+    color: var(--grid-orange);
+}
+
+a[target="_blank"]:after {
+    color: #aaa;
+    content: " \f08e";
+    font-family: 'FontAwesome';
+    font-size: .9em;
+    vertical-align: top;
+}
+
+img {
+    max-width: 100%;
+}
+
+.btn-primary {
+    background-color: var(--light-grid-orange);
+    border-color: var(--light-grid-orange);
+}
+
+.btn-primary:hover {
+    background-color: var(--grid-orange);
+    border-color: var(--grid-orange);
+}
+
+/* Header */
+
+#header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: rgba(250,250,250,.9);
+    box-shadow: 0 0 10px rgba(26,26,26,.25);
+}
+
+.nav-link * {
+    color: var(--text-color);
+}
+
+.nav-link.active *, .nav-link:hover * {
+    border-bottom: 2px solid var(--grid-orange);
+}
+
+/* Footer */
+#footer {
+  text-align: center;
+}
+
+/* Both Sidebars */
+
+.sidebar-col {
+    background-color: #f7f7f7;
+    height: calc(100vh - 62px); /* 62px is the navbar height */
+    padding: 0;
+    position: fixed;
+}
+
+.sidebar {
+    padding-top: 20px;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+#landing-page-hero-img {
+    background: url('../assets/hero-img.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 150px;
+}
+
+.hero-img h1 {
+    margin: 0;
+    color: #ffffffee;
+    font-size: 2.4rem;
+}
+
+.landing-page-lower-section {
+    padding: 0 20px;
+    margin-bottom: 20px;
+}
+
+@media screen and (max-width: 767px) {
+    #header {
+        position: inherit;
+        background-color: #f7f7f7;
+    }
+
+    #left-sidebar-col {
+        height: auto;
+        position: inherit;
+        z-index: 1000;
+    }
+
+    #left-sidebar {
+        overflow-y: visible;
+        padding: 8px 16px 16px 16px;
+    }
+
+    #left-sidebar > * {
+        margin: 0 !important;
+    }
+
+    #left-sidebar #left-sidebar-links-toggle {
+        right: 0;
+    }
+
+    #left-sidebar #left-sidebar-links-toggle:hover {
+        color: var(--grid-orange);
+        transition: all 0.1s linear;
+    }
+
+    #left-sidebar .dropdown {
+        display: inline-block;
+        position: absolute;
+        right: 16px; /* Account for padding of bar */
+    }
+
+    #left-sidebar .dropdown-menu {
+        /* This ensures the menu doesn't appear off-screen */
+        transform: translate(-100px);
+    }
+
+    #left-sidebar #left-sidebar-links {
+        margin-top: 10px !important;
+    }
+}
+
+#left-sidebar-col {
+    border-right: 1px solid var(--light-gray);
+}
+
+#left-sidebar > * {
+    margin-bottom: 10px;
+}
+
+.version-dropdown {
+    text-align: center;
+}
+
+.dropdown-toggle {
+    color: var(--text-color);
+}
+
+.dropdown-toggle:hover {
+    color: var(--grid-orange);
+    text-decoration: none;
+    transition: all 0.1s linear;
+}
+
+.dropdown-header {
+    font-weight: bold;
+}
+
+.dropdown-item.active, .dropdown-item:hover {
+    background-color: inherit;
+    color: var(--grid-orange);
+    transition: all 0.1s linear;
+}
+
+#left-sidebar-links-toggle {
+    border: none;
+    background: none;
+}
+
+/* Overrides the collapsed sidebar links when the screen is not small */
+@media screen and (min-width: 767px) {
+    #left-sidebar-links {
+        display: block;
+    }
+}
+
+.left-sidebar-group .left-sidebar-header {
+    font-weight: bold;
+    padding: 5px 20px;
+}
+
+.left-sidebar-group a {
+    color: var(--text-color);
+    display: block;
+    padding: 5px 20px 5px 30px;
+}
+
+.left-sidebar-group a:hover {
+    color: var(--grid-orange);
+    text-decoration: none;
+    transition: all 0.1s linear;
+}
+
+.left-sidebar-group a.active {
+    color: var(--grid-orange);
+    border-left: 4px solid var(--grid-orange);
+    padding-left: 26px; /* Reduce the padding to account for the border */
+}
+
+/* Right Sidebar */
+
+#right-sidebar-col {
+    border-left: 1px solid var(--light-gray);
+}
+
+#right-sidebar a {
+    color: var(--text-color);
+    display: block;
+}
+
+#right-sidebar a:hover {
+    color: var(--grid-orange);
+    text-decoration: none;
+    transition: all 0.1s linear;
+}
+
+#right-sidebar .right-sidebar-h2 {
+    font-size: .9rem;
+    padding: 0 20px 10px 20px;
+}
+
+#right-sidebar .right-sidebar-h3 {
+    font-size: .8rem;
+    padding: 0 20px 10px 40px;
+}
+
+/* Main Content */
+
+#main {
+    padding: 0;
+}
+
+.content {
+    box-sizing: content-box;
+    margin: auto;
+    max-width: 1280px;
+    padding: 20px 30px;
+}
+
+h1 {
+    font-size: 2.2rem;
+    margin-bottom: 30px;
+
+    /*
+        Snap h1 links below the header. Without this, clicking a link on the
+        right sidebar would cause the contents to start at the top of the
+        window, behind the header. 62px is the navbar height. Adds 10px (in
+        addition to the 10px top padding) to have the same space at the top as
+        content.
+    */
+    scroll-margin-top: 72px;
+}
+
+h2 {
+    border-bottom: 1px solid var(--light-gray);
+    font-size: 1.65rem;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+    padding-top: 10px;
+    /*
+        Snap h2 links below the header. Without this, clicking a link on the
+        right sidebar would cause the contents to start at the top of the
+        window, behind the header. 62px is the navbar height. Adds 10px (in
+        addition to the 10px top padding) to have the same space at the top as
+        content.
+    */
+    scroll-margin-top: 72px;
+}
+
+h3 {
+    font-size: 1.35rem;
+    margin-bottom: 20px;
+    /*
+        Snap h3 links below the header. Without this, clicking a link on the
+        right sidebar would cause the contents to start at the top of the
+        window, behind the header. 62px is the navbar height. Adds 20px to have
+        the same space at the top as content.
+    */
+    scroll-margin-top: 82px;
+}
+
+h4 {
+    font-size: 1.15rem;
+    margin-bottom: 20px;
+}
+
+/* Landing Page Styles */
+
+#release-banner {
+    background-color: var(--light-grid-orange);
+    color: white;
+    padding: 10px;
+    text-align: center;
+    align: center;
+}
+
+#hero-banner {
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+#release-info {
+    display: inline-block;
+    font-size: 20px;
+    height: 100%;
+    margin-right: 20px;
+    vertical-align: middle;
+}
+
+/* Vertically arranges info and button when screen is small */
+@media screen and (max-width: 767px) {
+    #release-info {
+        display: block;
+        margin-bottom: 10px;
+        margin-right: 0;
+    }
+}
+
+#release-banner .btn {
+    background-color: transparent;
+    border-color: white;
+    border-width: 2px;
+    color: white;
+}
+
+#release-banner .btn:hover {
+    background-color: white;
+    color: var(--grid-orange);
+}
+
+.landing-page-section {
+    padding: 50px;
+    text-align: center;
+}
+
+.landing-page-section h1 {
+    line-height: 1;
+    margin-bottom: 50px;
+}
+
+#landing-page-top-section img {
+    max-width: 700px;
+    margin-bottom: 50px;
+}
+
+#landing-page-top-section p {
+    font-size: 1.5rem;
+    max-width: 800px;
+    margin: auto;
+}
+
+#landing-page-lower-section p {
+    font-size: 1.2rem;
+    max-width: 900px;
+    text-align: left;
+    margin: auto;
+    color: var(--text-color);
+    padding-bottom: 10px;
+    transition: all 0.15s linear;
+}
+
+#landing-page-lower-section li {
+    font-size: 1.2rem;
+    max-width: 900px;
+    text-align: left;
+    margin: auto;
+    color: var(--text-color);
+    padding-bottom: 3px;
+    transition: all 0.15s linear;
+}
+
+/* Overrides for small screens */
+@media screen and (max-width: 767px) {
+    .landing-page-section {
+        padding: 50px 20px; /* Decrease padding on sides */
+    }
+
+    .landing-page-section .container-fluid {
+        padding: 0; /* Decrease padding on sides */
+    }
+
+    #landing-page-top-section p {
+        font-size: inherit; /* Decrease font size */
+    }
+}
+
+#landing-page-features-section {
+    padding-bottom: 20px; /* 50px - 30px to account for .col padding */
+}
+
+#landing-page-features-section .col {
+    color: var(--text-color);
+    padding-bottom: 30px;
+    transition: all 0.15s linear;
+}
+
+#landing-page-features-section .col:hover {
+    margin-bottom: 10px;
+    margin-top: -10px;
+    text-decoration: none;
+}
+
+.grid-feature {
+    background-color: var(--light-gray);
+    border-radius: 5px;
+    height: 100%;
+    padding: 20px 30px;
+}
+
+.grid-feature .feature-title {
+    font-size: 1.65rem;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+#landing-page-examples-section {
+    background-color: var(--light-gray);
+}
+
+.grid-example:not(:last-child) {
+    margin-bottom: 50px;
+}
+
+.grid-example img {
+    height: 200px;
+    object-fit: contain;
+    width: 200px;
+}
+
+.grid-example .example-details {
+    text-align: left;
+}
+
+.grid-example .example-title {
+    font-size: 1.65rem;
+    line-height: 1;
+    margin-bottom: 20px;
+}
+
+.grid-example .example-title img {
+    display: none;
+}
+
+.grid-example .example-description {
+    margin-bottom: 40px;
+}
+
+/* Overrides for small screens */
+@media screen and (max-width: 767px) {
+    .grid-example img {
+        display: none;
+    }
+
+    .grid-example .example-title img {
+        display: inline;
+        height: 32px;
+        width: 32px;
+        margin-right: 10px;
+    }
+}
+
+/* 404 Page Styles */
+
+#main-404 {
+    text-align: center;
+    padding: 50px;
+}
+
+#main-404 .btn, #main-404 p {
+    margin-top: 25px;
+}
+
+/* Without this class, the footer would not sit at the bottom of pages that
+   were very short. Minuses the required height of the footer and padding from
+   the full view height.
+*/
+.content-wrapper {
+    min-height: calc(100vh - 175px);
+}
+
+/* Gameroom Walkthrough */
+
+.gameroom-script-container {
+    display: inline-block;
+}
+
+.gameroom-script-label {
+    text-align: center;
+}
+
+.gameroom-script-quote {
+    padding: 10px;
+    margin-left: 50px;
+}
+
+.gameroom_db_table {
+    table-layout: auto;
+    border: 1px solid black;
+    margin: 15px;
+}
+
+.gameroom_db_headers {
+    border: 1px solid black;
+}
+
+.gameroom_db_data {
+    border: 1px solid black;
+    width: 100%;
+    height: 20px;
+}
+
+.gameroom_placeholder {
+    font-style: italic;
+}
+
+.glossary-header {
+    line-height: 0px;
+    font-size: 20px;
+}
+
+.glossary-definition {
+    margin-left: 10px;
+    padding-bottom: 25px;
+}
+
+.glossary-entry {
+    color: var(--grid-orange);
+}
+
+/* Community Planning */
+
+#planning-disclaimer {
+    background-color: var(--light-gray);
+    border-radius: 5px;
+    margin-bottom: 30px;
+    padding: 20px;
+}

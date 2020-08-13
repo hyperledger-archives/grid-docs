@@ -1,0 +1,39 @@
+<!--
+  Copyright 2018-2020 Cargill Incorporated
+  Licensed under Creative Commons Attribution 4.0 International License
+  https://creativecommons.org/licenses/by/4.0/
+-->
+{% include left_sidebar_toggle.html %}
+<div class="dropdown version-dropdown">
+    <a class="dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        v0.1
+    </a>
+    <div class="dropdown-menu">
+        <div class="dropdown-header">Development</div>
+        <a class="dropdown-item" href="/docs/{{ site.data.general.latest_version }}/">
+            Latest ({{ site.data.general.latest_version }})
+        </a>
+        <div class="dropdown-divider"></div>
+    </div>
+</div>
+<div id="left-sidebar-links" class="collapse">
+    <div class="left-sidebar-group">
+        <div class="left-sidebar-header">Getting Started</div>
+        <a href="{% link docs/0.1/index.md %}">Introduction</a>
+        <a href="{% link docs/0.1/glossary.md %}">Glossary</a>
+    </div>
+    <div class="left-sidebar-group">
+        <div class="left-sidebar-header">For Developers</div>
+        <a href="{% link docs/0.1/building_grid.md %}">Building Grid</a>
+        <a href="{% link docs/0.1/grid_schema_family_specification.md %}">Grid Schema</a>
+        <a href="{% link docs/0.1/grid_track_and_trace_family_specification.md %}">Grid Track and Trace</a>
+        <a href="{% link docs/0.1/pike_transaction_family.md %}">Pike</a>
+        <a href="{% link docs/0.1/grid_on_splinter.md %}">Running Grid on Splinter</a>
+    </div>
+    <div class="left-sidebar-group">
+        <div class="left-sidebar-header">Reference Guides</div>
+        <a href="{% link docs/0.1/cli_references.md %}">CLI Command Reference</a>
+        <a href="{% link docs/0.1/references/api/index.md %}">Grid REST API</a>
+        <a href="{% link docs/0.1/references/rust_sdk/index.md %}">Grid Rust SDK Reference</a>
+    </div>
+</div>
