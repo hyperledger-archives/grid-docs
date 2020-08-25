@@ -188,36 +188,38 @@ ARGS:
 
 ### grid product create
 
-Create a new product via the Schemas smart contract. Below is a sample YAML
-file that is used to describe a product.
+Create a new product via the Schema smart contract.
 
-```
-- product_type: "GS1"
-  product_id: "762111177704"
-  owner: "314156"
-  properties:
-    - name: "length"
-      data_type: "NUMBER"
-      number_value: 8
-    - name: "width"
-      data_type: "NUMBER"
-      number_value: 11
-    - name: "depth"
-      data_type: "NUMBER"
-      number_value: 1
-- product_type: "GS1"
-  product_id: "881334009880"
-  owner: "314156"
-  properties:
-    - name: "price"
-      data_type: "NUMBER"
-      number_value: 8
-    - name: "height"
-      data_type: "NUMBER"
-      number_value: 11
-```
+* **Note**: This command requires a YAML file that describes the product, as
+  shown in the following example:
 
-CLI help output
+  ```
+    - product_type: "GS1"
+      product_id: "762111177704"
+      owner: "314156"
+      properties:
+        - name: "length"
+          data_type: "NUMBER"
+          number_value: 8
+        - name: "width"
+          data_type: "NUMBER"
+          number_value: 11
+        - name: "depth"
+          data_type: "NUMBER"
+          number_value: 1
+    - product_type: "GS1"
+      product_id: "881334009880"
+      owner: "314156"
+      properties:
+        - name: "price"
+          data_type: "NUMBER"
+          number_value: 8
+        - name: "height"
+          data_type: "NUMBER"
+          number_value: 11
+  ```
+
+This command has the following syntax:
 
 ```
 USAGE:
@@ -235,34 +237,36 @@ ARGS:
 
 ### grid product update
 
-Update an existing product. Below is a sample YAML file used to specify the
-fields that are to be updated.
+Update an existing product.
 
-```
-- product_type: "GS1"
-  product_id: "762111177704"
-  properties:
-    - name: "length"
-      data_type: "NUMBER"
-      number_value: 88
-    - name: "width"
-      data_type: "NUMBER"
-      number_value: 111
-    - name: "depth"
-      data_type: "NUMBER"
-      number_value: 11
-- product_type: "GS1"
-  product_id: "881334009880"
-  properties:
-    - name: "price"
-      data_type: "NUMBER"
-      number_value: 88
-    - name: "height"
-      data_type: "NUMBER"
-      number_value: 111
-```
+* **Note**: This command requires a YAML file that describes the
+  product, as shown in the following example.
 
-CLI help output
+  ```
+    - product_type: "GS1"
+      product_id: "762111177704"
+      properties:
+        - name: "length"
+          data_type: "NUMBER"
+          number_value: 88
+        - name: "width"
+          data_type: "NUMBER"
+          number_value: 111
+        - name: "depth"
+          data_type: "NUMBER"
+          number_value: 11
+    - product_type: "GS1"
+      product_id: "881334009880"
+      properties:
+        - name: "price"
+          data_type: "NUMBER"
+          number_value: 88
+        - name: "height"
+          data_type: "NUMBER"
+          number_value: 111
+  ```
+
+This command has the following syntax:
 
 ```
 USAGE:
@@ -346,6 +350,8 @@ FLAGS:
 ### grid schema create
 
 Create a schema definition via the Schema smart contract.
+This command requires a YAML file that defines the schema.
+
 
 ```
 USAGE:
@@ -364,6 +370,8 @@ ARGS:
 ### grid schema update
 
 Update an existing schema definition via the Schema smart contract.
+This command requires a YAML file that specifies the schema fields to be
+updated.
 
 ```
 USAGE:
