@@ -55,8 +55,6 @@ SUBCOMMANDS:
 Create a pike agent via the Pike smart contract.
 
 ```
-Create an agent
-
 USAGE:
     grid agent create [FLAGS] [OPTIONS] <org_id> <public_key> --active --inactive
 
@@ -82,8 +80,6 @@ ARGS:
 Update an agent via the Pike smart contract.
 
 ```
-Update an agent
-
 USAGE:
     grid agent update [FLAGS] [OPTIONS] <org_id> <public_key> --active --inactive
 
@@ -109,8 +105,6 @@ ARGS:
 Run database migrations to create and apply updates to the grid database tables.
 
 ```
-Run database migrations
-
 USAGE:
     grid database migrate [FLAGS] [OPTIONS]
 
@@ -129,8 +123,6 @@ OPTIONS:
 Generates keys with which the user can sign transactions and batches.
 
 ```
-Generates keys with which the user can sign transactions and batches.
-
 USAGE:
     grid keygen [FLAGS] [OPTIONS] [key_name]
 
@@ -153,8 +145,6 @@ ARGS:
 Create a new organization using the Pike smart contract.
 
 ```
-Create an organization
-
 USAGE:
     grid organization create [FLAGS] [OPTIONS] <org_id> <name> [--] [address]
 
@@ -178,8 +168,6 @@ ARGS:
 Update an existing organization using the Pike smart contract.
 
 ```
-Update an organization
-
 USAGE:
     grid organization update [FLAGS] [OPTIONS] <org_id> <name> [--] [address]
 
@@ -232,8 +220,6 @@ file that is used to describe a product.
 CLI help output
 
 ```
-Create products from a yaml file
-
 USAGE:
     grid product create [FLAGS] <path>
 
@@ -279,8 +265,6 @@ fields that are to be updated.
 CLI help output
 
 ```
-Update products from a yaml file
-
 USAGE:
     grid product update [FLAGS] <path>
 
@@ -311,8 +295,6 @@ ARGS:
 Delete an existing product.
 
 ```
-Delete a product
-
 USAGE:
     grid product delete [FLAGS] <product_id> <product_type>
 
@@ -333,8 +315,6 @@ ARGS:
 Show details for a given product.
 
 ```
-Show product specified by ID argument
-
 USAGE:
     grid product show [FLAGS] <product_id>
 
@@ -353,8 +333,6 @@ ARGS:
 List all products available.
 
 ```
-List currently defined products
-
 USAGE:
     grid product list [FLAGS]
 
@@ -370,8 +348,6 @@ FLAGS:
 Create a schema definition via the Schema smart contract.
 
 ```
-Create schemas from a yaml file
-
 USAGE:
     grid schema create [FLAGS] <path>
 
@@ -390,8 +366,6 @@ ARGS:
 Update an existing schema definition via the Schema smart contract.
 
 ```
-Update schemas from a yaml file
-
 USAGE:
     grid schema update [FLAGS] <path>
 
@@ -410,8 +384,6 @@ ARGS:
 Show details for a specific schema.
 
 ```
-Show schema specified by name argument
-
 USAGE:
     grid schema show [FLAGS] <name>
 
@@ -431,8 +403,6 @@ ARGS:
 List all available schemas.
 
 ```
-List currently defined schemas
-
 USAGE:
     grid schema list [FLAGS]
 
