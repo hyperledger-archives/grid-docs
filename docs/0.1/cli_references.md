@@ -82,23 +82,6 @@ ARGS:
 Update an agent via the Pike smart contract.
 
 ```
-Update or create agent
-
-USAGE:
-    grid agent [FLAGS] <SUBCOMMAND>
-
-FLAGS:
-    -h, --help       Prints help information
-    -q, --quiet      Do not display output
-    -V, --version    Prints version information
-    -v               Log verbosely
-
-SUBCOMMANDS:
-    create    Create an agent
-    help      Prints this message or the help of the given subcommand(s)
-    update    Update an agent
-goldstone:debug rbanks$ ./grid agent update -h
-grid-agent-update
 Update an agent
 
 USAGE:
