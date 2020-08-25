@@ -21,9 +21,9 @@ or `--help` option.
 
 ## grid
 
-```
-Command line for Hyperledger Grid
+Command-line interface for Hyperledger Grid.
 
+```
 USAGE:
     grid [FLAGS] [OPTIONS] [SUBCOMMAND]
 
@@ -52,7 +52,7 @@ SUBCOMMANDS:
 
 ### grid agent create
 
-Create a pike agent via the Pike smart contract.
+Create an agent via the Pike smart contract.
 
 ```
 USAGE:
@@ -102,7 +102,7 @@ ARGS:
 
 ### grid database migrate
 
-Run database migrations to create and apply updates to the grid database tables.
+Run database migrations to create and apply updates to the Grid database tables.
 
 ```
 USAGE:
@@ -120,7 +120,7 @@ OPTIONS:
 
 ### grid keygen
 
-Generates keys with which the user can sign transactions and batches.
+Generate keys with which the user can sign transactions and batches.
 
 ```
 USAGE:
@@ -404,7 +404,6 @@ FLAGS:
 ARGS:
     <name>    Name of schema
 ```
-
 
 ### grid schema list
 
