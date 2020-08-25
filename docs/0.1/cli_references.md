@@ -235,6 +235,59 @@ ARGS:
     <path>    Path to yaml file containing a list of products
 ```
 
+### grid product delete
+
+Delete an existing product.
+
+```
+USAGE:
+    grid product delete [FLAGS] <product_id> <product_type>
+
+FLAGS:
+    -h, --help       Prints help information
+    -q, --quiet      Do not display output
+    -V, --version    Prints version information
+    -v               Log verbosely
+
+ARGS:
+    <product_id>      Unique ID for a product
+    <product_type>    Type of product (e.g. GS1
+
+```
+
+### grid product list
+
+List all products available.
+
+```
+USAGE:
+    grid product list [FLAGS]
+
+FLAGS:
+    -h, --help       Prints help information
+    -q, --quiet      Do not display output
+    -V, --version    Prints version information
+    -v               Log verbosely
+```
+
+### grid product show
+
+Show details for a given product.
+
+```
+USAGE:
+    grid product show [FLAGS] <product_id>
+
+FLAGS:
+    -h, --help       Prints help information
+    -q, --quiet      Do not display output
+    -V, --version    Prints version information
+    -v               Log verbosely
+
+ARGS:
+    <product_id>    ID of product
+```
+
 ### grid product update
 
 Update an existing product.
@@ -294,59 +347,6 @@ ARGS:
     <path>    Path to yaml file containing a list of products
 ```
 
-### grid product delete
-
-Delete an existing product.
-
-```
-USAGE:
-    grid product delete [FLAGS] <product_id> <product_type>
-
-FLAGS:
-    -h, --help       Prints help information
-    -q, --quiet      Do not display output
-    -V, --version    Prints version information
-    -v               Log verbosely
-
-ARGS:
-    <product_id>      Unique ID for a product
-    <product_type>    Type of product (e.g. GS1
-
-```
-
-### grid product show
-
-Show details for a given product.
-
-```
-USAGE:
-    grid product show [FLAGS] <product_id>
-
-FLAGS:
-    -h, --help       Prints help information
-    -q, --quiet      Do not display output
-    -V, --version    Prints version information
-    -v               Log verbosely
-
-ARGS:
-    <product_id>    ID of product
-```
-
-### grid product list
-
-List all products available.
-
-```
-USAGE:
-    grid product list [FLAGS]
-
-FLAGS:
-    -h, --help       Prints help information
-    -q, --quiet      Do not display output
-    -V, --version    Prints version information
-    -v               Log verbosely
-```
-
 ### grid schema create
 
 Create a schema definition via the Schema smart contract.
@@ -367,24 +367,19 @@ ARGS:
     <path>    Path to yaml file containing a list of schema definitions
 ```
 
-### grid schema update
+### grid schema list
 
-Update an existing schema definition via the Schema smart contract.
-This command requires a YAML file that specifies the schema fields to be
-updated.
+List all available schemas.
 
 ```
 USAGE:
-    grid schema update [FLAGS] <path>
+    grid schema list [FLAGS]
 
 FLAGS:
     -h, --help       Prints help information
     -q, --quiet      Do not display output
     -V, --version    Prints version information
     -v               Log verbosely
-
-ARGS:
-    <path>    Path to yaml file containing a list of schema definitions
 ```
 
 ### grid schema show
@@ -405,17 +400,22 @@ ARGS:
     <name>    Name of schema
 ```
 
-### grid schema list
+### grid schema update
 
-List all available schemas.
+Update an existing schema definition via the Schema smart contract.
+This command requires a YAML file that specifies the schema fields to be
+updated.
 
 ```
 USAGE:
-    grid schema list [FLAGS]
+    grid schema update [FLAGS] <path>
 
 FLAGS:
     -h, --help       Prints help information
     -q, --quiet      Do not display output
     -V, --version    Prints version information
     -v               Log verbosely
+
+ARGS:
+    <path>    Path to yaml file containing a list of schema definitions
 ```
