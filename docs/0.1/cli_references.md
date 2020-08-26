@@ -21,9 +21,9 @@ or `--help` option.
 
 ## grid
 
-```
-Command line for Hyperledger Grid
+Command-line interface for Hyperledger Grid.
 
+```
 USAGE:
     grid [FLAGS] [OPTIONS] [SUBCOMMAND]
 
@@ -52,11 +52,9 @@ SUBCOMMANDS:
 
 ### grid agent create
 
-Create a pike agent via the Pike smart contract.
+Create an agent via the Pike smart contract.
 
 ```
-Create an agent
-
 USAGE:
     grid agent create [FLAGS] [OPTIONS] <org_id> <public_key> --active --inactive
 
@@ -82,25 +80,6 @@ ARGS:
 Update an agent via the Pike smart contract.
 
 ```
-Update or create agent
-
-USAGE:
-    grid agent [FLAGS] <SUBCOMMAND>
-
-FLAGS:
-    -h, --help       Prints help information
-    -q, --quiet      Do not display output
-    -V, --version    Prints version information
-    -v               Log verbosely
-
-SUBCOMMANDS:
-    create    Create an agent
-    help      Prints this message or the help of the given subcommand(s)
-    update    Update an agent
-goldstone:debug rbanks$ ./grid agent update -h
-grid-agent-update
-Update an agent
-
 USAGE:
     grid agent update [FLAGS] [OPTIONS] <org_id> <public_key> --active --inactive
 
@@ -123,11 +102,9 @@ ARGS:
 
 ### grid database migrate
 
-Run database migrations to create and apply updates to the grid database tables.
+Run database migrations to create and apply updates to the Grid database tables.
 
 ```
-Run database migrations
-
 USAGE:
     grid database migrate [FLAGS] [OPTIONS]
 
@@ -143,11 +120,9 @@ OPTIONS:
 
 ### grid keygen
 
-Generates keys with which the user can sign transactions and batches.
+Generate keys with which the user can sign transactions and batches.
 
 ```
-Generates keys with which the user can sign transactions and batches.
-
 USAGE:
     grid keygen [FLAGS] [OPTIONS] [key_name]
 
@@ -170,8 +145,6 @@ ARGS:
 Create a new organization using the Pike smart contract.
 
 ```
-Create an organization
-
 USAGE:
     grid organization create [FLAGS] [OPTIONS] <org_id> <name> [--] [address]
 
@@ -195,8 +168,6 @@ ARGS:
 Update an existing organization using the Pike smart contract.
 
 ```
-Update an organization
-
 USAGE:
     grid organization update [FLAGS] [OPTIONS] <org_id> <name> [--] [address]
 
@@ -217,101 +188,42 @@ ARGS:
 
 ### grid product create
 
-Create a new product via the Schemas smart contract. Below is a sample YAML
-file that is used to describe a product.
+Create a new product via the Schema smart contract.
+
+* **Note**: This command requires a YAML file that describes the product, as
+  shown in the following example:
+
+  ```
+    - product_type: "GS1"
+      product_id: "762111177704"
+      owner: "314156"
+      properties:
+        - name: "length"
+          data_type: "NUMBER"
+          number_value: 8
+        - name: "width"
+          data_type: "NUMBER"
+          number_value: 11
+        - name: "depth"
+          data_type: "NUMBER"
+          number_value: 1
+    - product_type: "GS1"
+      product_id: "881334009880"
+      owner: "314156"
+      properties:
+        - name: "price"
+          data_type: "NUMBER"
+          number_value: 8
+        - name: "height"
+          data_type: "NUMBER"
+          number_value: 11
+  ```
+
+This command has the following syntax:
 
 ```
-- product_type: "GS1"
-  product_id: "762111177704"
-  owner: "314156"
-  properties:
-    - name: "length"
-      data_type: "NUMBER"
-      number_value: 8
-    - name: "width"
-      data_type: "NUMBER"
-      number_value: 11
-    - name: "depth"
-      data_type: "NUMBER"
-      number_value: 1
-- product_type: "GS1"
-  product_id: "881334009880"
-  owner: "314156"
-  properties:
-    - name: "price"
-      data_type: "NUMBER"
-      number_value: 8
-    - name: "height"
-      data_type: "NUMBER"
-      number_value: 11
-```
-
-CLI help output
-
-```
-Create products from a yaml file
-
 USAGE:
     grid product create [FLAGS] <path>
-
-FLAGS:
-    -h, --help       Prints help information
-    -q, --quiet      Do not display output
-    -V, --version    Prints version information
-    -v               Log verbosely
-
-ARGS:
-    <path>    Path to yaml file containing a list of products
-```
-
-### grid product update
-
-Update an existing product. Below is a sample YAML file used to specify the
-fields that are to be updated.
-
-```
-- product_type: "GS1"
-  product_id: "762111177704"
-  properties:
-    - name: "length"
-      data_type: "NUMBER"
-      number_value: 88
-    - name: "width"
-      data_type: "NUMBER"
-      number_value: 111
-    - name: "depth"
-      data_type: "NUMBER"
-      number_value: 11
-- product_type: "GS1"
-  product_id: "881334009880"
-  properties:
-    - name: "price"
-      data_type: "NUMBER"
-      number_value: 88
-    - name: "height"
-      data_type: "NUMBER"
-      number_value: 111
-```
-
-CLI help output
-
-```
-Update products from a yaml file
-
-USAGE:
-    grid product update [FLAGS] <path>
-
-FLAGS:
-    -h, --help       Prints help information
-    -q, --quiet      Do not display output
-    -V, --version    Prints version information
-    -v               Log verbosely
-
-ARGS:
-    <path>    Path to yaml file containing a list of products
-
-USAGE:
-    grid product update [FLAGS] <path>
 
 FLAGS:
     -h, --help       Prints help information
@@ -328,8 +240,6 @@ ARGS:
 Delete an existing product.
 
 ```
-Delete a product
-
 USAGE:
     grid product delete [FLAGS] <product_id> <product_type>
 
@@ -345,13 +255,26 @@ ARGS:
 
 ```
 
+### grid product list
+
+List all products available.
+
+```
+USAGE:
+    grid product list [FLAGS]
+
+FLAGS:
+    -h, --help       Prints help information
+    -q, --quiet      Do not display output
+    -V, --version    Prints version information
+    -v               Log verbosely
+```
+
 ### grid product show
 
 Show details for a given product.
 
 ```
-Show product specified by ID argument
-
 USAGE:
     grid product show [FLAGS] <product_id>
 
@@ -365,30 +288,72 @@ ARGS:
     <product_id>    ID of product
 ```
 
-### grid product list
+### grid product update
 
-List all products available.
+Update an existing product.
+
+* **Note**: This command requires a YAML file that describes the
+  product, as shown in the following example.
+
+  ```
+    - product_type: "GS1"
+      product_id: "762111177704"
+      properties:
+        - name: "length"
+          data_type: "NUMBER"
+          number_value: 88
+        - name: "width"
+          data_type: "NUMBER"
+          number_value: 111
+        - name: "depth"
+          data_type: "NUMBER"
+          number_value: 11
+    - product_type: "GS1"
+      product_id: "881334009880"
+      properties:
+        - name: "price"
+          data_type: "NUMBER"
+          number_value: 88
+        - name: "height"
+          data_type: "NUMBER"
+          number_value: 111
+  ```
+
+This command has the following syntax:
 
 ```
-List currently defined products
-
 USAGE:
-    grid product list [FLAGS]
+    grid product update [FLAGS] <path>
 
 FLAGS:
     -h, --help       Prints help information
     -q, --quiet      Do not display output
     -V, --version    Prints version information
     -v               Log verbosely
+
+ARGS:
+    <path>    Path to yaml file containing a list of products
+
+USAGE:
+    grid product update [FLAGS] <path>
+
+FLAGS:
+    -h, --help       Prints help information
+    -q, --quiet      Do not display output
+    -V, --version    Prints version information
+    -v               Log verbosely
+
+ARGS:
+    <path>    Path to yaml file containing a list of products
 ```
 
 ### grid schema create
 
 Create a schema definition via the Schema smart contract.
+This command requires a YAML file that defines the schema.
+
 
 ```
-Create schemas from a yaml file
-
 USAGE:
     grid schema create [FLAGS] <path>
 
@@ -402,24 +367,19 @@ ARGS:
     <path>    Path to yaml file containing a list of schema definitions
 ```
 
-### grid schema update
+### grid schema list
 
-Update an existing schema definition via the Schema smart contract.
+List all available schemas.
 
 ```
-Update schemas from a yaml file
-
 USAGE:
-    grid schema update [FLAGS] <path>
+    grid schema list [FLAGS]
 
 FLAGS:
     -h, --help       Prints help information
     -q, --quiet      Do not display output
     -V, --version    Prints version information
     -v               Log verbosely
-
-ARGS:
-    <path>    Path to yaml file containing a list of schema definitions
 ```
 
 ### grid schema show
@@ -427,8 +387,6 @@ ARGS:
 Show details for a specific schema.
 
 ```
-Show schema specified by name argument
-
 USAGE:
     grid schema show [FLAGS] <name>
 
@@ -442,20 +400,22 @@ ARGS:
     <name>    Name of schema
 ```
 
+### grid schema update
 
-### grid schema list
-
-List all available schemas.
+Update an existing schema definition via the Schema smart contract.
+This command requires a YAML file that specifies the schema fields to be
+updated.
 
 ```
-List currently defined schemas
-
 USAGE:
-    grid schema list [FLAGS]
+    grid schema update [FLAGS] <path>
 
 FLAGS:
     -h, --help       Prints help information
     -q, --quiet      Do not display output
     -V, --version    Prints version information
     -v               Log verbosely
+
+ARGS:
+    <path>    Path to yaml file containing a list of schema definitions
 ```
