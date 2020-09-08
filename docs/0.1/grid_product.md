@@ -33,5 +33,7 @@ Grid Product can interact seamlessly with other smart contracts to manage owner
 and agent permissions,  product property templates (also called schemas),
 location data, and more.
 
+![Grid Product architecture](images/grid_product.png)
+
 These components combine to submit transactions to the back-end distributed
 ledger, securely and effectively sharing product data with all trading partners.
