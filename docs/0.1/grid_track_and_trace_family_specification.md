@@ -1,4 +1,4 @@
-# Grid Track and Trace Specification
+# Grid Track and Trace Smart Contract Specification
 
 <!--
   Copyright (c) 2019-2020 Cargill Incorporated
@@ -9,14 +9,14 @@
 
 ## Overview
 
-Grid Track and Trace for Hyperledger Grid is a smart contract designed to run
+Grid Track and Trace is a smart contract designed to run
 with the [Sawtooth Sabre](https://github.com/hyperledger/sawtooth-sabre/)
 smart contract engine.
 
 Grid Track and Trace allows users to track goods as they move through a supply
 chain. Records for goods include a history of ownership and custodianship, as
 well as histories for a variety of properties such as temperature and location.
-These properties are managed using Grid Schemas.
+These properties are managed using the Schema smart contract.
 
 This specification describes the available data objects, state addressing (how
 transaction information is stored and addressed by *namespace*), and the valid
@@ -32,11 +32,12 @@ sub-namespaces under the Grid Track and Trace namespace. To handle hash
 collisions, all objects are stored in lists within protobuf "List" objects.
 
 **NOTE:** In addition to the messages defined in Grid Track and Trace, this
-transaction family also makes use of Agents (as defined in the
-[Pike Transaction Family]({% link docs/0.1/pike_transaction_family.md %})),
+smart contract also makes use of Agents (as defined in the
+[Pike smart contract
+specification]({% link docs/0.1/pike_transaction_family.md %})),
 as well as Schemas, PropertyDefinitions, and PropertyValues (as defined in the
-[Grid Schema Transaction
-Family]({% link docs/0.1/grid_schema_family_specification.md %})).
+[Schema smart contract
+specification]({% link docs/0.1/grid_schema_family_specification.md %})).
 Clients and contracts that implement this specification will need to orchestrate
 these transaction families together in order to create a working application.
 
@@ -129,10 +130,10 @@ ever runs out of space for new updates. Under this scheme, 16^2 *
 (16^4 - 1) = 16776960 entries can be stored before older updates are
 overwritten.
 
-Updates to Properties are in the format of PropertyValue (defined in the Grid
-Schema Transaction Family). The type of update is indicated by a tag belonging
+Updates to Properties are in the format of PropertyValue (defined by the
+Schema smart contract). The type of update is indicated by a tag belonging
 to the PropertyDefinition object. For more information about PropertyValues and
-PropertyDefinitions, please see the [Grid Schema Transaction Family
+PropertyDefinitions, please see the [Schema Smart Contract
 Specification]({% link docs/0.1/grid_schema_family_specification.md %}).
 
 

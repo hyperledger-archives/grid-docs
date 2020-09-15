@@ -1,4 +1,4 @@
-# Grid Schema Specification
+# Schema Smart Contract Specification
 
 <!--
   Copyright (c) 2019-2020 Cargill Incorporated
@@ -8,11 +8,11 @@
 
 ## Overview
 
-Grid Schema for Hyperledger Grid is a smart contract designed to run with the
+Schema is a smart contract designed to run with the
 [Sawtooth Sabre](https://github.com/hyperledger/sawtooth-sabre/)
 smart contract engine.
 
-Grid Schema provides a reusable, standard approach to defining, storing, and
+Schema provides a reusable, standard approach to defining, storing, and
 consuming properties within smart contracts, software libraries, and
 network-based APIs.
 
@@ -29,11 +29,11 @@ transactions: types, headers, payload format, and execution rules.
 
 ## State
 
-All Grid Schema objects are serialized using protocol buffers (protobufs) before
+All Schema objects are serialized using protocol buffers (protobufs) before
 being stored in state. Theses objects include Schema, PropertyDefinition and
 PropertyValues. Schemas are stored in a list to handle hash collisions.
 
-**NOTE:** Organization and Agents in the Pike Transaction Family are used
+**NOTE:** Organization and Agents in the Pike smart contract are used
 to enforce permissions on who is allowed to update a Schema.
 
 ### PropertyDefinition
@@ -297,7 +297,7 @@ following:
 
   A struct is a recursively defined collection of other named properties that
   represents two or more intrinsically linked values, like X/Y coordinates or
-  RGB colors. These values can be of any Grid Schema data type, including
+  RGB colors. These values can be of any Schema data type, including
   STRUCT, which allows nesting to an arbitrary depth. Although versatile and
   powerful, structs are heavyweight and should be used conservatively;
   restrict struct use to linking values that must always be updated together.
@@ -413,7 +413,7 @@ include the following:
 ```
 
 An owner is an Organization Id that correlates to an Organization stored with
-the Pike Transaction Family.
+the Pike smart contract.
 
 When the same address is computed for different schema, a collision occurs; all
 colliding schemas are stored at the address in a SchemaList.
@@ -493,7 +493,7 @@ against the Lightbulb schema.
 
 ### Addressing
 
-Grid Schemas are stored under the Grid namespace `621dee`. For each schemas,
+Schemas are stored under the Grid namespace `621dee`. For each schemas,
 the address is formed by concatenating the namespace, the special policy
 namespace of `01`, and the first 62 characters of the SHA-512 hash of the
 schema name.
@@ -515,9 +515,12 @@ platforms.
 
 The header for the transactions includes the following:
 
-- ``family_name``: ``"grid_schema"``
-- ``family_version``: ``"1.0"``
-- ``namespaces``: ``[ "621dee" ]``
+- `family_name`: `"grid_schema"`
+- `family_version`: `"1.0"`
+- `namespaces`: `[ "621dee" ]`
+
+**Note**: The terms family, `family_name`, and `family_version` are a legacy
+of the previous name for a smart contract, "transaction family".
 
 ### SchemaPayload
 

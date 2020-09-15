@@ -1,4 +1,4 @@
-# Pike Specification
+# Pike Smart Contract Specification
 
 <!--
   Copyright (c) 2018-2020 Cargill Incorporated
@@ -8,7 +8,7 @@
 
 ## Overview
 
-Pike for Hyperledger Grid is a smart contract designed to run with the
+Pike is a smart contract designed to run with the
 [Sawtooth Sabre](https://github.com/hyperledger/sawtooth-sabre/)
 smart contract engine.
 
@@ -123,7 +123,7 @@ the organization's id.
 
 ## Transaction Payload
 
-Pike transaction family payloads are defined by the following protocol
+Pike payloads are defined by the following protocol
 buffers code:
 
 ```protobuf
@@ -152,12 +152,12 @@ buffers code:
 
 ### Inputs and Outputs
 
-The inputs for Pike family transactions must include:
+The inputs for Pike transactions must include:
 
 * The address of the agent or organization being modified
 * The address of the admin agent (agent correlating to the signing key)
 
-The outputs for Pike family transactions must include:
+The outputs for Pike transactions must include:
 
 * The address of the agent or organization being modified
 * If creating an organization, the address of the agent that will be created as
@@ -169,8 +169,11 @@ None
 
 ### Family
 
-- family_name: "pike"
-- family_version: "0.1"
+- `family_name`: `"pike"`
+- `family_version`: `"0.1"`
+
+**Note**: The terms family, `family_name`, and `family_version` are a legacy
+of the previous name for a smart contract, "transaction family".
 
 ## Execution
 
