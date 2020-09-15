@@ -313,6 +313,30 @@ h4 {
     margin-bottom: 20px;
 }
 
+/* Table Styles */
+
+table {
+    table-layout: auto;
+    margin: 5px;
+    margin-bottom: 20px;
+}
+
+th {
+    padding: 5px;
+    border-bottom: 2px solid var(--light-grid-orange);
+}
+
+td {
+    padding: 5px 37px 5px 5px;
+}
+
+/* Roadmap tables */
+
+#grid-01 + table, #grid-02 + table, #grid-03 + table {
+    width: 100%;
+    table-layout: fixed;
+}
+
 /* Landing Page Styles */
 
 #release-banner {
