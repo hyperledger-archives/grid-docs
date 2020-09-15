@@ -29,7 +29,7 @@ Hyperledger Grid components include:
 
 * Smart-contract business logic based on industry best practices.
 
-* [Pike]({% link docs/0.1/pike_transaction_family.md %}),
+* [Pike]({% link docs/0.1/pike_smart_contract_specification.md %}),
   a smart contract that handles organization and identity permissions
   with [Sawtooth Sabre](https://github.com/hyperledger/sawtooth-sabre).
 
@@ -39,5 +39,6 @@ Hyperledger Grid components include:
 * Example smart contracts and applications that show how to combine components
   from the Hyperledger stack into a single, effective business solution. For
   instance, [Grid Track and
-  Trace]({% link docs/0.1/grid_track_and_trace_family_specification.md %})
+  Trace]({% link docs/0.1/grid_track_and_trace_smart_contract_specification.md
+  %})
   is a smart contract for tracking goods as they move through a supply chain.

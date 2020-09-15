@@ -459,7 +459,9 @@ though alpha and beta are using the same XO smart contract, their game moves
 ## For More Information
 - [Splinter documentation](https://www.splinter.dev/docs/)
 - [Sawtooth Sabre](https://github.com/hyperledger/sawtooth-sabre)
-- [Pike Smart Contract Specification)](https://grid.hyperledger.org/docs/grid/nightly/master/transaction_family_specifications/grid_schema_family_specification.html)
-- [Schema Smart Contract Specification](https://grid.hyperledger.org/docs/grid/nightly/master/transaction_family_specifications/grid_schema_family_specification.html)
+- [Pike Smart Contract Specification]({%
+  link docs/0.1/pike_smart_contract_specification.md %})
+- [Schema Smart Contract Specification]({%
+  link docs/0.1/schema_smart_contract_specification.md %})
 - [Product RFC](https://github.com/target/grid-rfcs/blob/d6305b86e2a43e510bb57b297b3ec09b0a66c5b0/0000-product.md)
 - [CLI for the XO smart contract (also called a "transaction processor")](https://sawtooth.hyperledger.org/docs/core/releases/latest/cli/xo.html)

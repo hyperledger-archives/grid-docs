@@ -34,10 +34,10 @@ collisions, all objects are stored in lists within protobuf "List" objects.
 **NOTE:** In addition to the messages defined in Grid Track and Trace, this
 smart contract also makes use of Agents (as defined in the
 [Pike smart contract
-specification]({% link docs/0.1/pike_transaction_family.md %})),
+specification]({% link docs/0.1/pike_smart_contract_specification.md %})),
 as well as Schemas, PropertyDefinitions, and PropertyValues (as defined in the
 [Schema smart contract
-specification]({% link docs/0.1/grid_schema_family_specification.md %})).
+specification]({% link docs/0.1/schema_smart_contract_specification.md %})).
 Clients and contracts that implement this specification will need to orchestrate
 these transaction families together in order to create a working application.
 
@@ -134,7 +134,7 @@ Updates to Properties are in the format of PropertyValue (defined by the
 Schema smart contract). The type of update is indicated by a tag belonging
 to the PropertyDefinition object. For more information about PropertyValues and
 PropertyDefinitions, please see the [Schema Smart Contract
-Specification]({% link docs/0.1/grid_schema_family_specification.md %}).
+specification]({% link docs/0.1/schema_smart_contract_specification.md %})).
 
 
 ```protobuf
