@@ -82,5 +82,10 @@ pipeline {
         always {
             sh 'docker-compose -f docker/compose/run-lint.yaml down'
         }
+        success {
+            withDockerRegistry([ credentialsId: "464911a1-007a-4910-90c8-78ff16ba165e", url: "" ]) {
+                sh 'docker push hyperledger/grid-website'
+            }
+        }
     }
 }
