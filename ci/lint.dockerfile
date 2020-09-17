@@ -20,5 +20,6 @@ RUN apk add --update --no-cache ruby \
 RUN echo 'rules "MD013"' > ~/.mdlrc
 
 RUN echo 'rule "MD013", :code_blocks => false' > ~/mdlstyle.rb
+RUN echo 'rule "MD013", :tables => false' >> ~/mdlstyle.rb
 
 WORKDIR /project
