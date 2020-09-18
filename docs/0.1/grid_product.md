@@ -36,4 +36,4 @@ location data, and more.
 ![Grid Product architecture](images/grid_product.png)
 
 These components combine to submit transactions to the back-end distributed
-ledger, securely and effectively sharing product data with all trading partners.
+ledger, securely and efficiently sharing product data with all trading partners.
