@@ -15,14 +15,14 @@ The following is a community-driven tentative roadmap to future releases.
 | ------- | ------ | --------------- | --- | ------- | ------------- |
 | Component | *RFC Submitted* | Shawn T. Amundson | [PR for RFC #9](https://github.com/hyperledger/grid-rfcs/pull/9) | - | - |
 | Location | *RFC Final Comment Period* | Jessie Zamzow | [PR for RFC #20](https://github.com/hyperledger/grid-rfcs/pull/20) | ["location"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=location) | - |
-| Pike | *Implemented* | Darian Plumb | - | ["pike"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=pike) | [Specification](/docs/0.1/pike_transaction_family.html), [REST API](/docs/0.1/api/#tag/Pike), [CLI](/docs/0.1/cli_references.html#grid-agent-create) |
-| PostgreSQL Support | *Implemented* | Davey Newhall | - | ["postgres"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=postgres) | [CLI](/docs/0.1/cli_references.html#grid-database-migrate) |
-| Product | *Implemented* | Adeeb Ahmed | [RFC #5](https://github.com/hyperledger/grid-rfcs/blob/master/text/0005-product.html) | ["product"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=product) | [REST API](/docs/0.1/api/#tag/Product), [CLI](/docs/0.1/cli_references.html#grid-product-create) |
+| Pike | *Implemented* | Darian Plumb | - | ["pike"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=pike) | [Specification]({% link docs/0.1/pike_transaction_family.md %}), [REST API](/docs/0.1/api/#tag/Pike), [CLI]({% link docs/0.1/cli_references.md %}#grid-agent-create) |
+| PostgreSQL Support | *Implemented* | Davey Newhall | - | ["postgres"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=postgres) | [CLI]({% link docs/0.1/cli_references.md %}#grid-database-migrate) |
+| Product | *Implemented* | Adeeb Ahmed | [RFC #5](https://github.com/hyperledger/grid-rfcs/blob/master/text/0005-product.md) | ["product"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=product) | [REST API](/docs/0.1/api/#tag/Product), [CLI]({% link docs/0.1/cli_references.md %}#grid-product-create) |
 | Sawtooth Support | *Implemented* | Ryan Banks | - | ["sawtooth"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=sawtooth) | - |
-| Schema | *Implemented* | Peter Schwarz | [RFC #4](https://github.com/hyperledger/grid-rfcs/blob/master/text/0000-grid-primitives.html) | ["schema"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=schema) | [Specification](/docs/0.1/grid_schema_family_specification.html), [REST API](/docs/0.1/api/#tag/Schema), [CLI](/docs/0.1/cli_references.html#grid-schema-create) |
-| Splinter Support | *Implemented* | Ryan Banks | - | ["splinter"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=splinter) | [HOWTO](/docs/0.1/grid_on_splinter.html) |
+| Schema | *Implemented* | Peter Schwarz | [RFC #4](https://github.com/hyperledger/grid-rfcs/blob/master/text/0000-grid-primitives.md) | ["schema"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=schema) | [Specification]({% link docs/0.1/grid_schema_family_specification.md %}), [REST API](/docs/0.1/api/#tag/Schema), [CLI]({% link docs/0.1/cli_references.md %}#grid-schema-create) |
+| Splinter Support | *Implemented* | Ryan Banks | - | ["splinter"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=splinter) | [HOWTO]({% link docs/0.1/grid_on_splinter.md %}) |
 | Sqlite Support | *Under Development* | Davey Newhall | - | ["sqlite"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=sqlite) | - |
-| Track and Trace | *Partial* | - | - | ["track"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=track) | [Specification](/docs/0.1/grid_track_and_trace_family_specification.html), [REST API](/docs/0.1/api/#tag/Track-and-Trace) |
+| Track and Trace | *Partial* | - | - | ["track"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=track) | [Specification]({% link docs/0.1/grid_track_and_trace_family_specification.md %}), [REST API](/docs/0.1/api/#tag/Track-and-Trace) |
 
 ## Grid 0.2
 
@@ -45,9 +45,9 @@ process](https://github.com/hyperledger/grid-rfcs).
 
 Considering adding a new feature to Grid? Awesome! Feel free to chat about it
 on [RocketChat in
-#grid](http://localhost:8080/community/join_the_discussion.html#chat)  or at
+#grid]({% link community/join_the_discussion.md %}#chat)  or at
 one of our [contributor
-meetings](http://localhost:8080/community/join_the_discussion.html#grid-contributor-meetings)!
+meetings]({% link community/join_the_discussion.md %}#grid-contributor-meetings)!
 
 ### Columns
 
