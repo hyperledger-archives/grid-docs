@@ -392,6 +392,13 @@ td {
     margin-bottom: 50px;
 }
 
+.landing-page-lower-section h1 {
+    font-size: 1.7rem;
+    line-height: 1;
+    margin-bottom: 35px;
+    text-align: center;
+}
+
 #landing-page-top-section img {
     max-width: 700px;
     margin-bottom: 50px;
@@ -409,7 +416,7 @@ td {
     text-align: left;
     margin: auto;
     color: var(--text-color);
-    padding-bottom: 10px;
+    padding-bottom: 25px;
     transition: all 0.15s linear;
 }
 
@@ -421,6 +428,10 @@ td {
     color: var(--text-color);
     padding-bottom: 3px;
     transition: all 0.15s linear;
+}
+
+.landing-page-list {
+     list-style-type:square;
 }
 
 /* Overrides for small screens */
