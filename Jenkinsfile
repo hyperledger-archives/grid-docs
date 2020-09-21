@@ -76,16 +76,24 @@ pipeline {
                 sh 'docker build --build-arg jekyll_env=production -f ci/website.dockerfile -t hyperledger/grid-website .'
             }
         }
+
+        stage("Publish docker image") {
+            when{branch 'master'}
+            steps {
+                withDockerRegistry([ credentialsId: "464911a1-007a-4910-90c8-78ff16ba165e", url: "" ]) {
+                    script {
+                        if (env.BRANCH_NAME == "master") {
+                            sh 'docker push hyperledger/grid-website'
+                        }
+                    }
+                }
+            }
+        }
     }
 
     post {
         always {
             sh 'docker-compose -f docker/compose/run-lint.yaml down'
-        }
-        success {
-            withDockerRegistry([ credentialsId: "464911a1-007a-4910-90c8-78ff16ba165e", url: "" ]) {
-                sh 'docker push hyperledger/grid-website'
-            }
         }
     }
 }
