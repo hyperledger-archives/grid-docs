@@ -48,8 +48,14 @@ $ docker-compose -f examples/splinter/docker-compose.yaml pull generate-registry
    This docker-compose file creates a network with two nodes (alpha and beta)
    that includes the Pike, Schema, and Product smart contracts.
 
+## Next Steps
 
-## Create a Circuit
+Once the Grid on Splinter environment is running, you can create a circuit to
+connect two nodes, then demonstrate Grid functionality with existing smart
+contracts, such as Pike organizations and Grid products. You can also upload
+new smart contracts to the circuit.
+
+### Create a Circuit
 
 To create a circuit, a user on one node proposes a new circuit that includes one
 or more other nodes. When the other nodes accept the circuit proposal, the
@@ -202,9 +208,7 @@ circuit is created.
     ID            MANAGEMENT MEMBERS
     01234-ABCDE   grid       alpha-node-000;beta-node-000
     ```
-
-
-## Demonstrate Grid Smart Contract Functionality
+### Demonstrate Grid Smart Contract Functionality
 
 **Note:** To simplify this procedure, the example `docker-compose.yaml` file
 defines environment variables for the ``gridd-alpha`` and ``gridd-beta``
@@ -326,7 +330,7 @@ steps 3 through 10.
    ```
 
 
-## Demonstrate Smart Contract Deployment
+### Demonstrate Smart Contract Deployment
 
 The scabbard CLI enables deployment of custom smart contracts to existing
 circuits.
@@ -423,7 +427,7 @@ circuits.
      creator: <gridd-alpha public key>
    ```
 
-## Demonstrate Circuit Scope
+### Demonstrate Circuit Scope
 
 If a node is not a part of a circuit, that node cannot access information about
 that circuit or any transactions that occur on that circuit.

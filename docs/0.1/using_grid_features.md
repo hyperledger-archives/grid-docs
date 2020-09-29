@@ -40,4 +40,7 @@ prerequisites must be met.
 
 * For Grid on Splinter, these features require a **Splinter circuit** that
   connects two or more nodes in a private network. Grid shares feature
-  information only with the member nodes on a specific circuit.
+  information only with the member nodes on a specific circuit. The following
+  procedure describes how to create and manage a circuit.
+
+    - [Creating Splinter Circuits](creating_splinter_circuits.md)
