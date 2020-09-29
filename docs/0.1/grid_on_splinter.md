@@ -10,8 +10,8 @@ This environment includes the Pike, Product, and Schema smart contracts.
 
 - **Pike** handles organization and identity permissions with Sabre, a smart
   contract engine that is included in the Splinter scabbard service.
-- **Product** provides a way to share GS1-compatible product data (items that
-  are transacted, traded, or referenced in a supply chain).
+- **Grid Product** provides a way to share GS1-compatible product data (items
+  that are transacted, traded, or referenced in a supply chain).
 - **Schema** provides a reusable, standard approach to defining, storing, and
   consuming the product properties. Property definitions are collected into a
   Schema data type that defines all the possible properties for an item.
@@ -57,157 +57,17 @@ new smart contracts to the circuit.
 
 ### Create a Circuit
 
-To create a circuit, a user on one node proposes a new circuit that includes one
-or more other nodes. When the other nodes accept the circuit proposal, the
-circuit is created.
+[Creating Splinter
+Circuits]({% link docs/0.1/creating_splinter_circuits.md %})
+explains the procedure to connect nodes on a circuit.
 
-1. Get the gridd public key from the `gridd-alpha` container. You will need this
-   key when creating a circuit definition file in step 3.
+Tip: After the circuit exists, you can [demonstrate circuit
+scope](#demonstrate-circuit-scope) to show that Splinter isolates information
+to members of a circuit.
 
-   `$ docker exec gridd-alpha cat /etc/grid/keys/gridd.pub`
+For more information on Splinter circuits, see the
+[Splinter documentation](https://www.splinter.dev/docs/).
 
-2. Connect to the `splinterd-alpha` container. You will use this container to
-   run Splinter commands on alpha-node-000.
-
-   ```
-   $ docker-compose -f examples/splinter/docker-compose.yaml exec splinterd-alpha bash
-   root@splinterd-alpha:/#
-   ```
-
-3. Copy the key and save it in a local file.
-
-   ```
-   root@splinterd-alpha:/# echo "<public key>" > gridd.pub
-   ```
-
-4. Propose a new circuit with the definition `circuit propose` CLI command.
-
-   ```
-   root@splinterd-alpha:/# splinter circuit propose \
-      --key /registry/alpha.priv \
-      --url http://splinterd-alpha:8085  \
-      --node alpha-node-000::tcps://splinterd-alpha:8044 \
-      --node beta-node-000::tcps://splinterd-beta:8044 \
-      --service gsAA::alpha-node-000 \
-      --service gsBB::beta-node-000 \
-      --service-type *::scabbard \
-      --management grid \
-      --service-arg *::admin_keys=$(cat gridd.pub) \
-      --service-peer-group gsAA,gsBB
-   ```
-
-5. Check the results by displaying the list of proposals. The following example
-   sets the CIRCUIT_ID environment variable; this environment variable is for
-   the purposes of this procedure and is not used directly by the `splinter`
-   CLI commands.
-
-   Set CIRCUIT_ID based on the output of the `proposals` subcommand; for
-   example:
-
-   ```
-   root@splinterd-alpha:/# splinter circuit proposals --url http://splinterd-alpha:8085
-   ID            MANAGEMENT MEMBERS
-   01234-ABCDE   grid       alpha-node-000;beta-node-000
-   ```
-
-   ```
-   root@splinterd-alpha:/# export CIRCUIT_ID=01234-ABCDE
-   ```
-
-   ```
-   root@splinterd-alpha:/# splinter circuit show $CIRCUIT_ID --url http://splinterd-alpha:8085
-   Proposal to create: 01234-ABCDE
-      Management Type: grid
-
-      alpha-node-000 (tcps://splinterd-alpha:8044)
-          Vote: ACCEPT (implied as requester):
-              <alpha-public-key>
-          Service (scabbard): gsAA
-              admin_keys:
-                  <gridd-alpha public key>
-              peer_services:
-                  gsBB
-
-      beta-node-000 (tcps://splinterd-beta:8044)
-          Vote: PENDING
-          Service (scabbard): gsBB
-              admin_keys:
-                  <gridd-alpha public key>
-              peer_services:
-                  gsAA
-
-   ```
-
-6. Connect to the `splinterd-beta` container. You will use this container to run
-   Splinter commands on `beta-node-000`.
-
-   ```
-   $ docker-compose -f examples/splinter/docker-compose.yaml exec splinterd-beta bash
-   root@splinterd-beta:/#
-   ```
-
-7. Find the ID of the proposed circuit and save it to an environment variable.
-   The ID will be required for voting on the proposals and for interacting with
-   the circuit once it is approved. For example:
-
-   ```
-   root@splinterd-beta:/# splinter circuit proposals --url http://splinterd-beta:8085
-   ID            MANAGEMENT MEMBERS
-   01234-ABCDE   grid       alpha-node-000;beta-node-000
-   ```
-
-   ```
-   root@splinterd-beta:/# export CIRCUIT_ID=01234-ABCDE
-   ```
-
-8. Use the ID to display the details of the proposed circuit.
-
-   ```
-   root@splinterd-beta:/# splinter circuit show $CIRCUIT_ID --url http://splinterd-beta:8085
-   Proposal to create: 01234-ABCDE
-      Management Type: grid
-
-      alpha-node-000 (tcps://splinterd-alpha:8044)
-          Vote: ACCEPT (implied as requester):
-              <alpha-public-key>
-          Service (scabbard): gsAA
-              admin_keys:
-                  <gridd-alpha public key>
-              peer_services:
-                  gsBB
-
-      beta-node-000 (tcps://splinterd-beta:8044)
-          Vote: PENDING
-          Service (scabbard): gsBB
-              admin_keys:
-                  <gridd-alpha public key>
-              peer_services:
-                  gsAA
-   ```
-
-9. Then vote to accept the proposal.
-
-   ```
-    root@splinterd-beta:/# splinter circuit vote \
-       --key /registry/beta.priv \
-       --url http://splinterd-beta:8085 $CIRCUIT_ID \
-       --accept
-   ```
-
-10. Run the following command on each node to verify that the new circuit has
-    been created. The circuit information should be the same on both nodes.
-
-    ```
-    root@splinterd-beta:/# splinter circuit list --url http://splinterd-beta:8085
-    ID            MANAGEMENT MEMBERS
-    01234-ABCDE   grid       alpha-node-000;beta-node-000
-    ```
-
-    ```
-    root@splinterd-alpha:/# splinter circuit list --url http://splinterd-alpha:8085
-    ID            MANAGEMENT MEMBERS
-    01234-ABCDE   grid       alpha-node-000;beta-node-000
-    ```
 ### Demonstrate Grid Smart Contract Functionality
 
 **Note:** To simplify this procedure, the example `docker-compose.yaml` file
