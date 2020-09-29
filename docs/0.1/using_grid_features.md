@@ -15,15 +15,15 @@ that defines the structure and format of product properties.
 Likewise, each product schema must have an owning organization and an agent
 (or agents) with appropriate permissions.
 
-Follow these general steps when creating a new item such as a Grid Product.
+Follow these general steps when creating a new item:
 
 1. Create an organization with at least one agent that has the permissions to
    create and manage the item.
 
-1. Create a product schema that defines the structure of product properties.
+1. Create a schema that defines the structure of the item's properties.
 
-1. Create a product that conforms to the property definitions in the product
-   schema.
+1. Create an item (such as a product) that conforms to the property definitions
+   in the item's schema.
 
 ## Important Notes
 
