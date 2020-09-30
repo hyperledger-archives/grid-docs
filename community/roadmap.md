@@ -14,7 +14,7 @@ The following is a community-driven tentative roadmap to future releases.
 | Feature | Status | Primary Contact | RFC | Issues | Documentation |
 | ------- | ------ | --------------- | --- | ------- | ------------- |
 | Component | *RFC Submitted* | Shawn T. Amundson | [PR for RFC #9](https://github.com/hyperledger/grid-rfcs/pull/9) | - | - |
-| Location | *RFC Final Comment Period* | Jessie Zamzow | [PR for RFC #20](https://github.com/hyperledger/grid-rfcs/pull/20) | ["location"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=location) | - |
+| Location | *Under Development* | Jessie Zamzow | [RFC #20](https://github.com/hyperledger/grid-rfcs/blob/master/text/0020-location.md) | ["location"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=location) | - |
 | Pike | *Implemented* | Darian Plumb | - | ["pike"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=pike) | [Specification]({% link docs/0.1/pike_transaction_family.md %}), [REST API](/docs/0.1/api/#tag/Pike), [CLI]({% link docs/0.1/cli_references.md %}#grid-agent-create) |
 | PostgreSQL Support | *Implemented* | Davey Newhall | - | ["postgres"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=postgres) | [CLI]({% link docs/0.1/cli_references.md %}#grid-database-migrate) |
 | Product | *Implemented* | Adeeb Ahmed | [RFC #5](https://github.com/hyperledger/grid-rfcs/blob/master/text/0005-product.md) | ["product"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=product) | [REST API](/docs/0.1/api/#tag/Product), [CLI]({% link docs/0.1/cli_references.md %}#grid-product-create) |
