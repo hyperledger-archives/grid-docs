@@ -20,6 +20,14 @@ shared by all participants in a network. (Also called a "blockchain".)
 Each block is linked by a cryptographic hash to the previous block.
 </p>
 
+<h3 class="glossary-header" id="grid_product">
+Grid Product
+</h3>
+
+<p class="glossary-definition">
+Smart contract for defining and sharing product data (trade item data).
+</p>
+
 <h3 class="glossary-header" id="grid_track_and_trace">
 Grid Track and Trace
 </h3>
@@ -33,8 +41,7 @@ Pike
 </h3>
 
 <p class="glossary-definition">
-Smart contract that handles organization and identity permissions with
-Sawtooth Sabre.
+Smart contract that handles organization and identity permissions.
 </p>
 
 <h3 class="glossary-header" id="sawtooth_sabre">
@@ -43,10 +50,29 @@ Sawtooth Sabre
 
 <p class="glossary-definition">
 Smart-contract engine that executes smart contracts with WebAssembly (WASM).
-The rules for a smart contract are defined by a "transaction family". For
-more information, see the
+The rules for a smart contract are defined by a smart contract specification
+(formerly called a "transaction family"). For more information, see the
 <a href="https://sawtooth.hyperledger.org/docs/sabre/nightly/master/">
 Sabre documentation</a>.
+</p>
+
+<h3 class="glossary-header" id="schema">
+Schema
+</h3>
+
+<p class="glossary-definition">
+Smart contract that defines and manages product properties for the Grid Product
+smart contract.
+</p>
+
+<h3 class="glossary-header" id="smart_contract">
+Smart contract
+</h3>
+
+<p class="glossary-definition">
+Application-specific business logic that defines a set of operations or
+transaction types that are allowed on the distributed ledger. A smart contract
+implements a data model and transaction language for an application.
 </p>
 
 <h3 class="glossary-header" id="transaction_family">
@@ -54,8 +80,5 @@ Transaction family
 </h3>
 
 <p class="glossary-definition">
-Another term for a "smart contract": Application-specific business logic
-that defines a set of operations or transaction types that are allowed on
-the distributed ledger. A transaction family implements a data model and
-transaction language for an application.
+Earlier term for a smart contract.
 </p>
