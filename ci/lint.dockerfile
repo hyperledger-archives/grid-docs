@@ -12,10 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM alpine:3.11
+FROM markdownlint/markdownlint:0.11.0
 
-RUN apk add --update --no-cache ruby \
- && gem install mdl -v 0.9.0 --no-document
+USER root
 
 RUN echo 'rules "MD013"' > ~/.mdlrc
 
@@ -23,3 +22,5 @@ RUN echo 'rule "MD013", :code_blocks => false' > ~/mdlstyle.rb
 RUN echo 'rule "MD013", :tables => false' >> ~/mdlstyle.rb
 
 WORKDIR /project
+
+ENTRYPOINT []
