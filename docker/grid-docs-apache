@@ -14,6 +14,8 @@
 
 FROM httpd:2.4
 
+COPY apache/rewrite.conf /usr/local/apache2/conf/rewrite.conf
+
 RUN echo "\
 \n\
 ServerName grid-docs-apache\n\
@@ -21,15 +23,11 @@ AddDefaultCharset utf-8\n\
 LoadModule proxy_module modules/mod_proxy.so\n\
 LoadModule proxy_http_module modules/mod_proxy_http.so\n\
 LoadModule proxy_wstunnel_module modules/mod_proxy_wstunnel.so\n\
-LoadModule rewrite_module modules/mod_rewrite.so\n\
 ProxyPass /docs/0.1/api/ http://grid-docs-redoc-0-1:4001/\n\
 ProxyPassReverse /docs/0.1/api/ http://grid-docs-redoc-0-1:4001/\n\
 ProxyPass / http://grid-docs-jekyll:4000/\n\
 ProxyPassReverse / http://grid-docs-jekyll:4000/\n\
-RewriteEngine on\n\
-RewriteCond %{REQUEST_FILENAME} !-d\n\
-RewriteCond %{REQUEST_FILENAME} !-f\n\
-RewriteRule ^/(.*).md$ /\$1.html [NC,L,R]\n\
+Include /usr/local/apache2/conf/rewrite.conf\n\
 \n\
 " >>/usr/local/apache2/conf/httpd.conf
 

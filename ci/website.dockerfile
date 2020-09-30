@@ -59,11 +59,14 @@ FROM httpd:2.4
 COPY --from=redoc /index_0.1.html /usr/local/apache2/htdocs/docs/0.1/api/index.html
 COPY --from=jekyll /tmp/ /usr/local/apache2/htdocs/
 COPY --from=git /commit-hash /commit-hash
+COPY apache/rewrite.conf /usr/local/apache2/conf/rewrite.conf
 
 RUN echo "\
 \n\
 ServerName grid.hyperledger.org\n\
-ErrorDocument 404 /404.html\
+ErrorDocument 404 /404.html\n\
+\n\
+Include /usr/local/apache2/conf/rewrite.conf\n\
 \n\
 " >>/usr/local/apache2/conf/httpd.conf
 
