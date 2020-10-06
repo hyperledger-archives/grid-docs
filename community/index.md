@@ -22,7 +22,7 @@ specific tools and examples.
   feature proposals and work in progress.
 
 * [Track issues]({% link community/issue_tracking.md %}):
-  We use JIRA to track issues and report defects.
+  We use Github Projects to track issues and report defects.
 
 * [Contribute]({% link community/contributing.md %}):
   We welcome contributions to Hyperledger Grid, including bug reports, features
