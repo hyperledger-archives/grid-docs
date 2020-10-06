@@ -244,7 +244,7 @@ Validation requirements:
 The inputs for `LocationCreateAction` must include:
 - Grid address of the Agent submitting the transaction
 - Grid address of the Organization the Location is being created for
-- Grid address of the Location Namespace Schema the location’s properties must 
+- Grid address of the Location Namespace Schema the location’s properties must
 match
 - Grid address of the Location to be created
 
@@ -267,7 +267,7 @@ The outputs for `LocationUpdateAction` must include:
 
 The inputs for `LocationDeleteAction` must include:
 - Grid address of the Agent submitting the transaction
-- Grid address of the Organization the Location is being deleted for Grid 
+- Grid address of the Organization the Location is being deleted for Grid
 address of the Location to be deleted
 
 The outputs for `LocationDeleteAction` must include:
@@ -283,3 +283,11 @@ for defining location schemas.
 
 - family_name: "grid_location"
 - family_version: "1.0"
+
+## Reference Information
+
+### Database Tables
+
+The following diagram shows the structure of the Grid Location database tables.
+
+<img alt="Location database schema" src="./images/location_database_schema.png">
