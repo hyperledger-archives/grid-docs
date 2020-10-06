@@ -84,3 +84,10 @@ List all currently defined products
 
 [`grid product show`]({% link docs/0.1/references/cli/grid-product-show.1.md %})
 Show product specified by ID argument
+
+## gridd CLI
+The `gridd` command-line interface (CLI) provides the command for running the
+Grid daemon.
+
+[`gridd`]({% link docs/0.1/references/cli/gridd.1.md %})
+Starts the Grid daemon
