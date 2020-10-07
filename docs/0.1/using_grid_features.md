@@ -17,8 +17,9 @@ Likewise, each product schema must have an owning organization and an agent
 
 Follow these general steps when creating a new item:
 
-1. Create an organization with at least one agent that has the permissions to
-   create and manage the item.
+1. [Create an organization]({% link docs/0.1/creating_organizations.md %})
+   with at least one agent that has the permissions to create and manage the
+   item.
 
 1. Create a schema that defines the structure of the item's properties.
 
