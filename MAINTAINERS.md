@@ -8,6 +8,7 @@
 | Dan Middleton | dcmiddle | Dan |
 | Darian Plumb | dplumb94 | dplumb |
 | Dave Cecchi | davececchi | cecchi |
+| Davey Newhall | dnewh | newhall |
 | James Mitchell | jsmitchell | jsmitchell |
 | Peter Schwarz | peterschwarz | pschwarz |
 | Richard Berg | rberg2 | rberg2 |
