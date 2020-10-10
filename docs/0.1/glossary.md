@@ -37,7 +37,7 @@ Smart contract for tracking goods as they move through a supply chain.
 Pike
 </h3>
 <p class="glossary-definition">
-Smart contract that handles organization and identity permissions.
+Smart contract that handles identity permissions with organizations and agents.
 </p>
 
 <h3 class="glossary-header" id="sawtooth_sabre">
@@ -55,8 +55,8 @@ Sabre documentation</a>.
 Schema
 </h3>
 <p class="glossary-definition">
-Smart contract that defines and manages product properties for the Grid Product
-smart contract.
+Smart contract that defines and manages sets of properties, called "schemas",
+for Grid features such as Product and Location.
 </p>
 
 <h3 class="glossary-header" id="smart_contract">
