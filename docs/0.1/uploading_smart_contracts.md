@@ -209,9 +209,7 @@ Tip: You can run these commands on the first node, or connect to another node's
 `scabbard-cli` container (such as `scabbard-cli-beta`) and set the
 `$SERVICE_ID` variable for that node (such as `01234-ABCDE::gsBB`).
 
-{:start="9"}
-
-9. List all uploaded smart contracts.
+1. List all uploaded smart contracts.
 
    ```
    root@scabbard-cli-beta:/# scabbard contract list \
