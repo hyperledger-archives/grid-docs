@@ -91,100 +91,12 @@ product properties, and creating a product.
 
 ### Demonstrate Smart Contract Deployment
 
-The scabbard CLI enables deployment of custom smart contracts to existing
+You can use the `scabbard` CLI to deploy custom smart contracts on existing
 circuits.
 
-1. Start a bash session in the `scabbard-cli-alpha` Docker container. You will
-   use this container to send scabbard commands to `splinterd-alpha`.
+* [Uploading Smart Contracts]({% link docs/0.1/uploading_smart_contracts.md %})
+  explains how to upload and configure a new smart contract.
 
-   ```
-   $ docker-compose -f examples/splinter/docker-compose.yaml run scabbard-cli-alpha bash
-   root@scabbard-cli-alpha:/#
-   ```
-
-2. Set an environment variable to the circuit ID of the circuit that was created
-   above.
-
-   ```
-   root@scabbard-cli-alpha:/# export CIRCUIT_ID=01234-ABCDE
-   ```
-
-3. Download the smart contract.
-
-   `root@scabbard-cli-alpha:/# curl -OLsS https://files.splinter.dev/scar/xo_0.4.2.scar`
-
-4. Create the contract registry for the new smart contract.
-
-   ```
-   root@scabbard-cli-alpha:/# scabbard cr create sawtooth_xo \
-   --owners $(cat /root/.splinter/keys/gridd.pub) \
-   -k gridd \
-   -U 'http://splinterd-alpha:8085' \
-   --service-id $CIRCUIT_ID::gsAA
-   ```
-
-5. Upload the smart contract.
-
-   ```
-   root@scabbard-cli-alpha:/# scabbard contract upload xo:0.4.2 \
-   --path . \
-   -k gridd \
-   -U 'http://splinterd-alpha:8085' \
-   --service-id $CIRCUIT_ID::gsAA
-   ```
-
-6. Create the namespace registry for the smart contract.
-
-   ```
-   root@scabbard-cli-alpha:/# scabbard ns create 5b7349 \
-   --owners $(cat /root/.splinter/keys/gridd.pub) \
-   -k gridd \
-   -U 'http://splinterd-alpha:8085' \
-   --service-id $CIRCUIT_ID::gsAA
-   ```
-
-7. Grant the appropriate contract namespace permissions.
-
-   ```
-   root@scabbard-cli-alpha:/# scabbard perm 5b7349 sawtooth_xo --read --write \
-   -k gridd \
-   -U 'http://splinterd-alpha:8085' \
-   --service-id $CIRCUIT_ID::gsAA
-   ```
-
-
-8. Open a new terminal and connect to the `scabbard-cli-beta` container and add
-   the circuit ID environment variable
-   ```
-    $ docker-compose \
-    -f examples/splinter/docker-compose.yaml run scabbard-cli-beta bash
-   root@scabbard-cli-beta:/#
-   ```
-   ```
-   root@scabbard-cli-beta:/# export CIRCUIT_ID=01234-ABCDE
-   ```
-
-9. List all uploaded smart contracts.
-
-   ```
-   root@scabbard-cli-beta:/# scabbard contract list -U 'http://splinterd-beta:8085' --service-id $CIRCUIT_ID::gsBB
-   NAME        VERSIONS OWNERS
-   grid_product 1.0      <gridd-alpha public key>
-   pike         0.1      <gridd-alpha public key>
-   sawtooth_xo  1.0      <gridd-alpha public key>
-   ```
-
-10. Display the xo smart contract.
-
-   ```
-   root@scabbard-cli-beta:/# scabbard contract show sawtooth_xo:1.0 -U 'http://splinterd-beta:8085' --service-id $CIRCUIT_ID::gsBB
-   sawtooth_xo 1.0
-     inputs:
-     - 5b7349
-     outputs:
-     - 5b7349
-     creator: <gridd-alpha public key>
-   ```
 
 ### Demonstrate Circuit Scope
 
@@ -218,10 +130,3 @@ beta, then uploads the XO smart contract and plays a tic-tac-toe game with
 alpha, the xo list command on gamma will show only the gamma-alpha game. Even
 though alpha and beta are using the same XO smart contract, their game moves
 (smart contract transactions) remain private to their two-party circuit.
-
-## For More Information
-- [Splinter documentation](https://www.splinter.dev/docs/)
-- [Sawtooth Sabre](https://github.com/hyperledger/sawtooth-sabre)
-- [Pike Smart Contract Specification]({%
-  link docs/0.1/pike_smart_contract_specification.md %})
-- [CLI for the XO smart contract (also called a "transaction processor")](https://sawtooth.hyperledger.org/docs/core/releases/latest/cli/xo.html)
