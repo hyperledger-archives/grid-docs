@@ -13,7 +13,8 @@ This environment includes the Pike, Product, and Schema smart contracts.
 - [Grid Product]({% link docs/0.1/grid_product.md %})
   provides a way to share GS1-compatible product data (items
   that are transacted, traded, or referenced in a supply chain).
-- **Schema** provides a reusable, standard approach to defining, storing, and
+- [Schema]({% link docs/0.1/schema_smart_contract_specification.md %})
+  provides a reusable, standard approach to defining, storing, and
   consuming the product properties. Property definitions are collected into a
   Schema data type that defines all the possible properties for an item.
 
@@ -72,12 +73,17 @@ For more information on Splinter circuits, see the
 ### Demonstrate Grid Smart Contract Functionality
 
 You can use the Pike and Grid Product smart contracts to demonstrate Grid
-functionality by creating an organization and agent, then creating a product.
+functionality by creating an organization and agent, defining a schema for the
+product properties, and creating a product.
 
 * [Creating Organizations]({% link docs/0.1/creating_organizations.md %})
   describes how to create an owning organization for Grid items (such as
   products), and set the permissions for an agent who is
   allowed to create and manage those items.
+
+* [Creating Schemas]({% link docs/0.1/creating_schemas.md %})
+  explains how to define the format of properties for Grid items such as
+  products.
 
 * [Creating Products]({% link docs/0.1/creating_products.md %}) shows how to
   create, update, and delete products as the organization's agent.
@@ -218,6 +224,4 @@ though alpha and beta are using the same XO smart contract, their game moves
 - [Sawtooth Sabre](https://github.com/hyperledger/sawtooth-sabre)
 - [Pike Smart Contract Specification]({%
   link docs/0.1/pike_smart_contract_specification.md %})
-- [Schema Smart Contract Specification]({%
-  link docs/0.1/schema_smart_contract_specification.md %})
 - [CLI for the XO smart contract (also called a "transaction processor")](https://sawtooth.hyperledger.org/docs/core/releases/latest/cli/xo.html)
