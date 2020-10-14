@@ -52,18 +52,19 @@ new product or setting up Pike organizations, agents, and permissions.
   output for each step. For extra credit, add troubleshooting tips for common
   problems.
 
-*Example*: [Running Grid on
-Splinter](https://grid.hyperledger.org/docs/0.1/grid_on_splinter.html)
+*Example*: <a href="/docs/{{ site.data.general.latest_version
+}}/creating_splinter_circuits.html">Creating Splinter Circuits</a>
 
 ### Smart Contract Specification
 
 Provide a topic that describes the smart contract's objects, namespace, address
 format, and transaction types.
 
-*Examples*: [Grid Track and Trace
-  Specification](https://grid.hyperledger.org/docs/0.1/grid_track_and_trace_family_specification.html),
-  [Sawtooth Supply Chain Transaction Family
-  Specification](https://sawtooth.hyperledger.org/docs/supply-chain/nightly/master/family_specification.html)
+*Examples*: <a href="/docs/{{ site.data.general.latest_version
+}}/grid_track_and_trace_family_specification.html">
+Grid Track and Trace Smart Contract Specification</a>,
+[Sawtooth Supply Chain Transaction Family
+Specification](https://sawtooth.hyperledger.org/docs/supply-chain/nightly/master/family_specification.html)
 
 ### Database Tables Reference
 
@@ -107,19 +108,10 @@ module](https://docs.rs/grid-sdk/0.1.0/grid_sdk/protocol/track_and_trace/index.h
 in the [grid_sdk crate
 documentation](https://docs.rs/grid-sdk/0.1.0/grid_sdk/)
 
-### CLI Command Reference
+### CLI Usage Statements
 
 Each `grid` subcommand should have clear, helpful usage information for
 the output of <code>grid <i>{SUBCOMMAND}</i> --help</code>.
-
-Add this usage output to the Grid CLI Command Reference in the file
-[cli_references.md](https://github.com/hyperledger/grid-docs/blob/master/docs/0.1/cli_references.md).
-
-**Note**: Currently, you must add the usage information by hand. Later, the
-reference will be automatically generated from the Grid man pages.
-
-*Example*: [Grid CLI Command
-Reference](https://grid.hyperledger.org/docs/0.1/cli_references.html)
 
 ### Man Pages
 
@@ -148,3 +140,12 @@ template](https://github.com/Cargill/splinter/blob/master/cli/man/TEMPLATE.1.md.
 [splinter(1)](https://github.com/Cargill/splinter/blob/master/cli/man/splinter.1.md),
 [splinter-circuit(1)](https://github.com/Cargill/splinter/blob/master/cli/man/splinter-circuit.1.md),
 [splinter-circuit-propose(1)](https://github.com/Cargill/splinter/blob/master/cli/man/splinter-circuit-propose.1.md)
+
+### CLI Command Reference
+
+The `grid` man pages are automatically included in the
+<a href="/docs/{{ site.data.general.latest_version }}/cli_references.html">
+Grid CLI Command Reference</a>.
+
+When adding a new Grid command or subcommand, update the Grid CLI Command
+Reference with a link to the new man page.
