@@ -145,47 +145,33 @@ See [Prerequisites](#prerequisites) for more information.
      that conforms to the data type)
      <br><br>
 
-   You can use `cat` to create the file `product.yaml`. The following example
-   matches the product schema definition shown in
-   [grid/examples/splinter/README.md](https://github.com/hyperledger/grid/tree/master/examples/splinter#demonstrate-grid-smart-contract-functionality).
-
-   ```
-   root@gridd-alpha:/# cat > product.yaml
+   ```yaml
    - product_namespace: "GS1"
      product_id: "013600000929"
      owner: "314156"
      properties:
-       - name: "product_name"
-         data_type: "STRING"
-         string_value: "Truvia 80 ct."
-       - name: "image_url"
-         data_type: "STRING"
-         string_value:
-          "https://target.scene7.com/is/image/Target/GUEST_b7a6e983-b391-40a5-ad89-2f906bce5743?fmt=png&wid=1400&qlt=80"
-       - name: "brand_name"
-         data_type: "STRING"
-         string_value: "Truvia"
-       - name: "product_description"
-         data_type: "STRING"
-         string_value: "Truvia Sugar 80CT"
-       - name: "gpc"
-         data_type: "NUMBER"
-         number_value: 30016951
-       - name: "net_content"
-         data_type: "STRING"
-         string_value: "80CT"
-       - name: "target_market"
-         data_type: "NUMBER"
-         number_value: 840
+      product_name: "Truvia 80 ct."
+      image_url: "https://target.scene7.com/is/image/Target/GUEST_b7a6e983-b391-40a5-ad89-2f906bce5743?fmt=png&wid=1400&qlt=80"
+      brand_name: "Truvia"
+      product_description: "Truvia Sugar 80CT"
+      gpc: 30016951
+      net_content: "80CT"
+      target_market: 840
    ```
 
-   Tip: Enter CTRL-C to exit and save the contents.
+   Tip: Use a YAML linter to validate the new file is formatted correctly.
+
+1. Use `docker cp` to copy the file into the `gridd-alpha` container.
+
+   ```
+   $ docker cp product.yaml gridd-alpha:/
+   ```
 
 1. Add the new product by using the `grid product create` command to specify the
    definition in the `product.yaml` file.
 
    ```
-   root@gridd-alpha:/# grid product create product.yaml
+   root@gridd-alpha:/# grid product create --file product.yaml
    ```
 
    This command creates and submits a transaction to add the product data to the
@@ -198,9 +184,9 @@ See [Prerequisites](#prerequisites) for more information.
 
 ### Display Product Information
 
-{:start="7"}
+{:start="8"}
 
-7. List all existing products to verify that the new product has been added.
+8. List all existing products to verify that the new product has been added.
 
    ```
    root@gridd-alpha:/# grid product list
@@ -277,7 +263,7 @@ organization that is identified in the product definition).
    to the distributed ledger.
 
    ```
-   root@gridd-beta:/# grid product update product.yaml
+   root@gridd-beta:/# grid product update --file product.yaml
    ```
 
 ### Delete a Product
@@ -290,7 +276,7 @@ To delete a product, use the `delete` subcommand with the product ID and
 namespace (for example, ID `013600000929` and namespace `GS1`).
 
    ```
-   root@gridd-beta:/# grid product delete 013600000929 GS1
+   root@gridd-beta:/# grid product delete 013600000929 --namespace GS1
    ```
 
 Tip: Use `grid product list` to display the product ID and namespace.
