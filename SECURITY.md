@@ -13,10 +13,6 @@ description of the flaw and any related information (e.g. reproduction
 steps, version) to
 [security at hyperledger dot org](mailto:security@hyperledger.org).
 
-The other way is to file a confidential security bug in our
-[JIRA bug tracking system](https://jira.hyperledger.org).
-Be sure to set the “Security Level” to “Security issue”.
-
 The process by which the Hyperledger Security Team handles security bugs
 is documented further in our
 [Defect Response](https://wiki.hyperledger.org/display/HYP/Defect+Response)

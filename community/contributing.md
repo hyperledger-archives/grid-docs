@@ -29,16 +29,16 @@ Ways you can contribute:
 * Tests for events and results: Add functional, performance, or scalability
   tests
 
-Hyperledger Grid issues are tracked in JIRA (see
-[Using JIRA]({% link community/issue_tracking.md %})).
+Hyperledger Grid issues are tracked in Github Projects (see
+[Using Github Projects]({% link community/issue_tracking.md %})).
 Any unassigned items are probably still open. When in doubt, ask on
 the [#grid](https://chat.hyperledger.org/channel/grid) chat channel about
-a specific JIRA issue (see
+a specific issue (see
 [Joining the Discussion]({% link community/join_the_discussion.md %})).
 
 ## The Commit Process
 
-Hyperledger Grid is Apache 2.0 licensed and accepts contributions via 
+Hyperledger Grid is Apache 2.0 licensed and accepts contributions via
 [GitHub](https://github.com/hyperledger/grid) pull requests. When contributing
 code, please follow these guidelines:
 
@@ -99,15 +99,3 @@ A pull request cannot merged until it has passed these status checks:
 
 * The PR must be approved by at least two reviewers without any outstanding
   requests for changes
-
-## Integrating GitHub Commits with JIRA
-
-You can link JIRA issues to your commits, which will integrate developer
-activity with the associated issue. JIRA uses the issue key to associate the
-commit with the issue, so that the commit can be summarized in the development
-panel for the JIRA issue.
-
-When you make a commit, add the JIRA issue key to the end of the commit message
-or to the branch name. Either method should integrate your commit with the JIRA
-issue that it references.
-
