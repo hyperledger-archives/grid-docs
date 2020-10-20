@@ -228,6 +228,42 @@ in the example environment.
    $ echo curl http://localhost:8080/agent?service_id=01234-ABCDE::gsAA
    ```
 
+### Update an Organization
+
+To update an organization, you must have the `admin` role for the organization
+you wish to update.
+
+Updating an organization is very similar to creating an organization and the
+`org_id`, `name`, and `address` arguments must all be specified.
+
+```
+root@gridd-alpha:/# grid organization update \
+314156 myorg '456 New Address Ln.' \
+--metadata gs1_company_prefixes=314156
+```
+
+### Add additional Agents
+
+Additional agents can be added using the `grid agent create` subcommand. This
+command requires the `org_id` and `public_key` arguments to be supplied. To
+activate the agent, the `--active` flag must be supplied.
+
+```
+root@gridd-alpha:/# grid agent create \
+314156 \
+03aa7fee978a96a7904cad705ecebae908c9752185366cccea2811d27c51783a33 \
+--active
+```
+
+Similarly, agents can be updated with the `grid agent update` subcommand.
+
+```
+root@gridd-alpha:/# grid agent create \
+314156 \
+03aa7fee978a96a7904cad705ecebae908c9752185366cccea2811d27c51783a33 \
+--inactive
+```
+
 ## Next Steps
 
 Once you have an organization and one or more agents with schema and product
