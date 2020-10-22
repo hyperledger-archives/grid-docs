@@ -36,7 +36,7 @@ prerequisites must be met.
   how to bring up a Grid node with each type of distributed ledger.
 
     - [Running Grid on Splinter]({% link docs/0.1/grid_on_splinter.md %})
-    - Running Grid on Sawtooth (<i>available soon</i>)
+    - [Running Grid on Sawtooth]({% link docs/0.1/grid_on_sawtooth.md %})
       <br><br>
 
 * For Grid on Splinter, these features require a **Splinter circuit** that
