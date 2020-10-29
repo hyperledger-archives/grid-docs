@@ -7,7 +7,7 @@
 
 # -------------=== redoc build ===-------------
 
-FROM node:lts-alpine as redoc
+FROM node:lts-stretch as redoc
 
 RUN npm install -g redoc
 RUN npm install -g redoc-cli
