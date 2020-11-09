@@ -88,7 +88,6 @@ product properties, and creating a product.
 * [Creating Products]({% link docs/0.1/creating_products.md %}) shows how to
   create, update, and delete products as the organization's agent.
 
-
 ### Demonstrate Smart Contract Deployment
 
 You can use the `scabbard` CLI to deploy custom smart contracts on existing
