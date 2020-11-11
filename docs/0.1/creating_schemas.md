@@ -49,7 +49,7 @@ Finally, this procedure shows how to change a schema with `grid schema update`.
       information.) This procedure uses the example ID `01234-ABCDE::gsAA`.
 
 * The Grid daemon's endpoint (URL and port) on one or both nodes.
-  This procedure uses `https://localhost:8080`.
+  This procedure uses `http://localhost:8080`.
 
 * The ID of an existing Pike organization that will own the new schema. You
   must be defined as an agent with full schema permissions for this

@@ -35,7 +35,7 @@ needed.
   `splinterd` container.
 
 * The Grid daemon's endpoint (URL and port) on one or both nodes.
-  The example environment uses `https://localhost:8080`.
+  The example environment uses `http://localhost:8080`.
 
 * The ID of an existing Pike organization that will own the new products. You
   must be defined as an agent with full product permissions for this
@@ -45,7 +45,7 @@ needed.
   Tip: You can use `curl` to request organization and agent information from
   the Grid REST API, as in these examples:
 
-  `$ curl https://localhost:8080/organization?service_id=01234-ABCDE::gsAA`
+  `$ curl http://localhost:8080/organization?service_id=01234-ABCDE::gsAA`
 
   `$ curl http://localhost:8080/agent?service_id=01234-ABCDE::gsAA`
 

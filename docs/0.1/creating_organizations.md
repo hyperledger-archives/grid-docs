@@ -43,7 +43,7 @@ items.
       information.) This procedure uses the example ID `01234-ABCDE::gsAA`.
 
 * The Grid daemon's endpoint (URL and port) on one or both nodes.
-  This procedure uses `https://localhost:8080`.
+  This procedure uses `http://localhost:8080`.
 
 ## Important Notes
 
@@ -106,14 +106,14 @@ Set the following Grid environment variables to simplify entering the
    files in `/etc/grid/keys`.
 
 1. Set `GRID_DAEMON_ENDPOINT` to the endpoint for the node's `gridd` container
-   (such as `https://localhost:8080`). This environment variable replaces the
+   (such as `http://localhost:8080`). This environment variable replaces the
    `--url` option on the `grid` command line.
 
    Tip: If you're using this example docker-compose environment, this variable
    is already defined for the `gridd-alpha` and `gridd-beta` containers.
 
    ```
-   root@gridd-alpha:/# export GRID_DAEMON_ENDPOINT="https://localhost:8080"
+   root@gridd-alpha:/# export GRID_DAEMON_ENDPOINT="http://localhost:8080"
    ```
 
 1. For Grid on Splinter: Set `GRID_SERVICE_ID` to the fully qualified service ID
@@ -219,7 +219,7 @@ in the example environment.
 1. Request the list of organizations (from a system with `curl` installed).
 
    ```
-   $ echo curl https://localhost:8080/organization?service_id=01234-ABCDE::gsAA
+   $ echo curl http://localhost:8080/organization?service_id=01234-ABCDE::gsAA
    ```
 
 1. Request the list of agents.
