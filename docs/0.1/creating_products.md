@@ -148,7 +148,7 @@ See [Prerequisites](#prerequisites) for more information.
    ```yaml
    - product_namespace: "GS1"
      product_id: "013600000929"
-     owner: "314156"
+     owner: "013600"
      properties:
       product_name: "Truvia 80 ct."
       image_url: "https://target.scene7.com/is/image/Target/GUEST_b7a6e983-b391-40a5-ad89-2f906bce5743?fmt=png&wid=1400&qlt=80"
@@ -192,7 +192,7 @@ See [Prerequisites](#prerequisites) for more information.
    root@gridd-alpha:/# grid product list
    Product namespace: "013600000929"
     Product Type: "GS1"
-    Owner: "314156"
+    Owner: "013600"
     Properties:
            Property Name: "product_name"
            Data Type: "String"
@@ -232,7 +232,7 @@ See [Prerequisites](#prerequisites) for more information.
       root@gridd-beta:/# grid product list
       Product namespace: "013600000929"
        Product Type: "GS1"
-       Owner: "314156"
+       Owner: "013600"
        Properties:
               Property Name: "product_name"
               Data Type: "String"

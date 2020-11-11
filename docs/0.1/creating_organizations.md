@@ -133,14 +133,14 @@ Set the following Grid environment variables to simplify entering the
    organization's name and street address, and optional metadata (as key-value
    strings).
 
-   This example uses the ID `314156`, the name `myorg`, an imaginary street
+   This example uses the ID `013600`, the name `myorg`, an imaginary street
    address, and GS1-specific metadata to note that the ID is a GS1 company
    prefix.
 
    ```
    root@gridd-alpha:/# grid organization create \
-   314156 myorg '123 main street' \
-   --metadata gs1_company_prefixes=314156
+   013600 myorg '123 main street' \
+   --metadata gs1_company_prefixes=013600
    ```
 
    This command creates and submits a transaction to create a new Pike
@@ -172,7 +172,7 @@ only to this organization.
    public key file in the next command.
 
 1. Set the appropriate permissions (also called "Pike roles") for the agent.
-   The following command requires the organization ID (such as `314156`) and the
+   The following command requires the organization ID (such as `013600`) and the
    agent's public key string.
 
    This example allows the agent to create schemas and to create, update, and
@@ -180,7 +180,7 @@ only to this organization.
 
    ```
    root@gridd-alpha:/# grid agent update \
-   314156 $(cat ~/.grid/keys/alpha-agent.pub) \
+   013600 $(cat ~/.grid/keys/alpha-agent.pub) \
    --active \
    --role can_create_schema \
    --role can_create_product \
@@ -238,8 +238,8 @@ Updating an organization is very similar to creating an organization and the
 
 ```
 root@gridd-alpha:/# grid organization update \
-314156 myorg '456 New Address Ln.' \
---metadata gs1_company_prefixes=314156
+013600 myorg '456 New Address Ln.' \
+--metadata gs1_company_prefixes=013600
 ```
 
 ### Add additional Agents
@@ -250,7 +250,7 @@ activate the agent, the `--active` flag must be supplied.
 
 ```
 root@gridd-alpha:/# grid agent create \
-314156 \
+013600 \
 03aa7fee978a96a7904cad705ecebae908c9752185366cccea2811d27c51783a33 \
 --active
 ```
@@ -259,7 +259,7 @@ Similarly, agents can be updated with the `grid agent update` subcommand.
 
 ```
 root@gridd-alpha:/# grid agent create \
-314156 \
+013600 \
 03aa7fee978a96a7904cad705ecebae908c9752185366cccea2811d27c51783a33 \
 --inactive
 ```
