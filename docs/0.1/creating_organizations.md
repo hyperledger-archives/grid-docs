@@ -219,13 +219,13 @@ in the example environment.
 1. Request the list of organizations (from a system with `curl` installed).
 
    ```
-   $ echo curl http://localhost:8080/organization?service_id=01234-ABCDE::gsAA
+   $ curl http://localhost:8080/organization?service_id=01234-ABCDE::gsAA
    ```
 
 1. Request the list of agents.
 
    ```
-   $ echo curl http://localhost:8080/agent?service_id=01234-ABCDE::gsAA
+   $ curl http://localhost:8080/agent?service_id=01234-ABCDE::gsAA
    ```
 
 ### Update an Organization
