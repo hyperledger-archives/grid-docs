@@ -20,13 +20,20 @@ needed.
 
 ## Prerequisites
 
-* Two (or more) nodes running Grid on Splinter.
+* For Grid on Sawtooth:
 
-* An approved Splinter circuit that has two (or more) member nodes.
+    - A working Grid node.
+      <br><br>
 
-* A fully qualified service ID for the scabbard service on this circuit, in the
-  format `CircuitID::ServiceString`. This procedure uses the example ID
-  `01234-ABCDE::gsAA`.
+* For Grid on Splinter:
+
+    - Two (or more) nodes running Grid on Splinter.
+
+    - An approved Splinter circuit that has two (or more) member nodes.
+
+    - A fully qualified service ID for the scabbard service on this circuit, in the
+      format `CircuitID::ServiceString`. This procedure uses the example ID
+      `01234-ABCDE::gsAA`.
 
   Tip: Use `splinter circuit list` to display the circuit ID, then run `splinter
   circuit show CIRCUIT_ID` to see the four-character service string (also
@@ -63,13 +70,15 @@ needed.
 ## Procedure
 
 **IMPORTANT**: The commands in this procedure show host names, IDs, Docker
-container names, and other values from the example Grid-on-Splinter environment
-that is defined by
-[`grid/examples/splinter/docker-compose.yaml`](https://github.com/hyperledger/grid/blob/master/examples/splinter/docker-compose.yaml).
+container names, and other values from the example Grid environment that are
+defined by
+[`grid/examples/splinter/docker-compose.yaml`](https://github.com/hyperledger/grid/blob/master/examples/splinter/docker-compose.yaml)
+and [`grid/examples/sawtooth/docker-compose.yaml`](https://github.com/hyperledger/grid/blob/master/examples/sawtooth/docker-compose.yaml)
 This file sets up the nodes `alpha-node-000` and `beta-node-000` and runs the
 Grid and Splinter components in separate containers; these names appear in
 example prompts and commands. (See [Running Hyperledger Grid on
-Splinter]({% link docs/0.1/grid_on_splinter.md %}) for more information.)
+Splinter]({% link docs/0.1/grid_on_splinter.md %}) or [Running Hyperledger Grid on
+Sawtooth]({% link docs/0.1/grid_on_sawtooth.md %}) for more information.)
 
 If you are not using this example environment, replace these items with the
 actual values for your environment when entering each command.
