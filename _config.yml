@@ -40,6 +40,8 @@ titles_from_headings:
 include:
   - contributing.md
   - code_of_conduct.md
+  - _all-skins.min.css
+  - pdfmake.min.js.map
 
 exclude:
   - CODEOWNERS

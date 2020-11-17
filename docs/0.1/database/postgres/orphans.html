@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>grid Database</title>
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon.png">
+        <!-- Bootstrap 3.3.5 -->
+        <link rel="stylesheet" href="bower/admin-lte/bootstrap/css/bootstrap.min.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="bower/font-awesome/css/font-awesome.min.css">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="bower/ionicons/css/ionicons.min.css">
+        <!-- DataTables -->
+        <link rel="stylesheet" href="bower/datatables.net-bs/css/dataTables.bootstrap.min.css">
+        <link rel="stylesheet" href="bower/datatables.net-buttons-bs/css/buttons.bootstrap.min.css">
+        <!-- Code Mirror -->
+        <link rel="stylesheet" href="bower/codemirror/codemirror.css">
+        <!-- Fonts -->
+        <link href='fonts/indieflower/indie-flower.css' rel='stylesheet' type='text/css'>
+        <link href='fonts/source-sans-pro/source-sans-pro.css' rel='stylesheet' type='text/css'>
+
+        <!-- Theme style -->
+        <link rel="stylesheet" href="bower/admin-lte/dist/css/AdminLTE.min.css">
+        <!-- Salvattore -->
+        <link rel="stylesheet" href="bower/salvattore/salvattore.css">
+        <!-- AdminLTE Skins. Choose a skin from the css/skins
+           folder instead of downloading all of them to reduce the load. -->
+        <link rel="stylesheet" href="bower/admin-lte/dist/css/skins/_all-skins.min.css">
+        <!-- SchemaSpy -->
+        <link rel="stylesheet" href="schemaSpy.css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="bower/html5shiv/html5shiv.min.js"></script>
+        <script src="bower/respond/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+    <body class="hold-transition skin-blue layout-top-nav">
+        <div class="wrapper">
+            <header class="main-header">
+                <nav class="navbar navbar-static-top">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <a href="index.html" class="navbar-brand"><b>grid</b> Database</a>
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse"><i class="fa fa-bars"></i></button>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a href="index.html">Tables <span class="sr-only">(current)</span></a></li>
+                                <li><a href="columns.html" title="All of the columns in the schema">Columns</a></li>
+                                <li><a href="constraints.html" title="Useful for diagnosing error messages that just give constraint name or number">Constraints</a></li>
+                                <li><a href="relationships.html" title="Diagram of table relationships">Relationships</a></li>
+                                <li><a href="orphans.html" title="View of tables with neither parents nor children">Orphan&nbsp;Tables</a></li>
+                                <li><a href="anomalies.html" title="Things that might not be quite right">Anomalies</a></li>
+                                <li><a href="routines.html" title="Procedures and functions">Routines</a></li>
+                            </ul>
+                        </div>
+                        <!-- /.navbar-collapse -->
+                        <!-- Navbar Right Menu -->
+                    </div>
+                    <!-- /.container-fluid -->
+                </nav>
+            </header>
+            <!-- Main content -->
+            <!-- Full Width Column -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>Utility Tables</h1>
+                </section>
+                <!-- Main content -->
+                <section class="content">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <i class="fa fa-code-fork"></i>
+                            <h3 class="box-title">Orphan Tables</h3>
+                        </div>
+                        <div class="box-body">
+                            <div id="grid" data-columns>
+                                <div class="item">
+                                    <img id="__diesel_schema_migrationsDegreeImg" src="diagrams/orphans/__diesel_schema_migrations.1degree.png" usemap="#__diesel_schema_migrations" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="chain_recordDegreeImg" src="diagrams/orphans/chain_record.1degree.png" usemap="#chain_record" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="commitDegreeImg" src="diagrams/orphans/commit.1degree.png" usemap="#commit" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="grid_circuit_proposal_vote_recordDegreeImg" src="diagrams/orphans/grid_circuit_proposal_vote_record.1degree.png" usemap="#grid_circuit_proposal_vote_record" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="roleDegreeImg" src="diagrams/orphans/role.1degree.png" usemap="#role" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="grid_circuit_memberDegreeImg" src="diagrams/orphans/grid_circuit_member.1degree.png" usemap="#grid_circuit_member" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="grid_schemaDegreeImg" src="diagrams/orphans/grid_schema.1degree.png" usemap="#grid_schema" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="agentDegreeImg" src="diagrams/orphans/agent.1degree.png" usemap="#agent" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="associated_agentDegreeImg" src="diagrams/orphans/associated_agent.1degree.png" usemap="#associated_agent" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="locationDegreeImg" src="diagrams/orphans/location.1degree.png" usemap="#location" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="organizationDegreeImg" src="diagrams/orphans/organization.1degree.png" usemap="#organization" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="productDegreeImg" src="diagrams/orphans/product.1degree.png" usemap="#product" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="grid_circuit_proposalDegreeImg" src="diagrams/orphans/grid_circuit_proposal.1degree.png" usemap="#grid_circuit_proposal" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="propertyDegreeImg" src="diagrams/orphans/property.1degree.png" usemap="#property" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="recordDegreeImg" src="diagrams/orphans/record.1degree.png" usemap="#record" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="reporterDegreeImg" src="diagrams/orphans/reporter.1degree.png" usemap="#reporter" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="grid_circuitDegreeImg" src="diagrams/orphans/grid_circuit.1degree.png" usemap="#grid_circuit" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="grid_property_definitionDegreeImg" src="diagrams/orphans/grid_property_definition.1degree.png" usemap="#grid_property_definition" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="proposalDegreeImg" src="diagrams/orphans/proposal.1degree.png" usemap="#proposal" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="location_attributeDegreeImg" src="diagrams/orphans/location_attribute.1degree.png" usemap="#location_attribute" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="product_property_valueDegreeImg" src="diagrams/orphans/product_property_value.1degree.png" usemap="#product_property_value" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="reported_valueDegreeImg" src="diagrams/orphans/reported_value.1degree.png" usemap="#reported_value" style="max-width:100%;" border="0" align="top">
+                                </div>
+                            </div>
+                            <map id="__diesel_schema_migrations" name="__diesel_schema_migrations">
+<area shape="rect" id="node1" href="tables/__diesel_schema_migrations.html" target="_top" title="__diesel_schema_migrations" alt="" coords="5,5,448,133">
+</map><map id="chain_record" name="chain_record">
+<area shape="rect" id="node1" href="tables/chain_record.html" target="_top" title="chain_record" alt="" coords="5,5,376,192">
+</map><map id="commit" name="commit">
+<area shape="rect" id="node1" href="tables/commit.html" target="_top" title="commit" alt="" coords="5,5,324,192">
+</map><map id="grid_circuit_proposal_vote_record" name="grid_circuit_proposal_vote_record">
+<area shape="rect" id="node1" href="tables/grid_circuit_proposal_vote_record.html" target="_top" title="grid_circuit_proposal_vote_record" alt="" coords="5,5,512,251">
+</map><map id="role" name="role">
+<area shape="rect" id="node1" href="tables/role.html" target="_top" title="role" alt="" coords="5,5,376,251">
+</map><map id="grid_circuit_member" name="grid_circuit_member">
+<area shape="rect" id="node1" href="tables/grid_circuit_member.html" target="_top" title="grid_circuit_member" alt="" coords="5,5,393,280">
+</map><map id="grid_schema" name="grid_schema">
+<area shape="rect" id="node1" href="tables/grid_schema.html" target="_top" title="grid_schema" alt="" coords="5,5,376,280">
+</map><map id="agent" name="agent">
+<area shape="rect" id="node1" href="tables/agent.html" target="_top" title="agent" alt="" coords="5,5,389,309">
+</map><map id="associated_agent" name="associated_agent">
+<area shape="rect" id="node1" href="tables/associated_agent.html" target="_top" title="associated_agent" alt="" coords="5,5,376,309">
+</map><map id="location" name="location">
+<area shape="rect" id="node1" href="tables/location.html" target="_top" title="location" alt="" coords="5,5,392,309">
+</map><map id="organization" name="organization">
+<area shape="rect" id="node1" href="tables/organization.html" target="_top" title="organization" alt="" coords="5,5,389,309">
+</map><map id="product" name="product">
+<area shape="rect" id="node1" href="tables/product.html" target="_top" title="product" alt="" coords="5,5,391,309">
+</map><map id="grid_circuit_proposal" name="grid_circuit_proposal">
+<area shape="rect" id="node1" href="tables/grid_circuit_proposal.html" target="_top" title="grid_circuit_proposal" alt="" coords="5,5,397,339">
+</map><map id="property" name="property">
+<area shape="rect" id="node1" href="tables/property.html" target="_top" title="property" alt="" coords="5,5,384,339">
+</map><map id="record" name="record">
+<area shape="rect" id="node1" href="tables/record.html" target="_top" title="record" alt="" coords="5,5,376,339">
+</map><map id="reporter" name="reporter">
+<area shape="rect" id="node1" href="tables/reporter.html" target="_top" title="reporter" alt="" coords="5,5,376,339">
+</map><map id="grid_circuit" name="grid_circuit">
+<area shape="rect" id="node1" href="tables/grid_circuit.html" target="_top" title="grid_circuit" alt="" coords="5,5,441,368">
+</map><map id="grid_property_definition" name="grid_property_definition">
+<area shape="rect" id="node1" href="tables/grid_property_definition.html" target="_top" title="grid_property_definition" alt="" coords="5,5,428,427">
+</map><map id="proposal" name="proposal">
+<area shape="rect" id="node1" href="tables/proposal.html" target="_top" title="proposal" alt="" coords="5,5,376,427">
+</map><map id="location_attribute" name="location_attribute">
+<area shape="rect" id="node1" href="tables/location_attribute.html" target="_top" title="location_attribute" alt="" coords="5,5,428,544">
+</map><map id="product_property_value" name="product_property_value">
+<area shape="rect" id="node1" href="tables/product_property_value.html" target="_top" title="product_property_value" alt="" coords="5,5,437,544">
+</map><map id="reported_value" name="reported_value">
+<area shape="rect" id="node1" href="tables/reported_value.html" target="_top" title="reported_value" alt="" coords="5,5,389,573">
+</map>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <!-- /.content-wrapper -->
+            <footer class="main-footer">
+                <div>
+                    <div class="pull-right hidden-xs">
+                        <a href="https://github.com/schemaspy/schemaspy" title="GitHub for SchemaSpy"><i class="fa fa-github-square fa-2x"></i></a>
+                        <a href="http://stackoverflow.com/questions/tagged/schemaspy" title="StackOverflow for SchemaSpy"><i class="fa fa-stack-overflow fa-2x"></i></a>
+                    </div>
+                    <strong>Generated by <a href="http://schemaspy.org/" class="logo-text"><i class="fa fa-database"></i> SchemaSpy 6.1.1-SNAPSHOT</a></strong>
+                </div>
+                <!-- /.container -->
+            </footer>
+        </div>
+        <!-- ./wrapper -->
+
+        <!-- jQuery 2.2.3 -->
+        <script src="bower/admin-lte/plugins/jQuery/jquery-2.2.3.min.js"></script>
+        <script src="bower/admin-lte/plugins/jQueryUI/jquery-ui.min.js"></script>
+        <!-- Bootstrap 3.3.5 -->
+        <script src="bower/admin-lte/bootstrap/js/bootstrap.min.js"></script>
+        <!-- DataTables -->
+        <script src="bower/datatables.net/jquery.dataTables.min.js"></script>
+        <script src="bower/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+        <script src="bower/datatables.net-buttons/dataTables.buttons.min.js"></script>
+        <script src="bower/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+        <script src="bower/datatables.net-buttons/buttons.html5.min.js"></script>
+        <script src="bower/datatables.net-buttons/buttons.print.min.js"></script>
+        <script src="bower/datatables.net-buttons/buttons.colVis.min.js"></script>
+        <!-- SheetJS -->
+        <script src="bower/js-xlsx/xlsx.full.min.js"></script>
+        <!-- pdfmake -->
+        <script src="bower/pdfmake/pdfmake.min.js"></script>
+        <script src="bower/pdfmake/vfs_fonts.js"></script>
+        <!-- SlimScroll -->
+        <script src="bower/admin-lte/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+        <!-- FastClick -->
+        <script src="bower/admin-lte/plugins/fastclick/fastclick.js"></script>
+        <!-- Salvattore -->
+        <script src="bower/salvattore/salvattore.min.js"></script>
+        <!-- AnchorJS -->
+        <script src="bower/anchor-js/anchor.min.js"></script>
+        <!-- CodeMirror -->
+        <script src="bower/codemirror/codemirror.js"></script>
+        <script src="bower/codemirror/sql.js"></script>
+        <!-- AdminLTE App -->
+        <script src="bower/admin-lte/dist/js/app.min.js"></script>
+        <script src=""></script>
+        <script src="schemaSpy.js"></script>
+    </body>
+</html>
