@@ -44,6 +44,7 @@ include:
 exclude:
   - CODEOWNERS
   - ci
+  - database
   - docker*
   - Jenkinsfile
   - justfile
