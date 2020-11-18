@@ -1,4 +1,4 @@
-# Copyright 2018-2020 Cargill Incorporated
+# Copyright 2020 Cargill Incorporated
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,22 +12,30 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-build: docker-build
+set -e
 
-docker-build:
-    ./ci/build-website
+if [ -z $1 ];
+then
+    # Runs if no arguments are provided
+    export JEKYLL_ENV=development
+else
+    export JEKYLL_ENV=$1
+fi
 
-docker-lint:
-    docker-compose \
-        -f docker/compose/run-lint.yaml \
-        up \
-        --abort-on-container-exit \
-        --build \
-        lint-grid-docs
+echo "Building site with JEKYLL_ENV: "$JEKYLL_ENV
 
-docker-run:
-    docker-compose up --build; docker-compose down
+top_dir=$(cd $(dirname $(dirname $0)) && pwd)
 
-lint: docker-lint
+cd $top_dir
 
-run: docker-run
+rm -rf database/*
+
+docker-compose up \
+    --abort-on-container-exit \
+    --exit-code-from grid-docs-schemaspy \
+    db \
+    grid-docs-schemaspy
+
+docker build --build-arg jekyll_env=$JEKYLL_ENV -f ci/website.dockerfile -t hyperledger/grid-website .
+
+docker-compose down
