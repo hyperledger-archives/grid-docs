@@ -22,6 +22,18 @@ Additional community contributed code is located in the
 
 Use the following crates in your Rust project:
 
-* [Grid](https://crates.io/crates/Grid) Grid's core library
 * [Grid-sdk](https://crates.io/crates/Grid-sdk) Grid SDK for building apps on
   Grid.
+
+## Docker images
+
+Grid provides the following prebuilt Docker images for the Grid daemon, CLI, and
+UI.
+
+* [hyperledger/gridd](https://hub.docker.com/r/hyperledger/gridd)
+  Provides a REST API for fetching data and submitting transactions, and manages
+  the connection to the underlying distributed ledger
+* [hyperledger/grid-cli](https://hub.docker.com/r/hyperledger/grid-cli)
+  Grid's command line interface for submitting transactions and fetching data
+* [hyperledger/grid-ui](https://hub.docker.com/r/hyperledger/grid-ui)
+  Front end interface for Grid built using the Canopy framework
