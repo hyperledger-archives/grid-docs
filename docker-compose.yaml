@@ -49,3 +49,33 @@ services:
       - 8080:80
     volumes:
       - .:/project
+      - ./database/postgres:/usr/local/apache2/htdocs/database/postgres
+
+  grid-docs-schemaspy:
+    container_name: grid-docs-schemaspy
+    image: grid-docs-schemaspy
+    build:
+      context: .
+      dockerfile: docker/schemaspy/Dockerfile
+    environment:
+      HOST: db
+      PORT: 5432
+      DATABASE: grid
+      USER: grid
+      PASSWORD: grid_example
+    depends_on:
+      - db
+    volumes:
+      - ./database/postgres:/output
+
+  db:
+    image: postgres
+    container_name: db
+    hostname: db
+    restart: always
+    expose:
+      - 5432
+    environment:
+      POSTGRES_USER: grid
+      POSTGRES_PASSWORD: grid_example
+      POSTGRES_DB: grid
