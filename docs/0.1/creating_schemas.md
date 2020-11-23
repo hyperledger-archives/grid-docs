@@ -143,65 +143,49 @@ Set the following Grid environment variables to specify information for the
      that conforms to the data type)
      <br><br>
 
-   The following example shows how to use `cat` to create the file
-   `product_schema.yaml`, with sample contents that match the product definition
-   shown in [Creating Products]({% link docs/0.1/creating_products.md %}).
-
-   ```
-   root@gridd-alpha:/# cat > product_schema.yaml
+    ```yaml
     - name: gs1_product
       description: GS1 product schema
       properties:
         - name: product_name
           data_type: STRING
-          description:
-            Consumer friendly short description of the product suitable for compact
-            presentation.
+          description: ""
           required: true
         - name: image_url
           data_type: STRING
-          description: URL link to an image of the product.
+          description: ""
           required: false
         - name: brand_name
           data_type: STRING
-          description: The brand name of the product that appears on the consumer package.
+          description: ""
           required: true
         - name: product_description
           data_type: STRING
-          description:
-            "An understandable and useable description of a product using brand and
-            other descriptors. This attribute is filled with as little abbreviation
-            as possible, while keeping to a reasonable length. This should be a
-            meaningful description of the product with full spelling to facilitate
-            essage processing. Retailers can use this description as the base to
-            fully understand the brand, flavour, scent etc. of the specific product,
-            in order to accurately create a product description as needed for their
-            internal systems. Examples: XYZ Brand Base Invisible Solid Deodorant AP
-            Stick Spring Breeze."
+          description: ""
           required: true
         - name: gpc
           data_type: NUMBER
           number_exponent: 1
-          description:
-            8-digit code (GPC Brick Value) specifying a product category according
-            to the GS1 Global Product Classification (GPC) standard.
+          description: ""
           required: true
         - name: net_content
           data_type: STRING
-          description:
-            The amount of the consumable product of the trade item contained in a
-            package, as declared on the label.
+          description: ""
           required: true
         - name: target_market
           data_type: NUMBER
           number_exponent: 1
-          description:
-            ISO numeric country code representing the target market country for the
-            product.
+          description: ""
           required: true
-   ```
+    ```
 
-   Tip: Enter CTRL-C to exit and save the contents.
+    Tip: Use a YAML linter to validate the new file is formatted correctly.
+
+1. Use `docker cp` to copy the file into the `gridd-alpha` container.
+
+   ```
+   $ docker cp product_schema.yaml gridd-alpha:/
+   ```
 
 1. Add the new schema as defined in the YAML file (for example,
    `product_schema.yaml`).
@@ -210,11 +194,15 @@ Set the following Grid environment variables to specify information for the
     root@gridd-alpha:/# grid schema create product_schema.yaml
     ```
 
+    This command creates and submits a transaction to add the schema to the
+    distributed ledger. If the transaction is successful, all other nodes in the
+    circuit can view the schema.
+
 ### Display Schema Information
 
-{:start="7"}
+{:start="8"}
 
-7. List all existing schemas to verify that the new schema has been added.
+8. List all existing schemas to verify that the new schema has been added.
 
    ```
    root@gridd-alpha:/# grid schema list
