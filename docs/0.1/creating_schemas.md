@@ -67,13 +67,15 @@ Finally, this procedure shows how to change a schema with `grid schema update`.
 ## Procedure
 
 **IMPORTANT**: The commands in this procedure show host names, IDs, Docker
-container names, and other values from the example Grid on Splinter environment
-that is defined by
-[`grid/examples/splinter/docker-compose.yaml`](https://github.com/hyperledger/grid/blob/master/examples/splinter/docker-compose.yaml).
+container names, and other values from the example Grid environment that are
+defined by
+[`grid/examples/splinter/docker-compose.yaml`](https://github.com/hyperledger/grid/blob/master/examples/splinter/docker-compose.yaml)
+and [`grid/examples/sawtooth/docker-compose.yaml`](https://github.com/hyperledger/grid/blob/master/examples/sawtooth/docker-compose.yaml)
 This file sets up the nodes `alpha-node-000` and `beta-node-000` and runs the
 Grid and Splinter components in separate containers; these names appear in
 example prompts and commands. (See [Running Hyperledger Grid on
-Splinter]({% link docs/0.1/grid_on_splinter.md %}) for more information.)
+Splinter]({% link docs/0.1/grid_on_splinter.md %}) or [Running Hyperledger Grid on
+Sawtooth]({% link docs/0.1/grid_on_sawtooth.md %}) for more information.)
 
 If you are not using this example environment, replace these items with the
 actual values for your environment when entering each command.
