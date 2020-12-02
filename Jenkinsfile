@@ -73,7 +73,7 @@ pipeline {
 
         stage("Build website") {
             steps {
-                sh 'docker build --build-arg jekyll_env=production -f ci/website.dockerfile -t hyperledger/grid-website .'
+                sh './ci/build-website production'
             }
         }
 
@@ -94,6 +94,7 @@ pipeline {
     post {
         always {
             sh 'docker-compose -f docker/compose/run-lint.yaml down'
+            sh 'docker-compose -f docker-compose.yaml down'
         }
     }
 }
