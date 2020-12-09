@@ -8,7 +8,7 @@ until PGPASSWORD=$PASSWORD psql -h $HOST -d $DATABASE -U $USER -c '\q'; do
 done
 
 grid -vv database migrate \
-    --database-url postgres://grid:grid_example@db/grid
+    -C postgres://grid:grid_example@db/grid
 
 java -jar schemaspy/schemaSpy.jar \
     -t pgsql11 -host $HOST -port $PORT \
