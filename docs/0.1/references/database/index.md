@@ -10,3 +10,4 @@ The Grid database can be backed by either PostgreSQL or SQLite. The full
 schema for these backends can be found at:
 
 * [PostgreSQL schema](/docs/0.1/database/postgres)
+* [SQLite schema](/docs/0.1/database/sqlite)

@@ -18,7 +18,7 @@ RUN apt-get update \
     && apt-get install -y -q \
         build-essential \
         graphviz \
-        libpq-dev \
+        sqlite3 \
         libsqlite3-dev \
         openjdk-8-jre \
     && apt-get clean \
@@ -28,9 +28,11 @@ RUN mkdir /output && \
     mkdir -p /org/schemaspy/drivers && \
     mkdir /schemaspy
 
-COPY docker/schemaspy/postgres/generate .
+ADD https://repo1.maven.org/maven2/org/xerial/sqlite-jdbc/3.31.1/sqlite-jdbc-3.31.1.jar /org/schemaspy/drivers
 
-COPY docker/schemaspy/postgres/pgsql11.properties /schemaspy
+RUN ls /org/schemaspy/drivers/
+
+COPY docker/schemaspy/sqlite/generate .
 
 RUN chmod a+x generate
 

@@ -59,6 +59,7 @@ FROM httpd:2.4
 COPY --from=redoc /index_0.1.html /usr/local/apache2/htdocs/docs/0.1/api/index.html
 COPY --from=jekyll /tmp/ /usr/local/apache2/htdocs/
 COPY ./database/postgres/0.1 /usr/local/apache2/htdocs/docs/0.1/database/postgres
+COPY ./database/sqlite/0.1 /usr/local/apache2/htdocs/docs/0.1/database/sqlite
 COPY --from=git /commit-hash /commit-hash
 COPY apache/rewrite.conf /usr/local/apache2/conf/rewrite.conf
 

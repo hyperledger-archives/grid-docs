@@ -50,6 +50,7 @@ services:
     volumes:
       - .:/project
       - ./database/postgres:/usr/local/apache2/htdocs/database/postgres
+      - ./database/sqlite:/usr/local/apache2/htdocs/database/sqlite
 
   grid-docs-schemaspy-postgres:
     container_name: grid-docs-schemaspy-postgres
@@ -67,6 +68,17 @@ services:
       - db
     volumes:
       - ./database/postgres:/output
+
+  grid-docs-schemaspy-sqlite:
+    container_name: grid-docs-schemaspy-sqlite
+    image: grid-docs-schemaspy-sqlite
+    build:
+      context: .
+      dockerfile: docker/schemaspy/sqlite/Dockerfile
+    depends_on:
+      - db
+    volumes:
+      - ./database/sqlite:/output
 
   db:
     image: postgres
