@@ -19,6 +19,7 @@ RUN apt-get update \
         build-essential \
         graphviz \
         libpq-dev \
+        libsqlite3-dev \
         openjdk-8-jre \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
@@ -27,9 +28,9 @@ RUN mkdir /output && \
     mkdir -p /org/schemaspy/drivers && \
     mkdir /schemaspy
 
-COPY docker/schemaspy/generate .
+COPY docker/schemaspy/postgres/generate .
 
-COPY docker/schemaspy/pgsql11.properties /schemaspy
+COPY docker/schemaspy/postgres/pgsql11.properties /schemaspy
 
 RUN chmod a+x generate
 

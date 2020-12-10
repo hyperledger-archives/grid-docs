@@ -32,9 +32,9 @@ rm -rf database/*
 
 docker-compose up \
     --abort-on-container-exit \
-    --exit-code-from grid-docs-schemaspy \
+    --exit-code-from grid-docs-schemaspy-postgres \
     db \
-    grid-docs-schemaspy
+    grid-docs-schemaspy-postgres
 
 docker build --build-arg jekyll_env=$JEKYLL_ENV -f ci/website.dockerfile -t hyperledger/grid-website .
 

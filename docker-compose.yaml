@@ -51,12 +51,12 @@ services:
       - .:/project
       - ./database/postgres:/usr/local/apache2/htdocs/database/postgres
 
-  grid-docs-schemaspy:
-    container_name: grid-docs-schemaspy
-    image: grid-docs-schemaspy
+  grid-docs-schemaspy-postgres:
+    container_name: grid-docs-schemaspy-postgres
+    image: grid-docs-schemaspy-postgres
     build:
       context: .
-      dockerfile: docker/schemaspy/Dockerfile
+      dockerfile: docker/schemaspy/postgres/Dockerfile
     environment:
       HOST: db
       PORT: 5432
