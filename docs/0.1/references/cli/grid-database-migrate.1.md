@@ -16,5 +16,5 @@ FLAGS:
     -v               Log verbosely
 
 OPTIONS:
-        --database-url <database_url>    URL for database
+    -C, --connect <database_url>    URL for database
 ```
