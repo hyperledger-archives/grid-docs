@@ -261,7 +261,7 @@ root@gridd-alpha:/# grid agent create \
 Similarly, agents can be updated with the `grid agent update` subcommand.
 
 ```
-root@gridd-alpha:/# grid agent create \
+root@gridd-alpha:/# grid agent update \
 013600 \
 03aa7fee978a96a7904cad705ecebae908c9752185366cccea2811d27c51783a33 \
 --inactive
