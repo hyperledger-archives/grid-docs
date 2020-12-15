@@ -186,6 +186,9 @@ only to this organization.
    --role can_create_product \
    --role can_update_product \
    --role can_delete_product \
+   --role can_create_location \
+   --role can_update_location \
+   --role can_delete_location \
    --role admin
    ```
 
