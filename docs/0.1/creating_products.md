@@ -199,22 +199,8 @@ See [Prerequisites](#prerequisites) for more information.
 
    ```
    root@gridd-alpha:/# grid product list
-   Product namespace: "013600000929"
-    Product Type: "GS1"
-    Owner: "013600"
-    Properties:
-           Property Name: "product_name"
-           Data Type: "String"
-           Bytes Value: Some([])
-           Boolean Value: Some(false)
-           Number Value: Some(0)
-           String Value: Some("Truvia 80 ct.")
-           Enum Value: Some(0)
-           Struct Values: Some([])
-           Lat/Long Values: Some(LatLong { latitude: 0, longitude: 0 })
-      .
-      .
-      .
+   ID             NAMESPACE OWNER
+   013600000929   GS1       013600
    ```
 
 1. (Optional) You can connect to a different node and repeat the last two
