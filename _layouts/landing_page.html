@@ -27,31 +27,102 @@
                 </p>
             </div>
             <div id="landing-page-lower-section" class="landing-page-lower-section">
+                <h1>Built-in Support for Industry Standards</h1>
+            </div>
+            <div id="landing-page-lower-section" class="landing-page-lower-section">
                 <p>
-                    <b>Project status</b>: Hyperledger Grid is currently in the
-                    <a
-                    href="https://tsc.hyperledger.org/project-lifecycle.html">
-                    incubation stage</a>
-                    of the Hyperledger product lifecycle. The
-                    <a href="https://docs.google.com/document/d/1b6ES0bKUK30E2iZizy3vjVEhPn7IvsW5buDo7nFXBE0/">
-                    Hyperledger Grid proposal</a>
-                    was accepted in December, 2018.
-                  <br>
-                  <ul>
-                      <li><a href="/docs/">
-                          Read the documentation</a></li>
-                     <li><a href="https://github.com/hyperledger/grid">
-                          Get the code</a></li>
-                     <li><a href="/community/">
-                          Join the community</a></li>
-                    </ul>
+                    Grid provides reference implementations of
+                    supply-chain-centric items – data types, data models,
+                    smart contracts, and more – that are anchored on existing
+                    open standards and industry best practices.
+                    Grid has out-of-the-box support for
+                    <a href="https://www.gs1.org/standards">GS1 standards</a>
+                    such as
+                    <a href="https://www.gs1.org/standards/id-keys/gtin">
+                    GTINs</a> and
+                    <a href="https://www.gs1.org/standards/id-keys/gln">
+                    GLNs</a>.
+                </p>
+            </div>
+            <div id="landing-page-lower-section" class="landing-page-lower-section">
+                <h1>Open Source for Flexibility</h1>
+            </div>
+            <div id="landing-page-lower-section" class="landing-page-lower-section">
+                <p>
+                    Avoid the widespread issue of vendor lock-in with
+                    open source software.
                 </p>
                 <p>
-                    Hyperledger Grid is an open source project on GitHub. We
-                    welcome contributors, both organizations and individuals,
+                    Hyperledger Grid is an open source project on
+                    <a href="https://github.com/hyperledger/grid">GitHub</a>.
+                    We welcome contributors, both organizations and individuals,
                     to help shape project direction, contribute ideas, provide
                     use cases, and work on specific tools and examples. Please
                     <a href="/community/">join the conversation</a>.
+                </p>
+            </div>
+            <div id="landing-page-lower-section" class="landing-page-lower-section">
+                <h1>GRID WITH
+                    <br><br>
+                    <img src="{% link assets/sawtooth_logo_light_blue-small.png %}"
+                    height="32" alt="Hyperledger Sawtooth">
+                    &nbsp; or &nbsp;
+                    <img src="{% link assets/splinter_logos_logotype_gradient.svg %}"
+                    height="24" alt="Splinter">
+                </h1>
+            </div>
+            <div id="landing-page-lower-section" class="landing-page-lower-section">
+                <p>
+                    Grid lets you combine a distributed ledger framework with
+                    Hyperledger components and Grid smart contracts into a
+                    single, effective business solution.
+                    Grid's flexible, modular design supports a choice of backend
+                    distributed ledgers:
+                    <a href="https://www.splinter.dev/">Splinter</a> and
+                    <a href="https://sawtooth.hyperledger.org/">Hyperledger
+                    Sawtooth</a>.
+                </p>
+                <p>
+                    Hyperledger's
+                    <a href="https://sawtooth.hyperledger.org/docs/sabre/releases/latest/">
+                    Sawtooth Sabre</a> is the enabling technology behind
+                    Grid's support for multiple distributed ledgers.
+
+                    Sabre provides a smart contract engine for customized smart
+                    contracts and the included smart contracts in Grid:
+                    <ul>
+                        <li>
+                            <b>Location</b> is a framework for sharing location
+                            master data between trade partners.
+                        </li>
+                        <li>
+                            <b>Product</b> provides a way to share
+                            GS1-compatible product data (items that are
+                            transacted, traded, or referenced in a supply
+                            chain).
+                        </li>
+                        <li>
+                            <b>Pike</b> is a Grid smart contract that handles
+                            organization and identity permissions with Sabre.
+                        </li>
+                        <li>
+                            <b>Schema</b> is a Grid smart contract that provides
+                            a reusable, standard approach to defining, storing,
+                            and consuming product properties.
+                        </li>
+                    </ul>
+                </p>
+                <p>
+                    Learn more > &nbsp;
+                    <img src="{% link assets/splinter_logo.svg %}"
+                    width="48" height="48" alt="Splinter logo">
+                    <a href="/docs/{{ site.data.general.latest_version
+                    }}/grid_on_splinter.html">Running Grid on Splinter</a>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    <img src="https://sawtooth.hyperledger.org/img/avatar.png"
+                    width="36" height="36" alt="Hyperledger Sawtooth logo">
+                    <a href="/docs/{{ site.data.general.latest_version
+                    }}/grid_on_sawtooth.html">Running Grid on Sawtooth</a>
                 </p>
             </div>
         </main>
