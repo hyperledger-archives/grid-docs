@@ -68,12 +68,12 @@ services:
       - ./database/postgres:/usr/local/apache2/htdocs/database/postgres
       - ./database/sqlite:/usr/local/apache2/htdocs/database/sqlite
 
-  grid-docs-schemaspy-postgres:
-    container_name: grid-docs-schemaspy-postgres
-    image: grid-docs-schemaspy-postgres
+  grid-docs-schemaspy-postgres-0-1:
+    container_name: grid-docs-schemaspy-postgres-0-1
+    image: grid-docs-schemaspy-postgres-0-1
     build:
       context: .
-      dockerfile: docker/schemaspy/postgres/Dockerfile
+      dockerfile: docker/schemaspy/0-1/postgres/Dockerfile
     environment:
       HOST: db
       PORT: 5432
@@ -85,12 +85,40 @@ services:
     volumes:
       - ./database/postgres:/output
 
-  grid-docs-schemaspy-sqlite:
-    container_name: grid-docs-schemaspy-sqlite
-    image: grid-docs-schemaspy-sqlite
+  grid-docs-schemaspy-sqlite-0-1:
+    container_name: grid-docs-schemaspy-sqlite-0-1
+    image: grid-docs-schemaspy-sqlite-0-1
     build:
       context: .
-      dockerfile: docker/schemaspy/sqlite/Dockerfile
+      dockerfile: docker/schemaspy/0-1/sqlite/Dockerfile
+    depends_on:
+      - db
+    volumes:
+      - ./database/sqlite:/output
+
+  grid-docs-schemaspy-postgres-0-2:
+    container_name: grid-docs-schemaspy-postgres-0-2
+    image: grid-docs-schemaspy-postgres-0-2
+    build:
+      context: .
+      dockerfile: docker/schemaspy/0-2/postgres/Dockerfile
+    environment:
+      HOST: db
+      PORT: 5432
+      DATABASE: grid
+      USER: grid
+      PASSWORD: grid_example
+    depends_on:
+      - db
+    volumes:
+      - ./database/postgres:/output
+
+  grid-docs-schemaspy-sqlite-0-2:
+    container_name: grid-docs-schemaspy-sqlite-0-2
+    image: grid-docs-schemaspy-sqlite-0-2
+    build:
+      context: .
+      dockerfile: docker/schemaspy/0-2/sqlite/Dockerfile
     depends_on:
       - db
     volumes:

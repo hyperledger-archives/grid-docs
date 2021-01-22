@@ -26,6 +26,9 @@ LoadModule proxy_wstunnel_module modules/mod_proxy_wstunnel.so\n\
 ProxyPassMatch /docs/0.1/database !\n\
 Alias /docs/0.1/database/postgres /usr/local/apache2/htdocs/database/postgres/0.1/\n\
 Alias /docs/0.1/database/sqlite /usr/local/apache2/htdocs/database/sqlite/0.1/\n\
+ProxyPassMatch /docs/0.2/database !\n\
+Alias /docs/0.2/database/postgres /usr/local/apache2/htdocs/database/postgres/0.2/\n\
+Alias /docs/0.2/database/sqlite /usr/local/apache2/htdocs/database/sqlite/0.2/\n\
 ProxyPass /docs/0.1/api/ http://grid-docs-redoc-0-1:4001/\n\
 ProxyPassReverse /docs/0.1/api/ http://grid-docs-redoc-0-1:4001/\n\
 ProxyPass /docs/0.2/api/ http://grid-docs-redoc-0-2:4002/\n\

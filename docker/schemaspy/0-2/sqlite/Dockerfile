@@ -16,11 +16,11 @@ FROM hyperledger/gridd:experimental
 
 RUN apt-get update \
     && apt-get install -y -q \
-        build-essential \
-        graphviz \
-        sqlite3 \
-        libsqlite3-dev \
-        openjdk-8-jre \
+    build-essential \
+    graphviz \
+    sqlite3 \
+    libsqlite3-dev \
+    openjdk-8-jre \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -32,7 +32,7 @@ ADD https://repo1.maven.org/maven2/org/xerial/sqlite-jdbc/3.31.1/sqlite-jdbc-3.3
 
 RUN ls /org/schemaspy/drivers/
 
-COPY docker/schemaspy/sqlite/generate .
+COPY docker/schemaspy/0-2/sqlite/generate .
 
 RUN chmod a+x generate
 

@@ -1,0 +1,16 @@
+#!/bin/bash
+
+rm -rf /output/0.1/* \
+
+grid -vv database migrate \
+    -C grid.db
+
+sqlite3 -version
+
+java -jar schemaspy/schemaSpy.jar \
+    -t sqlite-xerial \
+    -db grid.db -o /output/0.1 \
+    -u grid \
+    -dp /org/schemaspy/drivers/sqlite-jdbc-3.31.1.jar \
+    -cat % \
+    -s grid
