@@ -35,10 +35,3 @@ Hyperledger Grid components include:
 
 * SDKs that simplify development for smart contracts, such as the Rust SDK for
   Pike.
-
-* Example smart contracts and applications that show how to combine components
-  from the Hyperledger stack into a single, effective business solution. For
-  instance, [Grid Track and
-  Trace]({% link docs/0.1/grid_track_and_trace_smart_contract_specification.md
-  %})
-  is a smart contract for tracking goods as they move through a supply chain.
