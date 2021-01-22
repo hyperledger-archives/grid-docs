@@ -28,6 +28,8 @@ Alias /docs/0.1/database/postgres /usr/local/apache2/htdocs/database/postgres/0.
 Alias /docs/0.1/database/sqlite /usr/local/apache2/htdocs/database/sqlite/0.1/\n\
 ProxyPass /docs/0.1/api/ http://grid-docs-redoc-0-1:4001/\n\
 ProxyPassReverse /docs/0.1/api/ http://grid-docs-redoc-0-1:4001/\n\
+ProxyPass /docs/0.2/api/ http://grid-docs-redoc-0-2:4002/\n\
+ProxyPassReverse /docs/0.2/api/ http://grid-docs-redoc-0-2:4002/\n\
 ProxyPass / http://grid-docs-jekyll:4000/\n\
 ProxyPassReverse / http://grid-docs-jekyll:4000/\n\
 Include /usr/local/apache2/conf/rewrite.conf\n\
