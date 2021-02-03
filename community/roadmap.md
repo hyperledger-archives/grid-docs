@@ -14,8 +14,11 @@ The following is a community-driven tentative roadmap to future releases.
 
 | Feature | Status | Primary Contact | RFC | Issues | Documentation |
 | ------- | ------ | --------------- | --- | ------- | ------------- |
+| Identity | *RFC Submitted* | Darian Plumb | [RFC #23](https://github.com/hyperledger/grid-rfcs/pull/23) | ["identity"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=label%3A%22epic%3A+grid+identity%22) | - |
+| Inventory | *Discussion* | Darian Plumb | - | - | - |
 | Product Catalog | *RFC Accepted* | Adeeb Ahmed | [RFC #14](https://github.com/hyperledger/grid-rfcs/blob/master/text/0014-catalog.md) | - | - |
-| Inventory | *Discussion* | Nate Shrader | - | - | - |
+| Purchase Order | *Discussion* | Jessie Zamzow | - | - | - |
+| Workflow | *RFC Submitted* | Ryan Banks | [RFC #24](https://github.com/hyperledger/grid-rfcs/pull/24) | ["workflow RFC"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=label%3A%22epic%3A+workflow+rfc%22) | - |
 
 ## Past Releases
 ### Grid 0.1
