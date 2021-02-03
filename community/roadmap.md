@@ -8,8 +8,17 @@
 
 The following is a community-driven tentative roadmap to future releases.
 
+## Future Releases
 
-## Grid 0.1
+### Grid 0.2
+
+| Feature | Status | Primary Contact | RFC | Issues | Documentation |
+| ------- | ------ | --------------- | --- | ------- | ------------- |
+| Product Catalog | *RFC Accepted* | Adeeb Ahmed | [RFC #14](https://github.com/hyperledger/grid-rfcs/blob/master/text/0014-catalog.md) | - | - |
+| Inventory | *Discussion* | Nate Shrader | - | - | - |
+
+## Past Releases
+### Grid 0.1
 
 | Feature | Status | Primary Contact | RFC | Issues | Documentation |
 | ------- | ------ | --------------- | --- | ------- | ------------- |
@@ -24,12 +33,6 @@ The following is a community-driven tentative roadmap to future releases.
 | Sqlite Support | *Complete* | Davey Newhall | - | ["sqlite"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=sqlite) | [CLI]({% link docs/0.1/references/cli/grid-database-migrate.1.md %}) [Schema](https://grid.hyperledger.org/docs/0.1/database/sqlite/) |
 | Track and Trace | *Partial* | Darian Plumb | - | ["track"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=track) | [Specification]({% link docs/0.1/grid_track_and_trace_family_specification.md %}), [REST&nbsp;API](/docs/0.1/api/#tag/Track-and-Trace) |
 
-## Grid 0.2
-
-| Feature | Status | Primary Contact | RFC | Issues | Documentation |
-| ------- | ------ | --------------- | --- | ------- | ------------- |
-| Product Catalog | *RFC Accepted* | Adeeb Ahmed | [RFC #14](https://github.com/hyperledger/grid-rfcs/blob/master/text/0014-catalog.md) | - | - |
-| Inventory | *Discussion* | Nate Shrader | - | - | - |
 
 ## Additional Information
 
