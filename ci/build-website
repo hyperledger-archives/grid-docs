@@ -1,4 +1,4 @@
-# Copyright 2020 Cargill Incorporated
+# Copyright 2020-2021 Cargill Incorporated
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -32,10 +32,27 @@ rm -rf database/*
 
 docker-compose up \
     --abort-on-container-exit \
-    --exit-code-from grid-docs-schemaspy-postgres \
+    --exit-code-from grid-docs-schemaspy-postgres-0-1 \
     db \
-    grid-docs-schemaspy-postgres \
-    grid-docs-schemaspy-sqlite
+    grid-docs-schemaspy-postgres-0-1
+
+docker-compose up \
+    --abort-on-container-exit \
+    --exit-code-from grid-docs-schemaspy-sqlite-0-1 \
+    db \
+    grid-docs-schemaspy-sqlite-0-1
+
+docker-compose up \
+    --abort-on-container-exit \
+    --exit-code-from grid-docs-schemaspy-postgres-0-2 \
+    db \
+    grid-docs-schemaspy-postgres-0-2
+
+docker-compose up \
+    --abort-on-container-exit \
+    --exit-code-from grid-docs-schemaspy-sqlite-0-2 \
+    db \
+    grid-docs-schemaspy-sqlite-0-2
 
 docker build --build-arg jekyll_env=$JEKYLL_ENV -f ci/website.dockerfile -t hyperledger/grid-website .
 
