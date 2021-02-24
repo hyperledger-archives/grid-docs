@@ -14,7 +14,7 @@ pipeline {
     }
 
     triggers {
-        cron(env.BRANCH_NAME == 'master' ? 'H 2 * * *' : '')
+        cron(env.BRANCH_NAME == 'main' ? 'H 2 * * *' : '')
     }
 
     options {
@@ -36,7 +36,7 @@ pipeline {
             }
             when {
                 not {
-                    branch 'master'
+                    branch 'main'
                 }
             }
         }
@@ -78,11 +78,11 @@ pipeline {
         }
 
         stage("Publish docker image") {
-            when{branch 'master'}
+            when{branch 'main'}
             steps {
                 withDockerRegistry([ credentialsId: "464911a1-007a-4910-90c8-78ff16ba165e", url: "" ]) {
                     script {
-                        if (env.BRANCH_NAME == "master") {
+                        if (env.BRANCH_NAME == "main") {
                             sh 'docker push hyperledger/grid-website'
                         }
                     }
