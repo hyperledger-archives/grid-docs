@@ -1,0 +1,65 @@
+<!--
+  Copyright 2018-2020 Cargill Incorporated
+  Licensed under Creative Commons Attribution 4.0 International License
+  https://creativecommons.org/licenses/by/4.0/
+-->
+{% include left_sidebar_toggle.html %}
+<div class="dropdown version-dropdown">
+    <a class="dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        v0.2
+    </a>
+    <div class="dropdown-menu">
+        <div class="dropdown-header">Stable</div>
+        <a class="dropdown-item" href="/docs/{{ site.data.general.latest_version }}/">
+            Latest ({{ site.data.general.latest_version }})
+        </a>
+        <div class="dropdown-divider"></div>
+        <div class="dropdown-header">Development</div>
+        <a class="dropdown-item" href="{% link docs/0.2/index.md %}">v0.2</a>
+    </div>
+</div>
+<div id="left-sidebar-links" class="collapse">
+    <div class="left-sidebar-group">
+        <div class="left-sidebar-header">Getting Started</div>
+        <a href="{% link docs/0.2/index.md %}">Introduction</a>
+        <a href="{% link docs/0.2/glossary.md %}">Glossary</a>
+    </div>
+    <div class="left-sidebar-group">
+        <div class="left-sidebar-header">Features</div>
+        <a href="{% link docs/0.2/grid_product.md %}">Product</a>
+        <a href="{% link docs/0.2/grid_location.md %}">Location</a>
+    </div>
+    <div class="left-sidebar-group">
+        <div class="left-sidebar-header">For Administrators</div>
+        <a href="{% link docs/0.2/grid_on_splinter.md %}">Running Grid on Splinter</a>
+        <a href="{% link docs/0.2/grid_on_sawtooth.md %}">Running Grid on Sawtooth</a>
+        <a href="{% link docs/0.2/creating_splinter_circuits.md %}">Creating Splinter Circuits</a>
+        <a href="{% link docs/0.2/using_grid_features.md %}">Using Grid Features</a>
+        <a href="{% link docs/0.2/creating_organizations.md %}">Creating Organizations</a>
+        <a href="{% link docs/0.2/creating_schemas.md %}">Creating Schemas</a>
+        <a href="{% link docs/0.2/creating_products.md %}">Creating Products</a>
+        <a href="{% link docs/0.2/creating_locations.md %}">Creating Locations</a>
+    </div>
+    <div class="left-sidebar-group">
+        <div class="left-sidebar-header">For Developers</div>
+        <a href="{% link docs/0.2/building_grid.md %}">Building Grid</a>
+    </div>
+    <div class="left-sidebar-group">
+        <div class="left-sidebar-header">Smart Contracts</div>
+        <a href="{% link docs/0.2/uploading_smart_contracts.md %}">Uploading Smart Contracts</a>
+        <a href="{% link docs/0.2/grid_location_smart_contract_specification.md %}">Location Specification</a>
+        <a href="{% link docs/0.2/pike_smart_contract_specification.md %}">Pike Specification</a>
+        <a href="{% link docs/0.2/grid_product_smart_contract_specification.md %}">Product Specification</a>
+        <a href="{% link docs/0.2/grid_product_catalog_smart_contract_specification.md %}">Product Catalog Specification</a>
+        <a href="{% link docs/0.2/schema_smart_contract_specification.md %}">Schema Specification</a>
+        <a href="{% link docs/0.2/grid_track_and_trace_smart_contract_specification.md %}">Track and Trace Specification</a>
+    </div>
+    <div class="left-sidebar-group">
+        <div class="left-sidebar-header">Reference Guides</div>
+        <a href="{% link docs/0.2/references/addressing_reference.md %}">Addressing Reference</a>
+        <a href="{% link docs/0.2/cli_references.md %}">CLI Command Reference</a>
+        <a href="{% link docs/0.2/references/database/index.md %}">Grid Database Reference</a>
+        <a href="{% link docs/0.2/references/api/index.md %}">Grid REST API</a>
+        <a href="{% link docs/0.2/references/rust_sdk/index.md %}">Grid Rust SDK Reference</a>
+    </div>
+</div>

@@ -19,6 +19,7 @@ The following is a community-driven tentative roadmap to future releases.
 | Product Catalog | *RFC Accepted* | Adeeb Ahmed | [RFC #14](https://github.com/hyperledger/grid-rfcs/blob/master/text/0014-catalog.md) | - | - |
 | Purchase Order | *Discussion* | Jessie Zamzow | - | - | - |
 | Workflow | *RFC Submitted* | Ryan Banks | [RFC #24](https://github.com/hyperledger/grid-rfcs/pull/24) | ["workflow RFC"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=label%3A%22epic%3A+workflow+rfc%22) | - |
+| Track and Trace | *Partial* | Darian Plumb | - | ["track"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=track) | [Specification]({% link docs/0.2/grid_track_and_trace_family_specification.md %}), [REST&nbsp;API](/docs/0.2/api/#tag/Track-and-Trace) |
 
 ## Past Releases
 ### Grid 0.1
@@ -34,7 +35,6 @@ The following is a community-driven tentative roadmap to future releases.
 | Schema | *Complete* | Peter Schwarz | [RFC #4](https://github.com/hyperledger/grid-rfcs/blob/master/text/0000-grid-primitives.md) | ["schema"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=schema) | [Specification]({% link docs/0.1/grid_schema_family_specification.md %}), [REST&nbsp;API](/docs/0.1/api/#tag/Schema), [CLI]({% link docs/0.1/references/cli/grid-schema-create.1.md %}) |
 | Splinter Support | *Complete* | Ryan Banks | - | ["splinter"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=splinter) | [HOWTO]({% link docs/0.1/grid_on_splinter.md %}) |
 | Sqlite Support | *Complete* | Davey Newhall | - | ["sqlite"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=sqlite) | [CLI]({% link docs/0.1/references/cli/grid-database-migrate.1.md %}) [Schema](https://grid.hyperledger.org/docs/0.1/database/sqlite/) |
-| Track and Trace | *Partial* | Darian Plumb | - | ["track"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=track) | [Specification]({% link docs/0.1/grid_track_and_trace_family_specification.md %}), [REST&nbsp;API](/docs/0.1/api/#tag/Track-and-Trace) |
 
 
 ## Additional Information

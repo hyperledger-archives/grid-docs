@@ -72,6 +72,12 @@ defaults:
         layout: "sidebars"
         sidebar: "0.1"
     - scope:
+        path: "docs/0.2"
+        type: "pages"
+      values:
+        layout: "sidebars"
+        sidebar: "0.2"
+    - scope:
         path: "community"
         type: "pages"
       values:

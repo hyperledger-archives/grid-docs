@@ -1,6 +1,6 @@
 #!/bin/bash
 
-rm -rf /output/*
+rm -rf /output/0.2/*
 
 until PGPASSWORD=$PASSWORD psql -h $HOST -d $DATABASE -U $USER -c '\q'; do
   >&2 echo "Database is unavailable - sleeping"
@@ -12,5 +12,5 @@ grid -vv database migrate \
 
 java -jar schemaspy/schemaSpy.jar \
     -t pgsql11 -host $HOST -port $PORT \
-    -db $DATABASE -u $USER -p $PASSWORD -o /output/0.1 \
+    -db $DATABASE -u $USER -p $PASSWORD -o /output/0.2 \
     -dp /org/schemaspy/drivers/postgresql-42.1.1.jre7.jar

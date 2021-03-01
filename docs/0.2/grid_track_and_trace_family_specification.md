@@ -1,5 +1,5 @@
 ---
-redirect_to: /docs/0.1/grid_track_and_trace_smart_contract_specification.md
+redirect_to: /docs/0.2/grid_track_and_trace_smart_contract_specification.md
 ---
 
 <!--

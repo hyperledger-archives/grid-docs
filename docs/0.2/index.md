@@ -18,7 +18,7 @@ work with existing distributed ledger platform software and business-specific
 applications, so that application developers can choose which components are
 the most appropriate for their industry or market model.
 
-![]({% link docs/0.1/images/grid-diagram.png %}
+![]({% link docs/0.2/images/grid-diagram.png %}
 "Hyperledger Grid in the supply change solution stack")
 
 Hyperledger Grid components include:
@@ -29,9 +29,16 @@ Hyperledger Grid components include:
 
 * Smart-contract business logic based on industry best practices.
 
-* [Pike]({% link docs/0.1/pike_smart_contract_specification.md %}),
+* [Pike]({% link docs/0.2/pike_smart_contract_specification.md %}),
   a smart contract that handles organization and identity permissions
   with [Sawtooth Sabre](https://github.com/hyperledger/sawtooth-sabre).
 
 * SDKs that simplify development for smart contracts, such as the Rust SDK for
   Pike.
+
+* Example smart contracts and applications that show how to combine components
+  from the Hyperledger stack into a single, effective business solution. For
+  instance, [Grid Track and
+  Trace]({% link docs/0.2/grid_track_and_trace_smart_contract_specification.md
+  %})
+  is a smart contract for tracking goods as they move through a supply chain.
