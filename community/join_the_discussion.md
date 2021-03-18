@@ -22,9 +22,9 @@ involved conversations.
 [The Hyperledger Grid mailing list](https://lists.hyperledger.org/g/grid)
 provides a forum for both simple questions and more complex discussions.
 
-## Grid Contributor Meetings
+## Grid Community Meetings
 
-This project hosts Grid contributor meetings on Zoom. For meeting announcements,
+This project hosts Grid community meetings on Zoom. For meeting announcements,
 see the [Hyperledger meeting
 calendar](https://wiki.hyperledger.org/display/HYP/Calendar+of+Public+Meetings)
 or the [Grid mailing

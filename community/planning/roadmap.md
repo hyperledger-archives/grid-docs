@@ -52,8 +52,8 @@ process](https://github.com/hyperledger/grid-rfcs).
 Considering adding a new feature to Grid? Awesome! Feel free to chat about it
 on [RocketChat in
 #grid]({% link community/join_the_discussion.md %}#chat)  or at
-one of our [contributor
-meetings]({% link community/join_the_discussion.md %}#grid-contributor-meetings)!
+one of our [community
+meetings]({% link community/join_the_discussion.md %}#grid-community-meetings)!
 
 ### Columns
 
