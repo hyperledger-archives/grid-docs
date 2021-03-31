@@ -237,7 +237,7 @@ See [Prerequisites](#prerequisites) for more information.
     ```yaml
     - namespace: "GS1"
       location_id: "0013600000011"
-      owner: "013600"
+      owner: "myorg"
       properties:
         locationDescription: "test location"
         locationType: 0
@@ -285,7 +285,7 @@ See [Prerequisites](#prerequisites) for more information.
     ```
     root@gridd-alpha:/# grid location list
     ID            NAMESPACE OWNER
-    0013600000011 GS1       013600
+    0013600000011 GS1       myorg
     ```
 
 1. (Optional) You can connect to a different node and repeat the last two
@@ -311,7 +311,7 @@ See [Prerequisites](#prerequisites) for more information.
     ```
     root@gridd-alpha:/# grid location list
     ID            NAMESPACE OWNER
-    0013600000011 GS1       013600
+    0013600000011 GS1       myorg
     ```
 
 ### Update a Location

@@ -17,7 +17,7 @@ Likewise, each product schema must have an owning organization and an agent
 
 Follow these general steps when creating a new item:
 
-1. [Create an organization]({% link docs/0.2/creating_organizations.md %})
+1. [Create an organization]({% link docs/0.2/using_pike.md %})
    with at least one agent that has the permissions to create and manage the
    item.
 
