@@ -74,9 +74,10 @@ contains one field:
 
 An organization has four fields:
 
-* id: A unique identifier for the organization.
+* org_id: A unique identifier for the organization.
 * name: A user defined identifier for the organization.
-* address: A physical address for the organization.
+* locations: A list of physical addresses for the organization.
+* alternate_ids: A list of alternate identifiers for the organization.
 * metadata: A list of key value pairs describing data about the organization.
 
 The id is the unique key for an Organization.
@@ -85,8 +86,9 @@ The id is the unique key for an Organization.
     message Organization {
         string org_id = 1;
         string name = 2;
-        string address = 3;
-        repeated KeyValueEntry metadata = 4;
+        repeated string locations = 3;
+        repeated AlternateID alternate_ids = 4;
+        repeated KeyValueEntry metadata = 5;
     }
 ```
 
@@ -105,21 +107,139 @@ organization list contains one field:
     }
 ```
 
+### Agent List
+
+Agents whose addresses collide are stored in an agent list. An agent list
+contains one field:
+
+* agents: a list of agents
+
+```protobuf
+    message AgentList {
+        repeated Agent agents = 1;
+    }
+```
+
+### Role
+
+An role has seven fields:
+
+* org_id: A unique identifier for the organization the role belongs to.
+* name: A user defined identifier for the role.
+* description: A user defined description for the role.
+* active: A field for determining if the role is currently active.
+* permissions: A list of permissions that this role grants.
+* allowed_organizations: A list of organizations allowed to inherit or grant
+  this role.
+* inherit_from: A list of roles that this role inherits permissions from.
+
+The unique key for a Role is its name. Roles belonging to external
+Organizations can be referenced by their owning `org_id` and `name` in
+the format `<org_id>.<name>`.
+
+```protobuf
+    message Role {
+        string org_id = 1;
+        string name = 2;
+        string description = 3;
+        bool active = 4;
+        repeated string permissions = 5;
+        repeated string allowed_organizations = 6;
+        repeated string inherit_from= 7;
+    }
+```
+
+### Role List
+
+Roles whose addresses collide are stored in a role list. A role list contains
+one field:
+
+* roles: a list of roles
+
+
+```protobuf
+
+    message RoleList {
+        repeated Role roles = 1;
+    }
+```
+
+### Alternate ID
+
+An Alternate ID is any identifier given to an Organization that is not its
+Grid org ID (the `org_id` field). For some smart contracts it is necessary to
+record an additional ID to identify an organization in a certain context. For
+example, in Grid Product, the organization must have the proper GS1 company
+prefix in order to interact with products with correlating GTINs. An
+Alternate ID has two fields:
+
+* id_type: The type of ID. In the example above this would be
+  `gs1_company_prefix`.
+* id: The alternate ID
+
+```protobuf
+    message AlternateID {
+        string id_type = 1;
+        string id = 2;
+    }
+```
+
+### Alternate ID Index Entry
+
+The AlternateIDIndexEntry message serves as an index to fetch a Grid Pike
+organization from an externally known ID, and also ensures that no organization
+can have an alternate ID that is already assigned. An Alternate ID Index Entry
+has three fields:
+
+* id_type: The type of ID. In the example above this would be
+  `gs1_company_prefix`.
+* id: The alternate ID
+* grid_identity_id: The identifier of the organization in Grid (the
+  Organization's `org_id`)
+
+```protobuf
+    message AlternateIDIndexEntry {
+        string id_type = 1;
+        string id = 2;
+        string grid_identity_id = 3;
+    }
+```
+
 ### Addressing
+
+#### Pike State
+
+The specifiv namespace for Pike with Grid is `621dee05`, which is the general
+Grid namespace `621dee` concatenated with `05`.
 
 #### Agent State
 
-The specific namespace prefix within Pike for Agent State is cad11d00,
-which is the general Pike namespace cad11d concatenated with 00. The
-remaining 62 characters are made of the first 62 character of the hash of the
+The specific namespace prefix within Pike for Agent State is `621dee0500`,
+which is the general Pike namespace `621dee05` concatenated with `00`. The
+remaining 60 characters are made of the first 60 characters of the hash of the
 agent's public key.
 
 #### Organization State
 
 The specific namespace prefix within Pike for Organization State is
-cad11d01, which is the general Pike namespace cad11d concatenated with 01.
-The remaining 62 characters are made of the first 62 character of the hash of
-the organization's id.
+`621dee0501`, which is the general Pike namespace `621dee05` concatenated with
+`01`. The remaining 60 characters are made of the first 60 character of the
+hash of the organization's ID.
+
+### Role State
+
+The specific namespace prefix within Pike for Role State is `621dee0502`, which
+is the general Pike namespace `621dee05` concatenated with `02`. The remaining
+60 characters are made of the first 60 characters of the hash of the role's
+`org_id` and `name` in the format `<org_id>.<name>`.
+
+### Alternate ID State
+
+The specific namespace prefix within Pike for Alternate ID State is
+`621dee0503`, which is the general Pike namespace `621dee05` concatenated with
+`03`. The remaining 60 characters are made of the first 60 characters of the
+hash of the role's `id_type` and `id` in the format `<id_type>:<id>`.
+
 
 ## Transaction Payload
 
@@ -133,18 +253,30 @@ buffers code:
 
             CREATE_AGENT = 1;
             UPDATE_AGENT = 2;
+            DELETE_AGENT = 8;
 
-            CREATE_ORGANIZATION = 4;
-            UPDATE_ORGANIZATION = 5;
+            CREATE_ORGANIZATION = 3;
+            UPDATE_ORGANIZATION = 4;
+            DELETE_ORGANIZATION = 9;
+
+            CREATE_ROLE = 5;
+            UPDATE_ROLE = 6;
+            DELETE_ROLE = 7;
         }
 
         Action action = 1;
 
         CreateAgentAction create_agent = 2;
         UpdateAgentAction update_agent = 3;
+        DeleteAgentAction delete_agent = 4;
 
-        CreateOrganizationAction create_org = 4;
-        UpdateOrganizationAction update_org = 5;
+        CreateOrganizationAction create_organization = 5;
+        UpdateOrganizationAction update_organization = 6;
+        DeleteOrganizationAction delete_organization = 7;
+
+        CreateRoleAction create_role = 8;
+        UpdateRoleAction update_role = 9;
+        DeleteRoleAction delete_role = 10;
     }
 ```
 
@@ -154,12 +286,12 @@ buffers code:
 
 The inputs for Pike transactions must include:
 
-* The address of the agent or organization being modified
+* The address of the agent, role, or organization being modified
 * The address of the admin agent (agent correlating to the signing key)
 
 The outputs for Pike transactions must include:
 
-* The address of the agent or organization being modified
+* The address of the agent, role, or organization being modified
 * If creating an organization, the address of the agent that will be created as
   admin
 
@@ -167,10 +299,10 @@ The outputs for Pike transactions must include:
 
 None
 
-### Family
+### Contract
 
-- `family_name`: `"pike"`
-- `family_version`: `"0.1"`
+- `name`: `"pike"`
+- `version`: `"2"`
 
 **Note**: The terms family, `family_name`, and `family_version` are a legacy
 of the previous name for a smart contract, "transaction family".
@@ -182,7 +314,8 @@ One of the following actions is performed while applying the transaction:
 ### CREATE_AGENT
 
 This operation adds a new agent into Global State. Only another agent that
-holds an admin role for the included organization may create an agent.
+holds a role with the `pike::can-create-agent` permission for the included
+organization may create an agent.
 
 ```protobuf
     message CreateAgentAction {
@@ -197,9 +330,9 @@ holds an admin role for the included organization may create an agent.
 ### UPDATE_AGENT
 
 This operation updates the roles, metadata, and active status of an
-existing agent stored in Global State. Only another agent that holds an
-admin role for the included organization may update an agent. An agent
-cannot remove the admin role from themselves.
+existing agent stored in Global State. Only another agent that holds a
+role with the `pike::can-update-agent` permission for the included organization
+may update an agent. An agent cannot remove the admin role from themselves.
 
 ```protobuf
     message UpdateAgentAction {
@@ -211,33 +344,111 @@ cannot remove the admin role from themselves.
     }
 ```
 
+### DELETE_AGENT
+
+This operation removes an Agent from Global state. Only another agent that
+holds a role with the `pike::can-delete-agent` permission for the included
+organization may delete an agent. An admin cannot remove themselves as admin.
+
+```protobuf
+    message DeleteAgentAction {
+        string org_id = 1;
+        string public_key = 2;
+    }
+```
+
 ### CREATE_ORGANIZATION
 
-This operation adds a new organization to the Global State. The id for each
+This operation adds a new organization to the Global State. The ID for each
 organization must be unique and cannot be changed once the organization is
-created. The public key used to sign the transaction will
-automatically be added as an new agent with the admin role.
+created. The public key used to sign the transaction will automatically be
+added as an new agent with the admin role. An agent must hole a role with the
+`pike::can-create-organization` permission to create an organization.
 
 ```protobuf
     message CreateOrganizationAction {
         string id = 1;
         string name = 2;
-        string address = 3;
+        repeated AlternateId alternate_ids = 3;
         repeated KeyValueEntry metadata = 4;
     }
 ```
 
 ### UPDATE_ORGANIZATION
 
-This operation updates the name and address of an existing organization
-stored in Global State. Only an agent that holds an admin role for the
-included organization may update the organization.
+This operation updates an existing organization stored in Global State. Only an
+agent that holds a role with the `pike::can-update-organization` for the
+included organization may update the organization. This operation can also be
+used to add locations to the organization.
 
 ```protobuf
     message UpdateOrganizationAction {
         string id = 1;
         string name = 2;
-        string address = 3;
-        repeated KeyValueEntry metadata = 4;
+        repeated string locations = 3;
+        repeated AlternateId alternate_ids = 4;
+        repeated KeyValueEntry metadata = 5;
+    }
+```
+
+### DELETE_ORGANIZATION
+
+This operation removes an organization from Global State. Only an agent that
+holds a role with the `pike::can-delete-organization` permission for the
+included organization may delete the organization.
+
+```protobuf
+    message DeleteOrganizationAction {
+        string id = 1;
+    }
+```
+
+### CREATE_ROLE
+
+This operation adds a new role to the Global State. The name for each role must
+be unique for the organization it belongs to. The `admin` role is automatically
+created when an organization is created and is granted to the signer of the
+`CREATE_ORGANIZATION` transaction. This role grants permissions to create,
+update, and delete agents, organizations, and roles. The
+`pike::can-create-role` permission is required to create roles.
+
+```protobuf
+    message CreateRoleAction {
+        string org_id = 1;
+        string name = 2;
+        string description = 3;
+        repeated string permissions = 4;
+        repeated string allowed_organizations = 5;
+        repeated string inherit_from = 6;
+        bool active = 7;
+    }
+```
+
+### UPDATE_ROLE
+
+This operation updates a role in the Global State. The `pike::can-update-role`
+permission is required to update roles.
+
+```protobuf
+    message UpdateRoleAction {
+        string org_id = 1;
+        string name = 2;
+        string description = 3;
+        repeated string permissions = 4;
+        repeated string allowed_organizations = 5;
+        repeated string inherit_from = 6;
+        bool active = 7;
+    }
+```
+
+### DELETE_ROLE
+
+This operation removes a role from the Global State. The
+`pike::can-delete-role` permission is required to delete roles.
+
+```protobuf
+    message DeleteRoleAction {
+        string org_id = 1;
+        string name = 2;
     }
 ```
