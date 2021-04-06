@@ -76,7 +76,7 @@ You can use the Pike and Grid Product smart contracts to demonstrate Grid
 functionality by creating an organization and agent, defining a schema for the
 product properties, and creating a product.
 
-* [Creating Organizations]({% link docs/0.2/creating_organizations.md %})
+* [Creating Organizations]({% link docs/0.2/using_pike.md %})
   describes how to create an owning organization for Grid items (such as
   products), and set the permissions for an agent who is
   allowed to create and manage those items.

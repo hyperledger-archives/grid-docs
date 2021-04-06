@@ -157,7 +157,7 @@ See [Prerequisites](#prerequisites) for more information.
    ```yaml
    - product_namespace: "GS1"
      product_id: "013600000929"
-     owner: "013600"
+     owner: "myorg"
      properties:
       product_name: "Truvia 80 ct."
       image_url: "https://target.scene7.com/is/image/Target/GUEST_b7a6e983-b391-40a5-ad89-2f906bce5743?fmt=png&wid=1400&qlt=80"
@@ -200,7 +200,7 @@ See [Prerequisites](#prerequisites) for more information.
    ```
    root@gridd-alpha:/# grid product list
    ID             NAMESPACE OWNER
-   013600000929   GS1       013600
+   013600000929   GS1       myorg
    ```
 
 1. (Optional) You can connect to a different node and repeat the last two
@@ -227,7 +227,7 @@ See [Prerequisites](#prerequisites) for more information.
       root@gridd-beta:/# grid product list
       Product namespace: "013600000929"
        Product Type: "GS1"
-       Owner: "013600"
+       Owner: "myorg"
        Properties:
               Property Name: "product_name"
               Data Type: "String"
