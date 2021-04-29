@@ -332,7 +332,7 @@ td {
 
 /* Roadmap tables */
 
-#grid-01 + table, #grid-02 + table, #grid-03 + table {
+#roadmap ~ table {
     width: 100%;
     table-layout: fixed;
 }
