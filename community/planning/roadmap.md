@@ -14,14 +14,31 @@ The following is a community-driven tentative roadmap to future releases.
 
 | Feature | Status | Primary Contact | RFC | Issues | Documentation |
 | ------- | ------ | --------------- | --- | ------- | ------------- |
-| Identity | *RFC Submitted* | Darian Plumb | [RFC #23](https://github.com/hyperledger/grid-rfcs/pull/23) | ["identity"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=label%3A%22epic%3A+grid+identity%22) | - |
-| Inventory | *Discussion* | Darian Plumb | - | - | - |
-| Product Catalog | *RFC Accepted* | Adeeb Ahmed | [RFC #14](https://github.com/hyperledger/grid-rfcs/blob/master/text/0014-catalog.md) | - | - |
-| Purchase Order | *Discussion* | Jessie Zamzow | - | - | - |
+| Identity (Pike 2) | *RFC Submitted* | Darian Plumb | [RFC #23](https://github.com/hyperledger/grid-rfcs/pull/23) | ["identity"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=label%3A%22epic%3A+grid+identity%22) | - |
+| Product w/GDSN Trade Items| *Under Development* | Darian Plumb | - | - |
+| Update to Actix 3 | *Complete* | Ryan Banks | - | - | - |
+
+### Grid 0.3
+
+| Feature | Status | Primary Contact | RFC | Issues | Documentation |
+| ------- | ------ | --------------- | --- | ------- | ------------- |
+| Batch Tracking | *Under Development* | Shawn T. Amundson | - | ["integration"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=label%3A%22epic%3A+integration+component%22) | [Submitter Design]({% link community/planning/batch_submitter.md %}) |
+| Integration REST API | *Under Development* | Shawn T. Amundson | - | ["integration"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=label%3A%22epic%3A+integration+component%22) | - |
+| Purchase Order | *Discussion* | Jessie Zamzow | [RFC #25](https://github.com/hyperledger/grid-rfcs/pull/25) | ["purchase order"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=purchase+label%3A%22epic%3A+purchase+order%22) | - |
 | Workflow | *RFC Submitted* | Ryan Banks | [RFC #24](https://github.com/hyperledger/grid-rfcs/pull/24) | ["workflow RFC"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=label%3A%22epic%3A+workflow+rfc%22) | - |
-| Track and Trace | *Partial* | Darian Plumb | - | ["track"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=track) | [Specification]({% link docs/0.2/grid_track_and_trace_family_specification.md %}), [REST&nbsp;API](/docs/0.2/api/#tag/Track-and-Trace) |
+
+### Features for Future Releases
+
+These features are not yet slated for a release, but work on them has started
+in some form.
+
+| Feature | Status | Primary Contact | RFC | Issues | Documentation |
+| ------- | ------ | --------------- | --- | ------- | ------------- |
+| Product Catalog | *RFC Accepted* | Adeeb Ahmed | [RFC #14](https://github.com/hyperledger/grid-rfcs/blob/master/text/0014-catalog.md) | - | - |
+| Track and Trace | *Experimental* | Darian Plumb | - | ["track"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=track) | [Specification]({% link docs/0.2/grid_track_and_trace_family_specification.md %}), [REST&nbsp;API](/docs/0.2/api/#tag/Track-and-Trace) |
 
 ## Past Releases
+
 ### Grid 0.1
 
 | Feature | Status | Primary Contact | RFC | Issues | Documentation |
