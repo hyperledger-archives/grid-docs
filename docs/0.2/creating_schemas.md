@@ -150,35 +150,9 @@ Set the following Grid environment variables to specify information for the
       description: GS1 product schema
       owner: myorg
       properties:
-        - name: product_name
+        - name: GDSN_3_1
           data_type: STRING
-          description: ""
-          required: true
-        - name: image_url
-          data_type: STRING
-          description: ""
-          required: false
-        - name: brand_name
-          data_type: STRING
-          description: ""
-          required: true
-        - name: product_description
-          data_type: STRING
-          description: ""
-          required: true
-        - name: gpc
-          data_type: NUMBER
-          number_exponent: 1
-          description: ""
-          required: true
-        - name: net_content
-          data_type: STRING
-          description: ""
-          required: true
-        - name: target_market
-          data_type: NUMBER
-          number_exponent: 1
-          description: ""
+          description: Consumer friendly short description of the product suitable for compact presentation.
           required: true
     ```
 
