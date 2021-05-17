@@ -1,22 +1,25 @@
 # Creating Products with Grid on Splinter
 
 <!--
-  Copyright (c) 2018-2020 Cargill Incorporated
+  Copyright (c) 2018-2021 Cargill Incorporated
   Licensed under Creative Commons Attribution 4.0 International License
   https://creativecommons.org/licenses/by/4.0/
 -->
 
 This procedure explains how to create and manage Grid products
-(trade item data) using Grid's command-line interface.
+(trade item data) using Grid's command-line interface. By default, Grid
+products consist of product data conforming to the
+[GS1 GDSN 3.1 standard](https://www.gs1.org/docs/gdsn/3.1/gdsn_3_1_operations_manual_i2.pdf).
+Additionally, users may define a separate schema to include additional,
+non-GDSN product attributes.
 
 This procedure starts with steps to connect to a Splinter node and set
 environment variables to simplify entering the `grid` commands in the procedure.
-Next, it explains how to define a product with a product YAML file, create the
+Next, it explains how to define a product with a product XML file, create the
 product with `grid product create`, and display product information with
-`grid product list`.
-Finally, this procedure shows how to change a product with `grid product
-update`, then delete it with `grid product delete` when it is no longer
-needed.
+`grid product list`. Finally, this procedure shows how to change a product with
+`grid product update`, then delete it with `grid product delete` when it is no
+longer needed.
 
 ## Prerequisites
 
@@ -139,48 +142,26 @@ Set the following Grid environment variables to specify information for the
 Each product requires an organization ID (the owner) and at least one agent
 with permission to create, update, and delete the product. There must also
 be an existing product schema for the product's properties.
-See [Prerequisites](#prerequisites) for more information.
+See [Prerequisites](#prerequisites) for more information. An example file
+defining GDSN product information can be downloaded with this link:
+<a href="/docs/0.2/references/product/example_product.xml"
+download="product.xml">GDSN product data</a>.
 
 {:start="5"}
-
-5. Create a product definition file, in YAML format, that specifies the
-   following information:
-
-   * Product namespace (such as GS1) that corresponds with the product schema
-     name (such as `gs1_product`).
-   * Product ID (such as a GTIN)
-   * Owner (organization ID)
-   * Set of product properties (each with a name, data type, and value
-     that conforms to the data type)
-     <br><br>
-
-   ```yaml
-   - product_namespace: "GS1"
-     product_id: "013600000929"
-     owner: "myorg"
-     properties:
-      product_name: "Truvia 80 ct."
-      image_url: "https://target.scene7.com/is/image/Target/GUEST_b7a6e983-b391-40a5-ad89-2f906bce5743?fmt=png&wid=1400&qlt=80"
-      brand_name: "Truvia"
-      product_description: "Truvia Sugar 80CT"
-      gpc: 30016951
-      net_content: "80CT"
-      target_market: 840
-   ```
-
-   Tip: Use a YAML linter to validate the new file is formatted correctly.
-
-1. Use `docker cp` to copy the file into the `gridd-alpha` container.
+5. Use `docker cp` to copy your product data XML file into the `gridd-alpha`
+container.
 
    ```
-   $ docker cp product.yaml gridd-alpha:/
+   $ docker cp product.xml gridd-alpha:/
    ```
 
 1. Add the new product by using the `grid product create` command to specify the
-   definition in the `product.yaml` file.
+   definition in the `product.xml` file.
 
    ```
-   root@gridd-alpha:/# grid product create --file product.yaml
+   root@gridd-alpha:/# grid product create \
+   --owner myorg \
+   --file product.xml
    ```
 
    This command creates and submits a transaction to add the product data to the
@@ -193,9 +174,9 @@ See [Prerequisites](#prerequisites) for more information.
 
 ### Display Product Information
 
-{:start="8"}
+{:start=7"}
 
-8. List all existing products to verify that the new product has been added.
+7. List all existing products to verify that the new product has been added.
 
    ```
    root@gridd-alpha:/# grid product list
@@ -225,22 +206,8 @@ See [Prerequisites](#prerequisites) for more information.
 
       ```
       root@gridd-beta:/# grid product list
-      Product namespace: "013600000929"
-       Product Type: "GS1"
-       Owner: "myorg"
-       Properties:
-              Property Name: "product_name"
-              Data Type: "String"
-              Bytes Value: Some([])
-              Boolean Value: Some(false)
-              Number Value: Some(0)
-              String Value: Some("Truvia 80 ct.")
-              Enum Value: Some(0)
-              Struct Values: Some([])
-              Lat/Long Values: Some(LatLong { latitude: 0, longitude: 0 })
-         .
-         .
-         .
+      ID             NAMESPACE OWNER
+      013600000929   GS1       myorg
       ```
 
 ### Update a Product
@@ -248,17 +215,18 @@ See [Prerequisites](#prerequisites) for more information.
 To update a product, you must be an agent for the product owner (the
 organization that is identified in the product definition).
 
-1. Modify the definition in the product YAML file (such as `product.yaml`).
+1. Modify the definition in the product XML file (such as `product.xml`).
 
    You don't have to use the same file that was used to create the product,
-   but the file must specify the same information (product ID, type, and owner)
-   and present the product properties in the same order.
+   but the file must specify the same GTIN and present the product properties
+   in the same order.
 
 1. Use the `update` subcommand for `grid product` to submit the changes
    to the distributed ledger.
 
    ```
-   root@gridd-beta:/# grid product update --file product.yaml
+   root@gridd-beta:/# grid product update \
+      --file product.xml
    ```
 
 ### Delete a Product
@@ -275,3 +243,9 @@ namespace (for example, ID `013600000929` and namespace `GS1`).
    ```
 
 Tip: Use `grid product list` to display the product ID and namespace.
+
+### Defining additional attributes
+
+The product definition provided by the GDSN 3.1 standard is quite robust and
+should account for most use cases. In the event that additional attributes are
+required follow the procedure outlined [here](/docs/0.2/creating_products_with_nonstandard_attrs.md).

@@ -1,0 +1,5 @@
+- product_namespace: GS1
+  product_id: 013600000929
+  owner: myorg
+  properties:
+    additional_attribute_1: 'extra information'
