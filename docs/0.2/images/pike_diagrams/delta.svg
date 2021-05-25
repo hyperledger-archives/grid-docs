@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!--
+  Copyright 2018-2021 Cargill Incorporated
+  Licensed under Creative Commons Attribution 4.0 International License
+  https://creativecommons.org/licenses/by/4.0/
+-->
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:xl="http://www.w3.org/1999/xlink" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" viewBox="719 1131 558 255" width="558" height="255">
+  <defs>
+    <font-face font-family="Helvetica Neue" font-size="16" panose-1="2 0 5 3 0 0 0 2 0 4" units-per-em="1000" underline-position="-100" underline-thickness="50" slope="0" x-height="517" cap-height="714" ascent="951.9958" descent="-212.99744" font-weight="400">
+      <font-face-src>
+        <font-face-name name="HelveticaNeue"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Helvetica Neue" font-size="12" panose-1="2 0 5 3 0 0 0 2 0 4" units-per-em="1000" underline-position="-100" underline-thickness="50" slope="0" x-height="517" cap-height="714" ascent="951.9958" descent="-212.99744" font-weight="400">
+      <font-face-src>
+        <font-face-name name="HelveticaNeue"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <metadata> Produced by OmniGraffle 7.18.1\n2021-05-25 18:19:10 +0000</metadata>
+  <g id="delta" fill="none" stroke-dasharray="none" stroke-opacity="1" fill-opacity="1" stroke="none">
+    <title>delta</title>
+    <g id="delta_Layer_1">
+      <title>Layer 1</title>
+      <g id="Graphic_9">
+        <rect x="720" y="1132" width="555.5662" height="253" fill="white"/>
+        <rect x="720" y="1132" width="555.5662" height="253" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(725 1137)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="0" y="15">Delta Company</tspan>
+        </text>
+      </g>
+      <g id="Graphic_8">
+        <rect x="745" y="1278" width="180" height="87" fill="#c0ffff"/>
+        <rect x="745" y="1278" width="180" height="87" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(750 1283)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="0" y="15">Delta.TankOperator</tspan>
+          <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="0" y="29.447998">  - tankops::can-drive</tspan>
+          <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="0" y="43.783997">  - tankops::can-turn-turret</tspan>
+          <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="0" y="58.119995">  - tankops::can-fire</tspan>
+          <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="0" y="72.45599">  - tankops::can-decommission</tspan>
+        </text>
+      </g>
+      <g id="Graphic_7">
+        <ellipse cx="1156" cy="1212" rx="70.0001118531327" ry="40.0000639160759" fill="#c0ffff"/>
+        <ellipse cx="1156" cy="1212" rx="70.0001118531327" ry="40.0000639160759" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(1105 1193.552)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="32.48" y="15">Delta </tspan>
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="14.392" y="33.448">Agent 001</tspan>
+        </text>
+      </g>
+      <g id="Graphic_5">
+        <rect x="745" y="1172" width="180" height="80" fill="#c0ffff"/>
+        <rect x="745" y="1172" width="180" height="80" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(750 1177)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="0" y="15">Delta.Admin</tspan>
+          <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="0" y="29.447998">  - pike::*</tspan>
+        </text>
+      </g>
+      <g id="Line_3">
+        <line x1="925" y1="1212" x2="1086" y2="1212" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -368,6 +368,8 @@ Alpha Company admins can then assign this role to agents to give them permission
 to decommission t-shirt tanks. With the `allowed_organizations` field blank, the
 smart contract will assume that only Alpha agents can decommission Alpha tanks.
 
+![]({% link docs/0.2/images/pike_diagrams/alpha-insp.svg %})
+
 Alpha Company also needs to define a role for drivers:
 
 ```yaml
@@ -382,6 +384,8 @@ Alpha Company also needs to define a role for drivers:
   inherit_from: []
   active: true
 ```
+
+![]({% link docs/0.2/images/pike_diagrams/alpha-full.svg %})
 
 This role gives Beta Company and Gamma Company access to the permissions listed
 in the alpha.Drivers role. For their agents to actually use these permissions,
@@ -405,6 +409,8 @@ a role with all of the necessary permissions:
     - alpha.Drivers
   active: true
 ```
+
+![]({% link docs/0.2/images/pike_diagrams/alpha-beta.svg %})
 
 #### Gamma Company
 
@@ -443,6 +449,8 @@ they define three different roles:
   active: true
 ```
 
+![]({% link docs/0.2/images/pike_diagrams/alpha-beta-gamma.svg %})
+
 #### Delta Company
 
 After hearing of the great prowess of Beta Company tank drivers, Delta Company
@@ -464,6 +472,8 @@ Company wishes to purchase. Delta Company defines the following role:
   active: true
 ```
 
+![]({% link docs/0.2/images/pike_diagrams/delta.svg %})
+
 To allow its agents to start operating and inspecting the Delta tanks, the Beta
 Company admin updates the `beta.Drivers` role to also include the
 `tankops::can-decommission` permission and add `delta.TankOperator` to it's
@@ -482,6 +492,8 @@ Company admin updates the `beta.Drivers` role to also include the
     - delta.TankOperator
   active: true
 ```
+
+![]({% link docs/0.2/images/pike_diagrams/delta-beta.svg %})
 
 This updated role allows Beta agents to drive, fire, and turn the turret on both
 Alpha and Delta tanks. However, it only allows agents to decommission Delta
@@ -533,6 +545,8 @@ two new roles, one for each tank company.
     - delta.TankOperator
   active: true
 ```
+
+![]({% link docs/0.2/images/pike_diagrams/full.svg %})
 
 ## Alternate IDs
 
