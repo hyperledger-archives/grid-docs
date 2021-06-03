@@ -319,9 +319,13 @@ delegated role in order to be more granular about agent permissions.
 
 ### Delegation Example
 
-For this example, there are two organizations participating on a network:
-Alpha and Beta. Alpha Company manages a set of tanks armed to the teeth with
-ballistic conference t-shirts. They have hired Beta Company to drive the tanks.
+The following scenario provides an example of a Grid network in which
+the organizations involved are using Pike to solve their permission delegation
+use-case. For this example, there are four organizations participating on the
+network: Alpha, Beta, Gamma, and Delta. Alpha Company manages a set of tanks
+armed with ballistic conference t-shirts. They have hired Beta Company and
+Gamma Company to drive the tanks. Later on, we will see what happens when Delta
+Company, another t-shirt tank management firm, joins the network.
 
 The data model for the t-shirt tank may look something like this:
 
@@ -338,23 +342,21 @@ The smart contract for operating tanks (named "tankops") would also define
 several permissions:
 
 - `tankops::can-drive` allows agents to submit a transaction to update the
-`is_driving` boolean.
+  `is_driving` boolean.
 - `tankops::can-turn-turret` allows agents to update the angle of the turret.
-- `tankops::can-fire` allows agents to fire the t-shirt cannon, decrementing
-the count of remaining t-shirts.
+- `tankops::can-fire` allows agents to fire the t-shirt cannon, decrementing the
+  count of remaining t-shirts.
 - `tankops::can-decommission` allows agents to decommission the tank.
 
 #### Alpha Company
 
 Alpha Company doesn't have any drivers, but they do have inspectors that are in
-charge of decommissioning tanks which are no longer fit for service. To do
-this, an admin of Alpha Company submits a Grid Pike 2.0 transaction to create
-the Inspector role.
+charge of decommissioning tanks which are no longer fit for service. To do this,
+an admin of Alpha Company submits a Grid Pike v2 transaction to create the
+Inspector role.
 
 ```yaml
-- name: inspector
-  owner: alpha
-  description: "T-shirt tank inspector permissions"
+- name: alpha.Inspector
   permissions:
     - tankops::can-decommission
   allowed_organizations: []
@@ -362,17 +364,16 @@ the Inspector role.
   active: true
 ```
 
-Alpha Company admins can then assign this role to agents to give them
-permission to decommission t-shirt tanks. With the `allowed_organizations`
-field blank, the smart contract will assume that only Alpha agents can
-decommission Alpha tanks.
+Alpha Company admins can then assign this role to agents to give them permission
+to decommission t-shirt tanks. With the `allowed_organizations` field blank, the
+smart contract will assume that only Alpha agents can decommission Alpha tanks.
+
+![]({% link docs/0.2/images/pike_diagrams/alpha-insp.svg %})
 
 Alpha Company also needs to define a role for drivers:
 
 ```yaml
-- name: driver
-  owner: alpha
-  description: "T-shirt tank driver permissions"
+- name: alpha.Drivers
   permissions:
     - tankops::can-drive
     - tankops::can-turn-turret
@@ -384,85 +385,168 @@ Alpha Company also needs to define a role for drivers:
   active: true
 ```
 
-This role gives Beta Company access to the permissions listed in the
-`alpha.Drivers` role. For their agents to actually use these permissions, they
-must redefine a role specific to their company which inherits permissions from
-the `alpha.Drivers` role.
+![]({% link docs/0.2/images/pike_diagrams/alpha-full.svg %})
+
+This role gives Beta Company and Gamma Company access to the permissions listed
+in the alpha.Drivers role. For their agents to actually use these permissions,
+they must redefine a role specific to their company which inherits permissions
+from the alpha.Drivers role.
 
 #### Beta Company
 
-Beta Company is a rather small organization, and they expect their drivers to
-be proficient in the full operation of a t-shirt tank. Therefore, it will
-define a role with all of the necessary permissions:
+Beta Company is a rather small organization, and they expect their drivers to be
+proficient in the full operation of a t-shirt tank. Therefore, it will define
+a role with all of the necessary permissions:
 
 ```yaml
-- name: driver
-  owner: beta
-  description: "T-shirt tank driver permissions"
+- name: beta.Drivers
   permissions:
     - tankops::can-drive
     - tankops::can-turn-turret
     - tankops::can-fire
   allowed_organizations: []
   inherit_from:
-    - alpha.driver
+    - alpha.Drivers
   active: true
 ```
 
-This permission allows Beta Company agents to operate both Alpha and Beta
-Company tanks.
+![]({% link docs/0.2/images/pike_diagrams/alpha-beta.svg %})
 
-Beta Company also has some more specialized agents who are only qualified to
-drive the tanks. To enforce this, they define a second role with only this
-permission:
+#### Gamma Company
+
+The Gamma Company is a large organization with highly specialized agents. They
+don't want to give all of their agents permission to do everything on a tank as
+they are typically trained in only one of the three functions. To enforce this,
+they define three different roles:
 
 ```yaml
-- name: navigator
-  owner: beta
-  description: "T-shirt tank navigator permission"
+- name: gamma.Navigator
   permissions:
     - tankops::can-drive
   allowed_organizations: []
   inherit_from:
-    - alpha.driver
+    - alpha.Drivers
   active: true
 ```
 
-Several months later, Alpha company updates its fleet of tanks to the newest
-model. Due to this update, Beta Company drivers need to get a new certification.
-To account for this, Beta Company deactivates its driver role and creates two
-new roles in its place. One allows agents to only operate Beta Company tanks
-until they obtain their new certification:
+```yaml
+- name: gamma.Aimer
+  permissions:
+    - tankops::can-turn-turret
+  allowed_organizations: []
+  inherit_from:
+    - alpha.Drivers
+  active: true
+```
 
 ```yaml
-- name: driver
-  owner: beta
-  description: "Old tank operator permissions"
+- name: gamma.Blaster
+  permissions:
+    - tankops::can-fire
+  allowed_organizations: []
+  inherit_from:
+    - alpha.Drivers
+  active: true
+```
+
+![]({% link docs/0.2/images/pike_diagrams/alpha-beta-gamma.svg %})
+
+#### Delta Company
+
+After hearing of the great prowess of Beta Company tank drivers, Delta Company
+(a competitor of Alpha Company) makes an offer to Beta Company, hiring them to
+drive Delta tanks. The Beta Company has also been training their drivers to
+inspect tanks and now offers a decommissioning service as well, which Delta
+Company wishes to purchase. Delta Company defines the following role:
+
+```yaml
+- name: delta.TankOperator
+  permissions:
+    - tankops::can-drive
+    - tankops::can-turn-turret
+    - tankops::can-fire
+    - tankops::can-decommission
+  allowed_organizations:
+    - beta
+  inherit_from: []
+  active: true
+```
+
+![]({% link docs/0.2/images/pike_diagrams/delta.svg %})
+
+To allow its agents to start operating and inspecting the Delta tanks, the Beta
+Company admin updates the `beta.Drivers` role to also include the
+`tankops::can-decommission` permission and add `delta.TankOperator` to it's
+`inherit_from` list.
+
+```yaml
+- name: beta.Drivers
   permissions:
     - tankops::can-drive
     - tankops::can-turn-turret
     - tankops::can-fire
     - tankops::can-decommission
   allowed_organizations: []
-  inherit_from: []
+  inherit_from:
+    - alpha.Drivers
+    - delta.TankOperator
+  active: true
+```
+
+![]({% link docs/0.2/images/pike_diagrams/delta-beta.svg %})
+
+This updated role allows Beta agents to drive, fire, and turn the turret on both
+Alpha and Delta tanks. However, it only allows agents to decommission Delta
+tanks, as the `alpha.Drivers` role does not include the
+`tankops::can-decommission` permission.
+
+Several weeks later, the Beta Company receives a phone call from Alpha Company
+lawyers. They heard about the deal with Delta Company and cite a clause in their
+contract which disallows drivers of Alpha tanks to also drive tanks from another
+t-shirt tank management company. After the appropriate reprimands are dealt,
+the Beta Company deactivates their previous `beta.Drivers` role and creates
+two new roles, one for each tank company.
+
+```yaml
+- name: beta.Drivers
+  permissions:
+    - tankops::can-drive
+    - tankops::can-turn-turret
+    - tankops::can-fire
+    - tankops::can-decommission
+  allowed_organizations: []
+  inherit_from:
+    - alpha.Drivers
+    - delta.TankOperator
   active: false
 ```
 
-And the other allows drivers to operate both Alpha and Beta Company tanks:
-
 ```yaml
-- name: alpha-driver
-  owner: beta
-  description: "New and old tank operator permissions"
+- name: beta.AlphaDrivers
   permissions:
     - tankops::can-drive
     - tankops::can-turn-turret
     - tankops::can-fire
   allowed_organizations: []
   inherit_from:
-    - alpha.driver
+    - alpha.Drivers
   active: true
 ```
+
+```yaml
+- name: beta.DeltaDrivers
+  permissions:
+    - tankops::can-drive
+    - tankops::can-turn-turret
+    - tankops::can-fire
+    - tankops::can-decommission
+  allowed_organizations: []
+  inherit_from:
+    - delta.TankOperator
+  active: true
+```
+
+![]({% link docs/0.2/images/pike_diagrams/full.svg %})
 
 ## Alternate IDs
 

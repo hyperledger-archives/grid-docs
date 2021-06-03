@@ -25,3 +25,6 @@ Grid Pike provides an easy way to manage permissions in Grid. The Grid Pike
 smart contract provides an easy way to create, update, and delete
 organizations, agents, and roles. This provides users with an easy way to
 manage who is transacting on their organization's behalf.
+
+To see how permissioning and role delegation works within Pike v2, please see
+the example here: [Delegation Example](/docs/0.2/using_pike.md#delegation-example)
