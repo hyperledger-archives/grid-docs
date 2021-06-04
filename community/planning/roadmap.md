@@ -15,7 +15,7 @@ The following is a community-driven tentative roadmap to future releases.
 | Feature | Status | Primary Contact | RFC | Issues | Documentation |
 | ------- | ------ | --------------- | --- | ------- | ------------- |
 | Identity (Pike 2) | *Implemented* | Darian Plumb | [RFC #23](https://github.com/hyperledger/grid-rfcs/pull/23) | ["identity"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=label%3A%22epic%3A+grid+identity%22) | - |
-| Product w/GDSN Trade Items| *Under Development* | Darian Plumb | - | - |
+| Product w/GDSN Trade Items| *Implemented* | Darian Plumb | - | - |
 | Update to Actix 3 | *Complete* | Ryan Banks | - | - | - |
 
 ### Grid 0.3
