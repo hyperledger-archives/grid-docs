@@ -19,3 +19,4 @@ community meeting.
 | ------- | ----------- |
 | [Location Sapling]({% link community/planning/location_sapling.md %}) | A front-end for Grid Location functionality |
 | [Batch Submitter]({% link community/planning/batch_submitter.md %}) | A daemon for submitting batches |
+| [Product Sapling]({% link community/planning/product_sapling.md %}) | A front-end for Grid Product functionality |
