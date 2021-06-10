@@ -45,3 +45,9 @@ If a schema with that name doesn't exist, add it:
    --file product.xml \
    --file additional_attributes.yaml
    ```
+
+Note that if we want to include GDSN 3.1 data alongside non-standard attributes,
+the GDSN 3.1 data should be submitted as normal in an XML file as shown in the
+example above. Any XML string included as a product property in the YAML file 
+will be treated as an arbitrary string and not handled by Grid's GDSN parsing 
+and validation functionality.
