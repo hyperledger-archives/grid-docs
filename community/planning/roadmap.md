@@ -14,9 +14,9 @@ The following is a community-driven tentative roadmap to future releases.
 
 | Feature | Status | Primary Contact | RFC | Issues | Documentation |
 | ------- | ------ | --------------- | --- | ------- | ------------- |
-| Identity (Pike 2) | *RFC Submitted* | Darian Plumb | [RFC #23](https://github.com/hyperledger/grid-rfcs/pull/23) | ["identity"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=label%3A%22epic%3A+grid+identity%22) | - |
-| Product w/GDSN Trade Items| *Under Development* | Darian Plumb | - | - |
-| Update to Actix 3 | *Complete* | Ryan Banks | - | - | - |
+| Identity (Pike 2) | *Implemented* | Darian Plumb | [RFC #23](https://github.com/hyperledger/grid-rfcs/pull/23) | ["identity"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=label%3A%22epic%3A+grid+identity%22) | - |
+| Product w/GDSN Trade Items| *Implemented* | Darian Plumb | - | - |
+| Update to Actix 3 | *Complete* | Shawn Amundson | - | - | - |
 
 ### Grid 0.3
 
@@ -25,7 +25,7 @@ The following is a community-driven tentative roadmap to future releases.
 | Batch Tracking | *Under Development* | Shawn T. Amundson | - | ["integration"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=label%3A%22epic%3A+integration+component%22) | [Submitter Design]({% link community/planning/batch_submitter.md %}) |
 | Integration REST API | *Under Development* | Shawn T. Amundson | - | ["integration"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=label%3A%22epic%3A+integration+component%22) | - |
 | Purchase Order | *Discussion* | Jessie Zamzow | [RFC #25](https://github.com/hyperledger/grid-rfcs/pull/25) | ["purchase order"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=purchase+label%3A%22epic%3A+purchase+order%22) | - |
-| Workflow | *RFC Submitted* | Ryan Banks | [RFC #24](https://github.com/hyperledger/grid-rfcs/pull/24) | ["workflow RFC"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=label%3A%22epic%3A+workflow+rfc%22) | - |
+| Workflow | *RFC Submitted* | Shawn Amundson | [RFC #24](https://github.com/hyperledger/grid-rfcs/pull/24) | ["workflow RFC"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=label%3A%22epic%3A+workflow+rfc%22) | - |
 
 ### Features for Future Releases
 
