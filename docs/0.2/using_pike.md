@@ -273,8 +273,8 @@ Updating an organization is very similar to creating an organization and the
 ```
 root@gridd-alpha:/# grid organization update \
 myorg MyOrganization \
---location '456 New Address Ln.' \
---alternate-id gs1_company_prefix:013600
+--locations 0123456789012 \
+--alternate-ids gs1_company_prefix:013600
 ```
 
 ### Add additional Agents
