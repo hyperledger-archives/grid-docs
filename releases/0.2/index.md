@@ -50,3 +50,38 @@ The Grid Product UI has been updated to support displaying GDSN XML data by
 default. In this release, product creation functionality has been removed from
 the UI. See the [Product Sapling]({% link community/planning/product_sapling.md %})
 planning document for future plans for this UI.
+
+### Grid Pike v2
+
+As of Grid v0.2, a new version of the Grid Pike smart contract is available.
+Grid Pike is the identity management smart contract for Grid. Grid Pike v2
+implements a few new features which are necessary to fully capture delegation of
+permissions desired in more complex systems.
+
+- Organizations now have the ability to define organization-specific roles
+  which are constructed from the permissions already hard-coded into smart
+  contracts.
+
+- Organizations now are able to delegate specific roles to other organizations
+  to fulfill.
+
+For more information about Grid Pike v2, please see the feature documentation:
+[Grid Pike]({% link docs/0.2/grid_pike.md %})
+
+The addressing scheme for Pike data has also been updated to fit in with the
+rest of Grid. Previously, Pike addresses were not prefixed under the Grid
+address namespace, `621dee`. As of Pike v2, the address prefix for Pike objects
+is now `621dee05`. Other smart contracts in Grid v0.2 have been updated to use
+this namespace when reading Pike data.
+
+Due to these changes, Grid Pike v2 is not backwards-compatible with Pike v1, and
+organization structures will have to be recreated on existing networks.
+
+### Rust Dependency Updates
+
+Many Rust dependencies have been updated and added, including:
+
+- [`actix-web`](https://github.com/actix/actix-web) was updated to version 3.
+- Signing and key generation is now handled by [`cylinder`](https://github.com/cargill/cylinder).
+- Other dependencies and features were added as needed to implement new
+  functionality.
