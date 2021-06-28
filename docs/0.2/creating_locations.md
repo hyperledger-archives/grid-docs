@@ -64,6 +64,7 @@ needed.
   ```yaml
     - name: gs1_location
       description: GS1 location schema
+      owner: myorg
       properties:
         - name: locationDescription
           data_type: String
