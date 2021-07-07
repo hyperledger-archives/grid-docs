@@ -25,14 +25,6 @@ section in the smart contract specification for any Grid smart contract.
     </tr>
   </thead>
   <tr>
-    <td>Pike</td>
-    <td><code>cad11d</code></td>
-    <td>
-      Agents: <code>00</code><br>
-      Organizations: <code>01</code>
-    </td>
-  </tr>
-  <tr>
     <td>Schema</td>
     <td><code>621dee01</code></td>
     <td>-</td>
@@ -55,7 +47,17 @@ section in the smart contract specification for any Grid smart contract.
     <td><code>621dee04</code></td>
     <td>GS1 Locations: <code>01</code></td>
   </tr>
-    <tr>
+  <tr>
+    <td>Pike</td>
+    <td><code>621dee05</code></td>
+    <td>
+      Agents: <code>00</code><br>
+      Organizations: <code>01</code><br>
+      Roles: <code>02</code><br>
+      Alternate ID Index: <code>03</code>
+    </td>
+  </tr>
+  <tr>
     <td>Track and Trace</td>
     <td><code>a43b46</code></td>
     <td>
