@@ -152,7 +152,7 @@ Set the following Grid environment variables to specify information for the
       properties:
         - name: GDSN_3_1
           data_type: STRING
-          description: Consumer friendly short description of the product suitable for compact presentation.
+          description: A string containing a GDSN 3.1 Trade Item product definition in XML format.
           required: true
     ```
 
