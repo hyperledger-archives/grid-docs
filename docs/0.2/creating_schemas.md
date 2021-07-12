@@ -232,7 +232,8 @@ identified in the schema definition.
 
    You don't have to use the same file that was used to create the schema,
    but the file must specify the same name and present the properties in the
-   same order.
+   same order. Only new properties may be added. Existing properties may not be
+   removed or modified in order to preserve the validity of existing data.
 
 1. Use the `update` subcommand for `grid schema` to submit the YAML file's
    changes to the distributed ledger.
