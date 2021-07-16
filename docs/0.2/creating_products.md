@@ -248,4 +248,4 @@ Tip: Use `grid product list` to display the product ID and namespace.
 
 The product definition provided by the GDSN 3.1 standard is quite robust and
 should account for most use cases. In the event that additional attributes are
-required follow the procedure outlined [here](/docs/0.2/creating_products_with_nonstandard_attrs.md).
+required, follow the procedure outlined [here](/docs/0.2/creating_products_with_nonstandard_attrs.md).
