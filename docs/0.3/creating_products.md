@@ -181,7 +181,7 @@ container.
    ```
    root@gridd-alpha:/# grid product list
    ID             NAMESPACE OWNER
-   013600000929   GS1       myorg
+   00013600000929 GS1       myorg
    ```
 
 1. (Optional) You can connect to a different node and repeat the last two
@@ -207,7 +207,7 @@ container.
       ```
       root@gridd-beta:/# grid product list
       ID             NAMESPACE OWNER
-      013600000929   GS1       myorg
+      00013600000929 GS1       myorg
       ```
 
 ### Update a Product
@@ -236,10 +236,10 @@ must be done with care. Before you delete a product, make sure that no
 member organizations on the circuit require the product data.
 
 To delete a product, use the `delete` subcommand with the product ID and
-namespace (for example, ID `013600000929` and namespace `GS1`).
+namespace (for example, ID `00013600000929` and namespace `GS1`).
 
    ```
-   root@gridd-beta:/# grid product delete 013600000929 --namespace GS1
+   root@gridd-beta:/# grid product delete 00013600000929 --namespace GS1
    ```
 
 Tip: Use `grid product list` to display the product ID and namespace.
