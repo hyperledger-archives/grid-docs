@@ -12,7 +12,8 @@ If you're new to Grid, see the [Grid documentation]({% link docs/0.2/index.md %}
 to learn about Grid concepts and features.
 
 Grid v0.2 is the second major release of Grid. Below is a summary of the
-features and changes included in this release.
+features and changes included in this release. For detailed changes related to
+the v0.2 release, see the [Grid release notes](https://github.com/hyperledger/grid/blob/0-2/RELEASE_NOTES.md).
 
 ## New and Noteworthy
 
