@@ -55,6 +55,22 @@ services:
         redoc-cli serve openapi.yaml -w -p 4002
       "
 
+  grid-docs-redoc-0-3:
+    container_name: grid-docs-redoc-0-3
+    image: grid-docs-redoc
+    build:
+      dockerfile: docker/grid-docs-redoc
+      context: .
+    ports:
+      - 4003:4003
+    volumes:
+      - .:/project
+    entrypoint: |
+      bash -c "
+        cd /project/docs/0.3/references/api
+        redoc-cli serve openapi.yaml -w -p 4003
+      "
+
   grid-docs-apache:
     container_name: grid-docs-apache
     image: grid-docs-apache
