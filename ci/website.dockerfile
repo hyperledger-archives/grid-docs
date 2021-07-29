@@ -64,6 +64,8 @@ COPY ./database/postgres/0.1 /usr/local/apache2/htdocs/docs/0.1/database/postgre
 COPY ./database/sqlite/0.1 /usr/local/apache2/htdocs/docs/0.1/database/sqlite
 COPY ./database/postgres/0.2 /usr/local/apache2/htdocs/docs/0.2/database/postgres
 COPY ./database/sqlite/0.2 /usr/local/apache2/htdocs/docs/0.2/database/sqlite
+COPY ./database/postgres/0.3 /usr/local/apache2/htdocs/docs/0.3/database/postgres
+COPY ./database/sqlite/0.3 /usr/local/apache2/htdocs/docs/0.3/database/sqlite
 COPY --from=git /commit-hash /commit-hash
 COPY apache/rewrite.conf /usr/local/apache2/conf/rewrite.conf
 
