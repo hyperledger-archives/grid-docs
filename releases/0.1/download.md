@@ -8,10 +8,13 @@
 
 ## Grid repository
 
-Clone the core [GitHub repository](https://github.com/hyperledger/grid)
+Clone the core [GitHub repository](https://github.com/hyperledger/grid/tree/0-1)
 to view the Grid source code, demo applications, and example Docker compose
 files for starting up a Grid network. Learn more
 by browsing the [Grid documentation]({% link docs/0.1/index.md %}).
+
+NOTE: Grid v0.1 exists as a branch on the core repository. Checkout the `0-1`
+branch after cloning the core to view the Grid v0.1 source code.
 
 ## Grid-contrib repository
 
