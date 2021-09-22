@@ -18,3 +18,5 @@ _site/
 /database/
 
 **/.DS_Store
+
+.idea

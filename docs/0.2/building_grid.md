@@ -8,6 +8,27 @@
 
 ## Local Builds
 
+Before building grid locally, make sure you have the following packages 
+installed in Debian(Ubuntu):
+
+- `build-essential`
+- `libpq-dev`
+- `libsasl2-dev`
+- `libsqlite3-dev`
+- `libssl-dev`
+- `libxml2-dev`
+- `libzmq3-dev`
+- `openssl`
+- `pkg-config`
+
+These can be installed, for e.g. for the first package, by:
+
+``
+    $ sudo apt install build-essential -y
+``
+
+Once you have all the packages installed, you can invoke the build.
+
 To build Grid locally, run `cargo build` from the root directory. This command
 builds all of the Grid components, including `gridd` (the grid daemon),
 the CLI, and all of the smart contracts in the `contracts` directory.
