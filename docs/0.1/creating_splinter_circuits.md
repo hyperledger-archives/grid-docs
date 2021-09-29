@@ -66,6 +66,7 @@ proposal, the circuit is created.
 
    ```
    $ docker exec gridd-alpha cat /etc/grid/keys/gridd.pub
+   025011e5207e943aaf2181764bd4d8f921ce6da56ef0060dd06c90bcd44example
    ```
 
 ### Connect to the First Node
@@ -81,10 +82,11 @@ proposal, the circuit is created.
    root@splinterd-alpha:/#
    ```
 
-1. Copy the `gridd` public key and save it in a local file.
+1. Copy the `gridd` public key from above and save it in a local file. Make
+   sure to use your actual key value instead of the example value shown below.
 
    ```
-   root@splinterd-alpha:/# echo "{PublicKey}" > gridd.pub
+   root@splinterd-alpha:/# echo "025011e5207e943aaf2181764bd4d8f921ce6da56ef0060dd06c90bcd44example" > gridd.pub
    ```
 
 ### Propose a New Circuit
