@@ -96,7 +96,6 @@ services:
       PORT: 5432
       DATABASE: grid
       USER: grid
-      PASSWORD: grid_example
     depends_on:
       - db
     volumes:
@@ -124,7 +123,6 @@ services:
       PORT: 5432
       DATABASE: grid
       USER: grid
-      PASSWORD: grid_example
     depends_on:
       - db
     volumes:
@@ -152,7 +150,6 @@ services:
       PORT: 5432
       DATABASE: grid
       USER: grid
-      PASSWORD: grid_example
     depends_on:
       - db
     volumes:
@@ -178,5 +175,5 @@ services:
       - 5432
     environment:
       POSTGRES_USER: grid
-      POSTGRES_PASSWORD: grid_example
       POSTGRES_DB: grid
+      POSTGRES_HOST_AUTH_METHOD: trust
