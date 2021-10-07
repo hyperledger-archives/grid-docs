@@ -12,12 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-build: docker-build
+build: ci-build
 
-docker-build:
+ci-build:
     ./ci/build-website
 
-docker-lint:
+ci-lint:
     docker-compose \
         -f docker/compose/run-lint.yaml \
         up \
@@ -28,6 +28,6 @@ docker-lint:
 docker-run:
     docker-compose up --build; docker-compose down
 
-lint: docker-lint
+lint: ci-lint
 
 run: docker-run
