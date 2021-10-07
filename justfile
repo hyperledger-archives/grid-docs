@@ -14,8 +14,8 @@
 
 build: ci-build
 
-ci-build:
-    ./ci/build-website
+ci-build *build_mode:
+    ./ci/build-website {{build_mode}}
 
 ci-lint:
     docker-compose \
