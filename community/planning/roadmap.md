@@ -14,8 +14,6 @@ The following is a community-driven tentative roadmap to future releases.
 
 | Feature | Status | Primary Contact | RFC | Issues | Documentation |
 | ------- | ------ | --------------- | --- | ------- | ------------- |
-| Batch Tracking | *Under Development* | Shawn T. Amundson | - | ["integration"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=label%3A%22epic%3A+integration+component%22) | [Submitter Design]({% link community/planning/batch_submitter.md %}) |
-| Integration REST API | *Under Development* | Shawn T. Amundson | - | ["integration"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=label%3A%22epic%3A+integration+component%22) | - |
 | Purchase Order | *Discussion* | Jessie Zamzow | [RFC #25](https://github.com/hyperledger/grid-rfcs/pull/25) | ["purchase order"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=purchase+label%3A%22epic%3A+purchase+order%22) | - |
 | Workflow | *RFC Submitted* | Shawn Amundson | [RFC #24](https://github.com/hyperledger/grid-rfcs/pull/24) | ["workflow RFC"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=label%3A%22epic%3A+workflow+rfc%22) | - |
 
@@ -26,6 +24,8 @@ in some form.
 
 | Feature | Status | Primary Contact | RFC | Issues | Documentation |
 | ------- | ------ | --------------- | --- | ------- | ------------- |
+| Batch Tracking | *Under Development* | Shawn T. Amundson | - | ["integration"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=label%3A%22epic%3A+integration+component%22) | [Submitter Design]({% link community/planning/batch_submitter.md %}) |
+| Integration REST API | *Under Development* | Shawn T. Amundson | - | ["integration"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=label%3A%22epic%3A+integration+component%22) | - |
 | Product Catalog | *RFC Accepted* | Adeeb Ahmed | [RFC #14](https://github.com/hyperledger/grid-rfcs/blob/master/text/0014-catalog.md) | - | - |
 | Track and Trace | *Experimental* | Darian Plumb | - | ["track"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=track) | [Specification]({% link docs/0.2/grid_track_and_trace_family_specification.md %}), [REST&nbsp;API](/docs/0.2/api/#tag/Track-and-Trace) |
 
