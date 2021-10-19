@@ -49,8 +49,8 @@ in some form.
 
 | Feature | Status | RFC | Issues | Documentation |
 | ------- | ------ | --- | ------- | ------------- |
-| Identity (Pike 2) | *Implemented* | [RFC #23](https://github.com/hyperledger/grid-rfcs/pull/23) | ["identity"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=label%3A%22epic%3A+grid+identity%22) | - |
-| Product w/GDSN Trade Items| *Implemented* | - | - |
+| Identity (Pike 2) | *Complete* | [RFC #23](https://github.com/hyperledger/grid-rfcs/pull/23) | ["identity"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=label%3A%22epic%3A+grid+identity%22) | - |
+| Product w/GDSN Trade Items| *Complete* | - | - |
 | Update to Actix 3 | *Complete* | - | - | - |
 
 ## Additional Information
