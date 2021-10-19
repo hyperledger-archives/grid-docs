@@ -10,14 +10,6 @@ The following is a community-driven tentative roadmap to future releases.
 
 ## Future Releases
 
-### Grid 0.2
-
-| Feature | Status | Primary Contact | RFC | Issues | Documentation |
-| ------- | ------ | --------------- | --- | ------- | ------------- |
-| Identity (Pike 2) | *Implemented* | Darian Plumb | [RFC #23](https://github.com/hyperledger/grid-rfcs/pull/23) | ["identity"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=label%3A%22epic%3A+grid+identity%22) | - |
-| Product w/GDSN Trade Items| *Implemented* | Darian Plumb | - | - |
-| Update to Actix 3 | *Complete* | Shawn Amundson | - | - | - |
-
 ### Grid 0.3
 
 | Feature | Status | Primary Contact | RFC | Issues | Documentation |
@@ -53,6 +45,13 @@ in some form.
 | Splinter Support | *Complete* | Ryan Banks | - | ["splinter"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=splinter) | [HOWTO]({% link docs/0.1/grid_on_splinter.md %}) |
 | Sqlite Support | *Complete* | Davey Newhall | - | ["sqlite"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=sqlite) | [CLI]({% link docs/0.1/references/cli/grid-database-migrate.1.md %}) [Schema](https://grid.hyperledger.org/docs/0.1/database/sqlite/) |
 
+### Grid 0.2
+
+| Feature | Status | Primary Contact | RFC | Issues | Documentation |
+| ------- | ------ | --------------- | --- | ------- | ------------- |
+| Identity (Pike 2) | *Implemented* | Darian Plumb | [RFC #23](https://github.com/hyperledger/grid-rfcs/pull/23) | ["identity"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=label%3A%22epic%3A+grid+identity%22) | - |
+| Product w/GDSN Trade Items| *Implemented* | Darian Plumb | - | - |
+| Update to Actix 3 | *Complete* | Shawn Amundson | - | - | - |
 
 ## Additional Information
 
