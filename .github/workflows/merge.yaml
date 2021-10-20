@@ -41,8 +41,7 @@ jobs:
   publish_docker:
     needs: [lint_website]
     if: >-
-      github.event.workflow_run.head_branch == 'main' &&
-      github.repository_owner == 'hyperledger'
+      (github.ref == 'refs/heads/main' && github.repository_owner == 'hyperledger')
     runs-on: ubuntu-latest
     steps:
       - name: Display envvars
