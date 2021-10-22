@@ -219,8 +219,8 @@ public key file in the next command.
     ```
     root@gridd-beta:/# grid role create gnrl po-manager \
     --active \
-    --permissions “po::can-create-po,po::can-create-version,po::can-update-po,po::can-update-version” \
-    --inherit-from “farm.po-admin
+    --permissions "po::can-create-po,po::can-create-version,po::can-update-po,po::can-update-version" \
+    --inherit-from "farm.po-admin
     ```
 
 1.  Add the new role to the admin agent for General Store
