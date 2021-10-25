@@ -127,7 +127,7 @@ proposal, the circuit is created.
    transaction succeeded, the output should resemble this example:
 
    ```
-   The circuit proposal was submited successfully
+   The circuit proposal was submitted successfully
    Circuit: 01234-ABCDE
        Management Type: grid
 
