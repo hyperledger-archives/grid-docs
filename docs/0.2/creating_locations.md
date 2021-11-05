@@ -38,9 +38,8 @@ needed.
   The example environment uses `https://localhost:8080`.
 
 * The ID of an existing Pike organization that will own the locations. You
-  must be defined as an agent with full location permissions for this
-  organization. That is, one agent must be identified with your public key and
-  must have permission to create, update, and delete locations.
+  will be defined as an agent with full location permissions for this
+  organization.
 
   Tip: You can use `curl` to request organization and agent information from
   the Grid REST API, as in these examples:
@@ -183,7 +182,7 @@ Set the following Grid environment variables to specify information for the
 
 {:start="2"}
 
-2. Set `GRID_DAEMON_KEY` to the base name of your public/private key files
+1. Set `GRID_DAEMON_KEY` to the base name of your public/private key files
    (the example environment uses `alpha-agent`).  This environment variable
    replaces the `-k` option on the `grid` command line.
 
@@ -215,6 +214,40 @@ Set the following Grid environment variables to specify information for the
    Tip: See [Prerequisites](#prerequisites) for the `splinter` commands that
    display the circuit ID and four-character service ID string.
 
+### Define and Assign Agent Permissions
+
+In order to create a location, you will need be defined as an agent with full
+location permissions. See
+[Using Pike](/docs/0.2/using_pike.md#create-product-admin-role) for more
+information on creating and setting roles.
+
+{:start="5"}
+
+1. Create a role that has the appropriate permissions. The following command
+  shows how to create a role called `location-admin` with permissions to create,
+  update, and delete locations.
+
+    ```
+    root@gridd-alpha:/# grid role create \
+    myorg location-admin \
+    --description "location admin permissions" \
+    --active \
+    --permissions "location::can-create-location,location::can-update-location,\
+    location::can-delete-location"
+    ```
+
+1. Set the appropriate permissions for the agent. This example allows the
+  agent to create schemas and to create, update, and delete locations.
+
+   ```
+   root@gridd-alpha:/# grid agent update \
+   myorg $(cat ~/.grid/keys/alpha-agent.pub) \
+   --active \
+   --role location-admin \
+   --role product-admin \
+   --role admin
+   ```
+
 ### Define and Create a Location
 
 Each location requires an organization ID (the owner) and at least one agent
@@ -222,9 +255,9 @@ with permission to create, update, and delete the location. There must also
 be an existing location schema for the location's properties.
 See [Prerequisites](#prerequisites) for more information.
 
-{:start="5"}
+{:start="7"}
 
-5. Create a location definition file, in YAML format, that specifies the
+1. Create a location definition file, in YAML format, that specifies the
    following information:
 
    * location namespace (GS1 for this example) that corresponds with the
@@ -279,9 +312,9 @@ See [Prerequisites](#prerequisites) for more information.
 
 ### Display Location Information
 
-{:start="8"}
+{:start="10"}
 
-8. List all existing locations to verify that the new location has been added.
+1. List all existing locations to verify that the new location has been added.
 
     ```
     root@gridd-alpha:/# grid location list
