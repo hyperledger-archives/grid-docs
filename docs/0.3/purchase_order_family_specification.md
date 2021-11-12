@@ -156,14 +156,14 @@ taking the first 60 characters of a SHA512 hash of its uid and concatenating it
 with the prefix 00.
 
 ```
-  “612dee” + “06” + “00” + Sha512(uid)[:60]
+  "612dee" + "06" + "00" + Sha512(uid)[:60]
 ```
 Therefore, a purchase order with an ID hash of
 “78901234567890123456789012345678901234567890123456789012345” would have an
 address of:
 
 ```
-  “612dee060078901234567890123456789012345678901234567890123456789012345”
+  "612dee060078901234567890123456789012345678901234567890123456789012345"
 ```
 
 ## Transaction Payload and Execution

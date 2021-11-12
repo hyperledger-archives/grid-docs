@@ -89,7 +89,7 @@ indicating “Products” and an additional “01” indicating “GS1 Products�
 Therefore, all addresses starting with the following string are Grid products:
 
 ```
-“621dee” + “02” + “01”
+"621dee" + "02" + "01"
  ```
 
 Grid GS1 Products are identified by a GTIN and are expected to contain a Product
@@ -105,15 +105,15 @@ accommodate potential future storage associated with the GS1 Product
 representation, for example:
 
 ```
-“621dee” + “02” + “01” +“00000000000000000000000000000000000000000000” +
-14-character “numeric string” product_id + “00” // product_id == GTIN
+"621dee" + "02" + "01" +"00000000000000000000000000000000000000000000" +
+14-character "numeric string" product_id + "00" // product_id == GTIN
 ```
 
 A full GS1 Product address using the example GTIN from https://www.gtin.info/
 would therefore be:
 
 ```
-“621dee0201000000000000000000000000000000000000000000000001234560001200”
+"621dee0201000000000000000000000000000000000000000000000001234560001200"
 ```
 
 ## Transaction Payload

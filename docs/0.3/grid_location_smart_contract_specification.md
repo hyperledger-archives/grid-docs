@@ -110,12 +110,12 @@ The 13 digits of the GLN can be left padded with 45-hex-character zeroes and
 right padded with 2-hex-character zeroes to accommodate potential future storage
 associated with the GS1 Location representation, for example:
 
-    “621dee” + “04” + “01” + “000000000000000000000000000000000000000000000” +
-    13-character “numeric string” location_id + “00” // location_id == GLN
+    "621dee" + "04" + "01" + "000000000000000000000000000000000000000000000" +
+    13-character "numeric string" location_id + "00" // location_id == GLN
 
 A full GS1 Location address (for example purposes) would therefore be:
 
-    “621dee0401000000000000000000000000000000000000000000000123456789012800”
+    "621dee0401000000000000000000000000000000000000000000000123456789012800"
 
 ## Transaction Payload
 
