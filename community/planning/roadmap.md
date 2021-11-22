@@ -15,7 +15,7 @@ The following is a community-driven tentative roadmap to future releases.
 | Feature | Status | RFC | Issues | Documentation |
 | ------- | ------ | --- | ------- | ------------- |
 | Purchase Order | *RFC Submitted* | [RFC #25](https://github.com/hyperledger/grid-rfcs/pull/25) | ["purchase order"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=purchase+label%3A%22epic%3A+purchase+order%22) | - |
-| Workflow | *RFC Submitted* | [RFC #24](https://github.com/hyperledger/grid-rfcs/pull/24) | ["workflow RFC"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=label%3A%22epic%3A+workflow+rfc%22) | - |
+| Workflow | *RFC Submitted* | [RFC #24](https://github.com/hyperledger/grid-rfcs/pull/24) | ["workflow RFC"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=label%3A%22epic%3A+workflow+rfc%22) | [Specification]({% link docs/0.3/workflow_specification.md %}) |
 
 ### Features for Future Releases
 
