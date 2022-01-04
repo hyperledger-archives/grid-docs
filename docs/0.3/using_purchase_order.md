@@ -6,9 +6,6 @@
   https://creativecommons.org/licenses/by/4.0/
 -->
 
-<b>This feature is still under development. Some functionality may be
-incomplete</b>
-
 This procedure describes how to create and manage purchase orders using Grid's
 command-line interface.
 
@@ -27,6 +24,9 @@ vendor-managed instance.
       in Docker containers.) The examples in this procedure show two nodes,
       `alpha-node-000` and `beta-node-000`, that are running in a Docker
       environment.
+
+    - An organization `MyOrg` created in the [Using Pike](/docs/0.3/using_pike.md)
+      walkthrough.
 
     - An approved Splinter circuit with two or more member nodes.
       (See [Creating Splinter Circuits]({% link
@@ -134,25 +134,9 @@ Set the following Grid environment variables to simplify entering the
 
 {:start="6"}
 
-6.  Using the `gridd-alpha` command line, create a new organization by
-    specifying a unique organization ID, and the organization's name.
-
-    ```
-    root@gridd-alpha:/# grid organization create \
-    farm "Fred's Farm"
-    ```
-
-   This command creates and submits a transaction to create a new Pike
-   organization with the data you supplied, as well as a new Pike agent
-   with the `admin` role and `active` status.
-
-   The transaction is signed with the agent's private key, as derived from the
-   base name specified by `GRID_DAEMON_KEY` (or with the `-k` option on the
-   command line). The agent's public key is used as the agent ID.
-
-   **Note**: This command doesn't display any output. Instead, check the log
-   messages (in the terminal window where you started the Grid Docker
-   environment) for the success or failure of this operation.
+6.  The `MyOrganization` organization created using the procedure outlined in the
+[Using Pike](/docs/0.3/using_pike.md) section will operate as the "buyer" for
+this scenario.
 
 #### Create a Purchase Order Admin Role
 
@@ -167,23 +151,24 @@ must possess an active role with the appropriate permissions.
 public key file in the next command.
 
 1. Create a role that has the appropriate permissions. The following command
-shows how to create a role called `product-admin` with permissions to create,
-update, and delete schemas and products.
+shows how to create a role called `po-admin` with permissions to create and
+update orders and versions. These permissions are included in the
+workflow alias `po::partner`.
 
     ```
     root@gridd-alpha:/# grid role create \
-    farm po-admin \
+    myorg po-admin \
     --description "purchase order admin permissions" \
     --active \
     --allowed-orgs gnrl \
-    --permissions "po::can-create-order,po::can-create-version,po::can-update-order,po::can-update-version"
+    --permissions "po::partner"
     ```
 
 1. Assign this role to the admin agent for this organization
 
     ```
     root@gridd-alpha:/# grid agent update \
-    farm $(cat ~/.grid/keys/alpha-agent.pub) \
+    myorg $(cat ~/.grid/keys/alpha-agent.pub) \
     --active \
     --role admin \
     --role po-admin
@@ -194,8 +179,7 @@ update, and delete schemas and products.
 {:start="10"}
 
 10. In the `gridd-beta` command line, create an organization to act as a
-    vendor. This organization will manage purchase orders on behalf of Fred's
-    Farm.
+    vendor.
 
     ```
     root@gridd-beta:/# grid organization create \
@@ -205,7 +189,7 @@ update, and delete schemas and products.
 #### Create a Purchase Order Manager Role
 
 Create a role that inherits the purchase order permissions from the `po-admin`
-permission belonging to Fred's Farm
+permission belonging to MyOrg
 
 {:start="11"}
 
@@ -214,13 +198,13 @@ permission belonging to Fred's Farm
 public key file in the next command.
 
 1. Create a role that inherits the purchase order permissions from the `po-admin`
-    permission belonging to Fred's Farm
+    permission belonging to `MyOrganization`
 
     ```
     root@gridd-beta:/# grid role create gnrl po-manager \
     --active \
-    --permissions "po::can-create-po,po::can-create-version,po::can-update-po,po::can-update-version" \
-    --inherit-from "farm.po-admin"
+    --permissions "po::partner" \
+    --inherit-from "myorg.po-admin"
     ```
 
 1.  Add the new role to the admin agent for General Store
@@ -230,7 +214,7 @@ public key file in the next command.
     gnrl $(cat ~/.grid/keys/beta-agent.pub) \
     --active \
     --role admin \
-    --role po-manager`
+    --role po-manager
     ```
 
 ### Create Purchase Orders
@@ -238,94 +222,52 @@ public key file in the next command.
 {:start=1}
 
 1.  Using the `gridd-beta` command line, propose a draft purchase order on behalf
-    of Fred's Farm.
+    of MyOrg. An example purchase order XML file can be downloaded with this link:
+    <a href="/docs/0.3/purchase_order/test_po.xml" download="purchase_order.xml">
+Example PO XML</a>.
 
     ```
     root@gridd-beta:/# grid po create \
-    --org farm \
-    --id po_number: 0123456 \
-    --workflow-status Issued \
+    --buyer-org gnrl \
+    --seller-org myorg \
+    --alternate-id po_number:0123456 \
+    --workflow-state issued \
+    --workflow-id built-in::collaborative::v1 \
     --wait 100
 
     root@gridd-beta:/# grid po version create \
-    --org farm \
-    --po 0123456 \
+    po_number:0123456 \
+    1 \
     --order-xml <path to order> \
     --draft \
-    --workflow-status Editable \
-    --wait 100 \
-    v1
-    ```
-
-1.  Using the `gridd-alpha` command line, accept the proposed purchase order
-
-    ```
-    root@gridd-alpha:/# grid po version update \
-    --org farm \
-    --po po_number:0123456 \
-    --not-draft \
-    --workflow-status Proposed \
-    --wait 100 \
-    v1
-
-    root@gridd-alpha:/# grid po update \
-    --org farm \
-    --workflow-status Issued \
-    --accepted-version v1 \
+    --workflow-state proposed \
     --wait 100
     ```
 
-1.  Using the `gridd-beta` command line, accept the purchase order
+1.  At the same time, MyOrganization is creating a version of their own. Using
+    the `gridd-alpha` command line, create a version for the purchase order
 
     ```
-    root@gridd-beta:/# grid po version update \
-    --org=farm \
-    --po po_number:0123456 \
-    --not-draft \
-    --workflow-status Accepted \
-    --wait=100 \
-    v1
-
-    root@gridd-beta:/# grid po update \
-    --org=farm \
-    --workflow-status Confirmed \
-    --accepted-version v1 \
-    --wait=100
-    ```
-
-1.  Using the `gridd-alpha` command line, update the purchase order
-
-    ```
-    root@gridd-alpha:/# grid po version update \
-    --org=farm \
-    --po po_number:0123456 \
-    --order-xml <path to updated order> \
+    root@gridd-alpha:/# grid po version create \
+    po_number:0123456 \
+    2 \
+    --order-xml <path to order> \
     --draft \
-    --workflow-status Issued \
-    --wait=100 \
-    v2
+    --workflow-state proposed \
+    --wait 100
+    ```
 
+1.  After some deliberation, MyOrganization decides that the version created by
+    General Store is more accurate. Using the `gridd-alpha` command line,
+    accept the proposed purchase order
+
+    ```
     root@gridd-alpha:/# grid po update \
-    --org=farm \
-    --workflow-status Issued \
-    --accepted-version v1 \
-    --wait=100
-    ```
-
-1.  Using the `gridd-beta` command line, accept the updated purchase order
-
-    ```
-    root@gridd-beta:/# grid po version update \
-    --org=farm \
-    --po po_number:0123456 \
-    --not-draft
-    --workflow-status Accepted \
-    --wait=100 \
-    v2
-
-    root@gridd-beta:/# grid po update \
-    --org=farm \
-    --workflow-status Confirmed \
-    --accepted-version v2 \
-    --wait=100
+    po_number:0123456 \
+    --version-id 1 \
+    --version-not-draft \
+    --version-workflow-state accepted \
+    --set-accepted-version \
+    --workflow-state confirmed \
+    --wait 100
     ```
