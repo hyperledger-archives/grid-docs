@@ -15,7 +15,6 @@ implemented as project requirements evolve.
 
 ## Changes
 
-  - Updated `/batch_statuses` endpoint to `/statuses`
   - Added `POST` and `PUT` routes for various Grid resources. These endpoints
   will be used to submit batches to create and update resources. This takes the
   place of submitting everything through a `POST` to `/batches` and will
@@ -25,3 +24,10 @@ implemented as project requirements evolve.
   user can expect to see when fetching that resource. Some resources do not
   differ between their create and update messages and have not changed.
   - Removed Track and Trace endpoints. This feature will no longer be supported.
+
+## For further consideration
+
+  - Consider changing `/batch_statuses` to `/batch-statuses`. This would bring
+  this endpoint in line with other endpoints in this API but consideration must
+  be given to the impact this will have on the corresponding endpoints in
+  Sawtooth and Splinter as well as backwards-compatibility concerns.

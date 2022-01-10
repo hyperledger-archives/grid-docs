@@ -30,7 +30,7 @@ externalDocs:
   url: https://sawtooth.hyperledger.org/docs/sabre/releases/latest/
 paths:
   # Transactions
-  /statuses:
+  /batch_statuses:
     get:
       tags:
         - Transaction
