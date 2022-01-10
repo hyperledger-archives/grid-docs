@@ -25,7 +25,7 @@ in some form.
 | Feature | Status | RFC | Issues | Documentation |
 | ------- | ------ | --- | ------- | ------------- |
 | Batch Tracking | *Under Development* | - | ["integration"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=label%3A%22epic%3A+integration+component%22) | [Submitter Design]({% link community/planning/batch_submitter.md %}) |
-| Integration REST API | *Under Development* | - | ["integration"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=label%3A%22epic%3A+integration+component%22) | - |
+| Integration REST API | *Under Development* | - | ["integration"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=label%3A%22epic%3A+integration+component%22) | [Specification]({% link community/planning/griddle/index.md %}) |
 | Product Catalog | *RFC Accepted* | [RFC #14](https://github.com/hyperledger/grid-rfcs/blob/master/text/0014-catalog.md) | - | - |
 | Track and Trace | *Experimental* | - | ["track"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=track) | [Specification]({% link docs/0.2/grid_track_and_trace_family_specification.md %}), [REST&nbsp;API](/docs/0.2/api/#tag/Track-and-Trace) |
 
