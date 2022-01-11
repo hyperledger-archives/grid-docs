@@ -72,8 +72,8 @@ services:
         redoc-cli serve openapi.yaml -w -p 4003
       "
 
-  grid-docs-griddle-redoc:
-    container_name: grid-docs-griddle-redoc
+  grid-docs-future-rest-api-redoc:
+    container_name: grid-docs-future-rest-api-redoc
     image: grid-docs-redoc
     build:
       dockerfile: docker/grid-docs-redoc
@@ -84,7 +84,7 @@ services:
       - .:/project
     entrypoint: |
       bash -c "
-        cd /project/community/planning/griddle
+        cd /project/community/planning/rest_api
         redoc-cli serve openapi.yaml -w -p 4440
       "
 
