@@ -1,7 +1,7 @@
 # Roadmap
 
 <!--
-  Copyright 2018-2020 Cargill Incorporated
+  Copyright 2018-2022 Cargill Incorporated
   Licensed under Creative Commons Attribution 4.0 International License
   https://creativecommons.org/licenses/by/4.0/
 -->
@@ -10,12 +10,12 @@ The following is a community-driven tentative roadmap to future releases.
 
 ## Future Releases
 
-### Grid 0.3
+### Grid 0.4
 
 | Feature | Status | RFC | Issues | Documentation |
 | ------- | ------ | --- | ------- | ------------- |
-| Purchase Order | *RFC Submitted* | [RFC #25](https://github.com/hyperledger/grid-rfcs/pull/25) | ["purchase order"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=purchase+label%3A%22epic%3A+purchase+order%22) | - |
-| Workflow | *RFC Submitted* | [RFC #24](https://github.com/hyperledger/grid-rfcs/pull/24) | ["workflow RFC"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=label%3A%22epic%3A+workflow+rfc%22) | [Specification]({% link docs/0.3/workflow_specification.md %}) |
+| Griddle | *Under Development* | - | ["Epic: Griddle"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=label%3A%22epic%3A+griddle%22) | [API planning document]({% link community/planning/rest_api/index.md %}) |
+| Batch Tracking | *Under Development* | - | ["Epic: Batch Tracking"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=label%3A%22epic%3A+batch+tracking%22) | - |
 
 ### Features for Future Releases
 
@@ -24,12 +24,26 @@ in some form.
 
 | Feature | Status | RFC | Issues | Documentation |
 | ------- | ------ | --- | ------- | ------------- |
-| Batch Tracking | *Under Development* | - | ["integration"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=label%3A%22epic%3A+integration+component%22) | [Submitter Design]({% link community/planning/batch_submitter.md %}) |
-| Integration REST API | *Under Development* | - | ["integration"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=label%3A%22epic%3A+integration+component%22) | [Specification]({% link community/planning/rest_api/index.md %}) |
 | Product Catalog | *RFC Accepted* | [RFC #14](https://github.com/hyperledger/grid-rfcs/blob/master/text/0014-catalog.md) | - | - |
-| Track and Trace | *Experimental* | - | ["track"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=track) | [Specification]({% link docs/0.2/grid_track_and_trace_family_specification.md %}), [REST&nbsp;API](/docs/0.2/api/#tag/Track-and-Trace) |
+
+## Latest Release
+
+### Grid 0.3
+
+| Feature | Status | RFC | Issues | Documentation |
+| ------- | ------ | --- | ------- | ------------- |
+| Purchase Order | *Complete* | [RFC #25](https://github.com/hyperledger/grid-rfcs/pull/25) | ["purchase order"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=purchase+label%3A%22epic%3A+purchase+order%22) | [Specification]({% link docs/0.3/grid_purchase_order.md %}) |
+| Workflow | *Complete* | [RFC #24](https://github.com/hyperledger/grid-rfcs/pull/24) | ["workflow RFC"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=label%3A%22epic%3A+workflow+rfc%22) | [Specification]({% link docs/0.3/workflow_specification.md %}) |
 
 ## Past Releases
+
+### Grid 0.2
+
+| Feature | Status | RFC | Issues | Documentation |
+| ------- | ------ | --- | ------- | ------------- |
+| Identity (Pike 2) | *Complete* | [RFC #23](https://github.com/hyperledger/grid-rfcs/pull/23) | ["identity"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=label%3A%22epic%3A+grid+identity%22) | - |
+| Product w/GDSN Trade Items| *Complete* | - | - |
+| Update to Actix 3 | *Complete* | - | - | - |
 
 ### Grid 0.1
 
@@ -44,14 +58,6 @@ in some form.
 | Schema | *Complete* | [RFC #4](https://github.com/hyperledger/grid-rfcs/blob/master/text/0000-grid-primitives.md) | ["schema"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=schema) | [Specification]({% link docs/0.1/grid_schema_family_specification.md %}), [REST&nbsp;API](/docs/0.1/api/#tag/Schema), [CLI]({% link docs/0.1/references/cli/grid-schema-create.1.md %}) |
 | Splinter Support | *Complete* | - | ["splinter"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=splinter) | [HOWTO]({% link docs/0.1/grid_on_splinter.md %}) |
 | Sqlite Support | *Complete* | - | ["sqlite"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=sqlite) | [CLI]({% link docs/0.1/references/cli/grid-database-migrate.1.md %}) [Schema](https://grid.hyperledger.org/docs/0.1/database/sqlite/) |
-
-### Grid 0.2
-
-| Feature | Status | RFC | Issues | Documentation |
-| ------- | ------ | --- | ------- | ------------- |
-| Identity (Pike 2) | *Complete* | [RFC #23](https://github.com/hyperledger/grid-rfcs/pull/23) | ["identity"](https://github.com/orgs/hyperledger/projects/1?card_filter_query=label%3A%22epic%3A+grid+identity%22) | - |
-| Product w/GDSN Trade Items| *Complete* | - | - |
-| Update to Actix 3 | *Complete* | - | - | - |
 
 ## Additional Information
 
