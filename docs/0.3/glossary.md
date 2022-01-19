@@ -68,6 +68,13 @@ Grid Product
 Smart contract for defining and sharing product data (trade item data).
 </p>
 
+<h3 class="glossary-header" id="grid_purchase_order">
+Grid Purchase Order
+</h3>
+<p class="glossary-definition">
+Smart contract for creating and managing purchase orders between organizations.
+</p>
+
 <h3 class="glossary-header" id="grid_track_and_trace">
 Grid Track and Trace
 </h3>
