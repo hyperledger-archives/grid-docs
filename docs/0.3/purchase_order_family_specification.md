@@ -12,15 +12,13 @@ Purchase Order is a smart contract designed to run with the
 [Sawtooth Sabre](https://github.com/hyperledger/sawtooth-sabre/)
 smart contract engine.
 
-Purchase Order provides a mechanism for trade partners to collaborate on the
-creation and modification of a purchase order, while also offering a shared
-view of the state of the order for all partners.
+Purchase Order enables trade partners to collaboratively create and modify 
+purchase orders, providing a shared view of the order state for all partners.
+It offers a common, industry-wide solution for sharing purchase order
+information between partners, implemented using Grid's systems of record.
 
 Grid Purchase Order leverages Grid Identity, Grid Workflow, Grid Product and
-Grid Location to store data related to a purchase order. Purchase Order
-provides a common industry solution for sharing purchase order information
-between trade partners, while using Grid’s existing systems of record to
-support this implementation.
+Grid Location to store purchase order data.
 
 ## State
 
@@ -37,42 +35,57 @@ Order.
 The state attributes of a purchase order include:
 
 * Unique identifier
-* Workflow Status
-* Indicator if the purchase order has been closed
-* Unique identifier of an accepted version of this purchase order
+* Workflow state
+* Buyer organization identifier
+* Seller organization identifier
 * List of all versions of this purchase order
+* Unique identifier of an accepted version of this purchase order
+* Alternate identifiers for this purchase order
 * Timestamp from when the purchase order was created
+* Indicator if the purchase order has been closed
+* Workflow name
 
-The protocol buffer is defined as follows:
+The `PurchaseOrder` protocol buffer is defined as follows:
 
 ```protobuf
   message PurchaseOrder {
       // The unique identifier of the purchase order
-      required string uuid = 1;
-      // The workflow status of the purchase order
-      required string workflow_status = 2;
+      string uid = 1;
+      // The workflow state of the purchase order
+      string workflow_state = 2;
+      // Organization identifier of buyer
+      string buyer_org_id = 3;
+      // Organization identifier of seller
+      string seller_org_id = 4;
       // List of all versions of the purchase order
-      repeated PurchaseOrderVersion versions = 3;
+      repeated PurchaseOrderVersion versions = 5;
       // Unique identifier of an accepted purchase order version
-      string accepted_version_number = 4;
+      string accepted_version_number = 6;
+      // Alternate identifiers for this purchase order
+      repeated PurchaseOrderAlternateId alternate_ids = 7;
       // Time the purchase order was created.
-      uint64 created_at = 5;
+      uint64 created_at = 8;
       // True if the purchase order was closed, false otherwise
-      bool is_closed = 6;
+      bool is_closed = 9;
+      // The name of the workflow of this purchase order
+      string workflow_id = 10;
   }
 ```
 
 ### PurchaseOrderVersion
 
-A new version of a purchase order is represented by a `PurchaseOrderVersion`.
-The `PurchaseOrderVersion` is moved through a workflow, depending on its status
-as a draft or not. A `PurchaseOrderVersion` is defined with the following
-attributes:
+A version of a purchase order is represented by a `PurchaseOrderVersion`.
+The `PurchaseOrderVersion` moves through the version workflow if `is_draft` is
+false and through the draft workflow if `is_draft` is true. `workflow_state`
+indicates the version or draft workflow state the version is in and is independent
+of the overall purchase order's workflow state in the `PurchaseOrder` object.
+
+A `PurchaseOrderVersion` has the following attributes:
 
 * Unique identifier of the version
-* Workflow status
-* Indicator if the purchase order version is a draft, or not
-* Identifier for the most current revision of this version
+* Workflow state of purchase order version sub-workflow
+* Indicator if the purchase order version is a draft
+* Identifier of this version's most current revision
 * List of all revisions of this purchase order version
 
 The protocol buffer is defined as follows:
@@ -81,12 +94,12 @@ The protocol buffer is defined as follows:
   message PurchaseOrderVersion {
       // The unique identifier of the purchase order version
       string version_id = 1;
-      // The workflow status of the purchase order version
-      string workflow_status = 2;
+      // The sub-workflow status of the purchase order version
+      string workflow_state = 2;
       // True if the version is a draft, false otherwise
       bool is_draft = 3;
       // Unique identifier of the most recent revision made
-      string current_revision_id = 4;
+      uint64 current_revision_id = 4;
       // List of all revisions made to this version
       repeated PurchaseOrderRevision revisions = 5;
   }
@@ -94,14 +107,16 @@ The protocol buffer is defined as follows:
 
 ### PurchaseOrderRevision
 
-A `PurchaseOrderRevision` represents all of the editable fields of a purchase
-order. This struct also contains information about the creation of the
-revision. A `PurchaseOrderRevision` is defined with the following attributes:
+A `PurchaseOrderRevision` holds the editable fields of a purchase
+order, the time the revision was created, and the public key of the
+submitter.
+
+A `PurchaseOrderRevision` has the following attributes:
 
 * Unique identifier of the revision
 * Public key of the agent that submitted the revision
 * Timestamp from when the revision was created
-* An XML file containing the editable fields of the purchase order
+* An XML payload containing the editable fields of the purchase order
 
 The protocol buffer is defined as follows:
 
@@ -120,30 +135,32 @@ The protocol buffer is defined as follows:
 
 ### PurchaseOrderAlternateId
 
-Similar to the mechanism outlined in the Pike 2 RFC, the purchase order smart
-contract will implement alternate IDs to allow purchase orders to be created
-without having to specify a purchase order number at creation. This struct
-contains an `id_type` which refers to the field used as an alternate ID, an
-`id` which holds the unique identifier of the purchase order and the unique
-identifier, `org_id`, of the owning organization.
+Similar to the mechanism outlined in the
+[Pike 2 RFC](https://github.com/hyperledger/grid-rfcs/pull/23), the purchase
+order smart contract implements alternate IDs to enable the creation of
+purchase orders without having to specify a purchase order number.
+
+In this object, `id_type` is the name of the field used as an alternate ID, 
+`id` holds the value of the unique alternate ID, and `org_id` refers to the
+owning organization.
 
 The protocol buffer is defined as follows:
 
 ```protobuf
   message PurchaseOrderAlternateId {
-      // Specify the field used as an alternate ID
+      // Name of the field used as an alternate ID
       string id_type = 1;
-      // Unique identifier of the purchase order
+      // Unique alternate identifier of the purchase order
       string id = 2;
-      // Unique identifier of the owning organization
-      string org_id = 3;
+      // Unique identifier of the associated purchase order
+      string po_uid = 3;
   }
 ```
 
 ## Addressing for Purchase Order
 
-In order to uniquely locate Purchase Orders in the Merkle-Radix state system,
-an address must be constructed which identifies the storage location of the
+In order to locate Purchase Orders in the Merkle-Radix state system,
+an address is constructed that identifies the storage location of the
 Purchase Order representation.
 
 All Grid addresses are prefixed by the 6-hex-character namespace prefix
@@ -151,7 +168,7 @@ All Grid addresses are prefixed by the 6-hex-character namespace prefix
 under the Grid namespace with reserved enumeration of 06. Therefore, all
 addresses starting with “621dee” + “06” are Grid purchase orders.
 
-The remaining 62 characters of a `PurchaseOrder` address is calculated by
+The remaining 62 characters of a `PurchaseOrder` address are determined by
 taking the first 60 characters of a SHA512 hash of its uid and concatenating it
 with the prefix 00.
 
@@ -170,15 +187,13 @@ address of:
 
 ### PurchaseOrderPayload Transaction
 
-`PurchaseOrderPayload` contains an action `enum` and the associated action
-payload. This allows for the action payload to be dispatched to the appropriate
+`PurchaseOrderPayload` contains an `enum` of actions and associated
+payloads. This allows for the action payload to be dispatched to the appropriate
 logic. Only the defined actions are available and only one action payload
 should be defined in the `PurchaseOrderPayload`. `PurchaseOrderPayload`
 contains the following required fields:
 
 * `action` - Action enum, indicating the payload type
-* `org_id` - The Pike organization that is sending the payload
-* `public_key` - The public key of a Pike agent that is sending the payload
 * `timestamp` - Time the payload was created
 
 ```protobuf
@@ -186,44 +201,53 @@ message PurchaseOrderPayload {
   enum Action {
     UNSET_ACTION = 0;
     CREATE_PO = 1;
-    CREATE_VERSION = 2;
-    UPDATE_VERSION = 3;
+    UPDATE_PO = 2;
+    CREATE_VERSION = 3;
+    UPDATE_VERSION = 4;
   }
 
   Action action = 1;
-  string org_id = 2;
-  string public_key = 3;
-  // Approximately when the transaction was submitted, as a Unix UTC timestamp
-  uint64 timestamp = 4;
+  uint64 timestamp = 2;
 
-  CreatePurchaseOrderPayload create_po_payload = 5;
-  UpdatePurchaseOrderPayload update_po_payload = 6;
-  CreateVersionPayload create_version_payload = 7;
-  UpdateVersionPayload update_version_payload = 8;
+  CreatePurchaseOrderPayload create_po_payload = 3;
+  UpdatePurchaseOrderPayload update_po_payload = 4;
+  CreateVersionPayload create_version_payload = 5;
+  UpdateVersionPayload update_version_payload = 6;
 }
 
 message CreatePurchaseOrderPayload {
-  string uuid = 1;
+  string uid = 1;
   uint64 created_at = 2;
+  string buyer_org_id = 3;
+  string seller_org_id = 4;
+  string workflow_state = 5;
+  repeated PurchaseOrderAlternateId alternate_ids = 6;
+  CreateVersionPayload create_version_payload = 7;
+  string workflow_id = 8;
 }
 
 message UpdatePurchaseOrderPayload {
-  string workflow_status = 1;
-  bool is_closed = 2;
-  string accepted_version_number = 3;
+  string po_uid = 1;
+  string workflow_state = 2;
+  bool is_closed = 3;
+  string accepted_version_number = 4;
+  repeated PurchaseOrderAlternateId alternate_ids = 5;
+  repeated UpdateVersionPayload version_updates = 6;
 }
 
 message CreateVersionPayload {
   string version_id = 1;
-  bool is_draft = 2;
-  PayloadRevision revision = 3;
+  string po_uid = 2;
+  bool is_draft = 3;
+  string workflow_state = 4;
+  PayloadRevision revision = 5;
 }
 
 message UpdateVersionPayload {
   string version_id = 1;
-  string workflow_status = 2;
-  bool is_draft = 3;
-  string current_revision_id = 4;
+  string po_uid = 2;
+  string workflow_state = 3;
+  bool is_draft = 4;
   PayloadRevision revision = 5;
 }
 
@@ -238,44 +262,42 @@ message PayloadRevision {
 
 ### Create Purchase Order Payload
 
-`CreatePurchaseOrderPayload` adds a new purchase order to state. An optional
-`PurchaseOrderVersion` can be included in the payload representing the initial
-version of the purchase order.
+`CreatePurchaseOrderPayload` adds a new purchase order to the blockchain state.
+An optional `PurchaseOrderVersion` can be included in the payload, representing
+the initial version of the purchase order.
 
 Validation Requirements:
 
-* The `org_id` must exist in Pike for it to be a valid transaction.
-* The `public_key` must belong to a Pike agent that is a part of the
-  organization designated by `org_id`, otherwise the transaction is invalid.
-* The Pike agent must have the permission `can-create-po`, otherwise the
-  transaction is invalid.
-* All fields marked required in the `CreatePurchaseOrderPayload` must be
-  supplied or the transaction is considered invalid.
+* The signer must be a Pike agent
+* The signing agent must have a workflow role with the `can-create-po`
+  permission
+* The `uid` must not refer to an existing purchase order
+* The `buyer_org_id` must exist in Pike for it be a valid transaction
+* The `seller_org_id` must exist in Pike for it be a valid transaction
+* The `create_version_payload`, if included, must be valid according to the
+  `CreateVersionPayload` validation rules
 
 ### Update Purchase Order Payload
 
-`UpdatePurchaseOrderPayload` updates a purchase order's closed status,
-`workflow_status`, or `accepted_version_number`.
+`UpdatePurchaseOrderPayload` updates a purchase order's `closed` state,
+`workflow_state`, or `accepted_version_number`.
 
 Validation Requirements:
 
-* The `org_id` must exist in Pike for it to be a valid transaction.
-* The `public_key` must belong to a Pike agent that is a part of the
-  organization designated by `org_id`, otherwise the transaction is considered
-  invalid.
-* The Pike agent must have the permission `can-update-po`, otherwise the
-  transaction is considered invalid.
+* The signer must be a Pike agent
+* The signing agent must have a workflow role with the `can-update-po`
+  permission
+* The `po_uid` must refer to an existing purchase order
 
 ### Create Version Payload
 
 `CreateVersionPayload` creates a new `PurchaseOrderVersion`.
 
 Validation Requirements:
-* The `org_id` must exist in Pike for it be a valid transaction
-* The `public_key` must belong to a Pike agent that is a part of the
-  organization designated by `org_id`
-* The Pike agent must have the permission `can-create-po-version`
-* All fields marked required in the `CreateVersionPayload` must be supplied
+* The signer must be a Pike agent
+* The signing agent must have a workflow role with the `can-create-po-version`
+  permission
+* The `po_uid` must refer to an existing purchase order
 
 ### Update Version Payload
 
@@ -284,17 +306,17 @@ revision.
 
 Validation Requirements:
 
-* The `org_id` must exist in Pike for it be a valid transaction
-* The `public_key` must belong to a Pike agent that is a part of the
-  organization designated by `org_id`
-* All fields marked required in the `UpdateVersionPayload` must be supplied
+* The signer must be a Pike agent
+* The signing agent must have a workflow role with the `can-update-po-version`
+  permission
+* The `po_uid` must refer to an existing purchase order
 
 ## Dependencies
 
-The Purchase Order smart contract requires the Pike smart contract for
-permission and organization management, the Workflow smart contract for
-workflow management, and the Product and Location smart contracts for defining
-location and products.
+The Purchase Order smart contract requires:
+* the Pike smart contract for permission and organization management
+* the Workflow smart contract for workflow management
+* the Product and Location smart contracts for defining location and products
 
 ## Family
 
