@@ -57,6 +57,14 @@ section in the smart contract specification for any Grid smart contract.
       Alternate ID Index: <code>03</code>
     </td>
   </tr>
+    <tr>
+    <td>Purchase Order</td>
+    <td><code>621dee06</code></td>
+    <td>
+      Purchase Orders: <code>00</code><br>
+      Alternate ID: <code>01</code>
+    </td>
+  </tr>
   <tr>
     <td>Track and Trace</td>
     <td><code>a43b46</code></td>
