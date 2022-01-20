@@ -12,7 +12,7 @@ Purchase Order is a smart contract designed to run with the
 [Sawtooth Sabre](https://github.com/hyperledger/sawtooth-sabre/)
 smart contract engine.
 
-Purchase Order enables trade partners to collaboratively create and modify 
+Purchase Order enables trade partners to collaboratively create and modify
 purchase orders, providing a shared view of the order state for all partners.
 It offers a common, industry-wide solution for sharing purchase order
 information between partners, implemented using Grid's systems of record.
@@ -49,26 +49,26 @@ The `PurchaseOrder` protocol buffer is defined as follows:
 
 ```protobuf
   message PurchaseOrder {
-      // The unique identifier of the purchase order
-      string uid = 1;
-      // The workflow state of the purchase order
-      string workflow_state = 2;
-      // Organization identifier of buyer
-      string buyer_org_id = 3;
-      // Organization identifier of seller
-      string seller_org_id = 4;
-      // List of all versions of the purchase order
-      repeated PurchaseOrderVersion versions = 5;
-      // Unique identifier of an accepted purchase order version
-      string accepted_version_number = 6;
-      // Alternate identifiers for this purchase order
-      repeated PurchaseOrderAlternateId alternate_ids = 7;
-      // Time the purchase order was created.
-      uint64 created_at = 8;
-      // True if the purchase order was closed, false otherwise
-      bool is_closed = 9;
-      // The name of the workflow of this purchase order
-      string workflow_id = 10;
+    // The unique identifier of the purchase order
+    string uid = 1;
+    // The current workflow state of the purchase order
+    string workflow_state = 2;
+    // The organization ID of the "buyer" in the purchase order
+    string buyer_org_id = 3;
+    // The organization ID of the "seller" in the purchase order
+    string seller_org_id = 4;
+    // List of all versions of the purchase order
+    repeated PurchaseOrderVersion versions = 5;
+    // Unique identifier of an accepted purchase order version
+    string accepted_version_number = 6;
+    // List of alternate IDs for the purchase order
+    repeated PurchaseOrderAlternateId alternate_ids = 7;
+    // Timestamp of when the purchase order is created
+    uint64 created_at = 8;
+    // Whether or not the purchase order is in a "closed" state
+    bool is_closed = 9;
+    // The name of the workflow the purchase order is being processed through
+    string workflow_id = 10;
   }
 ```
 
@@ -92,16 +92,16 @@ The protocol buffer is defined as follows:
 
 ```protobuf
   message PurchaseOrderVersion {
-      // The unique identifier of the purchase order version
-      string version_id = 1;
-      // The sub-workflow status of the purchase order version
-      string workflow_state = 2;
-      // True if the version is a draft, false otherwise
-      bool is_draft = 3;
-      // Unique identifier of the most recent revision made
-      uint64 current_revision_id = 4;
-      // List of all revisions made to this version
-      repeated PurchaseOrderRevision revisions = 5;
+    // The identifier of the purchase order version
+    string version_id = 1;
+    // The current workflow state of the purchase order version
+    string workflow_state = 2;
+    // True if the version is a draft, false otherwise
+    bool is_draft = 3;
+    // Identifier of the most recent revision made
+    uint64 current_revision_id = 4;
+    // List of all revisions made to this version
+    repeated PurchaseOrderRevision revisions = 5;
   }
 ```
 
@@ -122,14 +122,14 @@ The protocol buffer is defined as follows:
 
 ```protobuf
   message PurchaseOrderRevision {
-      // The unique identifier of the purchase order revision
-      string revision_id = 1;
-      // Public key of the agent that submitted the revision
-      string submitter = 2;
-      // Timestamp when the revision was created
-      uint64 created_at = 3;
-      // Editable fields of the purchase order
-      string order_xml_v3_4 = 4;
+    // The identifier of the purchase order revision
+    uint64 revision_id = 1;
+    // Public key of the agent that submitted the revision
+    string submitter = 2;
+    // Timestamp when the revision was created
+    uint64 created_at = 3;
+    // Editable fields of the purchase order
+    string order_xml_v3_4 = 4;
   }
 ```
 
@@ -140,7 +140,7 @@ Similar to the mechanism outlined in the
 order smart contract implements alternate IDs to enable the creation of
 purchase orders without having to specify a purchase order number.
 
-In this object, `id_type` is the name of the field used as an alternate ID, 
+In this object, `id_type` is the name of the field used as an alternate ID,
 `id` holds the value of the unique alternate ID, and `org_id` refers to the
 owning organization.
 
@@ -205,7 +205,6 @@ message PurchaseOrderPayload {
     CREATE_VERSION = 3;
     UPDATE_VERSION = 4;
   }
-
   Action action = 1;
   uint64 timestamp = 2;
 
@@ -252,7 +251,7 @@ message UpdateVersionPayload {
 }
 
 message PayloadRevision {
-  string revision_id = 1;
+  uint64 revision_id = 1;
   string submitter = 2;
   uint64 created_at = 3;
 
