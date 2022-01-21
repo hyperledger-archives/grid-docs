@@ -1,4 +1,4 @@
-# Copyright 2020 Cargill Incorporated
+# Copyright 2022 Cargill Incorporated
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -83,6 +83,12 @@ defaults:
       values:
         layout: "sidebars"
         sidebar: "0.3"
+    - scope:
+        path: "docs/0.4"
+        type: "pages"
+      values:
+        layout: "sidebars"
+        sidebar: "0.4"
     - scope:
         path: "community"
         type: "pages"
