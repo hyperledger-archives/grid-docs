@@ -1,6 +1,6 @@
 % GRID(1) Cargill, Incorporated | Grid Commands
 <!--
-  Copyright 2018-2020 Cargill Incorporated
+  Copyright 2018-2022 Cargill Incorporated
   Licensed under Creative Commons Attribution 4.0 International License
   https://creativecommons.org/licenses/by/4.0/
 -->
@@ -33,28 +33,31 @@ SUBCOMMANDS
 ===========
 
 `admin`
-: Administrative commands for grid
+: Administrative commands for grid.
 
 `agent`
-: Update or create an agent
+: Create, update, list, or show agents.
 
 `database`
-: Manage Grid Daemon database
+: Manage Grid Daemon database.
 
 `keygen`
-: Generate keys with which the user can sign transactions and batches
+: Generate keys with which the user can sign transactions and batches.
 
 `location`
-: Provides commands for creating, updating, and deleting locations
+: Provides commands for creating, updating, and deleting locations.
 
 `organization`
-: Update or create an organization
+: Create, update, list, or show organizations.
+
+`po`
+: Create, update, list, or show purchase orders.
 
 `product`
-: Create, update or delete products
+: Create, update, list, show, or delete products.
 
 `schema`
-: Update or create schemas
+: Update or create schemas.
 
 FLAGS
 =====
@@ -62,58 +65,64 @@ FLAGS
 Most `grid` subcommands accept the following common flags:
 
 `-h`, `--help`
-: Prints help information
+: Prints help information.
 
 `-q`, `--quiet`
-: Do not display output
-
-`--service-id`
-: The ID of the service the payload should be sent to; required if running on
-  Splinter. Format <circuit-id>::<service-id>
+: Do not display output.
 
 `-V`, `--version`
-: Prints version information
+: Prints version information.
 
 `-v`
 : Increases verbosity (the opposite of `-q`). Specify multiple times for more
-  output
+  output.
 
 OPTIONS
 =======
 
 `-k`, `--key`
-: Base name for private key file
+: Base name or path to a private signing key file.
+
+`--service-id`
+: The ID of the service the payload should be sent to; required if running on
+  Splinter. Format: `<circuit-id>::<service-id>`.
 
 `--url`
-: URL for the REST API
+: URL for the REST API.
 
 `--wait`
-: How long to wait for transaction to be committed
+: Maximum number of seconds to wait for the batch to be committed.
 
 ENVIRONMENT VARIABLES
 =====================
 
-Many `grid` subcommands accept the following environment variable:
+Many `grid` subcommands accept the following environment variables:
+
+**`CYLINDER_PATH`**
+: Colon-separated path used to search for the key which will be used
+  to sign transactions.
 
 **`GRID_DAEMON_ENDPOINT`**
-: Specifies the endpoint for the grid daemon (`gridd`)
-  if `-U` or `--url` is not used.
+: Specifies a default value for `--url`.
 
 **`GRID_DAEMON_KEY`**
-: Specifies key used to sign transactions if `k` or `--key`
-  is not used.
+: Specifies a default value for  `-k`, `--key`.
 
 **`GRID_SERVICE_ID`**
-: Specifies service ID if `--service-id` is not used
+: Specifies a default value for `--service-id`.
 
 SEE ALSO
 ========
-| `grid-product-create(1)`
-| `grid-product-update(1)`
-| `grid-product-delete(1)`
-| `grid-product-show(1)`
-| `grid-product-list(1)`
-|
-| `grid(1)`
+
+| `grid admin(1)`
+| `grid agent(1)`
+| `grid database(1)`
+| `grid keygen(1)`
+| `grid location(1)`
+| `grid organization(1)`
+| `grid po(1)`
+| `grid product(1)`
+| `grid role(1)`
+| `grid schema(1)`
 |
 | Grid documentation: https://grid.hyperledger.org/docs/0.3/

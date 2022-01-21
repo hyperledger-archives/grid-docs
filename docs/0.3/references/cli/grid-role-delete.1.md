@@ -1,4 +1,4 @@
-% GRID-ORGANIZATION-UPDATE(1) Cargill, Incorporated | Grid
+% GRID-ROLE-DELETE(1) Cargill, Incorporated | Grid
 <!--
   Copyright 2022 Cargill Incorporated
   Licensed under Creative Commons Attribution 4.0 International License
@@ -8,21 +8,21 @@
 NAME
 ====
 
-**grid-organization-update** - Updates an existing Grid Pike organization.
+**grid-role-delete** - Removes a Grid Pike role.
 
 SYNOPSIS
 ========
 
-**grid organization update** \[**FLAGS**\] \[**OPTIONS**\] <ORG_ID> <NAME>
+**grid role delete** \[**FLAGS**\] \[**OPTIONS**\] <ORG_ID> <NAME>
 
 ARGS
 ====
 
 `ORG_ID`
-: The user-specified organization identifier.
+: The organization identifier to delete the role from.
 
 `NAME`
-: The user-specified name of the organization.
+: The user-specified name of the role.
 
 FLAGS
 =====
@@ -42,26 +42,8 @@ FLAGS
 OPTIONS
 =======
 
-`--alternate-ids`
-: Alternate IDs for organization in a comma-separated list.
-  Format: `<id_type>:<id>`.
-
 `-k`, `--key`
 : Base name or path to a private signing key file.
-
-`--locations`
-: List of comma-separated locations associated with this organization.
-
-`--metadata`
-: Key-value pairs in a comma-separated list.
-  Format: `<key>=<value>`.
-
-`--service-id`
-: The ID of the service the payload should be sent to; required if running on
-  Splinter. Format: `<circuit-id>::<service-id>`.
-
-`--url`
-: URL for the REST API.
 
 `--wait`
 : Maximum number of seconds to wait for the batch to be committed.
@@ -84,11 +66,12 @@ ENVIRONMENT VARIABLES
 
 SEE ALSO
 ========
-| `grid organization(1)`
-| `grid organization create(1)`
-| `grid organization list(1)`
-| `grid organization show(1)`
 | `grid agent(1)`
+| `grid organization(1)`
 | `grid role(1)`
+| `grid role create(1)`
+| `grid role update(1)`
+| `grid role list(1)`
+| `grid role show(1)`
 |
 | Grid documentation: https://grid.hyperledger.org/docs/0.3/

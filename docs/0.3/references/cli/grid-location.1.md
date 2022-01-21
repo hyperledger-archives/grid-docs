@@ -1,4 +1,4 @@
-% GRID-AGENT(1) Cargill, Incorporated | Grid
+% GRID-LOCATION(1) Cargill, Incorporated | Grid
 <!--
   Copyright 2022 Cargill Incorporated
   Licensed under Creative Commons Attribution 4.0 International License
@@ -8,17 +8,17 @@
 NAME
 ====
 
-**grid-agent** - Create or update Grid Pike agents.
+**grid-location** - Create, Delete, Update, List or Show Grid Locations.
 
 SYNOPSIS
 ========
 
-**grid agent** \[**FLAGS**\] \[**OPTIONS**\] SUBCOMMAND
+**grid location** \[**FLAGS**\] \[**OPTIONS**\] SUBCOMMAND
 
 DESCRIPTION
 ===========
 
-This command allows for the creation and management of Grid Pike agents.
+This command allows for the creation and management of Grid Locations.
 
 FLAGS
 =====
@@ -38,7 +38,7 @@ FLAGS
 ENVIRONMENT VARIABLES
 =====================
 
-Many subcommands accept the following environment variables:
+Many subcommands use the following environment variables:
 
 **`CYLINDER_PATH`**
 : Colon-separated path used to search for the key which will be used
@@ -57,27 +57,29 @@ SUBCOMMANDS
 ===========
 
 `create`
-: Create an agent
+: Create a location
+
+`delete`
+: Deletes a location
 
 `help`
 : Prints this message or the help of the given subcommand(s)
 
 `list`
-: List all agents for a given service
+: Displays list of locations
 
 `show`
-: Show agent specified by public key
+: Displays details of a location
 
 `update`
-: Update an agent
+: Update a location
 
 SEE ALSO
 ========
-| `grid agent create(1)`
-| `grid agent list(1)`
-| `grid agent show(1)`
-| `grid agent update(1)`
-| `grid organization(1)`
-| `grid role(1)`
+| `grid location create(1)`
+| `grid location delete(1)`
+| `grid location list(1)`
+| `grid location show(1)`
+| `grid location update(1)`
 |
 | Grid documentation: https://grid.hyperledger.org/docs/0.3/

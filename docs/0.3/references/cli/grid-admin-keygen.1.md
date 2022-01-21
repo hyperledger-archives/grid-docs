@@ -1,4 +1,5 @@
-% GRID-DATABASE-MIGRATE(1) Cargill, Incorporated | Grid
+% GRID-ADMIN-KEYGEN(1) Cargill, Incorporated | Grid
+
 <!--
   Copyright 2022 Cargill Incorporated
   Licensed under Creative Commons Attribution 4.0 International License
@@ -8,27 +9,28 @@
 NAME
 ====
 
-**grid-database-migrate** - Performs database migrations.
+**grid-admin-keygen** - Generates keys for gridd to use to sign transactions
+and batches.
 
 SYNOPSIS
 ========
 
-**grid database migrate** \[**FLAGS**\] \[**OPTIONS**\]
-
-DESCRIPTION
-===========
-
-This command performs any outstanding database migrations to the
-Grid daemon database.
+**grid admin keygen** \[**FLAGS**\] \[**OPTIONS**\]
 
 FLAGS
 =====
+
+`--force`
+: Overwrite files if they exist. Conflicts with `--skip`.
 
 `-h`, `--help`
 : Prints help information.
 
 `-q`, `--quiet`
 : Do not display output.
+
+`--skip`
+: Check if files exist; generate if missing. Conflicts with `--force`.
 
 `-V`, `--version`
 : Prints version information.
@@ -39,11 +41,12 @@ FLAGS
 OPTIONS
 =======
 
-`-C`, `--connect`
-: Specifies the URL for the database.
+`-d`, `--directory`
+: Specify the directory for the key files;
+  defaults to /etc/grid/keys.
 
 SEE ALSO
 ========
-| `grid database(1)`
+| `grid admin(1)`
 |
 | Grid documentation: https://grid.hyperledger.org/docs/0.3/
