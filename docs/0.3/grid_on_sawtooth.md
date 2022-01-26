@@ -7,7 +7,7 @@ Grid-on-Sawtooth environment that runs in a set of Docker containers.
 The example Sawtooth [docker-compose](https://github.com/hyperledger/grid/blob/master/examples/sawtooth/docker-compose.yaml)
 file creates a network with two nodes (alpha and beta) that can be used for
 demos or application development. This environment includes the Pike, Product,
-Location, and Schema smart contracts.
+Location, Purchase Order, and Schema smart contracts.
 
 - **Pike** handles organization and identity permissions with the Sabre smart
   contract engine.
@@ -37,7 +37,8 @@ Location, and Schema smart contracts.
    `$ docker-compose -f examples/sawtooth/docker-compose.yaml up`
 
    This docker-compose file creates a network with two nodes (alpha and beta)
-   that includes the Pike, Schema, and Product smart contracts.
+   that includes the Pike, Schema, Location, Purchase Order, and Product smart
+   contracts.
 
 ## Next Steps
 
@@ -62,6 +63,10 @@ product properties, and creating a product.
 
 * [Creating Products]({% link docs/0.3/creating_products.md %}) shows how to
   create, update, and delete products as the organization's agent.
+
+* [Using Purchase Order]({% link docs/0.3/using_purchase_order.md %}) shows how
+  to create and update purchase orders and versions and manage them between
+  organizations.
 
 ### Smart Contract Deployment
 

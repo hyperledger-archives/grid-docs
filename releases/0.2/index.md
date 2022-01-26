@@ -1,12 +1,10 @@
 # Grid v0.2 Release
 
 <!--
-  Copyright 2018-2021 Cargill Incorporated
+  Copyright 2018-2022 Cargill Incorporated
   Licensed under Creative Commons Attribution 4.0 International License
   https://creativecommons.org/licenses/by/4.0/
 -->
-
-Note: This release is currently in development.
 
 If you're new to Grid, see the [Grid documentation]({% link docs/0.2/index.md %})
 to learn about Grid concepts and features.

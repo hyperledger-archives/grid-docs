@@ -28,19 +28,19 @@ This procedure will likely be done by an administrator for the Splinter circuit
 or network. These steps include rebuilding or compiling the upgraded contract
 and then deploying it.
 
-1. Rebuild the contract builder container (in this case, for the Pike smart
-   contract) and the Grid daemon containers.
+1. Rebuild the contract builder container (in this case, for the Purchase Order
+   smart contract) and the Grid daemon containers.
 
    ```
    $ docker-compose -f examples/splinter/docker-compose.yaml build \
-        --no-cache pike-contract-builder gridd-alpha gridd-beta gridd-gamma
+        --no-cache purchase-order-contract-builder gridd-alpha gridd-beta gridd-gamma
    ```
 
 1. Restart those containers:
 
    ```
    $ docker-compose -f examples/splinter/docker-compose.yaml up \
-        --detach pike-contract-builder gridd-alpha gridd-beta gridd-gamma
+        --detach purchase-order-contract-builder gridd-alpha gridd-beta gridd-gamma
    ```
 
 ## Important Note
@@ -74,7 +74,7 @@ to run the `scabbard` commands to upload and configure the smart contract.
 1. Upload the updated contract:
 
    ```
-   $ scabbard contract upload grid-pike:0.3.2 \
+   $ scabbard contract upload grid-purchase-order:0.3.1 \
         --path ./usr/share/scar \
         -k gridd \
         -U 'http://splinterd-alpha:8085' \

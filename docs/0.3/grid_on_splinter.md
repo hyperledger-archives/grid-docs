@@ -6,7 +6,8 @@ environment that runs in a set of Docker containers.
 
 The example Splinter docker-compose file creates a network with three nodes
 (alpha, beta, and gamma) that can be used for demos or application development.
-This environment includes the Pike, Product, and Schema smart contracts.
+This environment includes the Pike, Product, Location, Purchase Order, and
+Schema smart contracts.
 
 - **Pike** handles organization and identity permissions with Sabre, a smart
   contract engine that is included in the Splinter scabbard service.
@@ -48,7 +49,8 @@ $ docker-compose -f examples/splinter/docker-compose.yaml pull generate-registry
    `$ docker-compose -f examples/splinter/docker-compose.yaml up`
 
    This docker-compose file creates a network with two nodes (alpha and beta)
-   that includes the Pike, Schema, and Product smart contracts.
+   that includes the Pike, Schema, Location, Purchase Order, and Product smart
+   contracts.
 
 ## Next Steps
 
@@ -87,6 +89,10 @@ product properties, and creating a product.
 
 * [Creating Products]({% link docs/0.3/creating_products.md %}) shows how to
   create, update, and delete products as the organization's agent.
+
+* [Using Purchase Order]({% link docs/0.3/using_purchase_order.md %}) shows how
+  to create and update purchase orders and versions and manage them between
+  organizations.
 
 
 ### Demonstrate Smart Contract Deployment
