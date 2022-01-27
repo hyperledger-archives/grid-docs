@@ -1,0 +1,12 @@
+- name: gs1_product
+  description: GS1 product schema
+  owner: crgl
+  properties:
+    - name: GDSN_3_1
+      data_type: STRING
+      description: Consumer friendly short description of the product suitable for compact presentation.
+      required: true
+    - name: additional_attribute_1
+      data_type: STRING
+      description: Consumer friendly short description of the non-GDSN attribute suitable for compact presentation.
+      required: false

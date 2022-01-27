@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!--
+  Copyright 2018-2021 Cargill Incorporated
+  Licensed under Creative Commons Attribution 4.0 International License
+  https://creativecommons.org/licenses/by/4.0/
+-->
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:xl="http://www.w3.org/1999/xlink" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" viewBox="423 1258 1524 929" width="1524" height="929">
+  <defs>
+    <font-face font-family="Helvetica Neue" font-size="16" panose-1="2 0 5 3 0 0 0 2 0 4" units-per-em="1000" underline-position="-100" underline-thickness="50" slope="0" x-height="517" cap-height="714" ascent="951.9958" descent="-212.99744" font-weight="400">
+      <font-face-src>
+        <font-face-name name="HelveticaNeue"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Helvetica Neue" font-size="12" panose-1="2 0 5 3 0 0 0 2 0 4" units-per-em="1000" underline-position="-100" underline-thickness="50" slope="0" x-height="517" cap-height="714" ascent="951.9958" descent="-212.99744" font-weight="400">
+      <font-face-src>
+        <font-face-name name="HelveticaNeue"/>
+      </font-face-src>
+    </font-face>
+    <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="UMLInheritance_Marker" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-1 -8 14 16" markerWidth="14" markerHeight="16" color="black">
+      <g>
+        <path d="M 12 0 L 0 -7 L 0 7 Z" fill="none" stroke="currentColor" stroke-width="1"/>
+      </g>
+    </marker>
+  </defs>
+  <metadata> Produced by OmniGraffle 7.18.1\n2021-05-25 18:19:10 +0000</metadata>
+  <g id="delta-beta" fill="none" stroke-dasharray="none" stroke-opacity="1" fill-opacity="1" stroke="none">
+    <title>delta-beta</title>
+    <g id="delta-beta_Layer_1">
+      <title>Layer 1</title>
+      <g id="Graphic_99">
+        <rect x="1230" y="1259" width="716" height="410" fill="white"/>
+        <rect x="1230" y="1259" width="716" height="410" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(1235 1264)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="0" y="15">Beta Company</tspan>
+        </text>
+      </g>
+      <g id="Graphic_98">
+        <rect x="1230" y="1707" width="555.5662" height="253" fill="white"/>
+        <rect x="1230" y="1707" width="555.5662" height="253" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(1235 1712)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="0" y="15">Delta Company</tspan>
+        </text>
+      </g>
+      <g id="Graphic_97">
+        <rect x="424.4338" y="1707" width="555.5662" height="479" fill="white"/>
+        <rect x="424.4338" y="1707" width="555.5662" height="479" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(429.4338 1712)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="0" y="15">Gamma Company</tspan>
+        </text>
+      </g>
+      <g id="Graphic_96">
+        <rect x="424" y="1259" width="556" height="410" fill="white"/>
+        <rect x="424" y="1259" width="556" height="410" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(429 1264)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="0" y="15">Alpha Company</tspan>
+        </text>
+      </g>
+      <g id="Graphic_95">
+        <rect x="757" y="1428" width="180" height="80" fill="#ffc0c0"/>
+        <rect x="757" y="1428" width="180" height="80" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(762 1433)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="0" y="15">alpha.Inspector</tspan>
+          <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="0" y="29.447998">  - tankops::can-decommission</tspan>
+        </text>
+      </g>
+      <g id="Graphic_94">
+        <rect x="757" y="1320" width="180" height="80" fill="#ffc0c0"/>
+        <rect x="757" y="1320" width="180" height="80" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(762 1325)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="0" y="15">alpha.Admin</tspan>
+          <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="0" y="29.447998">  - pike::*</tspan>
+        </text>
+      </g>
+      <g id="Graphic_93">
+        <rect x="757" y="1535" width="180" height="80" fill="#ffc0c0"/>
+        <rect x="757" y="1535" width="180" height="80" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(762 1540)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="0" y="15">alpha.Drivers</tspan>
+          <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="0" y="29.447998">  - tankops::can-drive</tspan>
+          <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="0" y="43.783997">  - tankops::can-turn-turret</tspan>
+          <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="0" y="58.119995">  - tankops::can-fire</tspan>
+        </text>
+      </g>
+      <g id="Graphic_92">
+        <ellipse cx="527" cy="1467" rx="70.0001118531328" ry="40.0000639160758" fill="#ffc0c0"/>
+        <ellipse cx="527" cy="1467" rx="70.0001118531328" ry="40.0000639160758" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(476 1448.552)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="30.552" y="15">Alpha </tspan>
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="14.392" y="33.448">Agent 002</tspan>
+        </text>
+      </g>
+      <g id="Graphic_91">
+        <ellipse cx="527" cy="1359" rx="70.0001118531328" ry="40.0000639160757" fill="#ffc0c0"/>
+        <ellipse cx="527" cy="1359" rx="70.0001118531328" ry="40.0000639160757" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(476 1340.552)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="30.552" y="15">Alpha </tspan>
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="14.392" y="33.448">Agent 001</tspan>
+        </text>
+      </g>
+      <g id="Line_90">
+        <line x1="757" y1="1360" x2="596.998" y2="1359.3043" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_89">
+        <line x1="757" y1="1468" x2="596.998" y2="1467.3043" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_88">
+        <ellipse cx="527" cy="1575" rx="70.0001118531328" ry="40.0000639160757" fill="#ffc0c0"/>
+        <ellipse cx="527" cy="1575" rx="70.0001118531328" ry="40.0000639160757" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(476 1556.552)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="30.552" y="15">Alpha </tspan>
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="14.392" y="33.448">Agent 003</tspan>
+        </text>
+      </g>
+      <g id="Line_87">
+        <path d="M 597 1575 L 677 1575 L 677 1468 L 757 1468" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_86">
+        <rect x="1255" y="1430" width="180" height="85" fill="#c0c0ff"/>
+        <rect x="1255" y="1430" width="180" height="85" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(1260 1435)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="0" y="15">beta.Drivers</tspan>
+          <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="0" y="29.447998">  - tankops::can-drive</tspan>
+          <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="0" y="43.783997">  - tankops::can-turn-turret</tspan>
+          <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="0" y="58.119995">  - tankops::can-fire</tspan>
+          <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="0" y="72.45599">  - tankops::can-decommission</tspan>
+        </text>
+      </g>
+      <g id="Line_85">
+        <path d="M 1255 1472.5 L 1096 1472.5 L 1096 1535 L 950.5 1535" marker-end="url(#UMLInheritance_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_84">
+        <ellipse cx="1631" cy="1360" rx="70.0001118531328" ry="40.0000639160757" fill="#c0c0ff"/>
+        <ellipse cx="1631" cy="1360" rx="70.0001118531328" ry="40.0000639160757" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(1580 1341.552)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="34.408" y="15">Beta </tspan>
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="14.392" y="33.448">Agent 001</tspan>
+        </text>
+      </g>
+      <g id="Graphic_83">
+        <ellipse cx="1631" cy="1472.5" rx="70.0001118531328" ry="40.0000639160758" fill="#c0c0ff"/>
+        <ellipse cx="1631" cy="1472.5" rx="70.0001118531328" ry="40.0000639160758" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(1580 1454.052)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="34.408" y="15">Beta </tspan>
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="14.392" y="33.448">Agent 002</tspan>
+        </text>
+      </g>
+      <g id="Graphic_82">
+        <ellipse cx="1631" cy="1583.5" rx="70.0001118531328" ry="40.0000639160757" fill="#c0c0ff"/>
+        <ellipse cx="1631" cy="1583.5" rx="70.0001118531328" ry="40.0000639160757" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(1580 1565.052)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="34.408" y="15">Beta </tspan>
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="14.392" y="33.448">Agent 003</tspan>
+        </text>
+      </g>
+      <g id="Graphic_81">
+        <rect x="757" y="1855.5" width="180" height="80" fill="#c0ffc0"/>
+        <rect x="757" y="1855.5" width="180" height="80" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(762 1860.5)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="0" y="15">gamma.Navigator</tspan>
+          <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="0" y="29.447998">  - tankops::can-drive</tspan>
+        </text>
+      </g>
+      <g id="Graphic_80">
+        <rect x="757" y="1751.5" width="180" height="80" fill="#c0ffc0"/>
+        <rect x="757" y="1751.5" width="180" height="80" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(762 1756.5)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="0" y="15">gamma.Admin</tspan>
+          <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="0" y="29.447998">  - pike::*</tspan>
+        </text>
+      </g>
+      <g id="Graphic_79">
+        <rect x="757" y="1966.5" width="180" height="80" fill="#c0ffc0"/>
+        <rect x="757" y="1966.5" width="180" height="80" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(762 1971.5)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="0" y="15">gamma.Aimer</tspan>
+          <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="0" y="29.447998">  - tankops::can-turn-turret</tspan>
+        </text>
+      </g>
+      <g id="Graphic_78">
+        <ellipse cx="527" cy="1895.5" rx="70.0001118531328" ry="40.0000639160759" fill="#c0ffc0"/>
+        <ellipse cx="527" cy="1895.5" rx="70.0001118531328" ry="40.0000639160759" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(476 1877.052)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="22.688" y="15">Gamma </tspan>
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="14.392" y="33.448">Agent 002</tspan>
+        </text>
+      </g>
+      <g id="Graphic_77">
+        <ellipse cx="527" cy="1790" rx="70.0001118531328" ry="40.0000639160758" fill="#c0ffc0"/>
+        <ellipse cx="527" cy="1790" rx="70.0001118531328" ry="40.0000639160758" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(476 1771.552)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="22.688" y="15">Gamma </tspan>
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="14.392" y="33.448">Agent 001</tspan>
+        </text>
+      </g>
+      <g id="Line_76">
+        <line x1="596.9955" y1="1790.4565" x2="757" y2="1791.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_75">
+        <ellipse cx="527" cy="2006.5" rx="70.0001118531328" ry="40.0000639160758" fill="#c0ffc0"/>
+        <ellipse cx="527" cy="2006.5" rx="70.0001118531328" ry="40.0000639160758" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(476 1988.052)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="22.688" y="15">Gamma </tspan>
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="14.392" y="33.448">Agent 003</tspan>
+        </text>
+      </g>
+      <g id="Graphic_74">
+        <rect x="1255" y="1320" width="180" height="80" fill="#c0c0ff"/>
+        <rect x="1255" y="1320" width="180" height="80" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(1260 1325)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="0" y="15">beta.Admin</tspan>
+          <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="0" y="29.447998">  - pike::*</tspan>
+        </text>
+      </g>
+      <g id="Graphic_73">
+        <ellipse cx="527" cy="2117.5" rx="70.0001118531328" ry="40.0000639160758" fill="#c0ffc0"/>
+        <ellipse cx="527" cy="2117.5" rx="70.0001118531328" ry="40.0000639160758" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(476 2099.052)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="22.688" y="15">Gamma </tspan>
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="14.392" y="33.448">Agent 003</tspan>
+        </text>
+      </g>
+      <g id="Graphic_72">
+        <rect x="757" y="2077.5" width="180" height="80" fill="#c0ffc0"/>
+        <rect x="757" y="2077.5" width="180" height="80" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(762 2082.5)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="0" y="15">gamma.Blaster</tspan>
+          <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="0" y="29.447998">  - tankops::can-fire</tspan>
+        </text>
+      </g>
+      <g id="Line_71">
+        <line x1="757" y1="1895.5" x2="597" y2="1895.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_70">
+        <line x1="597" y1="2006.5" x2="757" y2="2006.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_69">
+        <line x1="757" y1="2117.5" x2="597" y2="2117.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_67">
+        <ellipse cx="1834" cy="1472.5" rx="70.0001118531328" ry="40.0000639160758" fill="#c0c0ff"/>
+        <ellipse cx="1834" cy="1472.5" rx="70.0001118531328" ry="40.0000639160758" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(1783 1454.052)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="34.408" y="15">Beta </tspan>
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="14.392" y="33.448">Agent 004</tspan>
+        </text>
+      </g>
+      <g id="Graphic_66">
+        <ellipse cx="1834" cy="1583.5" rx="70.0001118531328" ry="40.0000639160757" fill="#c0c0ff"/>
+        <ellipse cx="1834" cy="1583.5" rx="70.0001118531328" ry="40.0000639160757" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(1783 1565.052)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="34.408" y="15">Beta </tspan>
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="14.392" y="33.448">Agent 005</tspan>
+        </text>
+      </g>
+      <g id="Graphic_65">
+        <rect x="1255" y="1853" width="180" height="87" fill="#c0ffff"/>
+        <rect x="1255" y="1853" width="180" height="87" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(1260 1858)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="0" y="15">Delta.TankOperator</tspan>
+          <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="0" y="29.447998">  - tankops::can-drive</tspan>
+          <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="0" y="43.783997">  - tankops::can-turn-turret</tspan>
+          <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="0" y="58.119995">  - tankops::can-fire</tspan>
+          <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="0" y="72.45599">  - tankops::can-decommission</tspan>
+        </text>
+      </g>
+      <g id="Graphic_64">
+        <ellipse cx="1666" cy="1787" rx="70.0001118531328" ry="40.0000639160758" fill="#c0ffff"/>
+        <ellipse cx="1666" cy="1787" rx="70.0001118531328" ry="40.0000639160758" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(1615 1768.552)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="32.48" y="15">Delta </tspan>
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="14.392" y="33.448">Agent 001</tspan>
+        </text>
+      </g>
+      <g id="Graphic_63">
+        <ellipse cx="1668" cy="1896.5" rx="70.0001118531327" ry="40.0000639160758" fill="#c0ffff"/>
+        <ellipse cx="1668" cy="1896.5" rx="70.0001118531327" ry="40.0000639160758" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(1617 1878.052)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="32.48" y="15">Delta </tspan>
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="14.392" y="33.448">Agent 002</tspan>
+        </text>
+      </g>
+      <g id="Graphic_62">
+        <rect x="1255" y="1747" width="180" height="80" fill="#c0ffff"/>
+        <rect x="1255" y="1747" width="180" height="80" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(1260 1752)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="0" y="15">Delta.Admin</tspan>
+          <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="0" y="29.447998">  - pike::*</tspan>
+        </text>
+      </g>
+      <g id="Line_61">
+        <path d="M 1345 1515 L 1345 1543.5 L 1194 1543.5 L 1194 1896.5 L 1241.5 1896.5" marker-end="url(#UMLInheritance_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_60">
+        <line x1="1435" y1="1787" x2="1596" y2="1787" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_59">
+        <line x1="1435" y1="1896.5" x2="1598" y2="1896.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_58">
+        <path d="M 937 1895.5 L 991 1895.5 L 991 1696 L 757 1696 L 757 1628.5" marker-end="url(#UMLInheritance_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_57">
+        <path d="M 937 2006.5 L 1001 2006.5 L 1001 1688 L 847 1688 L 847 1628.5" marker-end="url(#UMLInheritance_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_56">
+        <path d="M 937 2117.5 L 1014 2117.5 L 1014 1679 L 937 1679 L 937 1628.5" marker-end="url(#UMLInheritance_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_55">
+        <line x1="1561" y1="1360" x2="1435" y2="1360" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_54">
+        <line x1="1561" y1="1472.5" x2="1435" y2="1472.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_53">
+        <path d="M 1561 1583.5 L 1478 1583.5 L 1478 1472.5 L 1435 1472.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_106">
+        <path d="M 1478 1582.0513 L 1478 1653 L 1729 1653 L 1729 1581 L 1729 1583.5 L 1764 1583.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_108">
+        <path d="M 1435 1472.5 L 1478 1472.5 L 1478 1653 L 1729.1212 1653 L 1729.1212 1472.5 L 1764 1472.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+    </g>
+  </g>
+</svg>
