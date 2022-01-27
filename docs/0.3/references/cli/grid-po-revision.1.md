@@ -1,4 +1,4 @@
-% GRID-SCHEMA-SHOW(1) Cargill, Incorporated | Grid Commands
+% GRID-PO-REVISION(1) Cargill, Incorporated | Grid Commands
 <!--
   Copyright 2022 Cargill Incorporated
   Licensed under Creative Commons Attribution 4.0 International License
@@ -8,23 +8,18 @@
 NAME
 ====
 
-**grid-schema-show** — Shows schema specified by NAME argument.
+**grid-po-revision** — List or show Grid Purchase Order revisions based on a version.
 
 SYNOPSIS
 ========
 
-**grid schema show** \[**FLAGS**\] \[**OPTIONS**\] <NAME>
+**grid po revision** \[**FLAGS**\] \[**OPTIONS**\] SUBCOMMAND
 
 DESCRIPTION
 ===========
 
-Shows Schema specified by NAME argument.
-
-ARGS
-====
-
-`NAME`
-: Name of Schema.
+Lists or shows Grid Purchase Order revisions for a specified Purchase Order
+and version.
 
 FLAGS
 =====
@@ -45,12 +40,12 @@ FLAGS
 OPTIONS
 =======
 
-`--service-id`
-: The ID of the service the payload should be sent to; required if running on
-  Splinter. Format: `<circuit-id>::<service-id>`.
-
 `--url`
 : URL for the REST API.
+
+`--service-id`
+: The ID of the service the payload should be sent to; required if running on
+  Splinter. Format `<circuit-id>::<service-id>`.
 
 ENVIRONMENT VARIABLES
 =====================
@@ -61,11 +56,20 @@ ENVIRONMENT VARIABLES
 **`GRID_SERVICE_ID`**
 : Specifies a default value for `--service-id`.
 
+SUBCOMMANDS
+===========
+
+`list`
+: List details of all purchase orders revisions for a specified version.
+
+`show`
+: Display details of a purchase order revision.
+
 SEE ALSO
 ========
-| `grid schema(1)`
-| `grid schema create(1)`
-| `grid schema update(1)`
-| `grid schema list(1)`
+| `grid-po(1)`
+| `grid-po-version(1)`
+| `grid-po-revision-list(1)`
+| `grid-po-revision-show(1)`
 |
 | Grid documentation: https://grid.hyperledger.org/docs/0.3/

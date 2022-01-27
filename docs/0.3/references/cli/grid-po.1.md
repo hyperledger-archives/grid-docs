@@ -1,6 +1,6 @@
-% GRID-PRODUCT(1) Cargill, Incorporated | Grid Commands
+% GRID-PO(1) Cargill, Incorporated | Grid Commands
 <!--
-  Copyright 2018-2022 Cargill Incorporated
+  Copyright 2022 Cargill Incorporated
   Licensed under Creative Commons Attribution 4.0 International License
   https://creativecommons.org/licenses/by/4.0/
 -->
@@ -8,18 +8,18 @@
 NAME
 ====
 
-**grid-product** — Create, update, delete, list, or show Grid products.
+**grid-po** — Create or update Grid Purchase Orders.
 
 SYNOPSIS
 ========
 
-**grid product** \[**FLAGS**\] \[**OPTIONS**\] SUBCOMMAND
+**grid po** \[**FLAGS**\] \[**OPTIONS**\] SUBCOMMAND
 
 DESCRIPTION
 ===========
 
-This command allows for the creation and management of Grid products.
-Commands to list and display Product data are also available.
+This command allows for the creation and management of Grid Purchase Orders.
+Commands to list and display Purchase Order data are also available.
 
 FLAGS
 =====
@@ -41,17 +41,17 @@ OPTIONS
 =======
 
 `-k`, `--key`
-: Base name or path to a private signing key file.
+: base name or path to a private signing key file
 
 `--service-id`
 : The ID of the service the payload should be sent to; required if running on
   Splinter. Format: `<circuit-id>::<service-id>`.
 
 `--url`
-: URL for the REST API.
+: URL for the REST API
 
 `--wait`
-: Maximum number of seconds to wait for the batch to be committed.
+: How long to wait for transaction to be committed.
 
 ENVIRONMENT VARIABLES
 =====================
@@ -60,41 +60,41 @@ Many subcommands accept the following environment variables:
 
 **`CYLINDER_PATH`**
 : Colon-separated path used to search for the key which will be used
-  to sign transactions.
+  to sign transactions
 
 **`GRID_DAEMON_ENDPOINT`**
-: Specifies a default value for `--url`.
+: Specifies a default value for `--url`
 
 **`GRID_DAEMON_KEY`**
-: Specifies a default value for  `-k`, `--key`.
+: Specifies a default value for  `-k`, `--key`
 
 **`GRID_SERVICE_ID`**
-: Specifies a default value for `--service-id`.
+: Specifies a default value for `--service-id`
 
 SUBCOMMANDS
 ===========
 
 `create`
-: Create new products.
-
-`update`
-: Update existing products.
-
-`delete`
-: Delete a product.
-
-`show`
-: Show details of a specified product.
+: Create a new purchase order.
 
 `list`
-: List details of all existing products.
+: List details of all existing purchase orders.
+
+`show`
+: Show details of a specific purchase order.
+
+`update`
+: Update an existing purchase order.
+
+`version`
+: Create, update or display versions of a purchase order.
 
 SEE ALSO
 ========
-| `grid-product-create(1)`
-| `grid-product-update(1)`
-| `grid-product-delete(1)`
-| `grid-product-show(1)`
-| `grid-product-list(1)`
+| `grid-po-create(1)`
+| `grid-po-list(1)`
+| `grid-po-show(1)`
+| `grid-po-update(1)`
+| `grid-po-version(1)`
 |
 | Grid documentation: https://grid.hyperledger.org/docs/0.3/

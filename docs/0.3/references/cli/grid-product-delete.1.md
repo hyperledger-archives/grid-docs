@@ -1,6 +1,6 @@
 % GRID-PRODUCT-DELETE(1) Cargill, Incorporated | Grid Commands
 <!--
-  Copyright 2018-2020 Cargill Incorporated
+  Copyright 2018-2022 Cargill Incorporated
   Licensed under Creative Commons Attribution 4.0 International License
   https://creativecommons.org/licenses/by/4.0/
 -->
@@ -8,63 +8,68 @@
 NAME
 ====
 
-**grid-product-delete** — Delete an existing product
+**grid-product-delete** — Delete an existing product.
 
 SYNOPSIS
 ========
 
-**grid product delete** \[**FLAGS**\] \[**OPTIONS**\]
+**grid product delete** \[**FLAGS**\] \[**OPTIONS**\] <PRODUCT_ID>
+<**--namespace** NAMESPACE>
 
 DESCRIPTION
 ===========
 
-Delete an existing product. This command requires the `--product_id` option
+Delete an existing product. This command requires the `PRODUCT_ID` argument
 to specify the unique identifier of the product that is to be deleted. The
-`--product_namespace` option must also be specified (e.g. GS1).
+`--namespace` option must also be specified (e.g. GS1).
+
+ARGS
+====
+
+`PRODUCT_ID`
+: Unique identifier of the product.
 
 FLAGS
 =====
 
 `-h`, `--help`
-: Prints help information
+: Prints help information.
 
-`-k`, `--key`
-: Base name for private key file
 
 `-q`, `--quiet`
-: Do not display output
-
-`--service-id`
-: The ID of the service the payload should be sent to; required if running on
-  Splinter. Format <circuit-id>::<service-id>
+: Do not display output.
 
 `-V`, `--version`
-: Prints version information
+: Prints version information.
 
 `-v`
-: Increases verbosity (the opposite of `-q`). Specify multiple times for more
-  output
+: Increases verbosity (the opposite of `-q`). Specify multiple times for
+  more output.
 
-`--url`
-: URL for the REST API
-
-`--wait`
-: How long to wait for transaction to be committed
 
 OPTIONS
 =======
 
-`--product_id`
-: Unique identifier for the product
+`-k`, `--key`
+: Base name or path to a private signing key file.
 
-`--product_namespace`
-: Product namespace (e.g. `GS1`)
+`--namespace`
+: Product namespace (e.g. `GS1`).
+
+`--service-id`
+: The ID of the service the payload should be sent to; required if running
+  on Splinter. Format: `<circuit-id>::<service-id>`.
+
+`--url`
+: URL for the REST API.
+
+`--wait`
+: Maximum number of seconds to wait for the batch to be committed.
 
 EXAMPLES
 ========
 
-Delete an existing product.
-
+Delete an existing product:
 ```
 $ grid product delete --product_id 762111177704 --product_namespace GS1
 ```
@@ -72,16 +77,18 @@ $ grid product delete --product_id 762111177704 --product_namespace GS1
 ENVIRONMENT VARIABLES
 =====================
 
+**`CYLINDER_PATH`**
+: Colon-separated path used to search for the key which will be used
+  to sign transactions.
+
 **`GRID_DAEMON_ENDPOINT`**
-: Specifies the endpoint for the grid daemon (`gridd`)
-  if `-U` or `--url` is not used.
+: Specifies a default value for `--url`.
 
 **`GRID_DAEMON_KEY`**
-: Specifies key used to sign transactions if `k` or `--key`
-  is not used.
+: Specifies a default value for  `-k`, `--key`.
 
 **`GRID_SERVICE_ID`**
-: Specifies service ID if `--service-id` is not used
+: Specifies a default value for `--service-id`.
 
 SEE ALSO
 ========

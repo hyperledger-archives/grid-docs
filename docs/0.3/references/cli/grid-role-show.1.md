@@ -1,4 +1,4 @@
-% GRID-SCHEMA-LIST(1) Cargill, Incorporated | Grid Commands
+% GRID-ROLE-SHOW(1) Cargill, Incorporated | Grid
 <!--
   Copyright 2022 Cargill Incorporated
   Licensed under Creative Commons Attribution 4.0 International License
@@ -8,17 +8,21 @@
 NAME
 ====
 
-**grid-schema-list** — Lists currently defined schemas.
+**grid-role-show** - Show information about a Grid Pike role.
 
 SYNOPSIS
 ========
 
-**grid schema list** \[**FLAGS**\] \[**OPTIONS**\]
+**grid role show** \[**FLAGS**\] \[**OPTIONS**\] <ORG_ID> <NAME>
 
-DESCRIPTION
-===========
+ARGS
+====
 
-Lists currently defined schemas.
+`ORG_ID`
+: The organization identifier to show the role for.
+
+`NAME`
+: The user-specified name of the role to show.
 
 FLAGS
 =====
@@ -33,18 +37,7 @@ FLAGS
 : Prints version information.
 
 `-v`
-: Increases verbosity (the opposite of `-q`). Specify multiple times for more
-  output.
-
-OPTIONS
-=======
-
-`--service-id`
-: The ID of the service the payload should be sent to; required if running on
-  Splinter. Format: `<circuit-id>::<service-id>`.
-
-`--url`
-: URL for the REST API.
+: Log verbosely
 
 ENVIRONMENT VARIABLES
 =====================
@@ -57,9 +50,9 @@ ENVIRONMENT VARIABLES
 
 SEE ALSO
 ========
-| `grid schema(1)`
-| `grid schema create(1)`
-| `grid schema update(1)`
-| `grid schema show(1)`
+| `grid agent(1)`
+| `grid organization(1)`
+| `grid role(1)`
+| `grid role list(1)`
 |
 | Grid documentation: https://grid.hyperledger.org/docs/0.3/
