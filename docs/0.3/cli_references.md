@@ -205,3 +205,8 @@ List Purchase Order revisions
 [`grid po revision list`]({%
   link docs/0.3/references/cli/grid-po-revision-show.1.md %})
 Show a Purchase Order revision
+
+### Resource Utilities
+ 
+[`grid download-xsd`]({% link docs/0.3/references/cli/grid-download-xsd.1.md
+%}) Download the XSD files necessary for validating

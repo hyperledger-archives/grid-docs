@@ -110,4 +110,4 @@ ENVIRONMENT VARIABLES
 
 SEE ALSO
 ========
-| Grid documentation: https://grid.hyperledger.org/docs/0.3/
+| Grid documentation: https://grid.hyperledger.org/docs/0.4/
