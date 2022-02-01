@@ -234,7 +234,7 @@ public key file in the next command.
     For in-depth information on this utility, read [`grid download-xsd`]({%
     link docs/0.3/references/cli/grid-download-xsd.1.md %})
 
-### Create Purchase Orders
+### Create Purchase Order and Versions
 
 {:start=1}
 
@@ -274,7 +274,39 @@ Example PO XML</a>.
     --wait 100
     ```
 
-1.  After some deliberation, MyOrganization decides that the version created by
+### Display Purchase Order Information
+
+{:start="3"}
+
+3. List all existing purchase orders to verify that the new purchase
+   order has been added.
+
+   ```
+   root@gridd-alpha:/# grid po list
+   ```
+
+1. To see the versions for a specific purchase order, use
+   `grid po version list`
+
+   ```
+   root@gridd-alpha:/# grid po version list po_number:0123456
+   ```
+
+1. To see the details of a purchase order or a version, use `grid po show` or
+   `grid po version show`, respectively.
+
+   ```
+   root@gridd-alpha:/# grid po show po_number:0123456
+
+   root@gridd-alpha:/# grid po version show po_number:0123456 1
+   ```
+
+### Update Purchase Order
+
+{:start="6"}
+
+
+6.  After some deliberation, MyOrganization decides that the version created by
     General Store is more accurate. Using the `gridd-alpha` command line,
     accept the proposed purchase order
 
