@@ -220,12 +220,15 @@ public key file in the next command.
 ### Download the Schemas
 
 
-1.  Download the purchase order schemas so that the purchase order can be
-    validated
+15. Download the purchase order schemas so that the purchase order XML data
+    can be validated
 
     ```
     root@gridd-alpha:/# grid download-xsd
     ```
+
+    Follow this same procedure in a separate command line for the `gridd-beta`
+    container.
 
     For in-depth information on this utility, read [`grid download-xsd`]({%
     link docs/0.3/references/cli/grid-download-xsd.1.md %})
