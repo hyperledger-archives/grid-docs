@@ -9,11 +9,19 @@ The example Splinter docker-compose file creates a network with three nodes
 This environment includes the Pike, Product, Location, Purchase Order, and
 Schema smart contracts.
 
-- **Pike** handles organization and identity permissions with Sabre, a smart
-  contract engine that is included in the Splinter scabbard service.
+- [Pike]({% link docs/0.4/grid_pike.md %}) handles organization and identity
+  permissions with Sabre, a smart contract engine that is included in the
+  Splinter scabbard service.
 - [Grid Product]({% link docs/0.4/grid_product.md %})
   provides a way to share GS1-compatible product data (items
   that are transacted, traded, or referenced in a supply chain).
+  [Location]({% link docs/0.4/grid_location.md %}) is a framework for sharing
+  location master data between trade partners.
+- [Purchase Order]({% link docs/0.4/grid_purchase_order.md %}) enables buyers
+  and sellers to automate and synchronize their purchase order processes and
+  data. It encapsulates purchase order contract information, workflows, and
+  permissions to provide business partners with a current and complete view
+  of their shared purchase order processes at all times.
 - [Schema]({% link docs/0.4/schema_smart_contract_specification.md %})
   provides a reusable, standard approach to defining, storing, and
   consuming the product properties. Property definitions are collected into a
@@ -36,7 +44,7 @@ ensure that your images are up to date:
 $ docker-compose -f examples/splinter/docker-compose.yaml pull generate-registry db-alpha scabbard-cli-alpha splinterd-alpha
 ```
 
-## Set Up and Run Grid
+## Setting Up and Running Grid
 
 1. Clone the [Hyperledger Grid repository](https://github.com/hyperledger/grid)
    ([https://github.com/hyperledger/grid](https://github.com/hyperledger/grid)).
@@ -56,10 +64,10 @@ $ docker-compose -f examples/splinter/docker-compose.yaml pull generate-registry
 
 Once the Grid on Splinter environment is running, you can create a circuit to
 connect two nodes, then demonstrate Grid functionality with existing smart
-contracts, such as Pike organizations and Grid products. You can also upload
-new smart contracts to the circuit.
+contracts, such as Pike organizations, Grid products and Grid Purchase Order.
+You can also upload new smart contracts to the circuit.
 
-### Create a Circuit
+### Creating a Circuit
 
 [Creating Splinter
 Circuits]({% link docs/0.4/creating_splinter_circuits.md %})
@@ -72,11 +80,12 @@ to members of a circuit.
 For more information on Splinter circuits, see the
 [Splinter documentation](https://www.splinter.dev/docs/).
 
-### Demonstrate Grid Smart Contract Functionality
+### Demonstrating Grid Smart Contract Functionality
 
-You can use the Pike and Grid Product smart contracts to demonstrate Grid
-functionality by creating an organization and agent, defining a schema for the
-product properties, and creating a product.
+You can use the Pike, Grid Product, and Grid Schema smart contracts to
+demonstrate Grid functionality by creating an organization and agent, defining
+a schema for the product properties, and creating a product. Similarly, you can
+demonstrate functionality with Pike and Grid Purchase Order.
 
 * [Creating Organizations]({% link docs/0.4/using_pike.md %})
   describes how to create an owning organization for Grid items (such as
@@ -90,12 +99,12 @@ product properties, and creating a product.
 * [Creating Products]({% link docs/0.4/creating_products.md %}) shows how to
   create, update, and delete products as the organization's agent.
 
-* [Using Purchase Order]({% link docs/0.4/using_purchase_order.md %}) shows how
-  to create and update purchase orders and versions and manage them between
+* [Creating Purchase Orders]({% link docs/0.4/using_purchase_order.md %}) shows
+  how to create and update purchase orders and versions and manage them between
   organizations.
 
 
-### Demonstrate Smart Contract Deployment
+### Demonstrating Smart Contract Deployment
 
 You can use the `scabbard` CLI to deploy custom smart contracts on existing
 circuits.
@@ -104,7 +113,7 @@ circuits.
   explains how to upload and configure a new smart contract.
 
 
-### Demonstrate Circuit Scope
+### Demonstrating Circuit Scope
 
 If a node is not a part of a circuit, that node cannot access information about
 that circuit or any transactions that occur on that circuit.
@@ -127,12 +136,15 @@ participates in a new multi-party circuit with those nodes.
    ID MANAGEMENT MEMBERS
    ```
 
-Final note: Splinter strictly enforces privacy for all information on a
-circuit, including participants, available smart contracts, and transactions
-performed by the participants using those smart contracts.
+## Privacy Enforcement
+
+Splinter strictly enforces privacy for all information on a circuit, including
+participants, available smart contracts, and transactions performed by the
+participants using those smart contracts.
 
 For example, if gamma creates a circuit with alpha and a separate circuit with
-beta, then uploads the XO smart contract and plays a tic-tac-toe game with
-alpha, the xo list command on gamma will show only the gamma-alpha game. Even
-though alpha and beta are using the same XO smart contract, their game moves
-(smart contract transactions) remain private to their two-party circuit.
+beta, then creates purchase orders with both alpha and beta, the `grid po list`
+command on gamma will show only the gamma-alpha purchase orders while on the
+gamma-alpha circuit. Even though gamma-alpha and gamma-beta circuits are using
+the same Grid Purchase Order smart contract, their data (smart contract
+transactions) remain private to their two-party circuits.
