@@ -37,7 +37,7 @@ services:
     entrypoint: |
       bash -c "
         cd /project/docs/0.1/references/api
-        redoc-cli serve openapi.yaml -w -p 4001
+        redoc-cli serve openapi.yaml -h 0.0.0.0 -w -p 4001
       "
 
   grid-docs-redoc-0-2:
@@ -53,7 +53,7 @@ services:
     entrypoint: |
       bash -c "
         cd /project/docs/0.2/references/api
-        redoc-cli serve openapi.yaml -w -p 4002
+        redoc-cli serve openapi.yaml -h 0.0.0.0 -w -p 4002
       "
 
   grid-docs-redoc-0-3:
@@ -69,7 +69,7 @@ services:
     entrypoint: |
       bash -c "
         cd /project/docs/0.3/references/api
-        redoc-cli serve openapi.yaml -w -p 4003
+        redoc-cli serve openapi.yaml -h 0.0.0.0 -w -p 4003
       "
 
   grid-docs-future-rest-api-redoc:
@@ -85,7 +85,7 @@ services:
     entrypoint: |
       bash -c "
         cd /project/community/planning/rest_api
-        redoc-cli serve openapi.yaml -w -p 4440
+        redoc-cli serve openapi.yaml -h 0.0.0.0 -w -p 4440
       "
 
   grid-docs-apache:
