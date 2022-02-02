@@ -66,6 +66,18 @@ docker-compose up \
     db \
     grid-docs-schemaspy-sqlite-0-3
 
+docker-compose up \
+    --abort-on-container-exit \
+    --exit-code-from grid-docs-schemaspy-postgres-0-4 \
+    db \
+    grid-docs-schemaspy-postgres-0-4
+
+docker-compose up \
+    --abort-on-container-exit \
+    --exit-code-from grid-docs-schemaspy-sqlite-0-4 \
+    db \
+    grid-docs-schemaspy-sqlite-0-4
+
 docker build --build-arg jekyll_env=$JEKYLL_ENV -f ci/website.dockerfile -t hyperledger/grid-website .
 
 docker-compose down
