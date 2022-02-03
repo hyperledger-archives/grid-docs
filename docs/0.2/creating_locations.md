@@ -232,8 +232,7 @@ information on creating and setting roles.
     myorg location-admin \
     --description "location admin permissions" \
     --active \
-    --permissions "location::can-create-location,location::can-update-location,\
-    location::can-delete-location"
+    --permissions "location::can-create-location,location::can-update-location,location::can-delete-location"
     ```
 
 1. Set the appropriate permissions for the agent. This example allows the
