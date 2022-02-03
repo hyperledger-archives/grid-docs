@@ -28,8 +28,11 @@ This procedure will likely be done by an administrator for the Splinter circuit
 or network. These steps include rebuilding or compiling the upgraded contract
 and then deploying it.
 
-1. Rebuild the contract builder container (in this case, for the Pike smart
-   contract) and the Grid daemon containers.
+> If you wish to use the same keys for your agents after upgrading, save each
+> key located in `/root/.grid/keys for each node before proceding.
+
+1. Rebuild the contract builder container (in this case, for the Purchase Order
+   smart contract) and the Grid daemon containers.
 
    ```
    $ docker-compose -f examples/splinter/docker-compose.yaml build \
