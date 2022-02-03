@@ -78,7 +78,7 @@ proposal, the circuit is created.
    the first node (for example, `alpha-node-000`).
 
    ```
-   $ docker-compose -f examples/splinter/docker-compose.yaml exec splinterd-alpha bash
+   $ docker exec -it splinterd-alpha bash
    root@splinterd-alpha:/#
    ```
 
@@ -127,7 +127,7 @@ proposal, the circuit is created.
    transaction succeeded, the output should resemble this example:
 
    ```
-   The circuit proposal was submited successfully
+   The circuit proposal was submitted successfully
    Circuit: 01234-ABCDE
        Management Type: grid
 
@@ -150,7 +150,7 @@ proposal, the circuit is created.
 
    ```
    root@splinterd-alpha:/# splinter circuit proposals --url http://splinterd-alpha:8085
-   ID            MANAGEMENT MEMBERS
+   ID            MANAGEMENT MEMBERS                      COMMENTS
    01234-ABCDE   grid       alpha-node-000;beta-node-000
    ```
 
@@ -199,7 +199,7 @@ proposal.
    the second node (for example, on `beta-node-000`).
 
    ```
-   $ docker-compose -f examples/splinter/docker-compose.yaml exec splinterd-beta bash
+   $ docker exec -it splinterd-beta bash
    root@splinterd-beta:/#
    ```
 
@@ -213,7 +213,7 @@ proposal.
 
    ```
    root@splinterd-beta:/# splinter circuit proposals --url http://splinterd-beta:8085
-   ID            MANAGEMENT MEMBERS
+   ID            MANAGEMENT MEMBERS                      COMMENTS
    01234-ABCDE   grid       alpha-node-000;beta-node-000
    ```
 
@@ -227,7 +227,7 @@ proposal.
 1. Use the circuit ID to show the details of the proposed circuit.
 
    ```
-   root@splinterd-alpha:/# splinter circuit show $CIRCUIT_ID --url http://splinterd-beta:8085
+   root@splinterd-beta:/# splinter circuit show $CIRCUIT_ID --url http://splinterd-beta:8085
    Proposal to create: 01234-ABCDE
       Management Type: grid
 

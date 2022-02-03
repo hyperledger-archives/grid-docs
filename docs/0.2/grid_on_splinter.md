@@ -111,7 +111,7 @@ participates in a new multi-party circuit with those nodes.
    to run Splinter commands on gamma-node-000.
 
    ```
-   $ docker-compose -f examples/splinter/docker-compose.yaml exec splinterd-gamma bash
+   $ docker exec -it splinterd-gamma bash
    root@splinterd-gamma:/#
    ```
 
