@@ -1,4 +1,4 @@
-# Creating Schemas
+# Creating and Updating Schemas
 
 <!--
   Copyright (c) 2018-2020 Cargill Incorporated
@@ -225,25 +225,48 @@ Set the following Grid environment variables to specify information for the
 ### Update a Schema
 
 To change a schema, you must be an agent for the organization that is
-identified in the schema definition.
+identified in the schema definition and have the "schema::can-update-schema"
+permission.
 
-1. Modify the definition in the schema YAML file (such as
-   `product_schema.yaml`).
+> **IMPORTANT**: When updating a schema, the update file must only contain new
+> property definitions; it cannot list or attempt to modify an existing
+> property definition. Existing properties may not be removed or modified in
+> order to preserve the validity of existing data.
 
-   You don't have to use the same file that was used to create the schema,
-   but the file must specify the same name and present the properties in the
-   same order. Only new properties may be added. Existing properties may not be
-   removed or modified in order to preserve the validity of existing data.
+1. Create an update schema YAML file (such as `product_schema_update.yaml`)
+   with the same name and owner as before and the new property you'd like to
+   add. For example:
+
+  ```yaml
+    - name: gs1_product
+      owner: myorg
+      properties:
+        - name: my_new_property
+          data_type: STRING
+          description: New information that may be included.
+          required: false
+    ```
+
+1. Use `docker cp` to copy the file into the `gridd-alpha` container.
+
+   ```
+   $ docker cp product_schema_update.yaml gridd-alpha:/
+   ```
 
 1. Use the `update` subcommand for `grid schema` to submit the YAML file's
-   changes to the distributed ledger.
+   updates to the distributed ledger.
 
    ```
-   root@gridd-beta:/# grid schema update product_schema.yaml
+   root@gridd-alpha:/# grid schema update product_schema_update.yaml
    ```
+
+1. Use the `show` subcommand to view the update.
+  ```
+  root@gridd-alpha:/# grid schema show gs1_product
+  ```
 
 ## Next Steps
 
-Once you have an a product schema, you can create products based on this schema.
-For more information, see
+Once you have an a product schema, you can create products based on this
+schema. For more information, see
 [Creating Products]({% link docs/0.3/creating_products.md %}).
