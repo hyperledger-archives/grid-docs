@@ -32,3 +32,15 @@ Grid Purchase Order aims to address these pain points by offering a common
 industry solution for sharing purchase order information between trade partners
 on Grid. Trade partners have the option to integrate this Grid component with
 existing systems of record.
+
+### Grid XSD Downloading Utility
+
+Grid now offers the ability to download and extracts schemas used to validate
+data. The `grid-download-xsd` command downloads GS1 XSD files used by various
+Grid features. The downloaded artifacts are first copied into a cache directory.
+They are then expanded into Grid's state directory. If the desired artifacts
+are in the cache directory, Grid will not attempt to re-download them, and
+instead prefer the cache contents.
+
+For more information, see the [`grid-download-xsd`]({%
+  link docs/0.3/references/cli/grid-download-xsd.1.md %}) command documentation.
