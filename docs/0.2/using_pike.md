@@ -174,7 +174,9 @@ root@gridd-alpha:/# grid role create \
 myorg product-admin \
 --description "product and schema admin permissions" \
 --active \
---permissions "schema::can-create-schema,product::can-create-product,product::can-update-product,product::can-delete-product"
+--permissions "schema::can-create-schema,schema::can-update-schema,
+product::can-create-product,product::can-update-product,
+product::can-delete-product"
 ```
 
 ### Set Agent Permissions
