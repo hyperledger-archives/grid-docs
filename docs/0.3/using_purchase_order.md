@@ -132,9 +132,9 @@ Set the following Grid environment variables to simplify entering the
 
 ### Create a "Buyer" Organization
 
-{:start="6"}
+{:start="7"}
 
-6.  The `MyOrganization` organization created using the procedure outlined in the
+7.  The `MyOrganization` organization created using the procedure outlined in the
 [Using Pike](/docs/0.3/using_pike.md) section will operate as the "buyer" for
 this scenario.
 
@@ -144,9 +144,9 @@ In order to submit transactions using other Grid features the submitting
 agent
 must possess an active role with the appropriate permissions.
 
-{:start="7"}
+{:start="8"}
 
-7. Verify that the agent's public key file exists in
+8. Verify that the agent's public key file exists in
 `~/.grid/keys/alpha-agent.pub`. If not, you must specify contents of the
 public key file in the next command.
 
@@ -176,9 +176,9 @@ workflow alias `po::partner`.
 
 ### Create a "Vendor" Organization
 
-{:start="10"}
+{:start="11"}
 
-10. In the `gridd-beta` command line, create an organization to act as a
+11. In the `gridd-beta` command line, create an organization to act as a
     vendor.
 
     ```
@@ -191,9 +191,9 @@ workflow alias `po::partner`.
 Create a role that inherits the purchase order permissions from the `po-admin`
 permission belonging to MyOrg
 
-{:start="11"}
+{:start="12"}
 
-11. Verify that the agent's public key file exists in
+12. Verify that the agent's public key file exists in
 `~/.grid/keys/beta-agent.pub`. If not, you must specify contents of the
 public key file in the next command.
 
@@ -207,7 +207,7 @@ public key file in the next command.
     --inherit-from "myorg.po-admin"
     ```
 
-1.  Add the new role to the admin agent for General Store
+1. Add the new role to the admin agent for General Store
 
     ```
     root@gridd-beta:/# grid agent update \
@@ -219,22 +219,26 @@ public key file in the next command.
 
 ### Download the Schemas
 
+{:start="15"}
 
-1.  Download the purchase order schemas so that the purchase order can be
-    validated
+15. Download the purchase order schemas so that the purchase order XML data
+    can be validated
 
     ```
     root@gridd-alpha:/# grid download-xsd
     ```
 
+    Follow this same procedure in a separate command line for the `gridd-beta`
+    container.
+
     For in-depth information on this utility, read [`grid download-xsd`]({%
     link docs/0.3/references/cli/grid-download-xsd.1.md %})
 
-### Create Purchase Orders
+### Create Purchase Order and Versions
 
 {:start=1}
 
-1.  Using the `gridd-beta` command line, propose a draft purchase order on behalf
+1. Using the `gridd-beta` command line, propose a draft purchase order on behalf
     of MyOrg. An example purchase order XML file can be downloaded with this link:
     <a href="/docs/0.3/purchase_order/test_po.xml" download="purchase_order.xml">
 Example PO XML</a>.
@@ -257,8 +261,8 @@ Example PO XML</a>.
     --wait 100
     ```
 
-1.  At the same time, MyOrganization is creating a version of their own. Using
-    the `gridd-alpha` command line, create a version for the purchase order
+1. At the same time, MyOrganization is creating a version of their own. Using
+   the `gridd-alpha` command line, create a version for the purchase order
 
     ```
     root@gridd-alpha:/# grid po version create \
@@ -270,7 +274,39 @@ Example PO XML</a>.
     --wait 100
     ```
 
-1.  After some deliberation, MyOrganization decides that the version created by
+### Display Purchase Order Information
+
+{:start="3"}
+
+3. List all existing purchase orders to verify that the new purchase
+   order has been added.
+
+   ```
+   root@gridd-alpha:/# grid po list
+   ```
+
+1. To see the versions for a specific purchase order, use
+   `grid po version list`
+
+   ```
+   root@gridd-alpha:/# grid po version list po_number:0123456
+   ```
+
+1. To see the details of a purchase order or a version, use `grid po show` or
+   `grid po version show`, respectively.
+
+   ```
+   root@gridd-alpha:/# grid po show po_number:0123456
+
+   root@gridd-alpha:/# grid po version show po_number:0123456 1
+   ```
+
+### Update Purchase Order
+
+{:start="6"}
+
+
+6.  After some deliberation, MyOrganization decides that the version created by
     General Store is more accurate. Using the `gridd-alpha` command line,
     accept the proposed purchase order
 
