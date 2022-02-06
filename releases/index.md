@@ -1,5 +1,5 @@
 ---
-redirect_to: /releases/0.1/
+redirect_to: /releases/0.3/
 ---
 
 <!--

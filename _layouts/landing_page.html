@@ -1,5 +1,5 @@
 <!--
-  Copyright 2018-2020 Cargill Incorporated
+  Copyright 2018-2022 Cargill Incorporated
   Licensed under Creative Commons Attribution 4.0 International License
   https://creativecommons.org/licenses/by/4.0/
 -->
@@ -12,6 +12,12 @@
     <body>
 {% include header.html %}
         <main id="landing-page-main" role="main" class="content-wrapper">
+            <div id="release-banner">
+              <div id="release-info">
+                Grid v0.3 has been released!
+              </div>
+              <a href="/releases/0.3/" type="button" class="btn">Learn More ➜</a>
+            </div>
             <div id="landing-page-hero-img" class="hero-img">
                 <h1>Hyperledger Grid</h1>
             </div>
@@ -109,6 +115,11 @@
                             <b>Schema</b> is a Grid smart contract that provides
                             a reusable, standard approach to defining, storing,
                             and consuming product properties.
+                        </li>
+                        <li>
+                            <b>Purchase Order</b> is a Grid smart contract that
+                            provides a way to share GS1-compatible purchase
+                            order data.
                         </li>
                     </ul>
                 </p>
