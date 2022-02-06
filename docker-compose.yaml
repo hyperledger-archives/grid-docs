@@ -1,5 +1,5 @@
 # Copyright (c) 2018-2019 Bitwise IO, Inc.
-# Copyright 2021 Cargill Incorporated
+# Copyright 2022 Cargill Incorporated
 # Licensed under Creative Commons Attribution 4.0 International License
 # https://creativecommons.org/licenses/by/4.0/
 version: "2.1"
@@ -70,6 +70,22 @@ services:
       bash -c "
         cd /project/docs/0.3/references/api
         redoc-cli serve openapi.yaml -h 0.0.0.0 -w -p 4003
+      "
+
+  grid-docs-redoc-0-4:
+    container_name: grid-docs-redoc-0-4
+    image: grid-docs-redoc
+    build:
+      dockerfile: docker/grid-docs-redoc
+      context: .
+    ports:
+      - 4004:4004
+    volumes:
+      - .:/project
+    entrypoint: |
+      bash -c "
+        cd /project/docs/0.4/references/api
+        redoc-cli serve openapi.yaml -h 0.0.0.0 -w -p 4004
       "
 
   grid-docs-future-rest-api-redoc:
@@ -177,6 +193,33 @@ services:
     build:
       context: .
       dockerfile: docker/schemaspy/0-3/sqlite/Dockerfile
+    depends_on:
+      - db
+    volumes:
+      - ./database/sqlite:/output
+
+  grid-docs-schemaspy-postgres-0-4:
+    container_name: grid-docs-schemaspy-postgres-0-4
+    image: grid-docs-schemaspy-postgres-0-4
+    build:
+      context: .
+      dockerfile: docker/schemaspy/0-4/postgres/Dockerfile
+    environment:
+      HOST: db
+      PORT: 5432
+      DATABASE: grid
+      USER: grid
+    depends_on:
+      - db
+    volumes:
+      - ./database/postgres:/output
+
+  grid-docs-schemaspy-sqlite-0-4:
+    container_name: grid-docs-schemaspy-sqlite-0-4
+    image: grid-docs-schemaspy-sqlite-0-4
+    build:
+      context: .
+      dockerfile: docker/schemaspy/0-4/sqlite/Dockerfile
     depends_on:
       - db
     volumes:
