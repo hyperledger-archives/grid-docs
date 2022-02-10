@@ -12,7 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM jekyll/jekyll:3.8
+FROM ruby
+
+RUN gem install jekyll -- --use-system-libaries
 
 RUN gem install \
     bundler \
@@ -23,3 +25,13 @@ RUN gem install \
     jekyll-seo-tag \
     jekyll-target-blank \
     jekyll-titles-from-headings
+
+RUN gem install webrick
+
+ENV JEKYLL_ENV=development
+
+CMD ["jekyll", "--help"]
+WORKDIR /srv/jekyll
+VOLUME  /srv/jekyll
+EXPOSE 35729
+EXPOSE 4000
