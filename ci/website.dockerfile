@@ -60,10 +60,10 @@ RUN git rev-parse HEAD > /commit-hash
 
 FROM httpd:2.4
 
-COPY --from=redoc /index_0.1.html /usr/local/apache2/htdocs/docs/0.1/references/api/index.html
-COPY --from=redoc /index_0.2.html /usr/local/apache2/htdocs/docs/0.2/references/api/index.html
-COPY --from=redoc /index_0.3.html /usr/local/apache2/htdocs/docs/0.3/references/api/index.html
-COPY --from=redoc /index_0.4.html /usr/local/apache2/htdocs/docs/0.4/references/api/index.html
+COPY --from=redoc /index_0.1.html /usr/local/apache2/htdocs/docs/0.1/api/index.html
+COPY --from=redoc /index_0.2.html /usr/local/apache2/htdocs/docs/0.2/api/index.html
+COPY --from=redoc /index_0.3.html /usr/local/apache2/htdocs/docs/0.3/api/index.html
+COPY --from=redoc /index_0.4.html /usr/local/apache2/htdocs/docs/0.4/api/index.html
 COPY --from=redoc /rest_api_planning.html /usr/local/apache2/htdocs/community/planning/rest_api/api/index.html
 COPY --from=jekyll /tmp/ /usr/local/apache2/htdocs/
 COPY ./database/postgres/0.1 /usr/local/apache2/htdocs/docs/0.1/database/postgres
