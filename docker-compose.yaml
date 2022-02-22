@@ -21,7 +21,7 @@ services:
     entrypoint:  |
       bash -c "
         rm -rf  _site
-        jekyll serve --config ./_config.yml
+        jekyll serve -H 0.0.0.0 --config ./_config.yml
       "
 
   grid-docs-redoc-0-1:
