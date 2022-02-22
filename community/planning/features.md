@@ -18,6 +18,7 @@ community meeting.
 | Feature | Description |
 | ------- | ----------- |
 | [Location Sapling]({% link community/planning/location_sapling.md %}) | A front-end for Grid Location functionality |
+| [Batch Submission Queuer Strategies]({% link community/planning/batch_queuer_strategies.md %}) | A set of algorithms for determining batch submission order |
 | [Batch Submitter]({% link community/planning/batch_submitter.md %}) | A daemon for submitting batches |
 | [High & Low-level Transaction REST API]({% link
 community/planning/high_low_level_transaction_rest_api.md %}) | An API for submitting higher-level JSON transactions |
