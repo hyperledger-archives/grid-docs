@@ -1356,8 +1356,8 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/PostPurchaseOrderVersion"
-        description: A JSON list of Purchase Order Versions
+              $ref: "#/components/schemas/PurchaseOrderVersionPayload"
+        description: A JSON Purchase Order Version
         required: true
       responses:
         "202":
@@ -2089,7 +2089,7 @@ components:
         data:
           type: array
           items:
-            $ref: "#/components/schemas/PurchaseOrderVersion"
+            $ref: "#/components/schemas/PurchaseOrderVersionPayload"
     PurchaseOrderVersion:
       properties:
         version_id:
@@ -2118,6 +2118,28 @@ components:
             $ref: "#/components/schemas/PurchaseOrderVersion"
         paging:
           $ref: "#/components/schemas/Paging"
+    PurchaseOrderVersionPayload:
+      properties:
+        version_id:
+          type: string
+          example: 1
+        workflow_state:
+          type: string
+          example: create
+        is_draft:
+          type: boolean
+          example: true
+        current_revision_number:
+          type: number
+          example: 3
+        revisions:
+          type: array
+          items:
+            type: number
+        service_id:
+          $ref: "#/components/schemas/ServiceID"
+        target:
+          $ref: "#/components/schemas/Target"
     PurchaseOrderRevision:
       properties:
         revision_number:
