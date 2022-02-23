@@ -600,7 +600,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Agent"
+              $ref: "#/components/schemas/AgentPayload"
         description: A JSON Agent
         required: true
       responses:
@@ -1703,7 +1703,7 @@ components:
         data:
           type: array
           items:
-            $ref: "#/components/schemas/Agent"
+            $ref: "#/components/schemas/AgentPayload"
     AgentList:
       properties:
         data:
@@ -1735,6 +1735,31 @@ components:
           $ref: "#/components/schemas/ServiceID"
         last_updated:
           $ref: "#/components/schemas/Timestamp"
+    AgentPayload:
+      properties:
+        public_key:
+          type: string
+          example: 038bba5708acc262464c9fe30d3de9e905a9a5fa30cedd151dd9cd09ea26d46d00
+        org_id:
+          type: string
+          example: 013600
+        active:
+          type: boolean
+          example: "true"
+        roles:
+          type: array
+          items:
+            $ref: "#/components/schemas/Role"
+        metadata:
+          type: array
+          items:
+            $ref: "#/components/schemas/Metadata"
+        service_id:
+          $ref: "#/components/schemas/ServiceID"
+        last_updated:
+          $ref: "#/components/schemas/Timestamp"
+        target:
+          $ref: "#/components/schemas/Target"
     PostOrganizations:
       properties:
         data:
@@ -2085,8 +2110,6 @@ components:
             type: number
         service_id:
           $ref: "#/components/schemas/ServiceID"
-        target:
-          $ref: "#/components/schemas/Target"
     PurchaseOrderVersionList:
       properties:
         data:
