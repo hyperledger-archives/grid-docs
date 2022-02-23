@@ -1765,13 +1765,13 @@ components:
         data:
           type: array
           items:
-            $ref: "#/components/schemas/Organization"
+            $ref: "#/components/schemas/CreateOrganization"
     OrganizationList:
       properties:
         data:
           type: array
           items:
-            $ref: "#/components/schemas/CreateOrganization"
+            $ref: "#/components/schemas/Organization"
         paging:
           $ref: "#/components/schemas/Paging"
     Organization:
