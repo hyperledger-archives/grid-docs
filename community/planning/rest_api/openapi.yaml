@@ -1678,6 +1678,8 @@ components:
             $ref: "#/components/schemas/PropertyValue"
         service_id:
           $ref: "#/components/schemas/ServiceID"
+        target:
+          $ref: "#/components/schemas/Target"
     UpdateLocation:
       type: object
       properties:
@@ -1692,6 +1694,8 @@ components:
             $ref: "#/components/schemas/PropertyValue"
         service_id:
           $ref: "#/components/schemas/ServiceID"
+        target:
+          $ref: "#/components/schemas/Target"
 
     # Pike models
     PostAgents:
@@ -1794,6 +1798,8 @@ components:
           $ref: "#/components/schemas/ServiceID"
         last_updated:
           $ref: "#/components/schemas/Timestamp"
+        target:
+          $ref: "#/components/schemas/Target"
     UpdateOrganization:
       type: object
       properties:
@@ -1821,6 +1827,8 @@ components:
           $ref: "#/components/schemas/ServiceID"
         last_updated:
           $ref: "#/components/schemas/Timestamp"
+        target:
+          $ref: "#/components/schemas/Target"
     PostRole:
       properties:
         data:
@@ -1864,6 +1872,8 @@ components:
             example: beta.Tank
         last_updated:
           $ref: "#/components/schemas/Timestamp"
+        target:
+          $ref: "#/components/schemas/Target"
 
     # Product models
     PostProducts:
@@ -1918,6 +1928,8 @@ components:
           $ref: "#/components/schemas/ServiceID"
         last_updated:
           $ref: "#/components/schemas/Timestamp"
+        target:
+          $ref: "#/components/schemas/Target"
     UpdateProduct:
       type: object
       properties:
@@ -1934,6 +1946,8 @@ components:
           $ref: "#/components/schemas/ServiceID"
         last_updated:
           $ref: "#/components/schemas/Timestamp"
+        target:
+          $ref: "#/components/schemas/Target"
 
     # Purchase Order models
     PostPurchaseOrder:
@@ -2007,6 +2021,8 @@ components:
           example: collaborative::v1
         service_id:
           $ref: "#/components/schemas/ServiceID"
+        target:
+          $ref: "#/components/schemas/Target"
     UpdatePurchaseOrder:
       type: object
       properties:
@@ -2033,6 +2049,8 @@ components:
             example: "type:id"
         service_id:
           $ref: "#/components/schemas/ServiceID"
+        target:
+          $ref: "#/components/schemas/Target"
     PurchaseOrderList:
       properties:
         data:
@@ -2067,6 +2085,8 @@ components:
             type: number
         service_id:
           $ref: "#/components/schemas/ServiceID"
+        target:
+          $ref: "#/components/schemas/Target"
     PurchaseOrderVersionList:
       properties:
         data:
@@ -2152,6 +2172,8 @@ components:
           $ref: "#/components/schemas/ServiceID"
         last_updated:
           $ref: "#/components/schemas/Timestamp"
+        target:
+          $ref: "#/components/schemas/Target"
     UpdateSchema:
       properties:
         name:
@@ -2168,6 +2190,8 @@ components:
           $ref: "#/components/schemas/ServiceID"
         last_updated:
           $ref: "#/components/schemas/Timestamp"
+        target:
+          $ref: "#/components/schemas/Target"
     PropertyDefinition:
       properties:
         name:
@@ -2315,6 +2339,11 @@ components:
       enum:
         - UNSET_NAMESPACE
         - GS1
+    Target:
+      type: string
+      description: Endpoint to handle a payload
+      example: "POST /organizations"
+      required: false
 
   parameters:
     batch_id:
