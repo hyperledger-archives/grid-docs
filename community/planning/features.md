@@ -24,4 +24,5 @@ community meeting.
 | [High & Low-level Transaction REST API]({% link
 community/planning/high_low_level_transaction_rest_api.md %}) | An API for submitting higher-level JSON transactions |
 | [Product Sapling]({% link community/planning/product_sapling.md %}) | A front-end for Grid Product functionality |
+| [Queuer - One-round serial]({% link community/planning/queuer_strat_one_round_serial.md %}) | A one-round serial queuing strategy for submitting batches to the DLT |
 | [Future REST API]({% link community/planning/rest_api/index.md %}) | A proposed future REST API for transacting with Grid |
