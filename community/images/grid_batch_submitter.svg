@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xl="http://www.w3.org/1999/xlink" viewBox="47 114 1260 662" width="1260" height="662">
+  <defs>
+    <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="FilledArrow_Marker" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-1 -4 10 8" markerWidth="10" markerHeight="8" color="black">
+      <g>
+        <path d="M 8 0 L 0 -3 L 0 3 Z" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+      </g>
+    </marker>
+  </defs>
+  <g id="Canvas_1" fill="none" stroke="none" fill-opacity="1" stroke-opacity="1" stroke-dasharray="none">
+    <title>Canvas 1</title>
+    <rect fill="white" x="47" y="114" width="1260" height="662"/>
+    <g id="Canvas_1_Layer_1">
+      <title>Layer 1</title>
+      <g id="Graphic_38">
+        <rect x="277" y="116" width="798.5" height="658" fill="#c0ffc0"/>
+        <rect x="277" y="116" width="798.5" height="658" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+        <text transform="translate(282 121)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" fill="black" x="347.146" y="16">SUBMITTER</tspan>
+        </text>
+      </g>
+      <g id="Graphic_39">
+        <rect x="522" y="150.5" width="536" height="387" fill="#ffc0ff"/>
+        <rect x="522" y="150.5" width="536" height="387" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+        <text transform="translate(527 155.5)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" fill="black" x="195.592" y="16">ASYNC RUNTIME</tspan>
+        </text>
+      </g>
+      <g id="Graphic_2">
+        <rect x="290.5" y="187.5" width="215.5" height="325.5" fill="#c0ffff"/>
+        <rect x="290.5" y="187.5" width="215.5" height="325.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(295.5 192.5)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" fill="black" x="48.974" y="15">MAIN THREAD</tspan>
+        </text>
+      </g>
+      <g id="Graphic_3">
+        <rect x="536.5" y="187.5" width="215.5" height="230" fill="#c0c0ff"/>
+        <rect x="536.5" y="187.5" width="215.5" height="230" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(541.5 192.5)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" fill="black" x="30.654" y="15">SPAWNER THREAD</tspan>
+        </text>
+      </g>
+      <g id="Graphic_4">
+        <rect x="826.25" y="187.5" width="215.5" height="325.5" fill="#ffffc0"/>
+        <rect x="826.25" y="187.5" width="215.5" height="325.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(831.25 192.5)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" fill="black" x="43.782" y="15">TASK HANDLER</tspan>
+        </text>
+      </g>
+      <g id="Graphic_5">
+        <rect x="1090.5" y="187.5" width="215.5" height="574" fill="#ffc0c0"/>
+        <rect x="1090.5" y="187.5" width="215.5" height="574" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(1095.5 192.5)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" fill="black" x="88.814" y="15">DLT</tspan>
+        </text>
+      </g>
+      <g id="Graphic_6">
+        <rect x="47.5" y="187.5" width="215.5" height="271" fill="#ffc0c0"/>
+        <rect x="47.5" y="187.5" width="215.5" height="271" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(52.5 192.5)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" fill="black" x="69.862" y="15">QUEUER</tspan>
+        </text>
+      </g>
+      <g id="Graphic_7">
+        <rect x="47.5" y="490.5" width="215.5" height="271" fill="#ffc0c0"/>
+        <rect x="47.5" y="490.5" width="215.5" height="271" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(52.5 495.5)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" fill="black" x="20.078" y="15">DATABASE VIA STORE</tspan>
+        </text>
+      </g>
+      <g id="Graphic_11">
+        <title>NewBatch</title>
+        <rect x="102.25" y="240" width="106" height="27" fill="white"/>
+        <rect x="102.25" y="240" width="106" height="27" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(107.25 244.5)" fill="black">
+          <tspan font-family="Courier New" font-size="16" fill="black" x="9.59375" y="13">NewBatch</tspan>
+        </text>
+      </g>
+      <g id="Graphic_14">
+        <title>NewTask</title>
+        <rect x="325.5" y="240" width="145.5" height="99.5" fill="#ffffc0"/>
+        <rect x="325.5" y="240" width="145.5" height="99.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(330.5 245)" fill="black">
+          <tspan font-family="Courier New" font-size="16" fill="black" x="34.14453" y="13">NewTask</tspan>
+        </text>
+      </g>
+      <g id="Graphic_13">
+        <title>NewBatch</title>
+        <rect x="345.25" y="276.25" width="106" height="27" fill="white"/>
+        <rect x="345.25" y="276.25" width="106" height="27" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(350.25 280.75)" fill="black">
+          <tspan font-family="Courier New" font-size="16" fill="black" x="9.59375" y="13">NewBatch</tspan>
+        </text>
+      </g>
+      <g id="Graphic_12">
+        <title>Sender</title>
+        <rect x="345.25" y="306.5" width="106" height="27" fill="white"/>
+        <rect x="345.25" y="306.5" width="106" height="27" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(350.25 311)" fill="black">
+          <tspan font-family="Courier New" font-size="16" fill="black" x="19.195312" y="13">Sender</tspan>
+        </text>
+      </g>
+      <g id="Graphic_17">
+        <title>NewTask</title>
+        <rect x="571.5" y="240" width="145.5" height="99.5" fill="#ffffc0"/>
+        <rect x="571.5" y="240" width="145.5" height="99.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(576.5 245)" fill="black">
+          <tspan font-family="Courier New" font-size="16" fill="black" x="34.14453" y="13">NewTask</tspan>
+        </text>
+      </g>
+      <g id="Graphic_16">
+        <title>NewBatch</title>
+        <rect x="591.25" y="276.25" width="106" height="27" fill="white"/>
+        <rect x="591.25" y="276.25" width="106" height="27" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(596.25 280.75)" fill="black">
+          <tspan font-family="Courier New" font-size="16" fill="black" x="9.59375" y="13">NewBatch</tspan>
+        </text>
+      </g>
+      <g id="Graphic_47">
+        <rect x="290.5" y="532.375" width="215.5" height="229.125" fill="#c0ffff"/>
+        <rect x="290.5" y="532.375" width="215.5" height="229.125" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(295.5 537.375)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" fill="black" x="31.646" y="15">LISTENER THREAD</tspan>
+        </text>
+      </g>
+      <g id="Graphic_15">
+        <title>Sender</title>
+        <rect x="591.25" y="306.5" width="106" height="27" fill="white"/>
+        <rect x="591.25" y="306.5" width="106" height="27" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(596.25 311)" fill="black">
+          <tspan font-family="Courier New" font-size="16" fill="black" x="19.195312" y="13">Sender</tspan>
+        </text>
+      </g>
+      <g id="Graphic_19">
+        <title>NewBatch</title>
+        <rect x="881" y="276.25" width="106" height="27" fill="white"/>
+        <rect x="881" y="276.25" width="106" height="27" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(886 280.75)" fill="black">
+          <tspan font-family="Courier New" font-size="16" fill="black" x="9.59375" y="13">NewBatch</tspan>
+        </text>
+      </g>
+      <g id="Graphic_18">
+        <title>Sender</title>
+        <rect x="881" y="330.5" width="106" height="27" fill="white"/>
+        <rect x="881" y="330.5" width="106" height="27" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(886 335)" fill="black">
+          <tspan font-family="Courier New" font-size="16" fill="black" x="19.195312" y="13">Sender</tspan>
+        </text>
+      </g>
+      <g id="Line_21">
+        <path d="M 155.25 267 L 155.25 289.75 L 335.35 289.75" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_22">
+        <line x1="471" y1="289.75" x2="561.6" y2="289.75" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_23">
+        <path d="M 717 289.75 L 771.625 289.75 L 771.625 350.25 L 816.35 350.25" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_24">
+        <rect x="1118.5" y="254" width="159.5" height="71.5" fill="white"/>
+        <rect x="1118.5" y="254" width="159.5" height="71.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(1123.5 280.526)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" fill="black" x="20.222" y="15">POST /batches</tspan>
+        </text>
+      </g>
+      <g id="Graphic_26">
+        <title>NewBatch</title>
+        <rect x="1105.25" y="465" width="186" height="27" fill="white"/>
+        <rect x="1105.25" y="465" width="186" height="27" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(1110.25 469.5)" fill="black">
+          <tspan font-family="Courier New" font-size="16" fill="black" x="1.5859375" y="13">SubmissionResponse</tspan>
+        </text>
+      </g>
+      <g id="Line_27">
+        <line x1="987" y1="289.75" x2="1108.6" y2="289.75" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_28">
+        <line x1="1198.25" y1="325.5" x2="1198.25" y2="455.1" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_29">
+        <title>NewBatch</title>
+        <rect x="841" y="465" width="186" height="27" fill="white"/>
+        <rect x="841" y="465" width="186" height="27" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(846 469.5)" fill="black">
+          <tspan font-family="Courier New" font-size="16" fill="black" x="1.5859375" y="13">SubmissionResponse</tspan>
+        </text>
+      </g>
+      <g id="Line_30">
+        <line x1="1105.25" y1="478.5" x2="1036.9" y2="478.5" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_31">
+        <line x1="934" y1="357.5" x2="934" y2="455.1" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_32">
+        <title>NewBatch</title>
+        <rect x="305.25" y="637.5" width="186" height="27" fill="white"/>
+        <rect x="305.25" y="637.5" width="186" height="27" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(310.25 642)" fill="black">
+          <tspan font-family="Courier New" font-size="16" fill="black" x="1.5859375" y="13">SubmissionResponse</tspan>
+        </text>
+      </g>
+      <g id="Line_33">
+        <path d="M 934 492 L 934 651 L 501.15 651" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_34">
+        <rect x="744.1765" y="636" width="92.20138" height="30" fill="white"/>
+        <text transform="translate(749.1765 641)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" fill="black" x="27711167e-20" y="15">via </tspan>
+          <tspan font-family="Courier New" font-size="16" fill="black" y="15">Sender</tspan>
+        </text>
+      </g>
+      <g id="Graphic_35">
+        <title>NewBatch</title>
+        <rect x="303.25" y="700.25" width="190" height="27" fill="white"/>
+        <rect x="303.25" y="700.25" width="190" height="27" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(308.25 705.75)" fill="black">
+          <tspan font-family="Courier New" font-size="14" fill="black" x="1.7856445" y="12">update_batch_status()</tspan>
+        </text>
+      </g>
+      <g id="Line_36">
+        <line x1="398.25" y1="664.5" x2="398.25" y2="690.35" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_40">
+        <rect x="75.5" y="698.75" width="159.5" height="30" fill="white"/>
+        <rect x="75.5" y="698.75" width="159.5" height="30" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(80.5 704.526)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" fill="black" x="29.846" y="15">state update</tspan>
+        </text>
+      </g>
+      <g id="Line_41">
+        <line x1="303.25" y1="713.75" x2="244.9" y2="713.75" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_44">
+        <title>Sender</title>
+        <rect x="324.25" y="422.4375" width="148" height="27" fill="white"/>
+        <rect x="324.25" y="422.4375" width="148" height="27" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(329.25 426.9375)" fill="black">
+          <tspan font-family="Courier New" font-size="16" fill="black" x="1.7890625" y="13">channel_sender</tspan>
+        </text>
+      </g>
+      <g id="Line_45">
+        <line x1="398.25" y1="422.4375" x2="398.25" y2="343.4" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_46">
+        <rect x="338.8133" y="363.2312" width="118.87337" height="30" fill="white"/>
+        <text transform="translate(343.8133 368.2312)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" fill="black" x="0" y="15">clones </tspan>
+          <tspan font-family="Courier New" font-size="16" fill="black" y="15">Sender</tspan>
+        </text>
+      </g>
+      <g id="Graphic_48">
+        <title>Sender</title>
+        <rect x="314.75" y="574.75" width="167" height="27" fill="white"/>
+        <rect x="314.75" y="574.75" width="167" height="27" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(319.75 579.25)" fill="black">
+          <tspan font-family="Courier New" font-size="16" fill="black" x="1.6875" y="13">channel_receiver</tspan>
+        </text>
+      </g>
+    </g>
+  </g>
+</svg>
