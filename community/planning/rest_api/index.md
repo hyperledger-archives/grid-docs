@@ -31,3 +31,5 @@ implemented as project requirements evolve.
   this endpoint in line with other endpoints in this API but consideration must
   be given to the impact this will have on the corresponding endpoints in
   Sawtooth and Splinter as well as backwards-compatibility concerns.
+  - [Rest API Backwards Compatibility]({% link
+    community/planning/rest_api/backwards_compatibility.md %})

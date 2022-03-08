@@ -26,3 +26,4 @@ community/planning/high_low_level_transaction_rest_api.md %}) | An API for submi
 | [Product Sapling]({% link community/planning/product_sapling.md %}) | A front-end for Grid Product functionality |
 | [Future REST API]({% link community/planning/rest_api/index.md %}) | A proposed future REST API for transacting with Grid |
 | [DLT Polling Monitor]({% link community/planning/dlt_polling_monitor.md %}) | A proposed future monitor for syncing batch statuses |
+| [Rest API Backwards Compatibility]({% link community/planning/rest_api/backwards_compatibility.md %}) | A proposed backwards compatibility plan for testing the REST API |
