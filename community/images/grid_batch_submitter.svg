@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xl="http://www.w3.org/1999/xlink" viewBox="47 114 1260 662" width="1260" height="662">
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="47 114 1260 662" width="1260" height="662">
   <defs>
     <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="FilledArrow_Marker" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-1 -4 10 8" markerWidth="10" markerHeight="8" color="black">
       <g>
@@ -8,7 +8,7 @@
       </g>
     </marker>
   </defs>
-  <g id="Canvas_1" fill="none" stroke="none" fill-opacity="1" stroke-opacity="1" stroke-dasharray="none">
+  <g id="Canvas_1" fill-opacity="1" stroke-opacity="1" stroke-dasharray="none" stroke="none" fill="none">
     <title>Canvas 1</title>
     <rect fill="white" x="47" y="114" width="1260" height="662"/>
     <g id="Canvas_1_Layer_1">
@@ -31,7 +31,7 @@
         <rect x="290.5" y="187.5" width="215.5" height="325.5" fill="#c0ffff"/>
         <rect x="290.5" y="187.5" width="215.5" height="325.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
         <text transform="translate(295.5 192.5)" fill="black">
-          <tspan font-family="Helvetica Neue" font-size="16" fill="black" x="48.974" y="15">MAIN THREAD</tspan>
+          <tspan font-family="Helvetica Neue" font-size="16" fill="black" x="38.454" y="15">LEADER THREAD</tspan>
         </text>
       </g>
       <g id="Graphic_3">
