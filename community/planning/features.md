@@ -28,3 +28,4 @@ community/planning/high_low_level_transaction_rest_api.md %}) | An API for submi
 | [DLT Polling Monitor]({% link community/planning/dlt_polling_monitor.md %}) | A proposed future polling monitor for syncing batch statuses |
 | [DLT Event Monitor]({% link community/planning/dlt_event_monitor.md %}) | A proposed future event monitor for syncing batch statuses |
 | [Rest API Backwards Compatibility]({% link community/planning/rest_api/backwards_compatibility.md %}) | A proposed backwards compatibility plan for testing the REST API |
+| [Griddle Proxy]({% link community/planning/griddle_proxy.md %}) | Proposed proxying functionality for Griddle |
