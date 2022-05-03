@@ -22,25 +22,33 @@ This is useful for two primary purposes:
 The DLT polling monitor uses the following inputs:
 
  - `subscribe_stream` - Normalized stream sourced from Splinter or Sawtooth
+ - `rate_limit` - Maximum rate at which polls can occur, as a Duration
 
 And it modifies with the following:
 
- - `update_batch_statuses` - Updates the batch statuses in DB. In the future
-   this may also perform other actions based on the status, such as a webhook
-   request.
+ - `poll_batch_statuses` - Make a request to get the latest batch statuses.
+   This will likely be handled through the [DLT Polling
+   Monitor](dlt_polling_monitor.md).
 
 ## Strategy
 
 The DLT event monitor connects to the `subscribe_stream` via websocket. When a
-known transaction id is received, we correlate that transaction id to the known
-associated batch id, and `update_batch_statuses` as they are committed.
+transaction is received, we can be reasonably certain that a batch has
+completed. We then notify the DLT Polling monitor via `poll_batch_statuses`.
+The DLT polling monitor then has the opportunity to immediately poll. Events
+are rate limited at the `rate_limit`.
 
 ### Known limitations
 
-This solution does not provide a method to determine whether a transaction has
-failed in real time. The `subscribe_stream` will only send events that are
-successful. Error events will need to come in via the [DLT Polling
+This solution does not provide a method to determine whether a specific
+transaction has occurred or failed in real time. The `subscribe_stream` will
+only send events that are successful, and not send any accompanying batch
+information. This info will need to come in via the [DLT Polling
 Monitor](dlt_polling_monitor.md).
+
+Ideally the DLT streams for Sawtooth and Splinter would be expanded to a more
+generalized stream that includes not only raw ledger updates, but batch
+execution information.
 
 ## Current websocket status format
 
