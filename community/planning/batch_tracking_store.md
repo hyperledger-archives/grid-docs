@@ -31,8 +31,8 @@ pub trait BatchTrackingStore {
     fn get_batch_status(
         &self,
         id: &str,
-        service_id: Option<&str>,
-    ) -> Result<BatchStatus, BatchTrackingStoreError>;
+        service_id: &str,
+    ) -> Result<Option<BatchStatus>, BatchTrackingStoreError>;
 
     /// Updates the status of a batch in the underlying storage
     ///
@@ -42,14 +42,16 @@ pub trait BatchTrackingStore {
     ///    update
     ///  * `service_id` - The service ID
     ///  * `status` - The new status for the batch
-    ///  * `errors` - Any errors encountered while attempting to submit the
-    ///    batch
+    ///  * `transaction_receipts` - A list of transaction receipts for the
+    ///    transactions in the batch
+    ///  * `submission_error` - A submission error for the batch if it exists
     fn update_batch_status(
         &self,
-        id: String,
-        service_id: Option<&str>,
-        status: BatchStatus,
-        errors: Vec<SubmissionError>,
+        id: &str,
+        service_id: &str,
+        status: Option<BatchStatus>,
+        transaction_receipts: Vec<TransactionReceipt>,
+        submission_error: Option<SubmissionError>,
     ) -> Result<(), BatchTrackingStoreError>;
 
     /// Adds batches to the underlying storage
@@ -65,10 +67,17 @@ pub trait BatchTrackingStore {
     ///
     ///  * `batch_id` - The ID or data change ID of the batch to update
     ///  * `service_id` - The service ID
+    ///  * `transaction_receipts` - A list of transaction receipts for the
+    ///    transactions in the batch
+    ///  * `dlt_status` - The new status for the batch
+    ///  * `submission_error` - A submission error for the batch if it exists
     fn change_batch_to_submitted(
         &self,
         batch_id: &str,
-        service_id: Option<&str>,
+        service_id: &str,
+        transaction_receipts: Vec<TransactionReceipt>,
+        dlt_status: Option<&str>,
+        submission_error: Option<SubmissionError>,
     ) -> Result<(), BatchTrackingStoreError>;
 
     /// Gets a batch from the underlying storage
@@ -76,10 +85,11 @@ pub trait BatchTrackingStore {
     /// # Arguments
     ///
     ///  * `id` - The ID or data change ID of the batch to fetch
+    ///  * `service_id` - The service ID
     fn get_batch(
         &self,
         id: &str,
-        service_id: Option<&str>,
+        service_id: &str,
     ) -> Result<Option<TrackingBatch>, BatchTrackingStoreError>;
 
     /// Lists batches with a given status from the underlying storage
@@ -97,10 +107,7 @@ pub trait BatchTrackingStore {
     /// # Arguments
     ///
     ///  * `submitted_by` - The timestamp for which to delete records submitted before
-    fn clean_stale_records(
-        &self,
-        submitted_by: &str,
-    ) -> Result<TrackingBatchList, BatchTrackingStoreError>;
+    fn clean_stale_records(&self, submitted_by: i64) -> Result<(), BatchTrackingStoreError>;
 
     /// Gets batches that have not yet been submitted from the underlying storage
     fn get_unsubmitted_batches(&self) -> Result<TrackingBatchList, BatchTrackingStoreError>;
@@ -122,15 +129,32 @@ data.
 pub enum BatchStatus {
     Unknown,
     Pending,
+    Delayed,
     Invalid(Vec<InvalidTransaction>),
     Valid(Vec<ValidTransaction>),
     Committed(Vec<ValidTransaction>),
 }
 
+// This is used for matching when it is not useful to instantiate a list of
+// transactions
+pub enum BatchStatusName {
+    Unknown,
+    Pending,
+    Delayed,
+    Invalid,
+    Valid,
+    Committed,
+}
+
 pub struct InvalidTransaction {
     transaction_id: String,
-    error_message: String,
-    error_data: Vec<u8>,
+    // These are for errors from the DLT itself
+    error_message: Option<String>,
+    error_data: Option<Vec<u8>>,
+    // These are for other errors, such as a 404 when attempting to submit
+    // to the DLT
+    external_error_status: Option<String>,
+    external_error_message: Option<String>,
 }
 
 pub struct ValidTransaction {
@@ -143,7 +167,7 @@ pub struct SubmissionError {
 }
 
 pub struct TrackingBatch {
-    service_id: String,
+    service_id: Option<String>,
     batch_header: String,
     data_change_id: Option<String>,
     signer_public_key: String,
@@ -163,6 +187,7 @@ pub struct TrackingBatchList {
 pub struct TrackingTransaction {
     family_name: String,
     family_version: String,
+    transaction_header: String,
     payload: Vec<u8>,
     signer_public_key: String,
     service_id: String,
@@ -217,68 +242,68 @@ CREATE TABLE batches
   (
      service_id        VARCHAR(17) NOT NULL,
      batch_id          VARCHAR(128) NOT NULL,
-     data_change_id    VARCHAR(256),
+     data_change_id    VARCHAR(256) UNIQUE,
      signer_public_key VARCHAR(70) NOT NULL,
      trace             BOOLEAN NOT NULL,
      serialized_batch  BYTEA NOT NULL,
      submitted         BOOLEAN NOT NULL,
-     created_at        TIMESTAMP NOT NULL,
+     created_at        INTEGER NOT NULL DEFAULT utc_timestamp(),
      PRIMARY KEY (service_id, batch_id)
   );
 
 CREATE TABLE transactions
   (
-     service_id        VARCHAR(17) NOT NULL,
-     transaction_id    VARCHAR(128) NOT NULL,
-     batch_id          VARCHAR(128) NOT NULL,
-     batch_service_id  VARCHAR(17) NOT NULL,
-     payload           BYTEA NOT NULL,
-     family_name       VARCHAR(128) NOT NULL,
-     family_version    VARCHAR(16) NOT NULL,
-     signer_public_key VARCHAR(70) NOT NULL,
-     FOREIGN KEY (batch_service_id, batch_id) REFERENCES batches(service_id, batch_id) ON DELETE CASCADE,
-     PRIMARY KEY (service_id, transaction_id)
+     service_id         VARCHAR(17) NOT NULL,
+     transaction_id     VARCHAR(128) NOT NULL,
+     batch_id           VARCHAR(128) NOT NULL,
+     payload            BYTEA NOT NULL,
+     family_name        VARCHAR(128) NOT NULL,
+     family_version     VARCHAR(16) NOT NULL,
+     signer_public_key  VARCHAR(70) NOT NULL,
+     PRIMARY KEY (service_id, transaction_id),
+     FOREIGN KEY (service_id, batch_id) REFERENCES batches(service_id, batch_id) ON DELETE CASCADE
   );
 
 CREATE TABLE transaction_receipts
   (
      service_id             VARCHAR(17) NOT NULL,
-     transaction_id         VARCHAR(70) NOT NULL,
+     transaction_id         VARCHAR(128) NOT NULL,
      result_valid           BOOLEAN NOT NULL,
      error_message          TEXT,
      error_data             BYTEA,
      serialized_receipt     BYTEA NOT NULL,
      external_status        VARCHAR(16),
      external_error_message TEXT,
-     PRIMARY KEY (service_id, transaction_id)
+     FOREIGN KEY (service_id, transaction_id) REFERENCES transactions(service_id, transaction_id) ON DELETE CASCADE
   );
 
-CREATE TABLE submissions
+  CREATE TABLE submissions
   (
      service_id            VARCHAR(17) NOT NULL,
      batch_id              VARCHAR(128) NOT NULL,
-     batch_service_id      VARCHAR(17) NOT NULL,
-     last_checked          TIMESTAMP,
-     times_checked         VARCHAR(32),
+     last_checked          INTEGER NOT NULL DEFAULT utc_timestamp(),
+     times_checked         INTEGER NOT NULL DEFAULT 1,
      error_type            VARCHAR(64),
      error_message         TEXT,
      -- Keep track of when created and updated so we don't keep too many useless records
-     created_at            TIMESTAMP NOT NULL,
-     updated_at            TIMESTAMP NOT NULL,
-     FOREIGN KEY (batch_service_id, batch_id) REFERENCES batches(service_id, batch_id) ON DELETE CASCADE,
-     PRIMARY KEY (service_id, batch_id)
+     -- These are updated on `UPDATE` using a trigger
+     created_at            INTEGER NOT NULL DEFAULT utc_timestamp(),
+     updated_at            INTEGER NOT NULL DEFAULT utc_timestamp(),
+     PRIMARY KEY (service_id, batch_id),
+     FOREIGN KEY (service_id, batch_id) REFERENCES batches(service_id, batch_id) ON DELETE CASCADE
   );
 
 -- This gets updated when DLT status changes
 CREATE TABLE batch_statuses
   (
      service_id        VARCHAR(17) NOT NULL,
-     batch_id          VARCHAR(128) NOT NULL,
-     batch_service_id  VARCHAR(17) NOT NULL,
+     batch_id          VARCHAR(70) NOT NULL,
      dlt_status        VARCHAR(16) NOT NULL,
-     created_at        TIMESTAMP NOT NULL,
-     updated_at        TIMESTAMP NOT NULL,
-     FOREIGN KEY (batch_service_id, batch_id) REFERENCES batches(service_id, batch_id) ON DELETE CASCADE,
-     PRIMARY KEY (service_id, batch_id)
+     -- Keep track of when created and updated so we don't keep too many useless records
+     -- These are updated on `UPDATE` using a trigger
+     created_at        INTEGER NOT NULL DEFAULT utc_timestamp(),
+     updated_at        INTEGER NOT NULL DEFAULT utc_timestamp(),
+     PRIMARY KEY (service_id, batch_id),
+     FOREIGN KEY (service_id, batch_id) REFERENCES batches(service_id, batch_id) ON DELETE CASCADE
   );
 ```
