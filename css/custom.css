@@ -596,3 +596,6 @@ td {
     margin-bottom: 30px;
     padding: 20px;
 }
+
+/* Fix for Mermaid SVG bug */
+.mermaid svg { height: auto; }
