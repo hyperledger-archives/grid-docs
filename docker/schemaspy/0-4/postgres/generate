@@ -13,4 +13,4 @@ grid -vv database migrate \
 java -jar schemaspy/schemaSpy.jar \
     -t pgsql11 -host $HOST -port $PORT \
     -db $DATABASE -u $USER -p $PASSWORD -o /output/0.4 \
-    -dp /org/schemaspy/drivers/postgresql-42.2.25.jre7.jar
+    -dp /org/schemaspy/drivers/postgresql-42.3.5.jar
