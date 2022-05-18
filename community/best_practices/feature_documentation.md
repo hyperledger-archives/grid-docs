@@ -63,8 +63,7 @@ format, and transaction types.
 *Examples*: <a href="/docs/{{ site.data.general.latest_version
 }}/grid_product_smart_contract_specification.html">
 Grid Product Smart Contract Specification</a>,
-[Sawtooth Supply Chain Transaction Family
-Specification](https://sawtooth.hyperledger.org/docs/supply-chain/nightly/master/family_specification.html)
+[Sawtooth Transaction Family Specifications](https://sawtooth.hyperledger.org/docs/1.2/transaction_family_specifications/)
 
 ### Database Tables Reference
 
