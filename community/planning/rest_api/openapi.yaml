@@ -27,7 +27,7 @@ externalDocs:
   description: |
     For more information about how to create Sabre batches, please see the
     Sabre documentation.
-  url: https://sawtooth.hyperledger.org/docs/sabre/releases/latest/
+  url: https://sawtooth.hyperledger.org/docs/1.2/sabre/sabre_transaction_family.html
 paths:
   # Transactions
   /batch_statuses:

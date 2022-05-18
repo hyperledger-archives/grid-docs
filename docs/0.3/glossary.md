@@ -26,7 +26,7 @@ batch
 Collection of related transactions that are handled as a group by the backend
 distributed ledger.
 (For more information, see the <a
-href="https://sawtooth.hyperledger.org/docs/core/releases/latest/glossary.html">
+href="https://sawtooth.hyperledger.org/faq/glossary.html">
 Sawtooth glossary</a>.)
 The Grid REST API provides the <code>batches</code> endpoint to submit batches
 of transactions and the <code>batch_statuses</code> endpoint to query the commit
@@ -99,7 +99,7 @@ Hyperledger Sawtooth
 <p class="glossary-definition">
 Backend distributed ledger system for executing transactions that provides a
 permissioned (private) network with dynamic consensus. For more information,
-see the <a href="https://sawtooth.hyperledger.org/docs/core/releases/latest/">
+see the <a href="https://sawtooth.hyperledger.org/docs/">
 Sawtooth documentation</a>.
 </p>
 
@@ -155,7 +155,7 @@ Sawtooth Sabre
 Smart-contract engine that executes smart contracts with WebAssembly (WASM).
 The rules for a smart contract are defined by a smart contract specification
 (formerly called a "transaction family"). For more information, see the
-<a href="https://sawtooth.hyperledger.org/docs/sabre/nightly/master/">
+<a href="https://sawtooth.hyperledger.org/docs/1.2/sabre/sabre_transaction_family.html">
 Sabre documentation</a>.
 </p>
 
