@@ -15,7 +15,7 @@ The examples in this procedure use the `sawtooth_xo` smart contract, which
 allows users to play a distributed game of tic-tac-toe, storing player data and
 game moves in shared state. For information about writing and compiling new
 smart contracts, see the [Sabre
-documentation](https://sawtooth.hyperledger.org/docs/sabre/releases/latest/application_developer_guide.html).
+documentation](https://sawtooth.hyperledger.org/docs/1.2/sabre/application_developer_guide.html).
 
 ## Prerequisites
 
@@ -45,7 +45,7 @@ documentation](https://sawtooth.hyperledger.org/docs/sabre/releases/latest/appli
 
 * A smart contract that has been compiled to WASM (as described in the
   [Sabre Application Developer's
-  Guide](https://sawtooth.hyperledger.org/docs/sabre/releases/latest/application_developer_guide.html).
+  Guide](https://sawtooth.hyperledger.org/docs/1.2/sabre/application_developer_guide.html).
   This example uses the `sawtooth_xo` smart contract that is already packaged
   in a smart contract archive (scar) file.
 

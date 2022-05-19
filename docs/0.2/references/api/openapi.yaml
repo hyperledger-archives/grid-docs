@@ -29,7 +29,7 @@ externalDocs:
   description: |
     For more information about how to create Sabre batches, please see the
     Sabre documentation.
-  url: https://sawtooth.hyperledger.org/docs/sabre/releases/latest/
+  url: https://sawtooth.hyperledger.org/docs/1.2/sabre/sabre_transaction_family.html
 paths:
   # Transactions
   /batches:
@@ -41,7 +41,7 @@ paths:
         description:
           For more information about the Batch data structure, see the Sawtooth
           architecture guide
-        url: https://sawtooth.hyperledger.org/docs/core/releases/latest/architecture/transactions_and_batches.html
+        url: https://sawtooth.hyperledger.org/docs/1.2/architecture/transactions_and_batches.html
       description: |
         This endpoint can be used to submit batches to the underlying
         distributed ledger. The operation called by this endpoint will depend on
