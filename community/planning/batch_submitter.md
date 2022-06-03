@@ -1,5 +1,8 @@
+---
+mermaid: true
+---
 <!--
-  Copyright 2022 Cargill Incorporated
+  Copyright 2018-2022 Cargill Incorporated
   Licensed under Creative Commons Attribution 4.0 International License
   https://creativecommons.org/licenses/by/4.0/
 -->
@@ -8,470 +11,354 @@
 
 ## Overview
 
-The batch submitter component manages the submission of batches to the
-underlying distributed ledger technology (DLT). It is responsible for providing
-the submission queuer and DLT monitor with the information they need to
-accurately perform their own functions via updates to the batch database.
+The batch submitter component drives and manages the submission of batches to the
+underlying distributed ledger technology (DLT).
 
 The submitter is the component responsible for submitting batches via
 individual http requests to the DLT. It polls the batch queuer component for
-batches to submit, and, upon submission, updates the batches' statuses via the
-store component.
-
-### What must the submitter do?
-
-* Reliably submit batches to the DLT endpoint
-* Update a batch's status via the store as soon as possible
-* Handle and report connection issues with the DLT or service
-
-### What must the submitters not do?
-
-* Submit batches to the wrong service
-* Get hung up on a slow request
-
-### Design priorities
-
-1. Accuracy
-2. Stability
-3. Scalability
-4. High availability (HA)
+batches to submit and updates the batch's status via its submitter observer (in
+this case, the observer updates the batch records via the store).
 
 ## Detail
 
-### Actor pattern
+### Overall design
 
-The submitter design is based on an actor pattern. This pattern breaks the
-design into two parts: an interface, which interfaces with the batch queue and
-the store, and the submission actor, which manages the actual submission of
-batches to the DLT.
+At a high level, we need the submitter to do three things:
 
-The actor pattern brings two key benefits to the submitter's design. First, it
-provides us with a great deal of flexibility in implementation. Second, the
-actor pattern translates across implementations, meaning we can solve for a
-variety of desired outcomes, such as low-dependency or HA requirements, using
-the same overall pattern.
+1. Drive the submission action - we decided it would be most appropriate to the
+  overall Grid design if the submitter drove submission action, i.e. polled
+  for work rather than being sent work
+2. Make post requests to the DLT with higher throughput and reliability than
+  serial execution would allow - in particular, we don't want slow http
+  responses to delay the submission of other batches
+3. Inform other components of its actions (i.e. changes to a batch's submission
+  status) and the responses back from the DLT, including information it learns
+  about the DLT's status
 
-With the actor pattern, the submission actor is a resource that we deploy
-somewhere and with which we communicate via messages. If we want control over
-everything that's happening, or to minimize dependencies, those actors could be
-structs on threads. If we want to leverage an async runtime, the actors could
-be async tasks spawned in a tokio runtime. For HA, the actors may be containers
-in a cluster.
+More concretely, these translate into the needs to actively poll the queue for
+submissions, execute submissions asynchronously and concurrently, and actively
+notify the outside world of its actions and information (push information out).
+
+These lead to the three main parts of the submission service: the poller, the
+async runtime, and the response collector.
+
+<div class="mermaid">
+graph LR
+    A[queue] -->|submissions| B[poller]
+    subgraph async runtime
+        task1
+        task2
+        task3
+        ...
+    end
+    B -->|submission| task1 & task2 & task3 & ...
+    task1 & task2 & task3 & ... -->|response| C[response collector]
+    C -->|notifications| D[observer]
+    B -->|notifications of submission starts| D
+</div>
+
+It the above diagram, the poller continuously polls the queue for a new
+submission and sends the submission to the async runtime. If the queue does not
+have a new submission ready, the poller will pause for a predetermined interval
+before polling again.
+
+The async runtime drives the execution of the async POST requests to the DLT.
+Each submission is spawned in its own task handler, which controls retry
+behavior and collects relevant information on the submission process through
+its subcomponents. The task handler then sends a message to the response
+collector that contains either the latest submission response or error
+information.
+
+The response collector collects the incoming information from all tasks in the
+async runtime upon the tasks' completion. It pushes this information to the
+outside world via notifications to an observer component or logging.
 
 ### Implementation
 
-Since we want the submitter to be scalable, we leverage the async capabilities
-of tokio, and the actor is an async runtime in which we spawn tasks.
+The diagram below illustrates the overall process of how a batch is submitted
+in Grid's submitter implementation.
 
-There are four subcomponents to the submitter: 
+<div class="mermaid">
+sequenceDiagram
+participant Listener/Observer
+participant Queue
+participant Polling Thread
+participant Async Task
+participant Submission Controller
+participant Submission Command
+participant URL Resolver
+participant DLT REST API
+    Queue ->> Polling Thread: `Submission`
+    Polling Thread ->> Listener/Observer: in-progress notification via `notify()`
+    Polling Thread ->>+ Async Task: new submission task
+    rect rgb(240, 240, 240)
+    note right of Async Task: async
+    Async Task ->>+ Submission Controller: `Submission`
+    Submission Controller ->>+ Submission Command: `execute()`
+    loop while DLT is busy for i <= 10
+        Submission Command ->>+ URL Resolver: get_URL method call
+        URL Resolver ->>- Submission Command: DLT REST endpoint URL
+        Submission Command ->>+ DLT REST API: PUT request
+        DLT REST API ->>- Submission Command: http response
+        Submission Command ->>- Submission Controller: `SubmissionResponse`
+    end
+    Submission Controller ->>- Async Task: `SubmissionResponse`
+    end
+    Async Task ->>- Listener/Observer: submission response via `notify()`
+</div>
 
-* __the leader thread__ - This has two responsibilities: 1) on initialization,
-  set up the receiver thread, async runtime, channels, and spawner thread, and
-  2) on an ongoing basis, poll the queuer for new batches, create new tasks,
-  and send them to the spawner thread.
-* __the receiver thread__ - This thread listens for submission responses from
-  submission tasks and notifies the observer.
-* __the spawner thread__ - This thread represents the tokio async runtime
-  (which is likely running on multiple os threads). Its role is to listen for
-  new task messages from the leader thread and spawn new tasks accordingly.
-* __task handlers__ - These are tasks spawned in the tokio runtime that manage
-  the process of submitting a batch to a DLT. They submit the batches to the DLT
-  and send the submission response to the listener thread via an mpsc channel.
+There are a number of high-level parts that comprise the submitter
+implementation:
 
-![]({% link community/images/grid_batch_submitter.svg %} "Grid batch submitter diagram")
+#### Submission
 
-#### Process
-
-1. The leader thread polls the Submission queuer for the next thread and
-  receives a `BatchSubmission` (called "NewBatch" in the diagram for brevity).
-2. The leader thread clones a `Sender` from a `std::sync::mpsc` channel on
-  which the listener thread listens for submission responses from tasks.
-3. The leader thread packages the new `BatchSubmission` and `Sender` into a
-  `NewTask` message that it sends to the spawner thread via a capped
-  `tokio::sync::mpsc` channel.
-4. The spawner thread receives the `NewTask` message and spawns a new task in
-  tokio runtime, passing the `NewTask` message contents to the task.
-5. The task creates and runs a new `SubmissionController`, which submits the
-  new batch to the DLT.
-6. The task receives a response from the DLT and packages it into a
-  `SubmissionResponse` struct.
-7. The task uses the `Sender` that was bundled with the `BatchSubmission` to
-  send the `SubmissionResponse` to the listener thread.
-8. The listener thread receives the `SubmissionResponse` and notifies the
-  observer accordingly.
-
-#### `SubmissionController` Detail
-
-As described above, the `SubmissionController` is the component that is 
-responsible for the submission of an individual batch. It has one subcomponent,
-the `SubmissionCommand`, that makes a single, non-blocking call (using 
-`reqwest`) to the DLT's batch submission endpoint. The `SubmissionController`
-creates a new `SubmissionCommand` and calls `execute()` on it.
-
-For most responses from the DLT, the `SubmissionController` will simply send
-the `SubmissionResponse` back to the `TaskHandler` (these will typically be 200
-responses). For 503 responses, the SubmissionController will retry the
-submission according to its retry logic by calling `execute()` on the
-`SubmissionCommand`. After a set number of retries, it will return a
-`SubmissionResponse` with a 503 status to the `TaskHandler`.
-
-### The `BatchSubmitter` struct
-
-The trait below defines the submitter:
+This struct represents a batch to be submitted. It is how the batch payload and
+relevant data are passed through the submitter and is what the queue delivers
+to the submitter when the submitter polls it.
 
 ```rust
-
-pub trait Submitter<'a> {
-    fn start(
-        addresser: Box<dyn Addresser + Send>,
-        queue: Box<dyn Iterator<Item = BatchSubmission> + Send>,
-        observer: Box<dyn SubmitterObserver + Send>,
-    ) -> Result<Box<Self>, InternalError>;
-
-    fn shutdown(self) -> Result<(), InternalError>;
+pub struct Submission<S: ScopeId> {
+    batch_header: String,
+    scope_id: S,
+    serialized_batch: Vec<u8>,
 }
-
 ```
 
-Since the submitter is an active component, i.e. it drives action within Grid,
-there are only `start(...)` and `shutdown()` methods. The addresser, queue, and
-observer are described in their respective sections below.
+#### ScopeId
 
-In implementation, the submitter acts like a handle to the submission service.
-As a struct, this implementation looks like this:
+This identifier varies by underlying DLT and defines the scope to which the
+batch applies. This topic will likely get its own documentation.
 
-```rust
+#### Submission response
 
-struct BatchSubmitter {
-    runtime_handle: thread::JoinHandle<()>,
-    leader_handle: thread::JoinHandle<()>,
-    leader_tx: std::sync::mpsc::Sender<TerminateMessage>,
-    listener_handle: thread::JoinHandle<()>,
-    listener_tx: std::sync::mpsc::Sender<TerminateMessage>,
-}
-
-```
-
-The `start(...)` method initializes the channels and threads that are
-represented in the struct fields (as well as many others). The `shutdown()`
-method uses the channels in the struct fields to instruct the subcomponents to
-drain and terminate, then uses the `JoinHandle`s to join all the subcomponent
-threads.
-
-The addresser, queue, and observer are not part of the submitter object. For an
-implementation like this, each of them are moved to new threads. Since these
-threads could outlive the submitter struct itself, the threads cannot take a
-reference to the submitter. Thus, the addresser, queue, and observer must all
-implement `Send` and are consumed by the submitter.
-
-### Addressers, queues, and observers
-
-The submitter requires three components to function: an addresser, a queue, and
-and observer.
-
-#### Addresser
-
-The following trait defines the `Addresser`:
+This struct captures the http response from the submission POST request. This
+information can then be passed to the observer and/or used for logging.
 
 ```rust
-
-pub trait Addresser {
-    fn address(&self, routing: Option<String>) -> Result<String, InternalError>;
+pub struct SubmissionResponse<S: ScopeId> {
+    batch_header: String,
+    scope_id: S,
+    status: u16,
+    message: String,
+    attempts: u16,
 }
-
-```
-
-Generically, the addresser generates an address to which a batch will be sent,
-possibly including specific routing information. In this case, the addresser
-contains information about the DLT, namely, the REST endpoint to which batches
-can be submitted and the url parameter it accepts, if applicable. Its
-implementation is:
-
-```rust
-
-pub struct BatchAddresser {
-    base_url: &'static str,
-    parameter: Option<&'static str>,
-}
-
-impl BatchAddresser {
-    fn new(base_url: &'static str, parameter: Option<&'static str>) -> Self {
-        Self {
-            base_url,
-            parameter,
-        }
-    }
-}
-
-impl Addresser for BatchAddresser {
-    fn address(&self, routing: Option<String>) -> Result<String, InternalError> {
-        match &self.parameter {
-            Some(p) => {
-                if let Some(r) = routing {
-                    Ok(format!(
-                        "{base_url}?{parameter}={route}",
-                        base_url = self.base_url.to_string(),
-                        parameter = p.to_string(),
-                        route = r
-                    ))
-                } else {
-                    Err(InternalError::with_message(
-                        "Expecting service_id for batch but none was provided".to_string(),
-                    ))
-                }
-            }
-            None => {
-                if value.is_none() {
-                    Ok(self.base_url.to_string())
-                } else {
-                    Err(InternalError::with_message(
-                        "service_id for batch was provided but none was expected".to_string(),
-                    ))
-                }
-            }
-        }
-    }
-}
-
 ```
 
 #### Queue
 
-The batch queue is simply any struct that satisfies the trait 
-`Iterator<Item = BatchSubmission>`. Further, the submitter uses only the
-required trait method `next()`, so the queues implementation is very flexible. 
+This is simply something of type `Iterator<Item = Submission<S>> where S:
+ScopeId`. In Grid, this is the queuer subcomponent, but could be a simple
+`Vec<Submission<S>>` for testing or other purposes. The poller polls this queue
+via the queue's `next()` method.
 
-In the case of Grid, this queue is the
-[batch queuer component](community/planning/batch_queuer_strategies.md), which
-only has the method `next()`. For testing or other purposes, the queue can be a
-vector or other object converted to an iterator, so long as the items in the
-iterator are `BatchSubmission` structs.
+#### URL Resolver
+
+The URL Resolver is a component that the submitter references _every_ time a
+POST request is executed. The resolver's responsibility is to provide the URL
+to which the batch should be posted. In its initial implementation, it is a
+simple component that returns the same URL each time. However, future
+implementations may be more sophisticated and route requests to multiple URLs
+based on DLT instance availability or load.
+
+```rust
+pub trait UrlResolver: std::fmt::Debug + Sync + Send {
+    type Id: ScopeId;
+    /// Generates an address (i.e. URL) to which the batch will be sent.
+    fn url(&self, scope_id: &Self::Id) -> String;
+}
+```
 
 #### Observer
 
-The following trait defines the observer:
+This is a generic component that receives notifications from the submitter. Its
+implementation determines how this information is handled: it can write to a
+database, log, conditionally implement other observer components, ignore
+certain notifications, etc. In its initial implementation, it writes updates to
+a database via the store.
 
 ```rust
-
-pub trait SubmitterObserver {
-    fn notify(&self, id: String, status: Option<u16>, message: Option<String>);
+pub trait SubmitterObserver: Sync + Send {
+    type Id: ScopeId;
+    /// Notify the observer of an update. The interpretation and recording
+    /// of the update is determined by the observer's implementation.
+    fn notify(
+        &self,
+        batch_header: String,
+        scope_id: Self::Id,
+        status: Option<u16>,
+        message: Option<String>,
+    );
 }
-
 ```
 
-The implementation of the observer is also very flexible, both in mechanism and
-interpretation. The mechanism could be a method on a store, a call to a REST
-API, method calls on multiple other observers, etc. The implementation of the
-observer also determines how the observer interprets and acts on the
-notification.
+#### Poller
 
-Here is the observer implementation in Grid:
+As mentioned above, the poller thread runs a loop that polls the queue for new
+submissions. If the queue returns `None`, the poller will pause for a
+predefined polling interval before polling again.
+
+In the submitter's implementation, the poller thread is called the leader
+thread because it has other responsibilities beyond polling (namely managing
+the shutdown of the other threads).
+
+#### Async runtime
+
+A runtime thread spawns new tasks in the async runtime, which drives all
+submission tasks to completion. In the submitter's initial implementation, this
+is a tokio runtime.
+
+#### Submission task
+
+A new submission task is spawned for every batch submission. These run in the
+async runtime and complete concurrently.
+
+The submission task has three nested subcomponents, which are organized by the
+actions the task needs to complete. They are the task handler (labeled "Async
+Task" in the diagram below), the submission controller, and the submission
+command.
+
+The task handler is responsible for running the submission controller and, upon
+completion of the submission, sending the submission response to a listener
+thread that notifies the observer.
+
+The submission controller controls the retry and response behavior of the
+submission command. For example, if the DLT is busy, the controller will
+continue to execute the submission command until the submission is successful
+or a predetermined number of submission attempts have failed. The controller
+propagates any errors up to the task handler, which communicates them to the
+observer via a message.
+
+The submission command executes the POST request to the DLT. As mentioned
+above, each time the command executes, it fetches a URL from the URL resolver.
+Internally, the command also tracks the number of submission attempts it has
+made. For each execution, it creates a new submission response that it passes
+back to the submission controller.
+
+#### Messages
+
+The submitter uses a variety of message types to move information between
+threads and subcomponents. This includes submissions, submission responses,
+error messages, and termination commands.
+
+### Building, running, and controlling the submitter
+
+There are two interfaces for a submitter: a runnable submitter and a running
+submitter. The runnable submitter represents a fully-configured submitter that
+is ready to run. The running submitter is effectively a handle to the running
+submitter service.
+
+Note that `RunningSubmitter` requires the `ShutdownHandle` trait, which
+provides the `signal_shutdown()` and `wait_for_shutdown()` methods.
 
 ```rust
+/// The interface for a submitter that is built but not yet running.
+pub trait RunnableSubmitter<S: ScopeId> {
+    type RunningSubmitter: RunningSubmitter<S>;
 
-pub struct BatchTrackingObserver {
-    store: Box<dyn BatchTrackingStore>,
+    /// Start running the submission service.
+    ///
+    /// This method consumes the `RunnableSubmitter` and returns a `RunningSubmitter`
+    fn run(self) -> Result<Self::RunningSubmitter, InternalError>;
 }
 
-impl SubmitterObserver for BatchTrackingObserver {
-    fn notify(&self, id: String, status: Option<u16>, message: Option<String>) {
-        if let Some(s) = status {
-            // TODO: Do we need to log any of these?
-            match &s {
-                // TODO: Need these methods
-                &200 => self.store.update_batch_submission_successful(id),
-                &503 => self.store.update_batch_submission_busy(id), // include message?
-                &404 => self.store.update_batch_submission_missing(id, message),
-                &500 => self.store.update_batch_submission_internal_error(id), // include message?
-                _ => self.store.update_batch_submission_unrecognized_status(id, status, message),
-            }
-        } else {
-            // A missing status code represents an error in the submission process
-            self.store.update_batch_dlt_error(id, message);
-            todo!(); // Determine if the observer should notify another component
-            // This error will have already been logged by the submitter
-        }
-    }
-}
+/// The interface for a running submitter.
+pub trait RunningSubmitter<S: ScopeId>: ShutdownHandle {
+    type RunnableSubmitter: RunnableSubmitter<S>;
 
+    /// Stop the running submitter service and return a runnable submitter (pause the service).
+    fn stop(self) -> Result<Self::RunnableSubmitter, InternalError>;
+}
 ```
 
-### `BatchSubmitter` implementation
+Grid constructs the runnable submitter via a builder pattern, which allows for
+configuration at runtime.
 
-The implementation of the `BatchSubmitter` has the following steps:
+#### Run
 
-1. Create channels with which the threads will communicate
-2. Build the async runtime
-3. Move the async runtime to a new thread
-4. Spawn the leader thread, which polls for batches and sends them to the async
-  runtime thread
-5. Spawn the listener thread, which notifies the observer
-6. Returns `Self`
+To start the submission service, Grid calls `run()` on the `RunnableSubmitter`,
+which spawns separate threads on which the service runs. These are independent
+of the main thread so the main thread is not blocked while the submitter is
+running. The queue, submitter observer, and a configured submission command
+factory (which contains the url resolver) are each moved to the thread that
+requires them.
 
-You can see these steps in its implementation:
+`run()` returns a `RunningSubmitter`, with which Grid can stop/pause or
+shutdown the submission service.
 
-```rust
+#### Stop and shutdown 
 
-struct BatchSubmitter {
-    runtime_handle: thread::JoinHandle<()>,
-    leader_handle: thread::JoinHandle<()>,
-    leader_tx: std::sync::mpsc::Sender<TerminateMessage>,
-    listener_handle: thread::JoinHandle<()>,
-    listener_tx: std::sync::mpsc::Sender<TerminateMessage>,
-}
+`RunningSubmitter` has a `stop()` method that stops the submission service and
+returns a `RunnableSubmitter`. This can be useful for stopping and restarting
+the submitter without needing to reconfigure it.
 
-impl Submitter<'_> for BatchSubmitter {
-    fn start<'a>(
-        addresser: Box<dyn Addresser + Send>,
-        mut queue: Box<dyn Iterator<Item = BatchSubmission> + Send>,
-        observer: Box<dyn SubmitterObserver + Send>,
-    ) -> Result<Box<Self>, InternalError> {
-        // Create channels for for termination messages
-        let (leader_tx, leader_rx) = std::sync::mpsc::channel();
-        let (listener_tx, listener_rx) = std::sync::mpsc::channel();
+When `stop()` is called, the submitter uses messages to wind down its threads.
+It also uses a mutex-guarded `Collector` struct within the `RunningSubmitter`
+to collect the queue, submitter observer, and configured submission command
+factory, rebuilding and returning a `RunnableSubmitter` identical to the one
+that spawned it. Calling `run()` on this `RunnableSubmitter` restarts the
+submission service.
 
-        // Channel for messages from the async tasks to the sync listener thread
-        let (tx_task, rx_task): (
-            std::sync::mpsc::Sender<TaskMessage>,
-            std::sync::mpsc::Receiver<TaskMessage>,
-        ) = std::sync::mpsc::channel();
-        // Channel for messges from this main thread to the task-spawning thread
-        let (tx_spawner, mut rx_spawner) = mpsc::channel(64);
+__Note__: Stopping the submitter does not stop the submissions in progress -
+these will continue to execute to completion before the submission service
+fully stops. However, no new submissions will begin after `stop()` is called.
 
-        // Create the runtime here to better catch errors on building
-        let rt = Builder::new_multi_thread()
-            .enable_all()
-            .thread_name("submitter_async_runtime")
-            .build()
-            .map_err(|e| InternalError::with_message(format!("{:?}", e)))?;
+When `signal_shutdown()` is called on the running submitter, it sends stop
+messages to its threads, which begin the same wind-down process. While the
+collector still collects the queue, observer, and configured factory, the
+submitter does nothing more with it.
 
-        // Move the asnyc runtime to a separate thread so it doesn't block this one
-        let runtime_handle = std::thread::Builder::new()
-            .name("submitter_async_runtime_host".to_string())
-            .spawn(move || {
-                rt.block_on(async move {
-                    while let Some(msg) = rx_spawner.recv().await {
-                        match msg {
-                            CentralMessage::NewTask(t) => {
-                                tokio::spawn(TaskHandler::spawn(t));
-                            }
-                            CentralMessage::Terminate => break,
-                        }
-                    }
-                })
-            })
-            .map_err(|e| InternalError::with_message(format!("{:?}", e)))?;
+When `wait_for_shutdown()` is called, the submitter joins its threads and
+returns `Result<(), InternalError>`, consuming itself.
 
-        // Set up and run the leader thread
-        let leader_handle = std::thread::Builder::new()
-            .name("submitter_poller".to_string())
-            .spawn(move || {
-                loop {
-                    // Check for shutdown command
-                    match leader_rx.try_recv() {
-                        Ok(_) => {
-                            // Send terminate message to async runtime
-                            match tx_spawner.blocking_send(CentralMessage::Terminate) {
-                                Ok(()) => (),
-                                Err(e) => {
-                                    error!("Error sending terminate messsage to runtime: {:?}", e)
-                                }
-                            };
-                            break;
-                        }
-                        Err(std::sync::mpsc::TryRecvError::Disconnected) => break,
-                        Err(std::sync::mpsc::TryRecvError::Empty) => (),
-                    }
-                    // Poll for next batch and submit it
-                    match queue.next() {
-                        Some(next_batch) => match BatchEnvelope::create(next_batch, &addresser) {
-                            Ok(b) => {
-                                info!("Batch {}: received from queue", &b.id);
-                                match tx_spawner.blocking_send(CentralMessage::NewTask(
-                                    NewTask::new(tx_task.clone(), b),
-                                )) {
-                                    Ok(()) => (),
-                                    Err(e) => {
-                                        error!("Error sending NewTask message: {:?}", e)
-                                    }
-                                };
-                            }
-                            Err(e) => error!("Error creating batch envelope: {:?}", e),
-                        },
-                        None => std::thread::sleep(time::Duration::from_millis(POLLING_INTERVAL)),
-                    }
-                }
-            })
-            .map_err(|e| InternalError::with_message(format!("{:?}", e)))?;
+If Grid ever drops the handle to the submitter service (the `RunningSubmitter`
+struct), the leader thread will detect this and initiate the shutdown process
+on its own.
 
-        // Set up and run the listener thread
-        let listener_handle = std::thread::Builder::new()
-            .name("submitter_listener".to_string())
-            .spawn(move || {
-                loop {
-                    // Check for shutdown command
-                    match listener_rx.try_recv() {
-                        Ok(_) => break,
-                        Err(std::sync::mpsc::TryRecvError::Disconnected) => break,
-                        Err(std::sync::mpsc::TryRecvError::Empty) => (),
-                    }
-                    // Check for submisison response
-                    match rx_task.try_recv() {
-                        Ok(msg) => {
-                            match msg {
-                                TaskMessage::SubmissionResponse(s) => {
-                                    info!(
-                                        "Batch {id}: received submission response [{code}]",
-                                        id = &s.id,
-                                        code = &s.status
-                                    );
-                                    // TODO: Log the number of submission attempts?
-                                    observer.notify(s.id, Some(s.status), Some(s.message))
-                                }
-                                TaskMessage::ErrorResponse(e) => {
-                                    error!("Submission error for batch {}: {:?}", &e.id, &e.error);
-                                    observer.notify(e.id, None, Some(e.error.to_string()));
-                                }
-                            }
-                        }
-                        _ => (),
-                    }
-                }
-            })
-            .map_err(|e| InternalError::with_message(format!("{:?}", e)))?;
+#### Submitter Lifecycle
 
-        Ok(Box::new(Self {
-            runtime_handle,
-            leader_handle,
-            leader_tx,
-            listener_handle,
-            listener_tx,
-        }))
-    }
-
-```
-
-See the below sections for discussions on error handling and logging.
+<div class="mermaid">
+sequenceDiagram
+    participant M as Main thread
+    participant Li as Listener thread
+    participant Le as Leader thread
+    participant R as Runtime thread
+    participant A as Async runtime
+    participant C as Collector struct
+    M->>+Li: spawn
+    M-->>Li: move SubmitterObserver
+    M->>+R: spawn
+    M-->>R: move CommandFactory
+    R->>+A: spawn
+    M->>+Le: spawn
+    M-->>Le: move Queue
+    note over M: Thread freed
+    note over Li,A: Service running
+    M->>Le: signal stop
+    Le-->>C: move Queue
+    Le->>R: stop msg
+    R-->>C: move CommandFactory
+    A->>-R: drained
+    R->>Li: stop msg
+    Li-->>C: move SubmitterObserver
+    Le->>-M: join
+    R->>-M: join
+    Li->>-M: join
+    C-->>M: move Queue, CommandFactory, and SubmitterObserver
+</div>
 
 ### Error handling
 
 Errors can arise in two primary activities: 1) startup/shutdown and 2) runtime
 behavior. We handle errors from these activities differently.
 
-#### Startup/shutdown
+#### Startup/shutdown errors
 
-On startup, the submitter initializes channels, an async tokio runtime, and
-three native threads. A call to `Submitter::start(...)` returns a
-`Result<Box<Self>, InternalError>`, where such initialization errors are
-returned. These would all represent serious errors that prevent the submitter
-component from functioning properly and should be handled elsewhere in Grid.
+Errors during startup and shutdown are returned as a `Err` from the submitter
+methods, such as `run()` on the runnable submitter or `signal_shutdown()` on
+the running submitter. These errors represent problems spawning a thread or
+runtime and tend to be low-level issues outside the scope of Grid.
 
-Similarly, a call to `Submitter::shutdown()` returns a
-`Result<(), InternalError>` that returns errors from the shutdown process.
-Errors here also represent problems far outside the scope of the submitter
-component and should be handled elsewhere.
-
-#### Runtime
+#### Runtime errors
 
 Errors during runtime stem from issues with the submission process and are
 may be isolated to a particular service or batch; therefore, we do not want
@@ -499,35 +386,4 @@ Fortunately, we can determine both of these by logging 1) the point at which
 the submitter receives the batch from the batch queue and 2) the point at which
 the listener thread receives an update about the batch submission (either a
 `SubmissionResponse` or an `ErrorResponse`).
-
-### Batch wrappers
-
-There are two structs that the submitter uses to handle batches: the
-`BatchSubmission` and the `BatchEnvelope`:
-
-```rust
-
-pub struct BatchSubmission {
-    id: String,
-    service_id: Option<String>,
-    payload: String,
-}
-
-struct BatchEnvelope {
-    id: String,
-    address: String,
-    payload: String,
-}
-
-```
-
-The `BatchSubmission` struct is what the submitter receives from the queuer and
-is used briefly. As soon as the submitter receives the `BatchSubmission`, it
-converts it to a `BatchEnvelope` using the addresser.
-
-The `BatchEnvelope` has three parts: the tracking number (the batch `id`), the
-address (the url to which it will be sent), and the contents (the `payload`,
-i.e. the serialized batch). Addressing the batch immediately gives the gives
-the submitter just the minimum information it needs to send and track the batch
-correctly.
 
