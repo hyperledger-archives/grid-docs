@@ -1,3 +1,6 @@
+---
+mermaid: true
+---
 # DLT Polling Monitor
 <!--
   Copyright 2022 Cargill Incorporated
@@ -66,6 +69,37 @@ The DLT Polling Monitor will work through the queue in the following manner:
       means that there was a wait timeout.
    4. Updates db with `update_batch_statuses`
 4. Reruns on the specified `poll_interval`
+
+## Interaction with other services
+
+Below is a sequence diagram that outlines how the DLT polling monitor (Poller)
+interacts with the DLT Event Monitor, Grid Daemon, Ledger, and Database.
+
+<div class="mermaid">
+sequenceDiagram
+    participant Gridd as Grid Daemon
+    participant Poller as DLT Polling Monitor
+    participant EventMonitor as DLT Event Monitor
+    participant Ledger as Splinter / Sawtooth
+    participant DB as Grid DB
+    Gridd->>Poller: Standup DLT Polling Monitor
+    loop Poll
+        Poller->>+DB: Select all pending batches
+        DB-->>-Poller: 
+        Note right of Poller: Scabbard: Group batches by service
+        Note right of Poller: Sawtooth: Group all batches together
+        loop For each group
+            Poller->>+Ledger: GET /batch_statuses
+            Ledger-->>-Poller: 
+        end
+        Poller->>+DB: Update statuses
+    end
+    Gridd->>EventMonitor: Standup DLT Event Monitor
+    EventMonitor->>+Ledger: Connect to websocket DLT event stream
+    loop Every event
+        EventMonitor->>+Poller: Trigger poll
+    end
+</div>
 
 ## Public Traits and Structs
 
