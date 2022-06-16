@@ -1,5 +1,11 @@
 # Creating Splinter Circuits
 
+<!--
+  Copyright (c) 2018-2022 Cargill Incorporated
+  Licensed under Creative Commons Attribution 4.0 International License
+  https://creativecommons.org/licenses/by/4.0/
+-->
+
 This procedure summarizes how to create a simple Splinter circuit between
 two or more nodes, using the example Grid-on-Splinter environment that is
 defined by
@@ -7,7 +13,7 @@ defined by
 in the `grid` repository.
 
 For more information on circuit creation, see [Creating a
-Circuit](https://www.splinter.dev/docs/0.4/tutorials/configuring_splinter_nodes.html#creating-a-circuit)
+Circuit](https://www.splinter.dev/docs/0.6/tutorials/configuring_splinter_nodes.html#creating-a-circuit)
 in the Splinter documentation.
 
 ## Prerequisites
@@ -18,13 +24,12 @@ in the Splinter documentation.
   `beta-node-000`, that are running in Docker containers.
 
 * A public/private key pair for the circuit administrator on each node. The
-  private keys are used to sign the transactions that propose a circuit (on the
-  first node) and vote to accept the proposal (on the other nodes).
-  This procedure shows the private key files `/registry/alpha.priv` (on
-  `alpha-node-000`) and `/registry/beta.priv` (on `beta-node-000`).
-
-* The URL of the Splinter REST API on the first node.  This procedure shows the
-  URL `http://0.0.0.0:8085`.
+  keys are used to authorize requests sent to Splinter. This procedure uses
+  the private key files `/registry/alpha.priv` (on `alpha-node-000`) and
+  `/registry/beta.priv` (on `beta-node-000`). In this example, the key paths
+  are saved by environment variables in the Splinter containers and also saved
+  in the `allow_keys` file of the respective Splinter container to authorize
+  the client to make requests.
 
 * The full node ID (hostname and network endpoint) of each node that will
   belong to the circuit. This procedure shows
@@ -32,9 +37,9 @@ in the Splinter documentation.
   `beta-node-000::tcps://splinterd-beta:8044`.
 
 For more information, see the [Splinter documentation: Creating a
-Circuit](https://www.splinter.dev/docs/0.4/tutorials/configuring_splinter_nodes.html#creating-a-circuit).
+Circuit](https://www.splinter.dev/docs/0.6/tutorials/configuring_splinter_nodes.html#creating-a-circuit).
 or the
-[splinter-circuit-propose(1)](https://www.splinter.dev/docs/0.4/references/cli/splinter-circuit-propose.1.html)
+[splinter-circuit-propose(1)](https://www.splinter.dev/docs/0.6/references/cli/splinter-circuit-propose.1.html)
 man page.
 
 ## Important Notes
@@ -44,13 +49,18 @@ IDs, and URLs that are defined in the example Grid-on-Splinter docker-compose
 file, `examples/splinter/docker-compose.yaml`. If you are not using this example
 environment, replace these items with the actual values for your nodes.
 
+If not using the example's key files for Splinter, indicate the full path to
+the private key of the user signing the transactions using the `--key` option
+in Splinter commands. For more information on client authorization in
+Splinter, see the [Splinter documentation](https://splinter.dev/docs/0.6/howto/configuring_rest_api_authorization.html).
+
 Also, this procedure assumes that all nodes are running in docker containers on
 the same system (as in the [example docker-compose
 file](https://github.com/hyperledger/grid/blob/master/examples/splinter/docker-compose.yaml)).
 If the nodes are on separate physical systems, you must share node information
 and network endpoints with the other administrators. To use the Splinter
 registry to share node information, see the [Splinter
-documentation](https://www.splinter.dev/docs/0.4/concepts/splinter_registry.html).
+documentation](https://www.splinter.dev/docs/0.6/concepts/splinter_registry.html).
 
 ## Procedure
 
@@ -95,26 +105,21 @@ proposal, the circuit is created.
 
 4. Propose a new circuit with the `splinter circuit propose` command.
 
-   For the `--key` option, specify the full path for the private key file of the
-   user that should sign the vote transaction. This example uses the private key
-   in `/registry/alpha.priv`.
-
    ```
    root@splinterd-alpha:/# splinter circuit propose \
-      --key /registry/alpha.priv \
-      --url http://splinterd-alpha:8085  \
-      --node alpha-node-000::tcps://splinterd-alpha:8044 \
-      --node beta-node-000::tcps://splinterd-beta:8044 \
-      --service gsAA::alpha-node-000 \
-      --service gsBB::beta-node-000 \
-      --service-type *::scabbard \
-      --management grid \
-      --service-arg *::admin_keys=$(cat gridd.pub) \
-      --service-peer-group gsAA,gsBB
+       --node alpha-node-000::tcps://splinterd-alpha:8044 \
+       --node beta-node-000::tcps://splinterd-beta:8044 \
+       --service gsAA::alpha-node-000 \
+       --service gsBB::beta-node-000 \
+       --service-type *::scabbard \
+       --service-arg *::admin_keys=$(cat gridd.pub) \
+       --service-peer-group gsAA,gsBB \
+       --auth-type trust \
+       --management grid
    ```
 
    For information on each option, see the
-   [splinter-circuit-propose(1)](https://www.splinter.dev/docs/0.4/references/cli/splinter-circuit-propose.1.html)
+   [splinter-circuit-propose(1)](https://www.splinter.dev/docs/0.6/references/cli/splinter-circuit-propose.1.html)
    man page.
 
    **Note**: This command identifies the scabbard service on each node with a
@@ -126,32 +131,40 @@ proposal, the circuit is created.
 1. Check the output to see the results of the transaction. If the proposal
    transaction succeeded, the output should resemble this example:
 
-   ```
-   The circuit proposal was submitted successfully
-   Circuit: 01234-ABCDE
-       Management Type: grid
+    ```
+    The circuit proposal was submitted successfully
+    Circuit: 01234-ABCDE
+        Display Name: -
+        Circuit Status: Active
+        Schema Version: 2
+        Management Type: grid
 
-       alpha-node-000
-           Service (scabbard): gsAA
+        alpha-node-000
+            Endpoints:
+                tcps://splinterd-alpha:8044
+            Service (scabbard): gsAA
              admin_keys:
-                 02c6fd62b0940512eb7e081facc39f4f7aba65ef4e6234d00b127b80c2f5c30e5b
+                 <gridd-alpha public key>
              peer_services:
                  gsBB
 
-       beta-node-000
-           Service (scabbard): gsBB
-             admin_keys:
-                 02c6fd62b0940512eb7e081facc39f4f7aba65ef4e6234d00b127b80c2f5c30e5b
-             peer_services:
-                 gsAA
-   ```
+        beta-node-000
+            Endpoints:
+                tcps://splinterd-beta:8044
+            Service (scabbard): gsBB
+              admin_keys:
+                  <gridd-alpha public key>
+              peer_services:
+                  gsAA
+    ```
+
 
 1. Verify the results by displaying the list of proposals.
 
    ```
-   root@splinterd-alpha:/# splinter circuit proposals --url http://splinterd-alpha:8085
-   ID            MANAGEMENT MEMBERS                      COMMENTS
-   01234-ABCDE   grid       alpha-node-000;beta-node-000
+   root@splinterd-alpha:/# splinter circuit proposals
+   ID          NAME MANAGEMENT MEMBERS                      COMMENTS PROPOSAL_TYPE
+   01234-ABCDE -    grid       alpha-node-000;beta-node-000 -        Create
    ```
 
 1. Set a `CIRCUIT_ID` environment variable based on the output of the
@@ -166,28 +179,35 @@ proposal, the circuit is created.
 
 1. Use the circuit ID to display the details of the proposed circuit.
 
-   ```
-   root@splinterd-alpha:/# splinter circuit show $CIRCUIT_ID --url http://splinterd-alpha:8085
-   Proposal to create: 01234-ABCDE
+    ```
+    root@splinterd-alpha:/# splinter circuit show $CIRCUIT_ID
+    Proposal to create: 01234-ABCDE
+      Display Name: -
+      Circuit Status: Active
+      Schema Version: 2
       Management Type: grid
 
-      alpha-node-000 (tcps://splinterd-alpha:8044)
+      alpha-node-000
           Vote: ACCEPT (implied as requester):
               <alpha-public-key>
+          Endpoints:
+              tcps://splinterd-alpha:8044
           Service (scabbard): gsAA
               admin_keys:
                   <gridd-alpha public key>
               peer_services:
                   gsBB
 
-      beta-node-000 (tcps://splinterd-beta:8044)
+      beta-node-000
           Vote: PENDING
+          Endpoints:
+              tcps://splinterd-beta:8044
           Service (scabbard): gsBB
               admin_keys:
                   <gridd-alpha public key>
               peer_services:
                   gsAA
-   ```
+    ```
 
 ### Connect to the Second Node
 
@@ -198,10 +218,10 @@ proposal.
    `splinterd-beta`). You will use this container to run Splinter commands on
    the second node (for example, on `beta-node-000`).
 
-   ```
-   $ docker exec -it splinterd-beta bash
-   root@splinterd-beta:/#
-   ```
+    ```
+    $ docker exec -it splinterd-beta bash
+    root@splinterd-beta:/#
+    ```
 
 ### Vote on the Circuit Proposal
 
@@ -211,54 +231,55 @@ proposal.
    proposal and for interacting with the circuit once it is approved. For
    example:
 
-   ```
-   root@splinterd-beta:/# splinter circuit proposals --url http://splinterd-beta:8085
-   ID            MANAGEMENT MEMBERS                      COMMENTS
-   01234-ABCDE   grid       alpha-node-000;beta-node-000
-   ```
+    ```
+    root@splinterd-beta:/# splinter circuit proposals
+    ID          NAME MANAGEMENT MEMBERS                      COMMENTS PROPOSAL_TYPE
+    01234-ABCDE -    grid       alpha-node-000;beta-node-000 -        Create
+    ```
 
 1. As on the first node, save the ID in the `CIRCUIT_ID` environment variable,
    which simplifies entering `splinter` commands.
 
-   ```
-   root@splinterd-beta:/# export CIRCUIT_ID=01234-ABCDE
-   ```
+    ```
+    root@splinterd-beta:/# export CIRCUIT_ID=01234-ABCDE
+    ```
 
 1. Use the circuit ID to show the details of the proposed circuit.
 
-   ```
-   root@splinterd-beta:/# splinter circuit show $CIRCUIT_ID --url http://splinterd-beta:8085
-   Proposal to create: 01234-ABCDE
-      Management Type: grid
+    ```
+    root@splinterd-alpha:/# splinter circuit show $CIRCUIT_ID
+    Proposal to create: 01234-ABCDE
+       Display Name: -
+       Circuit Status: Active
+       Schema Version: 2
+       Management Type: grid
 
-      alpha-node-000 (tcps://splinterd-alpha:8044)
-          Vote: ACCEPT (implied as requester):
-              <alpha-public-key>
-          Service (scabbard): gsAA
-              admin_keys:
-                  <gridd-alpha public key>
-              peer_services:
-                  gsBB
+       alpha-node-000
+           Vote: ACCEPT (implied as requester):
+               <alpha-public-key>
+           Endpoints:
+               tcps://splinterd-alpha:8044
+           Service (scabbard): gsAA
+               admin_keys:
+                   <gridd-alpha public key>
+               peer_services:
+                   gsBB
 
-      beta-node-000 (tcps://splinterd-beta:8044)
-          Vote: PENDING
-          Service (scabbard): gsBB
-              admin_keys:
-                  <gridd-alpha public key>
-              peer_services:
-                  gsAA
-   ```
+       beta-node-000
+           Vote: PENDING
+           Endpoints:
+               tcps://splinterd-beta:8044
+           Service (scabbard): gsBB
+               admin_keys:
+                   <gridd-alpha public key>
+               peer_services:
+                   gsAA
+    ```
 
 1. Vote to accept the proposal.
 
-   For the `--key` option, specify the full path for the private key file of the
-   user that should sign the vote transaction. This example uses the private key
-   in `/registry/beta.priv`.
-
    ```
     root@splinterd-beta:/# splinter circuit vote \
-       --key /registry/beta.priv \
-       --url http://splinterd-beta:8085 \
        $CIRCUIT_ID \
        --accept
    ```
@@ -271,43 +292,50 @@ proposal.
    For example:
 
    ```
-   root@splinterd-beta:/# splinter circuit list --url http://splinterd-alpha:8085
-   ID            MANAGEMENT MEMBERS
-   01234-ABCDE   grid       alpha-node-000;beta-node-000
+   root@splinterd-beta:/# splinter circuit list
+   ID          NAME MANAGEMENT MEMBERS
+   01234-ABCDE -    grid       alpha-node-000;beta-node-000
    ```
 
 1. Check the circuit status on the first node. The circuit information should be
    the same on both nodes.
 
    ```
-   root@splinterd-alpha:/# splinter circuit list --url http://splinterd-alpha:8085
-   ID            MANAGEMENT MEMBERS
-   01234-ABCDE   grid       alpha-node-000;beta-node-000
+   root@splinterd-alpha:/# splinter circuit list
+   ID          NAME MANAGEMENT MEMBERS
+   01234-ABCDE -    grid       alpha-node-000;beta-node-000
    ```
 
 1. You can display the circuit's details with the `splinter circuit show`
    command. This example uses the `CIRCUIT_ID` variable that was set in an
    earlier step.
 
-   ```
-   root@splinterd-alpha:/# splinter circuit show $CIRCUIT_ID --url http://splinterd-alpha:8085
-   Circuit: rXdGO-TWr40
-       Management Type: grid
+    ```
+    root@splinterd-alpha:/# splinter circuit show $CIRCUIT_ID
+    Circuit: 01234-ABCDEg
+        Display Name: -
+        Circuit Status: Active
+        Schema Version: 2
+        Management Type: grid
 
-       alpha-node-000
-           Service (scabbard): gsAA
-             admin_keys:
-                 02c6fd62b0940512eb7e081facc39f4f7aba65ef4e6234d00b127b80c2f5c30e5b
-             peer_services:
-                 gsBB
+        alpha-node-000
+            Endpoints:
+                tcps://splinterd-alpha:8044
+            Service (scabbard): gsAA
+              admin_keys:
+                  <gridd-alpha public key>
+              peer_services:
+                  gsBB
 
-       beta-node-000
-           Service (scabbard): gsBB
-             admin_keys:
-                 02c6fd62b0940512eb7e081facc39f4f7aba65ef4e6234d00b127b80c2f5c30e5b
-             peer_services:
-                 gsAA
-   ```
+        beta-node-000
+            Endpoints:
+                tcps://splinterd-beta:8044
+            Service (scabbard): gsBB
+              admin_keys:
+                  <gridd-alpha public key>
+              peer_services:
+                  gsAA
+    ```
 
    Now that the circuit has been accepted, note that the output starts with
    `Circuit:` instead of the `Proposal to create:` label that marks a proposed
