@@ -206,14 +206,14 @@ proposal, the circuit is created.
        alpha-node-000
            Service (scabbard): gsAA
              admin_keys:
-                 02c6fd62b0940512eb7e081facc39f4f7aba65ef4e6234d00b127b80c2f5c30e5b
+                 <gridd-alpha public key>
              peer_services:
                  gsBB
 
        beta-node-000
            Service (scabbard): gsBB
              admin_keys:
-                 02c6fd62b0940512eb7e081facc39f4f7aba65ef4e6234d00b127b80c2f5c30e5b
+                 <gridd-alpha public key>
              peer_services:
                  gsAA
    ```
