@@ -439,7 +439,7 @@ proposal.
    For example:
 
    ```
-   root@splinterd-beta:/# splinter circuit list --url http://splinterd-alpha:8085
+   root@splinterd-beta:/# splinter circuit list --url http://splinterd-beta:8085
    ID            MANAGEMENT MEMBERS
    01234-ABCDE   grid       alpha-node-000;beta-node-000
    ```
