@@ -103,7 +103,7 @@ sequenceDiagram
 
 ## Public Traits and Structs
 
-```
+```rust
 pub type BatchResult<T> = Result<T, BatchError>;
 
 #[derive(Debug, Clone)]
@@ -112,33 +112,43 @@ pub enum BatchError {
     // . . .
 }
 
-pub trait BatchStatus: Debug {
+/// BatchStatus represents the minimum batch status information
+/// necessary for the polling monitor to run
+pub trait BatchStatus: Debug + Clone {
     fn get_id(&self) -> &str;
     fn is_unknown(&self) -> bool;
 }
 
-pub trait BatchId: Debug + Clone {
+/// BatchId represents the minimum batch id information
+/// necessary for the polling monitor to run
+pub trait BatchId: Debug + Clone + Sync + Send {
     fn get_id(&self) -> &str;
     fn get_service_id(&self) -> &str;
 }
 
-pub trait PendingBatchStore<T: BatchId> {
-    fn get_pending_batch_ids(&self) -> BatchResult<Vec<T>>;
+/// Store that allows getting a list of pending batch ids
+pub trait PendingBatchStore: Send {
+    type Id: BatchId;
+    fn get_pending_batch_ids(&self, limit: usize) -> BatchResult<Vec<Self::Id>>;
 }
 
-pub trait BatchStatusStore<T: BatchStatus> {
-    fn get_batch_statuses(
-        &self,
-        service_id: &str,
-        batch_ids: &[String],
-    ) -> BoxFuture<'_, BatchResult<Vec<T>>>;
+/// Reads the batch statuses from an external source
+pub trait BatchStatusReader: Send {
+    type Status: BatchStatus;
+
+    fn get_batch_statuses<'a>(
+        &'a self,
+        service_id: &'a str,
+        batch_ids: &'a [String],
+    ) -> BoxFuture<'a, BatchResult<Vec<Self::Status>>>;
+
+    fn available_connections(&self) -> usize;
 }
 
-pub trait BatchUpdater<T: BatchStatus> {
-    fn update_batch_ids(
-        &self,
-	service_id: &str,
-	batches: &[T]
-    ) -> BatchResult<()>;
+/// Updates the batch statuses
+pub trait BatchUpdater: Send {
+    type Status: BatchStatus;
+
+    fn update_batch_statuses(&self, service_id: &str, batches: &[Self::Status]) -> BatchResult<()>;
 }
 ```
