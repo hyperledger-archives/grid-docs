@@ -1,3 +1,6 @@
+---
+mermaid: true
+---
 # DLT Polling Monitor
 <!--
   Copyright 2022 Cargill Incorporated
@@ -67,9 +70,40 @@ The DLT Polling Monitor will work through the queue in the following manner:
    4. Updates db with `update_batch_statuses`
 4. Reruns on the specified `poll_interval`
 
+## Interaction with other services
+
+Below is a sequence diagram that outlines how the DLT polling monitor (Poller)
+interacts with the DLT Event Monitor, Grid Daemon, Ledger, and Database.
+
+<div class="mermaid">
+sequenceDiagram
+    participant Gridd as Grid Daemon
+    participant Poller as DLT Polling Monitor
+    participant EventMonitor as DLT Event Monitor
+    participant Ledger as Splinter / Sawtooth
+    participant DB as Grid DB
+    Gridd->>Poller: Standup DLT Polling Monitor
+    loop Poll
+        Poller->>+DB: Select all pending batches
+        DB-->>-Poller: 
+        Note right of Poller: Scabbard: Group batches by service
+        Note right of Poller: Sawtooth: Group all batches together
+        loop For each group
+            Poller->>+Ledger: GET /batch_statuses
+            Ledger-->>-Poller: 
+        end
+        Poller->>+DB: Update statuses
+    end
+    Gridd->>EventMonitor: Standup DLT Event Monitor
+    EventMonitor->>+Ledger: Connect to websocket DLT event stream
+    loop Every event
+        EventMonitor->>+Poller: Trigger poll
+    end
+</div>
+
 ## Public Traits and Structs
 
-```
+```rust
 pub type BatchResult<T> = Result<T, BatchError>;
 
 #[derive(Debug, Clone)]
@@ -78,33 +112,43 @@ pub enum BatchError {
     // . . .
 }
 
-pub trait BatchStatus: Debug {
+/// BatchStatus represents the minimum batch status information
+/// necessary for the polling monitor to run
+pub trait BatchStatus: Debug + Clone {
     fn get_id(&self) -> &str;
     fn is_unknown(&self) -> bool;
 }
 
-pub trait BatchId: Debug + Clone {
+/// BatchId represents the minimum batch id information
+/// necessary for the polling monitor to run
+pub trait BatchId: Debug + Clone + Sync + Send {
     fn get_id(&self) -> &str;
     fn get_service_id(&self) -> &str;
 }
 
-pub trait PendingBatchStore<T: BatchId> {
-    fn get_pending_batch_ids(&self) -> BatchResult<Vec<T>>;
+/// Store that allows getting a list of pending batch ids
+pub trait PendingBatchStore: Send {
+    type Id: BatchId;
+    fn get_pending_batch_ids(&self, limit: usize) -> BatchResult<Vec<Self::Id>>;
 }
 
-pub trait BatchStatusStore<T: BatchStatus> {
-    fn get_batch_statuses(
-        &self,
-        service_id: &str,
-        batch_ids: &[String],
-    ) -> BoxFuture<'_, BatchResult<Vec<T>>>;
+/// Reads the batch statuses from an external source
+pub trait BatchStatusReader: Send {
+    type Status: BatchStatus;
+
+    fn get_batch_statuses<'a>(
+        &'a self,
+        service_id: &'a str,
+        batch_ids: &'a [String],
+    ) -> BoxFuture<'a, BatchResult<Vec<Self::Status>>>;
+
+    fn available_connections(&self) -> usize;
 }
 
-pub trait BatchUpdater<T: BatchStatus> {
-    fn update_batch_ids(
-        &self,
-	service_id: &str,
-	batches: &[T]
-    ) -> BatchResult<()>;
+/// Updates the batch statuses
+pub trait BatchUpdater: Send {
+    type Status: BatchStatus;
+
+    fn update_batch_statuses(&self, service_id: &str, batches: &[Self::Status]) -> BatchResult<()>;
 }
 ```
