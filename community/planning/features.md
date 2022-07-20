@@ -21,6 +21,7 @@ community meeting.
 | [Batch Submission Queuer Strategies]({% link community/planning/batch_queuer_strategies.md %}) | A set of algorithms for determining batch submission order |
 | [Batch Submitter]({% link community/planning/batch_submitter.md %}) | A daemon for submitting batches |
 | [Batch Tracking Store]({% link community/planning/batch_tracking_store.md %}) | A store for providing functionality to interact with the batch tracking database |
+| [High Availability]({% link community/planning/ha_plan.md %}) | A high-availability plan for Grid |
 | [High & Low-level Transaction REST API]({% link
 community/planning/high_low_level_transaction_rest_api.md %}) | An API for submitting higher-level JSON transactions |
 | [Product Sapling]({% link community/planning/product_sapling.md %}) | A front-end for Grid Product functionality |
