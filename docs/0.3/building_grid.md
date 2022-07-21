@@ -8,9 +8,11 @@
 
 ## Local Builds
 
-To build Grid locally, run `cargo build` from the root directory. This command
-builds all of the Grid components, including `gridd` (the grid daemon),
-the CLI, and all of the smart contracts in the `contracts` directory.
+To build Grid locally, first you must install the prerequisites outlined in the
+[README](https://github.com/hyperledger/grid/blob/main/README.md). Then run
+`cargo build` from the root directory. This command builds all of the Grid
+components, including `gridd` (the grid daemon), the CLI, and all of the smart
+contracts in the `contracts` directory.
 
 To build individual components, run `cargo build` in the component directories.
 For example, to build only `grid-cli`, navigate to `cli`, then run
