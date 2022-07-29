@@ -12,97 +12,74 @@ for submission to a distributed ledger (DLT). It ensures that batches are
 submitted and committed to the DLT in the order in which they are submitted to
 Grid.
 
-See the high-level document on (submission queuer
-strategies)[{% link community/planning/batch_queuer_strategies.md %}]
+See the high-level document on [submission queuer
+strategies]({% link community/planning/batch_queuer_strategies.md %})
 for a detailed discussion of the decisions behind this strategy's design.
 
-## Algorithm
+## Logic
 
-> Some of these steps may be pre-implemented in the store for efficiency, but
-> the queuer should implement all of these so it can be separated from the
-> store.
+> Some of this logic may be implemented in the store for efficiency, but the
+> queuer may implement all of it so it can be separated from the store.
 
-1. Start with a list of all batches that do not have these batch statuses:
+Start with a list of all batches that do not have these batch statuses:
 
-    * `Some(Committed)`
-    * `Some(Valid)`
-    * `Some(Invalid)`
+* `Committed`
+* `Valid`
+* `Invalid`
 
-    This should leave a list of batches (called `batch_list`) in the following
-    states:
+This should leave a list of batches (called `batch_list`) in the following
+states:
 
-    * `{submitted = false, batch_status = None}`
+* `{submitted = false, batch_status = None}` - unsubmitted batches
+* `{submitted = true, batch_status = None}` - batches that are in the process
+  of being submitted
+* `{submitted = true, batch_status = Some(Pending)}` - batches that were
+  submitted but haven't yet been committed by the DLT
+* `{submitted = false, batch_status = Some(Unknown)}` - batches that may have
+  been submitted but that the DLT does not recognize
+* `{submitted = false, batch_status = Some(Delayed)}` - batches that the
+  submitter attempted to submit, but the DLT was busy
+
+For each `service_id`:
+
+1. If there is a batch with status `Unknown`, or with status `Delayed` and the
+  delay window has past, queue this batch. There should only be one of these
+  at a time. Do not queue any other batches for this `service_id`.
+2. Next, if there is a batch with any of the below, do not queue any other
+  batches for the `service_id`:
+
+    * `{submitted = true, batch_status = None}`
     * `{submitted = true, batch_status = Some(Pending)}`
     * `{submitted = false, batch_status = Some(Unknown)}`
     * `{submitted = false, batch_status = Some(Delayed)}`
 
-2. Create a mutable vector called `batch_queue`.
+    This `service_id` is effectively locked, since there is some batch that
+    must be committed or resubmitted first.
 
-3. Get all batches from `batch_list` where `batch_status = Some(Unknown)` and
-  add these to `batch_queue`.
+3. If neither of the above apply and all batches for the `service_id` are
+  `{submitted = false, batch_status = None}`, queue the batch with the oldest
+  `created_at`. If there are two batches that were created at the same time,
+  break the tie by taking the batch with the first alphabetically sorted
+  `batch_header`; this will ensure deterministic queuing behavior.
 
-4. Get all batches from `batch_list` where `batch_status = Some(Delayed)` and
-  the last submission attempt is outside the delay window, then add these to
-  `batch_queue`.
+Note that these are the logical rules that the queuing algorithm must follow -
+these steps are not necessarily how the algorithm should be implemented. An
+efficient implementation could involve one pass over `batch_list`, an enum, a
+HashMap, and logic to select the appropriate batch.
 
-5. Get a list of all `service_id`s, excluding any `service_id` of batches with
-  a `batch_status` of `Some(Pending)`, `Some(Unknown)`, or `Some(Delayed)`.
-  Call this list `service_id_list`.
+### Delay window
 
-5. For each `service_id` in `service_id_list`, find the batch or
-  batches with the oldest `created_at` date (there may be more than one if the
-  oldest batches were created at the same time).
-
-    If there is one oldest batch, add this batch to `batch_queue`.
-
-    If there is more than one oldest batch, select the batch with the first
-    alphabetically-sorted `batch_header` (this ensures deterministic queuing
-    behavior). Add this batch to `batch_queue`.
-
-### Which batches to queue?
-
-From the queuer's perspective, batches fall into three categories:
-
-#### Queue now
-
-These batches look like (there are additional criteria for prioritization):
-* `{submitted = false, batch_status = None}` - These have not been submitted
-  and there are no pending batches with this service_id; there are also no
-  batches with status `unknown` or `delayed`
-* `{submitted = false, batch_status = Some(Unknown)}` - These have been submitted,
-  but the DLT doesn't recognize them
-* `{submitted = false, batch_status = Some(Delayed), last_submitted_at <= now - 15
-  seconds?}` - The submitter attempted to submit these, but something went
-  wrong and these need to be retried; the delay window has expired, so these
-  should be retried now
-
-#### Queue later
-
-These batches look like:
-* `{submitted = false, batch_status = Some(Delayed), last_submitted_at > now - 15
-  seconds?}` - The submitter attempted to submit these, but something went
-  wrong and these need to be retried; the delay window has not expired yet
-* `{submitted = false, batch_status = None, service_id = (service_id of a
-  pending, unknown, or delayed batch)}` - These are new batches, but there is a
-  batch with the same service_id that must be committed or declared invalid
-  before another batch with this service_id can be submitted
-
-#### Don't queue
-
-These batches look like:
-* `{submitted = true, batch_status = Some(Pending)}`
-* `{submitted = true, batch_status = Some(Invalid)}`
-* `{submitted = true, batch_status = Some(Valid)}`
-* `{submitted = true, batch_status = Some(Committed)}`
-* `{submitted = true, batch_status = None}` - These bathes are in process of
-  being submitted and should not be queued
+Batches with a status of `Delayed` must wait for a delay window to pass before
+being resubmitted. The delay window starts when the submitter finishes retrying
+its submission and records the submission attempt. The delay window exists to
+lessen the load on a DLT that has repeatedly returned a 503 code.
 
 ### Additional notes
 
 * `submitted = True` is an indicator that the submitter has the batch and is
-  doing something with it when the batch status is `None` or `Delayed` or
-  `Unknown` - it guards against the queuer re-queuing the batch while the
-  submitter has it.
+  doing something with it when the batch status is `None`, or `Delayed` or
+  `Unknown` when resubmitting - it guards against the queuer re-queuing the
+  batch while the submitter has it.
 * The monitor needs to update `submitted` to false when it sets the batch
   status to `Unknown`.
 
