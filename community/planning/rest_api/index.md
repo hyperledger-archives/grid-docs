@@ -6,12 +6,137 @@
   https://creativecommons.org/licenses/by/4.0/
 -->
 
-
 This document is intended to capture proposed updates to the Grid REST API.
 This document is a work-in-progress and proposed changes may or may not be
 implemented as project requirements evolve.
 
-* [Future REST API Reference](/community/planning/rest_api/api/)
+## Planned functionality
+
+Mainly, the REST API will be updated to support more robust batch handling.
+The proposed functionality will accept transactions in JSON, the request body,
+while arguments for the batch can be submitted in the request headers. Arguments
+for a batch may include a service ID, if Grid is running with Splinter, or a
+user-created identifier for the batch submitted. More specific headers pertaining
+to batch arguments may be added. The array of JSON arguments will be converted
+into the appropriate transactions and signed. As Grid will support batch
+tracking, the REST API will not directly submit batches. Instead, once a batch
+has been signed and built, it will be stored in Grid's database. Other
+components will handle the batch for the rest of its lifecycle and the database
+entry will reflect updates.
+
+The REST API is provided by two components, gridd and griddle. Griddle is a
+client component that will act as both a proxy and signing utility. Grid may
+also perform transaction and batch signing, if configured at run-time. Griddle
+will communicate with gridd over REST API and may be run from a separate
+security domain. Access to the internet is not required by Griddle, which allows
+it to handle sensitive data, such as private key files, without worry this data
+may become compromised. As griddle does not have access to gridd's database, it
+will also proxy batches it creates to gridd's `/batches` endpoint to be stored
+in the database. Database support may be added to griddle in the future.
+
+All smart contract actions that may be performed in Grid will be represented by
+`POST` endpoints. An example of a request for the `POST /organizations` endpoint
+is below:
+
+```
+POST /locations
+Content-Type: application/json+grid-simple
+Headers:
+  data_change_id: <User-defined batch ID>
+  // Batch arguments
+Body:
+[
+  {
+    "namespace": "GS1",
+    "location_id": "1234",
+    "properties": [
+      "..."
+    ],
+  },
+]
+```
+
+This JSON is converted by the endpoint into it's respective transaction type,
+the action of this example would be `CreateLocation`. There may be multiple
+transactions in the JSON body. Endpoints receiving these requests must account
+for the list of transactions when deserializing the request body. More complex
+batches may include transactions with different action types. The `/batches`
+endpoint allows for this situation. An example request to this endpoint follows:
+
+```
+POST /batches
+Content-Type: application/json
+Headers:
+  data_change_id: <User-defined batch ID>
+  // Batch arguments
+Body:
+[
+  {
+    "target": "POST /locations"
+    "namespace": "GS1",
+    "location_id": "1234",
+    "properties": [
+      "..."
+    ],
+  },
+  {
+    "target": "PUT /locations"
+    "namespace": "GS1",
+    "location_id": "5678",
+    "properties": [
+      "..."
+    ],
+  },
+]
+```
+
+This request will create a batch containing two transactions, one for creating
+a location and one for updating another location. The endpoint handling this
+request will deserialize the request body into transactions, depending on
+value of the `target` field. If the endpoint is unable to recognize the targeted
+transaction, it will return `400 Bad Request`. A signer object is passed to
+each endpoint and is required to build the batch. If the endpoint does not have
+access to a signer, it will return `400 Bad Request`.
+
+Once a batch has been built from the request body and signed, it can be stored
+in gridd's database. As endpoints may be provided by both gridd and griddle,
+the signed batch should be handled by an implementation-specific object.
+Endpoints have access to a trait object, `BatchSubmissionHandler`, which
+submits the batch once it is signed. This trait implements a `submit_batches`
+method, which takes in pertinent batch information to store. If an endpoint is
+provided by griddle, the submission handler is required to send the batch
+to gridd to be stored. An endpoint provided by gridd is able to directly store
+the batch.
+
+If a batch is submitted successfully, the endpoint will respond with
+status code `202 Accepted` and a JSON body of the identifiers for the batch
+stored. An example response body to a request that included a Splinter service
+ID and a user-defined ID.
+
+```
+{
+  [
+    {
+      "dlt_batch_id": <Batch header signature>,
+      "data_change_id": <User-defined ID>,
+      "service_id": <Splinter service ID>,
+    },
+  ]
+}
+```
+
+If Grid is not running with Splinter services, the `service_id` field will not
+be returned. Similarly, if no `data_change_id` was submitted in the original
+request, it will also not be returned.
+
+If a batch is not submitted successfully, the endpoint will respond with a
+status code to describe the error and a JSON body with any additional data. For
+example, an error is returned at the point griddle attempts to send a batch
+to gridd, a `SendError` with a message describing what went wrong. The griddle
+endpoint may return a `402 Bad Gateway` if it is unable to connect to gridd.
+
+All previous design documents for the REST API are linked in the following
+section.
 
 ## Changes
 
