@@ -138,23 +138,47 @@ endpoint may return a `402 Bad Gateway` if it is unable to connect to gridd.
 All previous design documents for the REST API are linked in the following
 section.
 
-## Changes
+## Proposed functionality
 
-  - Added `POST` and `PUT` routes for various Grid resources. These endpoints
+- Accept JSON Batches. The Grid REST API will be updated to support
+  batches encoded in bytes or JSON, providing a more natural
+  experience for users. An initial design document for the future
+  REST API, [High-level and Low-level Transaction REST API]({%
+  link community/planning/rest_api/high_low_level_transaction_rest_api.md %}),
+  explains that Grid will support both byte-encoded and JSON-encoded
+  batches. JSON-encoded batches will be signed and encoded by the
+  Grid daemon, as needed before submission.
+
+- Proxy. Griddle is a client component that runs separately from the Grid daemon,
+  communicating with Grid via REST API. Griddle is able to proxy requests to Grid
+  and will create and sign batches submitted as JSON. The initial design
+  document, [Griddle Proxy]({%
+  link community/planning/rest_api/griddle_proxy.md %}), explains this
+  functionality more thoroughly.
+
+- Backwards compatibility. Especially as the API changes greatly, setting
+  forth a plan for handling backwards compatibility will smooth the process
+  for both developers and users. See [Rest API Backwards
+  Compatibility]({% link community/planning/rest_api/backwards_compatibility.md %})
+  for more details.
+
+## Proposed API
+
+* [Future REST API Reference](/community/planning/rest_api/api/)
+
+- Added `POST` and `PUT` routes for various Grid resources. These endpoints
   will be used to submit batches to create and update resources. This takes the
   place of submitting everything through a `POST` to `/batches` and will
   provide users with a more familiar REST API experience.
-  - Updated resource schemas. The resource schemas for various Grid features
+- Updated resource schemas. The resource schemas for various Grid features
   have been updated to reflect their protobuf message counterparts and what a
   user can expect to see when fetching that resource. Some resources do not
   differ between their create and update messages and have not changed.
-  - Removed Track and Trace endpoints. This feature will no longer be supported.
+- Removed Track and Trace endpoints. This feature will no longer be supported.
 
-## For further consideration
+## Proposed for further consideration
 
-  - Consider changing `/batch_statuses` to `/batch-statuses`. This would bring
+  - Change `/batch_statuses` to `/batch-statuses`. This would bring
   this endpoint in line with other endpoints in this API but consideration must
   be given to the impact this will have on the corresponding endpoints in
   Sawtooth and Splinter as well as backwards-compatibility concerns.
-  - [Rest API Backwards Compatibility]({% link
-    community/planning/rest_api/backwards_compatibility.md %})
