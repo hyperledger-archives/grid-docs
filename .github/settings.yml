@@ -1,5 +1,5 @@
 repository:
-  name: grid
+  name: grid-docs
   description: Grid provides reference implementations of supply-chain-centric
     items – data types, data models, smart contracts, and more – that are
     anchored on existing open standards and industry best practices.
