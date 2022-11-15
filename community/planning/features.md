@@ -32,3 +32,4 @@ community/planning/high_low_level_transaction_rest_api.md %}) | An API for submi
 | [DLT Event Monitor]({% link community/planning/dlt_event_monitor.md %}) | A proposed future event monitor for syncing batch statuses |
 | [Rest API Backwards Compatibility]({% link community/planning/rest_api/backwards_compatibility.md %}) | A proposed backwards compatibility plan for testing the REST API |
 | [Griddle Proxy]({% link community/planning/griddle_proxy.md %}) | Proposed proxying functionality for Griddle |
+| [Grid Document]({% link community/planning/grid_document.md %}) | Grid Document specification |
