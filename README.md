@@ -1,4 +1,8 @@
-# grid-docs
+# Hyperledger Grid
+
+Hyperledger Grid [has moved](https://github.com/hyperledger/toc/issues/82) to [End of life status](https://toc.hyperledger.org/governing-documents/project-lifecycle.html#end-of-life).
+
+## grid-docs
 
 The grid-docs repository contains source code and assets for the
 [Hyperledger Grid Docs website](https://grid.hyperledger.org).
